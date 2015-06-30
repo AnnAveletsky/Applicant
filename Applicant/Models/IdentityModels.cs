@@ -29,7 +29,8 @@ namespace Applicant.Models
         {
             return new ApplicationDbContext();
         }
+        public System.Data.Entity.DbSet<Applicant.Models.ApplicantModel> Applicants { get; set; }
 
-        public System.Data.Entity.DbSet<Applicant.Models.ApplicantModels> Applicants { get; set; }
+        public System.Data.Entity.DbSet<Applicant.Models.AttachmentModel> AttachmentModels { get; set; }
     }
 }

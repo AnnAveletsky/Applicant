@@ -10,107 +10,107 @@ using Applicant.Models;
 
 namespace Applicant.Controllers
 {
-    public class ApplicantController : Controller
+    public class AttachmentController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Applicant
+        // GET: Attachment
         public ActionResult Index()
         {
-            return View(db.Applicants.ToList());
+            return View(db.AttachmentModels.ToList());
         }
 
-        // GET: Applicant/Details/5
+        // GET: Attachment/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicantModel applicantModel = db.Applicants.Find(id);
-            if (applicantModel == null)
+            AttachmentModel attachmentModel = db.AttachmentModels.Find(id);
+            if (attachmentModel == null)
             {
                 return HttpNotFound();
             }
-            return View(applicantModel);
+            return View(attachmentModel);
         }
 
-        // GET: Applicant/Create
+        // GET: Attachment/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Applicant/Create
+        // POST: Attachment/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AplicantID,FirstName,MiddleName,LastName,Email,Phone,Comments,Salary")] ApplicantModel applicantModel)
+        public ActionResult Create([Bind(Include = "AttachmentId,ApplicantId,Name,DateTimeAdd,ApplicantIdAdd,DataTimeDelete,ApplicantIdDelete")] AttachmentModel attachmentModel)
         {
             if (ModelState.IsValid)
             {
-                db.Applicants.Add(applicantModel);
+                db.AttachmentModels.Add(attachmentModel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(applicantModel);
+            return View(attachmentModel);
         }
 
-        // GET: Applicant/Edit/5
+        // GET: Attachment/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicantModel applicantModel = db.Applicants.Find(id);
-            if (applicantModel == null)
+            AttachmentModel attachmentModel = db.AttachmentModels.Find(id);
+            if (attachmentModel == null)
             {
                 return HttpNotFound();
             }
-            return View(applicantModel);
+            return View(attachmentModel);
         }
 
-        // POST: Applicant/Edit/5
+        // POST: Attachment/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AplicantID,FirstName,MiddleName,LastName,Email,Phone,Comments,Salary")] ApplicantModel applicantModel)
+        public ActionResult Edit([Bind(Include = "AttachmentId,ApplicantId,Name,DateTimeAdd,ApplicantIdAdd,DataTimeDelete,ApplicantIdDelete")] AttachmentModel attachmentModel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(applicantModel).State = EntityState.Modified;
+                db.Entry(attachmentModel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(applicantModel);
+            return View(attachmentModel);
         }
 
-        // GET: Applicant/Delete/5
+        // GET: Attachment/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicantModel applicantModel = db.Applicants.Find(id);
-            if (applicantModel == null)
+            AttachmentModel attachmentModel = db.AttachmentModels.Find(id);
+            if (attachmentModel == null)
             {
                 return HttpNotFound();
             }
-            return View(applicantModel);
+            return View(attachmentModel);
         }
 
-        // POST: Applicant/Delete/5
+        // POST: Attachment/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ApplicantModel applicantModel = db.Applicants.Find(id);
-            db.Applicants.Remove(applicantModel);
+            AttachmentModel attachmentModel = db.AttachmentModels.Find(id);
+            db.AttachmentModels.Remove(attachmentModel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

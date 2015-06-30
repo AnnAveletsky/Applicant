@@ -1,16 +1,14 @@
-﻿@model IEnumerable<Applicant.Models.ApplicantModels>
-
+﻿@model IEnumerable<Applicant.Models.ApplicantModel>
 
 @{
-     ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
     string search = "";
 }
 
 @if (Request.IsAuthenticated)
 
 {
-<h2>Список соискателей</h2>
-<h2>Index</h2>
+    <h2>Список соискателей</h2>
     <div class="row">
         <div class="col-lg-3">
             @Html.TextBoxFor(x => search, new { @class = "form-control" })

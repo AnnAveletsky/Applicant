@@ -6,9 +6,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Applicant.Models
 {
-    public class ApplicantModels
+    public class ApplicantModel
     {
-
         [Key]
         public int AplicantID { get; set; }
         public string FirstName { get; set; }
