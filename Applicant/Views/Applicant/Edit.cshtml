@@ -6,7 +6,6 @@
 
 <h2>Edit</h2>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -72,7 +71,15 @@
                 @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <input id="input-dim-1" type="file" multiple class="file-loading" accept="image/*">
+        <script>
+$("#input-dim-1").fileinput({
+    uploadUrl: "http://localhost/Applicant/Index",
+    allowedFileExtensions: ["jpg", "png", "gif"],
+    minImageWidth: 50,
+    minImageHeight: 50
+});
+        </script>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />

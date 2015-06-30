@@ -10,7 +10,7 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>ApplicantModels</h4>
         <hr />
@@ -70,7 +70,31 @@
                 @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <script type="text/javascript">
+    (function ($) {
+        $(function () {
+            $('.btn-file').each(function () {
+                var self = this;
+                $('input[type=file]', this).change(function () {
+                    // remove existing file info
+                    $(self).next().remove();
+                    // get value
+                    var value = $(this).val();
+                    // get file name
+                    var fileName = value.substring(value.lastIndexOf('/') + 1);
+                    // get file extension
+                    var fileExt = fileName.split('.').pop().toLowerCase();
+                    // append file info
+                    $('<span><i class="icon-file icon-' + fileExt + '"></i> ' + fileName + '</span>').insertAfter(self);
+                });
+            });
+        });
+    })(jQuery);
+        </script>
+        <span class="btn btn-success btn-file">
+            <i class="icon-plus"> </i><span>Choose picture...</span>
+            <input type="file" name="image" id="image" />
+        </span>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
