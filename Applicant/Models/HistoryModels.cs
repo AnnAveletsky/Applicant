@@ -11,15 +11,22 @@ namespace Applicant.Models
         [Key]
         public int HistoryId { get; set; }
 
-        [DataType(DataType.Date)] 
-        [Display(Name = "Дата прохождения")]
+        [
+            DataType(DataType.Date),
+            Display(Name = "Дата прохождения")
+        ]
         public DateTime CommunicationDate { get; set; }
 
-        [Display(Name = "Тип встречи")]
+        [
+            Required(ErrorMessage = "Поле должно быть установлено"),
+            Display(Name = "Тип встречи")
+        ]
         public TypeHistory TypeCommunication { get; set; }
 
-        [Display(Name = "Коментарии")]
-        [MaxLength(500)]
+        [
+            Display(Name = "Коментарии"),
+            MaxLength(500)
+        ]
         public string HistoryComments { get; set; }
         public virtual ICollection<Attachment> Attachment { get; set; }
     }

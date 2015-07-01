@@ -235,11 +235,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Applicants\Create.cshtml" />
-    <Content Include="Views\Applicants\Delete.cshtml" />
-    <Content Include="Views\Applicants\Details.cshtml" />
-    <Content Include="Views\Applicants\Edit.cshtml" />
-    <Content Include="Views\Applicants\Index.cshtml" />
     <Content Include="Views\Attachments\Create.cshtml" />
     <Content Include="Views\Attachments\Delete.cshtml" />
     <Content Include="Views\Attachments\Details.cshtml" />
@@ -250,6 +245,11 @@
     <Content Include="Views\Histories\Details.cshtml" />
     <Content Include="Views\Histories\Edit.cshtml" />
     <Content Include="Views\Histories\Index.cshtml" />
+    <Content Include="Views\Applicants\Create.cshtml" />
+    <Content Include="Views\Applicants\Delete.cshtml" />
+    <Content Include="Views\Applicants\Details.cshtml" />
+    <Content Include="Views\Applicants\Edit.cshtml" />
+    <Content Include="Views\Applicants\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
