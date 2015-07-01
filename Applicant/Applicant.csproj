@@ -159,8 +159,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ApplicantController.cs" />
-    <Compile Include="Controllers\AttachmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -169,12 +167,17 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicantModels.cs" />
     <Compile Include="Models\AttachmentModels.cs" />
+    <Compile Include="Models\HistoryModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\BD.mdf" />
+    <Content Include="App_Data\BD_log.ldf">
+      <DependentUpon>BD.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -229,20 +232,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Applicant\Create.cshtml" />
-    <Content Include="Views\Applicant\Delete.cshtml" />
-    <Content Include="Views\Applicant\Details.cshtml" />
-    <Content Include="Views\Applicant\Edit.cshtml" />
-    <Content Include="Views\Applicant\Index.cshtml" />
-    <Content Include="Views\Attachment\Create.cshtml" />
-    <Content Include="Views\Attachment\Delete.cshtml" />
-    <Content Include="Views\Attachment\Details.cshtml" />
-    <Content Include="Views\Attachment\Edit.cshtml" />
-    <Content Include="Views\Attachment\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

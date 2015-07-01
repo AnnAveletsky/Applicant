@@ -6,23 +6,29 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Applicant.Models
 {
-    public class AttachmentModel
+    public class Attachment
     {
         [Key]
         public int AttachmentId { get; set; }
-        public int ApplicantId { get; set; }
-        public int Name { get; set; }
-        public DateTime DateTimeAdd { get; set; }
-        public int ApplicantIdAdd { get; set; }
-        public DateTime DataTimeDelete { get; set; }
-        public int ApplicantIdDelete { get; set; }
-        
-    }
-    public class AttachmentDateTimeChanges
-    {
-        [Key]
-        public int AttachmentDateTimeChangesId { get; set; }
-        public int AttachmentId { get; set; }
-        public int ApplicantIdChange { get; set; }
+
+        [Required(ErrorMessage = "Поле должно быть установлено")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Длина строки должна быть от 3 до 50 символов")]
+        [Display(Name = "Название")]
+        public string Name { get; set; }
+
+        [ScaffoldColumn(false)]
+        public int? ApplicantId { get; set; }
+
+        [Display(Name = "Соискатель")]
+        public Applicant Applicant { get; set; }
+
+        [ScaffoldColumn(false)]
+        public int? HistoryId { get; set; }
+
+        [Display(Name = "Собеседование")]
+        public History History { get; set; }
+
+        [ScaffoldColumn(false)]
+        public byte[] Attach { get; set; }
     }
 }

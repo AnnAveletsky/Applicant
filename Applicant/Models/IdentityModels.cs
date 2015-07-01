@@ -29,8 +29,10 @@ namespace Applicant.Models
         {
             return new ApplicationDbContext();
         }
-        public System.Data.Entity.DbSet<Applicant.Models.ApplicantModel> Applicants { get; set; }
+        public System.Data.Entity.DbSet<Applicant> Applicants { get; set; }
 
-        public System.Data.Entity.DbSet<Applicant.Models.AttachmentModel> AttachmentModels { get; set; }
+        public System.Data.Entity.DbSet<Attachment> Attachments { get; set; }
+
+        public System.Data.Entity.DbSet<History> Histories { get; set; }
     }
 }
