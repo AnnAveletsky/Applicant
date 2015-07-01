@@ -1,0 +1,42 @@
+﻿@model Applicant.Models.History
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>History</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CommunicationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommunicationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeCommunication)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeCommunication)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HistoryComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HistoryComments)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HistoryId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
