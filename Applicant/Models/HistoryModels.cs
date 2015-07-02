@@ -28,7 +28,7 @@ namespace Applicant.Models
             MaxLength(500)
         ]
         public string HistoryComments { get; set; }
-        public virtual ICollection<Attachment> Attachment { get; set; }
+        public virtual ICollection<Attachment> Attachments { get; set; }
     }
     public enum TypeHistory
     {

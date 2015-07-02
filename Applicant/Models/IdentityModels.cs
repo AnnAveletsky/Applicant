@@ -34,5 +34,7 @@ namespace Applicant.Models
         public System.Data.Entity.DbSet<Attachment> Attachments { get; set; }
 
         public System.Data.Entity.DbSet<History> Histories { get; set; }
+
+        public System.Data.Entity.DbSet<Tag> Tags { get; set; }
     }
 }

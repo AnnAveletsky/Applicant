@@ -98,8 +98,9 @@ namespace Applicant.Models
         ]
         public decimal Salary { get; set; }
 
-        public virtual ICollection<Attachment> Attachment { get; set; }
-        public virtual ICollection<History> History { get; set; } 
+        public virtual ICollection<Attachment> Attachments { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<History> Histories { get; set; } 
     }
 
     public enum GenderType
