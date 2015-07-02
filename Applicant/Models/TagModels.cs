@@ -17,5 +17,9 @@ namespace Applicant.Models
             Display(Name = "Тег"), 
         ]
         public string TagName { get; set; }
+
+        public virtual ICollection<Applicant> Applicants { get; set; } 
     }
+
+
 }
