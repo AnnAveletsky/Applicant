@@ -61,6 +61,23 @@ namespace Applicant.Models
         public string Email { get; set; }
 
         [
+            Display(Name = "Skype")
+        ]
+        public string Skype { get; set; }
+
+        [
+            DataType(DataType.Url),
+            Display(Name = "Личный репозиторий")
+        ]
+        public string GitHub { get; set; }
+
+        [
+            DataType (DataType.Url),
+            Display(Name = "LinkedIn")
+        ]
+        public string Linkedin { get; set; }
+
+        [
             Required(ErrorMessage = "Поле должно быть установлено"),
             Display(Name = "Телефон"),
             PhoneAttribute

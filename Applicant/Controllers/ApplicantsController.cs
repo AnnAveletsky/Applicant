@@ -46,7 +46,7 @@ namespace Applicant.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AplicantID,FirstName,MiddleName,LastName,Gender,Birthday,Residence,Email,Phone,HistoryComments,Salary")] Applicant.Models.Applicant applicant)
+        public ActionResult Create([Bind(Include = "AplicantID,FirstName,MiddleName,LastName,Gender,Birthday,Residence,Email,Skype,GitHub,Linkedin,Phone,HistoryComments,Salary")] Applicant.Models.Applicant applicant)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Applicant.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AplicantID,FirstName,MiddleName,LastName,Gender,Birthday,Residence,Email,Phone,HistoryComments,Salary")] Applicant.Models.Applicant applicant)
+        public ActionResult Edit([Bind(Include = "AplicantID,FirstName,MiddleName,LastName,Gender,Birthday,Residence,Email,Skype,GitHub,Linkedin,Phone,HistoryComments,Salary")] Applicant.Models.Applicant applicant)
         {
             if (ModelState.IsValid)
             {
