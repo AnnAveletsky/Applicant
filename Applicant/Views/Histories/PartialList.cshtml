@@ -26,9 +26,9 @@
             @Html.DisplayFor(modelItem => item.HistoryComments)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", "Histories", new { id=item.HistoryId }) |
-            @Html.ActionLink("Details", "Details", "Histories", new { id=item.HistoryId }) |
-            @Html.ActionLink("Delete", "Delete","Histories", new { id=item.HistoryId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.HistoryId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.HistoryId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.HistoryId })
         </td>
     </tr>
 }

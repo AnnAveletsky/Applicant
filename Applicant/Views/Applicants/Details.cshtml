@@ -157,7 +157,11 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
-                            @Html.Partial("~/Views/Histories/PartialList.cshtml", Model.Histories)
+                            @{
+                                Applicant.Models.History history = new Applicant.Models.History();
+                                history.ApplicantId = Model.AplicantID;
+                            }
+                            @Html.Partial("~/Views/Histories/PartialCreate.cshtml", history)
                         </div>
                     </div>
                 </div>

@@ -12,6 +12,14 @@ namespace Applicant.Models
         public int HistoryId { get; set; }
 
         [
+            ScaffoldColumn(false)
+        ]
+        public int? ApplicantId { get; set; }
+
+        [Display(Name = "Соискатель")]
+        public Applicant Applicant { get; set; }
+
+        [
             DataType(DataType.Date),
             Display(Name = "Дата прохождения")
         ]

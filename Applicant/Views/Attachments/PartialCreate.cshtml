@@ -1,7 +1,7 @@
 ﻿@model Applicant.Models.Attachment
 
 
-@using (Html.BeginForm("Create","Attachments")) 
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
@@ -24,10 +24,6 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

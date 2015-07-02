@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Applicant.FirstName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.History.HistoryComments)
         </th>
         <th>
@@ -22,6 +25,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applicant.FirstName)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.History.HistoryComments)
         </td>
