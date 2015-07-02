@@ -113,8 +113,22 @@
         <dd>
             @Html.DisplayFor(model => model.Salary)
         </dd>
-
-    </dl>
+        <hr />
+        <dt>
+           Документы
+        </dt>
+        <dd>
+            @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments)
+        </dd>
+        <hr />
+        <dt>
+           Собеседования
+        </dt>
+        <dd>
+            @Html.Partial("~/Views/Histories/PartialList.cshtml", Model.Histories)
+        </dd>
+</dl>
+   
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.AplicantID }) |
