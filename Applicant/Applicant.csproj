@@ -259,6 +259,7 @@
     <Content Include="Views\Tags\Index.cshtml" />
     <Content Include="Views\Attachments\PartialList.cshtml" />
     <Content Include="Views\Histories\PartialList.cshtml" />
+    <Content Include="Views\Attachments\PartialCreate.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

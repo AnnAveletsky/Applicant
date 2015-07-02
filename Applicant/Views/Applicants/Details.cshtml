@@ -115,19 +115,59 @@
         </dd>
         <hr />
         <dt>
-           Документы
+            Документы
         </dt>
         <dd>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Загрузить новый документ
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            @{
+                                Applicant.Models.Attachment attach=new Applicant.Models.Attachment();
+                                attach.ApplicantId = Model.AplicantID;
+                            }
+                            @Html.Partial("~/Views/Attachments/PartialCreate.cshtml",attach)
+
+                        </div>
+                    </div>
+                </div>
+            </div>
             @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments)
         </dd>
         <hr />
         <dt>
-           Собеседования
+            Собеседования
         </dt>
         <dd>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Добавить новую встречу
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            @Html.Partial("~/Views/Histories/PartialList.cshtml", Model.Histories)
+                        </div>
+                    </div>
+                </div>
+            </div>
             @Html.Partial("~/Views/Histories/PartialList.cshtml", Model.Histories)
         </dd>
-</dl>
+        <dd>
+            
+        </dd>
+    </dl>
    
 </div>
 <p>
