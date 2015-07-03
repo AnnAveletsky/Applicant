@@ -20,7 +20,14 @@ namespace Applicant.Controllers
             var attachments = db.Attachments.Include(a => a.History);
             return View(attachments.ToList());
         }
-
+        public ActionResult List(IEnumerable<Applicant.Models.Attachment> attachments)
+        {
+            if (attachments == null)
+            {
+                attachments = db.Attachments.Include(a => a.History);
+            }
+            return PartialView(attachments.ToList());
+        }
         // GET: Attachments/Details/5
         public ActionResult Details(int? id)
         {
@@ -40,7 +47,7 @@ namespace Applicant.Controllers
         public ActionResult Create()
         {
             ViewBag.HistoryId = new SelectList(db.Histories, "HistoryId", "HistoryComments");
-            return View();
+            return PartialView();
         }
 
         // POST: Attachments/Create
@@ -50,15 +57,19 @@ namespace Applicant.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AttachmentId,Name,ApplicantId,HistoryId,Attach")] Attachment attachment)
         {
-            if (ModelState.IsValid)
+            var attachments=db.Attachments.Where(p=>p.ApplicantId==attachment.ApplicantId);
+            foreach (var i in db.Applicants.ToList())
             {
-                db.Attachments.Add(attachment);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (i.AplicantID == attachment.ApplicantId)
+                {
+                    i.Attachments.Add(attachment);
+                    break;
+                }
             }
-
-            ViewBag.HistoryId = new SelectList(db.Histories, "HistoryId", "HistoryComments", attachment.HistoryId);
-            return View(attachment);
+            db.Attachments.Add(attachment);
+            db.SaveChanges();
+            
+            return PartialView("PartialList", attachments);
         }
 
         // GET: Attachments/Edit/5

@@ -129,17 +129,14 @@
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
-                            @{
-                                Applicant.Models.Attachment attach=new Applicant.Models.Attachment();
-                                attach.ApplicantId = Model.AplicantID;
-                            }
-                            @Html.Partial("~/Views/Attachments/PartialCreate.cshtml",attach)
-
+                           @Html.Partial("~/Views/Attachments/PartialCreate.cshtml", new Applicant.Models.Attachment())
                         </div>
                     </div>
                 </div>
             </div>
-            @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments)
+            <div id="tableAttachments">
+                @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments)
+            </div>
         </dd>
         <hr />
         <dt>
@@ -157,11 +154,8 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
-                            @{
-                                Applicant.Models.History history = new Applicant.Models.History();
-                                history.ApplicantId = Model.AplicantID;
-                            }
-                            @Html.Partial("~/Views/Histories/PartialCreate.cshtml", history)
+                            
+                            @Html.Partial("~/Views/Histories/PartialCreate.cshtml", new Applicant.Models.History())
                         </div>
                     </div>
                 </div>
@@ -178,3 +172,6 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.AplicantID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+@section Scripts {
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+}

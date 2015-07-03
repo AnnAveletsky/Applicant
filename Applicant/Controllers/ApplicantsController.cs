@@ -57,7 +57,6 @@ namespace Applicant.Controllers
 
             return View(applicant);
         }
-
         // GET: Applicants/Edit/5
         public ActionResult Edit(int? id)
         {
