@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -16,20 +15,20 @@ namespace Applicant.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Attachments
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var attachments = db.Attachments.Include(a => a.Applicant).Include(a => a.History);
-            return View(await attachments.ToListAsync());
+            var attachments = db.Attachments.Include(a => a.History);
+            return View(attachments.ToList());
         }
 
         // GET: Attachments/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Attachment attachment = await db.Attachments.FindAsync(id);
+            Attachment attachment = db.Attachments.Find(id);
             if (attachment == null)
             {
                 return HttpNotFound();
@@ -40,7 +39,6 @@ namespace Applicant.Controllers
         // GET: Attachments/Create
         public ActionResult Create()
         {
-            ViewBag.ApplicantId = new SelectList(db.Applicants, "AplicantID", "FirstName");
             ViewBag.HistoryId = new SelectList(db.Histories, "HistoryId", "HistoryComments");
             return View();
         }
@@ -50,33 +48,31 @@ namespace Applicant.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "AttachmentId,Name,ApplicantId,HistoryId,Attach")] Attachment attachment)
+        public ActionResult Create([Bind(Include = "AttachmentId,Name,ApplicantId,HistoryId,Attach")] Attachment attachment)
         {
             if (ModelState.IsValid)
             {
                 db.Attachments.Add(attachment);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ApplicantId = new SelectList(db.Applicants, "AplicantID", "FirstName", attachment.ApplicantId);
             ViewBag.HistoryId = new SelectList(db.Histories, "HistoryId", "HistoryComments", attachment.HistoryId);
             return View(attachment);
         }
 
         // GET: Attachments/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Attachment attachment = await db.Attachments.FindAsync(id);
+            Attachment attachment = db.Attachments.Find(id);
             if (attachment == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ApplicantId = new SelectList(db.Applicants, "AplicantID", "FirstName", attachment.ApplicantId);
             ViewBag.HistoryId = new SelectList(db.Histories, "HistoryId", "HistoryComments", attachment.HistoryId);
             return View(attachment);
         }
@@ -86,27 +82,26 @@ namespace Applicant.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "AttachmentId,Name,ApplicantId,HistoryId,Attach")] Attachment attachment)
+        public ActionResult Edit([Bind(Include = "AttachmentId,Name,ApplicantId,HistoryId,Attach")] Attachment attachment)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(attachment).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ApplicantId = new SelectList(db.Applicants, "AplicantID", "FirstName", attachment.ApplicantId);
             ViewBag.HistoryId = new SelectList(db.Histories, "HistoryId", "HistoryComments", attachment.HistoryId);
             return View(attachment);
         }
 
         // GET: Attachments/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Attachment attachment = await db.Attachments.FindAsync(id);
+            Attachment attachment = db.Attachments.Find(id);
             if (attachment == null)
             {
                 return HttpNotFound();
@@ -117,11 +112,11 @@ namespace Applicant.Controllers
         // POST: Attachments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Attachment attachment = await db.Attachments.FindAsync(id);
+            Attachment attachment = db.Attachments.Find(id);
             db.Attachments.Remove(attachment);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
