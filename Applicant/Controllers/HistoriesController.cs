@@ -17,9 +17,21 @@ namespace Applicant.Controllers
         // GET: Histories
         public ActionResult Index()
         {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(db.Histories.ToList());
+            }
             return View(db.Histories.ToList());
         }
-
+        // GET: Histories/List/histories
+        public ActionResult List(IEnumerable<Applicant.Models.History> histories)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(histories.ToList());
+            }
+            return View(histories.ToList());
+        }
         // GET: Histories/Details/5
         public ActionResult Details(int? id)
         {
@@ -38,6 +50,10 @@ namespace Applicant.Controllers
         // GET: Histories/Create
         public ActionResult Create()
         {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView();
+            }
             return View();
         }
 
@@ -48,13 +64,30 @@ namespace Applicant.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "HistoryId,CommunicationDate,TypeCommunication,HistoryComments")] History history)
         {
+            if (Request.IsAjaxRequest())
+            {
+                if (ModelState.IsValid)
+                {
+                    foreach (var i in db.Applicants.ToList())
+                    {
+                        if (i.AplicantID == history.ApplicantId)
+                        {
+                            i.Histories.Add(history);
+                            break;
+                        }
+                    }
+                    db.Histories.Add(history);
+                    db.SaveChanges();
+                }
+                var histories = db.Histories.Where(p => p.ApplicantId == history.ApplicantId);
+                return PartialView("List", histories);
+            }
             if (ModelState.IsValid)
             {
                 db.Histories.Add(history);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(history);
         }
 

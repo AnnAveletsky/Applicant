@@ -18,15 +18,20 @@ namespace Applicant.Controllers
         public ActionResult Index()
         {
             var attachments = db.Attachments.Include(a => a.History);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(attachments.ToList());
+            }
             return View(attachments.ToList());
         }
+        // GET: Attachments/List/attachments
         public ActionResult List(IEnumerable<Applicant.Models.Attachment> attachments)
         {
-            if (attachments == null)
+            if (Request.IsAjaxRequest())
             {
-                attachments = db.Attachments.Include(a => a.History);
+                return PartialView(attachments.ToList());
             }
-            return PartialView(attachments.ToList());
+            return View(attachments.ToList());
         }
         // GET: Attachments/Details/5
         public ActionResult Details(int? id)
@@ -47,7 +52,11 @@ namespace Applicant.Controllers
         public ActionResult Create()
         {
             ViewBag.HistoryId = new SelectList(db.Histories, "HistoryId", "HistoryComments");
-            return PartialView();
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView();
+            }
+            return View();
         }
 
         // POST: Attachments/Create
@@ -57,19 +66,31 @@ namespace Applicant.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AttachmentId,Name,ApplicantId,HistoryId,Attach")] Attachment attachment)
         {
-            var attachments=db.Attachments.Where(p=>p.ApplicantId==attachment.ApplicantId);
-            foreach (var i in db.Applicants.ToList())
+            if (Request.IsAjaxRequest())
             {
-                if (i.AplicantID == attachment.ApplicantId)
+                if (ModelState.IsValid)
                 {
-                    i.Attachments.Add(attachment);
-                    break;
+                    foreach (var i in db.Applicants.ToList())
+                    {
+                        if (i.AplicantID == attachment.ApplicantId)
+                        {
+                            i.Attachments.Add(attachment);
+                            break;
+                        }
+                    }
+                    db.Attachments.Add(attachment);
+                    db.SaveChanges();
                 }
+                var attachments = db.Attachments.Where(p => p.ApplicantId == attachment.ApplicantId);
+                return PartialView("PartialList", attachments);
             }
-            db.Attachments.Add(attachment);
-            db.SaveChanges();
-            
-            return PartialView("PartialList", attachments);
+            if (ModelState.IsValid)
+            {
+                db.Attachments.Add(attachment);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(attachment);
         }
 
         // GET: Attachments/Edit/5

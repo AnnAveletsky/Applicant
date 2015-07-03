@@ -113,6 +113,31 @@
         <dd>
             @Html.DisplayFor(model => model.Salary)
         </dd>
+        <dt>
+            Теги
+        </dt>
+        <dd>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse" aria-expanded="true" aria-controls="collapse">
+                                Добавить новый тег
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading">
+                        <div class="panel-body">
+                            @Html.Partial("~/Views/Tags/PartialCreate.cshtml", new Applicant.Models.Tag())
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tableTags">
+                @Html.Partial("~/Views/Tags/PartialList.cshtml", Model.Tags)
+            </div>
+        </dd>
         <hr />
         <dt>
             Документы
@@ -129,7 +154,7 @@
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
-                           @Html.Partial("~/Views/Attachments/PartialCreate.cshtml", new Applicant.Models.Attachment())
+                            @Html.Partial("~/Views/Attachments/PartialCreate.cshtml", new Applicant.Models.Attachment())
                         </div>
                     </div>
                 </div>
@@ -154,19 +179,20 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
-                            
                             @Html.Partial("~/Views/Histories/PartialCreate.cshtml", new Applicant.Models.History())
                         </div>
                     </div>
                 </div>
             </div>
-            @Html.Partial("~/Views/Histories/PartialList.cshtml", Model.Histories)
+            <div id="tableHistories">
+                @Html.Partial("~/Views/Histories/PartialList.cshtml", Model.Histories)
+            </div>
         </dd>
         <dd>
-            
+
         </dd>
     </dl>
-   
+
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.AplicantID }) |

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
 namespace Applicant.Models
@@ -12,7 +13,8 @@ namespace Applicant.Models
         public int HistoryId { get; set; }
 
         [
-            ScaffoldColumn(false)
+            ScaffoldColumn(false),
+            ForeignKey("Applicant")
         ]
         public int? ApplicantId { get; set; }
 

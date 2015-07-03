@@ -18,7 +18,6 @@ namespace Applicant.Models
             Display(Name = "Название")
         ]
         public string Name { get; set; }
-        //!ForeignKey
         [
             ForeignKey("Applicant"),
             ScaffoldColumn(false)
@@ -28,7 +27,10 @@ namespace Applicant.Models
         [Display(Name = "Соискатель")]
         public Applicant Applicant { get; set; }
 
-        [ScaffoldColumn(false)]
+        [
+            ScaffoldColumn(false),
+            ForeignKey("History")
+        ]
         public int? HistoryId { get; set; }
 
         [Display(Name = "Собеседование")]
