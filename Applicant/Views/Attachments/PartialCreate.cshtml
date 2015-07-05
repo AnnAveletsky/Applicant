@@ -16,17 +16,6 @@
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
-        <input id="input-ru" type="file" multiple class="file-loading">
-        <script src="~/Scripts/jquery-2.1.4.js"></script>
-        <script src="~/Scripts/fileinput.min.js"></script>
-        <script src="~/Scripts/fileinput_locale_ru.js"></script>
-        <script>
-            $("#input-ru").fileinput({
-                language: "ru",
-                uploadUrl: "http://localhost/site/file-upload-batch",
-                allowedFileExtensions: ['bmp', 'gif', 'jpeg', 'jpg', 'jpe', 'jp2', 'pdf', 'png', 'psd', 'tga', 'tiff', 'tif', 'ai', 'svg', 'txt', 'rtf', 'odt', 'tex', 'wpd', 'doc', 'docx', 'docm', 'djvu', 'xls', 'xlsx', 'xlsm', 'zip', 'rar', '7z', 'gz', 'tar']
-            });
-        </script>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -36,8 +25,6 @@
 }
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
-    @Scripts.Render("~/bundles/fileinput")
 }
