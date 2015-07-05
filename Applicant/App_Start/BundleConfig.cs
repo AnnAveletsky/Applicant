@@ -23,8 +23,12 @@ namespace Applicant
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/fileinput").Include(
+                      "~/Scripts/fileinput.min.js",
+                      "~/Scripts/fileinput_locale_ru.js"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-fileinput/css/fileinput.css",
                       "~/Content/site.css"));
         }
     }
