@@ -92,7 +92,11 @@ namespace Applicant.Controllers
             }
             return View(attachment);
         }
+        public JsonResult Load(IEnumerable<HttpPostedFileBase> file_data)
+        {
 
+            return Json("");
+        }
         // GET: Attachments/Edit/5
         public ActionResult Edit(int? id)
         {
