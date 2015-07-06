@@ -4,8 +4,22 @@
 
 <div class="jumbotron">
     <h1>Aplicant</h1>
-    @Html.ActionLink("Перейти в Applicants", "Index", "Applicants")
-    @Html.ActionLink("Перейти в Attachments", "Index", "Attachments")
-    @Html.ActionLink("Перейти в Histories", "Index", "Histories")
+
+    <div id="custom-search-input">
+        <div class="">
+        </div>
+        <div class="input-group help-block row">
+            <input type="text" class="form-control input-lg" placeholder="Поиск">
+            <span class="input-group-btn">
+                <button class="btn btn-info btn-lg" type="button">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+
+    <a class="btn btn-primary btn-lg btn-block" href="Applicants">Соискатели</a>
+    <a class="btn btn-primary btn-lg btn-block" href="Attachments">Дополнения</a>
+    <a class="btn btn-primary btn-lg btn-block" href="Histories">История контактов</a>
 </div>
 

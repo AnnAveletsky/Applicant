@@ -62,7 +62,7 @@ namespace Applicant.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "HistoryId,CommunicationDate,TypeCommunication,HistoryComments")] History history)
+        public ActionResult Create([Bind(Include = "HistoryId,ApplicantId,CommunicationDate,TypeCommunication,HistoryComments")] History history)
         {
             if (Request.IsAjaxRequest())
             {
@@ -80,7 +80,7 @@ namespace Applicant.Controllers
                     db.SaveChanges();
                 }
                 var histories = db.Histories.Where(p => p.ApplicantId == history.ApplicantId);
-                return PartialView("List", histories);
+                return PartialView("PartialList", histories);
             }
             if (ModelState.IsValid)
             {
