@@ -94,7 +94,15 @@ namespace Applicant.Controllers
         }
         public JsonResult Load(IEnumerable<HttpPostedFileBase> file_data)
         {
-
+            foreach (var i in file_data.ToList())
+            {
+                Attachment attach=new Attachment();
+                attach.Attach = new byte[i.ContentLength];
+                i.InputStream.Read(attach.Attach, 0, i.ContentLength);
+                attach.Name = i.FileName;
+                db.Attachments.Add(attach);
+                db.SaveChanges();
+            }
             return Json("");
         }
         // GET: Attachments/Edit/5
