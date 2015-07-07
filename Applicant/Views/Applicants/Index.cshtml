@@ -95,9 +95,17 @@
             @Html.DisplayFor(modelItem => item.Salary)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AplicantID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AplicantID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AplicantID })
+            
+            <button class="btn btn-default btn-xs btn-block" >
+                @Html.ActionLink("Edit", "Edit", new { id = item.AplicantID }, new { htmlAttributes = new { @class = "btn btn-primary btn-xs btn-block" } }) 
+            </button>
+            <button class="btn btn-default btn-xs btn-block">
+                @Html.ActionLink("Details", "Details", new { id = item.AplicantID })
+            </button>
+            <button class="btn btn-default btn-xs btn-block">
+                @Html.ActionLink("Delete", "Delete", new { id = item.AplicantID })
+            </button>
+            
         </td>
     </tr>
 }

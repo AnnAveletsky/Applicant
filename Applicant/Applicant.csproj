@@ -281,7 +281,6 @@
     <Content Include="Views\Attachments\Edit.cshtml" />
     <Content Include="Views\Attachments\Index.cshtml" />
     <Content Include="Views\Attachments\PartialList.cshtml" />
-    <Content Include="Views\Attachments\PartialCreate.cshtml" />
     <Content Include="Views\Histories\Create.cshtml" />
     <Content Include="Views\Histories\Delete.cshtml" />
     <Content Include="Views\Histories\Details.cshtml" />
