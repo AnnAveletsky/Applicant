@@ -38,6 +38,14 @@ namespace Applicant.Controllers
             }
             return View(attachments.ToList());
         }
+        public ActionResult ListApplicantId(int id)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("PartialList",db.Attachments.Where(p=>p.ApplicantId==id));
+            }
+            return View("PartialList",db.Attachments.Where(p=>p.ApplicantId==id));
+        }
         // GET: Attachments/Details/5
         public ActionResult Details(int? id)
         {

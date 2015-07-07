@@ -138,8 +138,15 @@
                     </div>
                 </div>
             </div>
-
-            <div id="tableAttachmets">
+            @using (Ajax.BeginForm("ListApplicantId", "Attachments", new { id = Model.AplicantID },
+                new AjaxOptions
+                {
+                    UpdateTargetId = "tableAttachments"
+                }))
+            {
+                <input id="update" value="Обновить" type="submit">
+            }
+            <div id="tableAttachments">
                 @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments)
             </div>
         </dd>
