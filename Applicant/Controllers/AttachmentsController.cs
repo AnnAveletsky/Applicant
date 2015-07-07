@@ -31,6 +31,11 @@ namespace Applicant.Controllers
             {
                 return PartialView(attachments.ToList());
             }
+          
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(attachments.ToList());
+            }
             return View(attachments.ToList());
         }
         // GET: Attachments/Details/5
@@ -92,11 +97,12 @@ namespace Applicant.Controllers
             }
             return View(attachment);
         }
-        public JsonResult Load(IEnumerable<HttpPostedFileBase> file_data)
+        public JsonResult Load(int id ,IEnumerable<HttpPostedFileBase> file_data)
         {
             foreach (var i in file_data.ToList())
             {
                 Attachment attach=new Attachment();
+                attach.ApplicantId = id;
                 attach.Attach = new byte[i.ContentLength];
                 i.InputStream.Read(attach.Attach, 0, i.ContentLength);
                 attach.Name = i.FileName;

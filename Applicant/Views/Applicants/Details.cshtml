@@ -133,13 +133,13 @@
                     </div>
                     <div id="collapseTags" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTags">
                         <div class="panel-body">
-                            @Html.Partial("~/Views/Attachments/Load.cshtml")
+                            @Html.Partial("~/Views/Attachments/Load.cshtml", Model)
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="tableTags">
+            <div id="tableAttachmets">
                 @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments)
             </div>
         </dd>
@@ -164,7 +164,7 @@
                     </div>
                 </div>
             </div>
-            <div id="tableAttachments">
+            <div id="tableHistories">
                 @Html.Partial("~/Views/Histories/PartialList.cshtml", Model.Histories)
             </div>
         </dd>

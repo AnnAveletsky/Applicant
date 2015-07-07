@@ -1,15 +1,27 @@
-﻿<link href="~/Content/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
+﻿@model Applicant.Models.Applicant
+
+<link href="~/Content/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
 <div>
     <input id="input-ru" type="file" multiple class="file-loading">
-    
 </div>
+
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Scripts/fileinput.min.js"></script>
 <script src="~/Scripts/fileinput_locale_ru.js"></script>
 <script>
-            $("#input-ru").fileinput({
-                language: "ru",
-                uploadUrl: "/Attachments/Load",
+    $("#input-ru").fileinput({
+        language: "ru",
+        uploadUrl: "@Url.Action("Load", "Attachments", new { id=Model.AplicantID})",
                 allowedFileExtensions: ['bmp', 'gif', 'jpeg', 'jpg', 'jpe', 'jp2', 'pdf', 'png', 'psd', 'tga', 'tiff', 'tif', 'ai', 'svg', 'txt', 'rtf', 'odt', 'tex', 'wpd', 'doc', 'docx', 'docm', 'djvu', 'xls', 'xlsx', 'xlsm', 'zip', 'rar', '7z', 'gz', 'tar']
             });
+    $('#input-ru').on('fileloaded', function () {
+        $.ajax({
+            'type': 'post',
+            'url': "@Url.Action("ListAttachmentsApplicantId", "Attachments", new { Model.AplicantID})",
+            'cache': false,
+            'success': function (data) {
+                $('#tableAttachments').html(data)
+            }
+        })
+    });
 </script>
