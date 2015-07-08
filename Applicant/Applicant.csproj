@@ -197,6 +197,7 @@
     <Content Include="Content\bootstrap-fileinput\img\loading-sm.gif" />
     <Content Include="Content\bootstrap-fileinput\img\loading.gif" />
     <Content Include="Content\bootstrap-tags.css" />
+    <Content Include="Content\bootstrap-tagsinput\bootstrap-tagsinput.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -205,6 +206,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Icon.png" />
+    <Content Include="Scripts\boostrap-tagsinput\bootstrap-tagsinput.js" />
     <Content Include="Scripts\bootstrap-tags.js" />
     <Content Include="Scripts\bootstrap-tags.min.js" />
     <Content Include="Scripts\bootstrap.js" />
