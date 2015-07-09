@@ -196,8 +196,6 @@
     <Content Include="Content\bootstrap-fileinput\css\fileinput.min.css" />
     <Content Include="Content\bootstrap-fileinput\img\loading-sm.gif" />
     <Content Include="Content\bootstrap-fileinput\img\loading.gif" />
-    <Content Include="Content\bootstrap-tags.css" />
-    <Content Include="Content\bootstrap-tagsinput\bootstrap-tagsinput.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -206,9 +204,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Icon.png" />
-    <Content Include="Scripts\boostrap-tagsinput\bootstrap-tagsinput.js" />
-    <Content Include="Scripts\bootstrap-tags.js" />
-    <Content Include="Scripts\bootstrap-tags.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -304,7 +299,8 @@
     <Content Include="Views\Histories\PartialList.cshtml" />
     <Content Include="Views\Histories\PartialCreate.cshtml" />
     <Content Include="Views\Attachments\Load.cshtml" />
-    <Content Include="Views\Tags\PartialListCreate.cshtml" />
+    <Content Include="Views\Tags\PartialList.cshtml" />
+    <Content Include="Views\Tags\PartialCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201507041510270_InitialCreate.resx">

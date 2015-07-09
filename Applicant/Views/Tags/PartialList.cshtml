@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Applicant.Models.Tag>
+
+
+@foreach (var item in Model) {
+            @Html.DisplayFor(modelItem => item.TagName) 
+            @Html.ActionLink("X", "Delete", new { id=item.TagId })
+}
+

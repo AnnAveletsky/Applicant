@@ -19,7 +19,6 @@ namespace Applicant.Controllers
         {
             return View(db.Tags.ToList());
         }
-
         // GET: Tags/Details/5
         public ActionResult Details(int? id)
         {
@@ -46,16 +45,47 @@ namespace Applicant.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TagId,TagName")] Tag tag)
+        public ActionResult Create([Bind(Include = "TagId,TagName,Applicants")] Tag tag,int id)
         {
             if (ModelState.IsValid)
             {
+                foreach (var i in db.Tags.ToList())
+                {
+                    if (String.Compare(i.TagName, tag.TagName) == 0)
+                    {
+                        var applicant = db.Applicants.ToList().Find(p => p.AplicantID == id);
+                        if (i.Applicants == null)
+                        {
+                            i.Applicants = new List<Applicant.Models.Applicant>();
+                        }
+                        i.Applicants.Add(applicant);
+                        db.SaveChanges();
+                        var tags=db.Tags.ToList().Where(p=>p.Applicants.Contains(applicant));
+                        return PartialView("PartialList", tags);
+                    }
+                }
                 db.Tags.Add(tag);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                foreach (var i in db.Tags.ToList())
+                {
+                    if (String.Compare(i.TagName, tag.TagName)==0)
+                    {
+                        var applicant = db.Applicants.ToList().Find(p=>p.AplicantID==id);
+                        if (i.Applicants == null)
+                        {
+                            i.Applicants = new List<Applicant.Models.Applicant>();
+                        }
+                        i.Applicants.Add(applicant);
+                        db.SaveChanges();
+                        var tags=db.Tags.ToList().Where(p=>p.Applicants.Contains(applicant));
+                        return PartialView("PartialList", tags);
+                    }
+                }
+                
             }
-
-            return View(tag);
+           var applicant1 = db.Applicants.ToList().Find(p => p.AplicantID == id);
+           var tags1 = db.Tags.ToList().Where(p => p.Applicants.Contains(applicant1));
+            return PartialView("PartialList", tags1);
         }
 
         // GET: Tags/Edit/5

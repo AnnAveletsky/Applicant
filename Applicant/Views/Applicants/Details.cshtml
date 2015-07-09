@@ -115,7 +115,13 @@
         </dd>
         <dt>Теги</dt>
         <dd>
-            @Html.Partial("~/Views/Tags/PartialListCreate.cshtml", Model.Tags)
+            <div id="tags">
+                @Html.Partial("~/Views/Tags/PartialList.cshtml", Model.Tags)
+            </div>
+            @{
+                ViewBag.ApplicantId = Model.AplicantID;
+            }
+            @Html.Partial("~/Views/Tags/PartialCreate.cshtml",new Applicant.Models.Tag())
         </dd>
         <dt>
             Документы
