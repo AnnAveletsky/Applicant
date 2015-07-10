@@ -1,8 +1,19 @@
 ﻿@model IEnumerable<Applicant.Models.Tag>
+<link href="~/Content/tags-input/bootsrap-tags.css" rel="stylesheet" />
 
+<div class="container" >
+    <div id="readonly" class="bootstrap-tags bootstrap-3">
+        @foreach (var item in Model)
+            {
+            <div class="tag label btn btn-info md">
+                <span>
+                    @Html.DisplayFor(modelItem => item.TagName)
+                </span>
 
-@foreach (var item in Model) {
-            @Html.DisplayFor(modelItem => item.TagName) 
-            @Html.ActionLink("X", "Delete", new { id=item.TagId })
-}
-
+                <a style="opacity:0.6;" onclick="location.href='@Url.Action("Delete", "Tags", new { id = item.TagId })'">
+                    <i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i>
+                </a>
+            </div>
+            }
+    </div>
+</div>

@@ -1,4 +1,7 @@
 ﻿@model Applicant.Models.Applicant
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap-tags")
 
 @{
     ViewBag.Title = "Details";
@@ -121,7 +124,7 @@
             @{
                 ViewBag.ApplicantId = Model.AplicantID;
             }
-            @Html.Partial("~/Views/Tags/PartialCreate.cshtml",new Applicant.Models.Tag())
+            @Html.Partial("~/Views/Tags/PartialCreate.cshtml", new Applicant.Models.Tag())
         </dd>
         <dt>
             Документы
@@ -180,7 +183,7 @@
                 @Html.Partial("~/Views/Histories/PartialList.cshtml", Model.Histories)
             </div>
         </dd>
-</dl>
+    </dl>
 
 </div>
 <p>
