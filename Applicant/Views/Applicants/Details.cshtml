@@ -2,6 +2,9 @@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/bootstrap-tags")
+@Scripts.Render("~/bundles/fileinput")
+@Styles.Render("~/Content/fileinput")
+@Styles.Render("~/Content/bootstrap-tags")
 
 @{
     ViewBag.Title = "Details";
@@ -159,8 +162,6 @@
             </div>
         </dd>
 
-        <hr />
-
         <dt>Собеседования</dt>
         <dd>
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -184,7 +185,6 @@
             </div>
         </dd>
     </dl>
-
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.AplicantID }) |

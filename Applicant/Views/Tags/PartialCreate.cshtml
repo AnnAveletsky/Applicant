@@ -1,5 +1,4 @@
 ﻿@model Applicant.Models.Tag
-
 @using (Ajax.BeginForm("Create", "Tags", new { id = ViewBag.ApplicantID }, new AjaxOptions
 {
     UpdateTargetId = "tags"
@@ -10,7 +9,6 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            <div class="control-label col-md-2"></div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TagName, new { htmlAttributes = new { @class = "form-control"} })
                 @Html.ValidationMessageFor(model => model.TagName, "", new { @class = "text-danger" })
@@ -18,9 +16,14 @@
         </div>
 
         <div class="form-group" >
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" onsubmit='$("#TagName").val("")' />
+            <div class=" col-md-10">
+                <input type="submit" value="Create" onclick="clearInputField('TagName')"  />
             </div>
         </div>
     </div>
 }
+<script>
+    function clearInputField(Id) {
+        document.getElementById(Id).innerHTML = document.getElementById(Id).innerHTML;
+    }
+</script>

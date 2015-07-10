@@ -17,6 +17,15 @@ namespace Applicant
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-tags").Include(
                 "~/Scripts/bootstrap-tags/dist/js/bootstrap-tags.js"));
 
+            bundles.Add(new StyleBundle("~/Content/bootstrap-tags").Include(
+                     "~/Scripts/bootstrap-tags/dist/css/bootstrap-tags.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/fileinput").Include(
+                "~/Scripts/fileinput.min.js",
+                "~/Scripts/fileinput_locale_ru.js"));
+            bundles.Add(new StyleBundle("~/Content/fileinput").Include(
+                      "~/Content/bootstrap-fileinput/css/fileinput.min.css"));
+
             // Используйте версию Modernizr для разработчиков, чтобы учиться работать. Когда вы будете готовы перейти к работе,
             // используйте средство сборки на сайте http://modernizr.com, чтобы выбрать только нужные тесты.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
