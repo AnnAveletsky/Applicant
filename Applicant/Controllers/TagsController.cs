@@ -19,6 +19,10 @@ namespace Applicant.Controllers
         {
             return View(db.Tags.ToList());
         }
+        public ActionResult List(IEnumerable<Applicant.Models.Tag> tags)
+        {
+            return PartialView("PartialList",tags);
+        }
         // GET: Tags/Details/5
         public ActionResult Details(int? id)
         {
@@ -119,30 +123,20 @@ namespace Applicant.Controllers
             return View(tag);
         }
 
-        // GET: Tags/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Tag tag = db.Tags.Find(id);
-            if (tag == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tag);
-        }
 
         // POST: Tags/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id,int applicantId)
         {
             Tag tag = db.Tags.Find(id);
-            db.Tags.Remove(tag);
+            Applicant.Models.Applicant applicant=db.Applicants.Find(applicantId);
+            tag.Applicants.Remove(applicant);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            var applicant1 = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
+           var tags1 = db.Tags.ToList().Where(p => p.Applicants.Contains(applicant1));
+           ViewBag.ApplicantId = applicantId;
+           return PartialView("PartialList", tags1);
         }
 
         protected override void Dispose(bool disposing)
