@@ -3,10 +3,10 @@
     <div id="readonly" class="bootstrap-tags bootstrap-3">
         @foreach (var item in Model)
         {
-            using (Ajax.BeginForm("Delete", "Tags", new { id = item.TagId, applicantId=ViewBag.ApplicantId}, new AjaxOptions
+            using (Ajax.BeginForm("Delete", "Tags", new { id = item.TagId, applicantId = ViewBag.ApplicantId }, new AjaxOptions
             {
-                Confirm="Вы уверены?",
-                UpdateTargetId = "tags"
+                HttpMethod = "Get",
+                UpdateTargetId = "myModal"
             }))
             {
                 @Html.AntiForgeryToken()
@@ -14,9 +14,12 @@
                     <span>
                         @Html.DisplayFor(modelItem => item.TagName)
                     </span>
-                    <input type="submit" value="X"  style="opacity:0.6; color:white; Background:none; border:none;"/>
+                    <input type="submit" value="X" style="opacity:0.6; color:white; Background:none; border:none;" data-toggle="modal" data-target="#myModal" />
                 </div>
             }
         }
     </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
 </div>

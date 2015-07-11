@@ -19,8 +19,9 @@ namespace Applicant.Controllers
         {
             return View(db.Tags.ToList());
         }
-        public ActionResult List(IEnumerable<Applicant.Models.Tag> tags)
+        public ActionResult List(IEnumerable<Applicant.Models.Tag> tags,int aplicantId)
         {
+            ViewBag.ApplicantId = aplicantId;
             return PartialView("PartialList",tags);
         }
         // GET: Tags/Details/5
@@ -51,6 +52,7 @@ namespace Applicant.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TagId,TagName,Applicants")] Tag tag,int id)
         {
+            
             if (ModelState.IsValid)
             {
                 foreach (var i in db.Tags.ToList())
@@ -65,6 +67,8 @@ namespace Applicant.Controllers
                         i.Applicants.Add(applicant);
                         db.SaveChanges();
                         var tags=db.Tags.ToList().Where(p=>p.Applicants.Contains(applicant));
+                        ViewBag.Tags = tags;
+                        ViewBag.ApplicantId = id;
                         return PartialView("PartialList", tags);
                     }
                 }
@@ -82,13 +86,17 @@ namespace Applicant.Controllers
                         i.Applicants.Add(applicant);
                         db.SaveChanges();
                         var tags=db.Tags.ToList().Where(p=>p.Applicants.Contains(applicant));
+                        ViewBag.Tags = tags;
+                        ViewBag.ApplicantId = id;
                         return PartialView("PartialList", tags);
                     }
                 }
                 
             }
-           var applicant1 = db.Applicants.ToList().Find(p => p.AplicantID == id);
-           var tags1 = db.Tags.ToList().Where(p => p.Applicants.Contains(applicant1));
+            var applicant1 = db.Applicants.ToList().Find(p => p.AplicantID == id);
+            var tags1 = db.Tags.ToList().Where(p => p.Applicants.Contains(applicant1));
+            ViewBag.Tags = tags1;
+            ViewBag.ApplicantId = id;
             return PartialView("PartialList", tags1);
         }
 
@@ -124,6 +132,23 @@ namespace Applicant.Controllers
         }
 
 
+        // GET: Attachments/Delete/5
+        public ActionResult Delete(int? id, int applicantId)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Tag tag = db.Tags.Find(id);
+            if (tag == null)
+            {
+                return HttpNotFound();
+            }
+            var applicant1 = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
+            ViewBag.Tags = db.Tags.ToList().Where(p => p.Applicants.Contains(applicant1));
+            ViewBag.ApplicantId = applicantId;
+            return PartialView("PartialDelete",tag);
+        }
         // POST: Tags/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
