@@ -5,17 +5,12 @@
         @using (Ajax.BeginForm("Delete", "Tags", new { id = Model.TagId, applicantId = ViewBag.ApplicantId }, new AjaxOptions { UpdateTargetId = "tags" }))
         {
             @Html.AntiForgeryToken()
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Вы уверены что ходите удалить тег?</h4>
-            </div>
-            <div class="modal-body">
-
-                @Html.DisplayFor(modelItem => Model.TagName)
+            <div class="modal-body pager">
+                <h3>Вы уверены что ходите удалить тег @Html.DisplayFor(modelItem => Model.TagName)?</h3>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close" onclick="$('#myModal').modal('hide')">Отмена</button>
-                <input type="submit" class="btn btn-primary" onclick="$('#myModal').modal('hide')" value="Удалить" style="opacity:0.6;" />
+                <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true" aria-label="Close">Отмена</button>
+                <button type="submit" class="btn btn-danger" data-dismiss="modal" aria-hidden="true" aria-label="Close">Удалить</button>
             </div>
         }
     </div>
