@@ -4,10 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Список бесед</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a class="btn btn-default btn-md" href="@Url.Action("Create")">
+        <i class="glyphicon glyphicon-plus"></i>
+        Добавить
+    </a>
 </p>
 <table class="table" id="AttachmensTable">
     <tr>

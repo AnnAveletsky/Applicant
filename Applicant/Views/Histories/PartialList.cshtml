@@ -39,12 +39,20 @@
                 UpdateTargetId = "myModal"
             }))
             {
-            <a href="@Url.Action("Edit", "Histories", new { id = item.HistoryId })">  Редактировать</a> 
-            <a href="@Url.Action("Details", "Histories", new { id = item.HistoryId })">  Подробнее</a> 
-            
-            <a href="@Url.Action("Delete", "Histories", new { id = item.HistoryId })">  
-                <input type="submit" value="Удалить" data-toggle="modal" data-target="#myModal" />
-            </a> 
+                <a class="btn btn-default btn-sm" href="@Url.Action("Edit", "Histories", new { id = item.HistoryId })">
+                    <i class="glyphicon glyphicon-edit"></i> 
+                    Править
+                </a>
+            <a class="btn btn-default btn-sm" href="@Url.Action("Details", "Histories", new { id = item.HistoryId }) ">
+                    <i class=" glyphicon glyphicon-list-alt">
+                </i>
+                Подробнее
+            </a>
+
+            <button class="btn btn-default btn-sm" type="submit" value="Удалить" data-toggle="modal" data-target="#myModal" href="@Url.Action("Delete", "Histories", new { id = item.HistoryId })">
+                <i class="glyphicon glyphicon-remove-circle"></i>
+                Удалить
+            </button>
             }
         </td>
     </tr>

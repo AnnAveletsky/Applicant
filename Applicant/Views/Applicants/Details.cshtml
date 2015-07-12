@@ -169,8 +169,12 @@
                     UpdateTargetId = "tableAttachments"
                 }))
             {
-                <input id="update" value="Обновить" type="submit">
+                <button class="btn btn-default btn-md" id="Обновить" type="submit" value="Обновить">
+                    <i class="glyphicon glyphicon-repeat"></i>
+                    Обновить
+                </button>
             }
+            
             <div id="tableAttachments">
                 @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments)
             </div>

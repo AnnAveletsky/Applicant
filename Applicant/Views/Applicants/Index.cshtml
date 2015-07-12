@@ -6,7 +6,10 @@
 
 <h2>Соискатели</h2>
 
-<a class="btn btn-primary btn-md" href="@Url.Action("Create")">Добавить</a>
+<a class="btn btn-primary btn-md" href="@Url.Action("Create")">
+    <i class="glyphicon glyphicon-plus"></i>
+    Добавить
+</a>
 
 <table class="table">
     <tr>
@@ -52,54 +55,62 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MiddleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Birthday)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Residence)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Skype)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GitHub)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Linkedin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HistoryComments)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Salary)
-        </td>
-        <td>
-            <a class="btn btn-default btn-xs btn-block" href="@Url.Action("Edit", new { id = item.AplicantID })">Править</a>
-            <a class="btn btn-default btn-xs btn-block" href="@Url.Action("Details", new { id = item.AplicantID })">Подробно</a>
-            <a class="btn btn-default btn-xs btn-block" href="@Url.Action("Delete", new { id = item.AplicantID })">Удалить</a>
-
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birthday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Residence)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Skype)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GitHub)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Linkedin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HistoryComments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a class="btn btn-default btn-xs btn-block" href="@Url.Action("Edit", new { id = item.AplicantID })">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-default btn-xs btn-block" href="@Url.Action("Details", new { id = item.AplicantID })">
+                        <i class="glyphicon glyphicon-share-alt"></i>
+                    </a>
+                    <a class="btn btn-default btn-xs btn-block" href="@Url.Action("Delete", new { id = item.AplicantID })">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    }
 
 </table>

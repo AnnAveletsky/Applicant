@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Подробнее</h2>
 
 <div>
-    <h4>History</h4>
+    <h4>Собеседования</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -37,6 +37,12 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.HistoryId }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a class="btn btn-default btn-md" href="@Url.Action("Edit", "Histories", new { id = Model.HistoryId })">
+        <i class="glyphicon glyphicon-edit"></i>
+        Править
+    </a>
+    <a class="btn btn-default btn-md" href="@Url.Action("Index")">
+        <i class="glyphicon glyphicon-list-alt"></i>
+        К списку
+    </a>
 </p>

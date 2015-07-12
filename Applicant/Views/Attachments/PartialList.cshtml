@@ -11,9 +11,15 @@
         <tr>
             <td>@Html.DisplayFor(modelItem => item.Name)</td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AttachmentId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.AttachmentId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.AttachmentId })
+               @*нет контроллёра download*@ 
+                <a class="btn btn-default btn-md" href="@Url.Action("Download", new { id = item.AttachmentId }))">
+                    <i class="glyphicon glyphicon-download"></i>
+                    Загрузить
+                </a>
+                <a class="btn btn-default btn-md" href="@Url.Action("Delete", new { id = item.AttachmentId }))">
+                    <i class="glyphicon glyphicon-remove-circle"></i>
+                    Удалить
+                </a>
             </td>
         </tr>
     }
