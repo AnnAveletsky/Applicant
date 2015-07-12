@@ -306,7 +306,6 @@
     <Content Include="Views\Attachments\Edit.cshtml" />
     <Content Include="Views\Attachments\Index.cshtml" />
     <Content Include="Views\Attachments\PartialList.cshtml" />
-    <Content Include="Views\Histories\Create.cshtml" />
     <Content Include="Views\Histories\Delete.cshtml" />
     <Content Include="Views\Histories\Details.cshtml" />
     <Content Include="Views\Histories\Edit.cshtml" />
@@ -317,6 +316,7 @@
     <Content Include="Views\Tags\PartialList.cshtml" />
     <Content Include="Views\Tags\PartialCreate.cshtml" />
     <Content Include="Views\Tags\PartialDelete.cshtml" />
+    <Content Include="Views\Histories\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201507041510270_InitialCreate.resx">

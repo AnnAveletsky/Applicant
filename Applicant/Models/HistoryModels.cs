@@ -34,6 +34,7 @@ namespace Applicant.Models
         public TypeHistory TypeCommunication { get; set; }
 
         [
+            DataType(DataType.MultilineText),
             Display(Name = "Коментарии"),
             MaxLength(500)
         ]
