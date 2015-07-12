@@ -6,9 +6,8 @@
 
 <h2>Соискатели</h2>
 
-<p>
-    @Html.ActionLink("Добавить", "Create")
-</p>
+<a class="btn btn-primary btn-md" href="@Url.Action("Create")">Добавить</a>
+
 <table class="table">
     <tr>
         <th>
@@ -95,17 +94,10 @@
             @Html.DisplayFor(modelItem => item.Salary)
         </td>
         <td>
-            
-            <button class="btn btn-default btn-xs btn-block" >
-                @Html.ActionLink("Edit", "Edit", new { id = item.AplicantID }) 
-            </button>
-            <button class="btn btn-default btn-xs btn-block">
-                @Html.ActionLink("Details", "Details", new { id = item.AplicantID })
-            </button>
-            <button class="btn btn-default btn-xs btn-block">
-                @Html.ActionLink("Delete", "Delete", new { id = item.AplicantID })
-            </button>
-            
+            <a class="btn btn-default btn-xs btn-block" href="@Url.Action("Edit", new { id = item.AplicantID })">Править</a>
+            <a class="btn btn-default btn-xs btn-block" href="@Url.Action("Details", new { id = item.AplicantID })">Подробно</a>
+            <a class="btn btn-default btn-xs btn-block" href="@Url.Action("Delete", new { id = item.AplicantID })">Удалить</a>
+
         </td>
     </tr>
 }

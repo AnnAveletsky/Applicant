@@ -27,14 +27,21 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <button type="submit" class="btn btn-primary btn-md" value="Save">
+                    <i class="glyphicon glyphicon-ok"></i>
+                    Сохранить
+                </button>
             </div>
         </div>
+
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a class="btn btn-default btn-md" href="@Url.Action("Index")">
+        <i class="glyphicon glyphicon-saved"></i>
+        К списку
+    </a>
 </div>
 
 @section Scripts {

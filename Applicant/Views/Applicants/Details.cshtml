@@ -12,8 +12,16 @@
 
 <h2>Подробнее о соискателе</h2>
 <p>
-    @Html.ActionLink("Редактирование данных о соискателе", "Edit", new { id = Model.AplicantID }) |
-    @Html.ActionLink("Назад к списку соискателей", "Index")
+    <div>
+        <a class="btn btn-default btn-md" href="@Url.Action("Edit", new { id = Model.AplicantID }))">
+            <i class="glyphicon glyphicon-pencil"></i>
+            Редактировать данные
+        </a>
+        <a class="btn btn-default btn-md" href="@Url.Action("Index", new { id = Model.AplicantID }))">
+            <i class="glyphicon glyphicon-th-list"></i>
+            К списку
+        </a>
+    </div>
 </p>
 <div>
     <hr />
