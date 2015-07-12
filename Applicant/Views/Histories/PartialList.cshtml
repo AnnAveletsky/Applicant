@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Applicant.Models.History>
-
 <table class="table">
     <tr>
         <th>
@@ -23,14 +22,35 @@
             @Html.DisplayFor(modelItem => item.TypeCommunication)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HistoryComments)
+            @if (item.HistoryComments!=null && item.HistoryComments.Length > 50) {
+                @Html.DisplayFor(modelItem => item.HistoryComments).ToString().Substring(0, 20);
+                <div>...</div>
+                
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.HistoryComments);
+            }
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.HistoryId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.HistoryId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.HistoryId })
+            @using (Ajax.BeginForm("Delete", "Histories", new { id = item.HistoryId, applicantId = ViewBag.ApplicantId }, new AjaxOptions
+            {
+                HttpMethod = "Get",
+                UpdateTargetId = "myModal"
+            }))
+            {
+            <a href="@Url.Action("Edit", "Histories", new { id = item.HistoryId })">  Редактировать</a> 
+            <a href="@Url.Action("Details", "Histories", new { id = item.HistoryId })">  Подробнее</a> 
+            
+            <a href="@Url.Action("Delete", "Histories", new { id = item.HistoryId })">  
+                <input type="submit" value="Удалить" data-toggle="modal" data-target="#myModal" />
+            </a> 
+            }
         </td>
     </tr>
 }
 
 </table>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+</div>

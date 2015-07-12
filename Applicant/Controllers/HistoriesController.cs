@@ -123,7 +123,7 @@ namespace Applicant.Controllers
         }
 
         // GET: Histories/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, int applicantId)
         {
             if (id == null)
             {
@@ -134,18 +134,24 @@ namespace Applicant.Controllers
             {
                 return HttpNotFound();
             }
-            return View(history);
+            var applicant1 = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
+            ViewBag.Histories = db.Histories.ToList().Where(p => p.ApplicantId == applicantId);
+            ViewBag.ApplicantId = applicantId;
+            return PartialView("PartialDelete",history);
         }
 
         // POST: Histories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, int applicantId)
         {
             History history = db.Histories.Find(id);
             db.Histories.Remove(history);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            var applicant1 = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
+            var histories = db.Histories.ToList().Where(p => p.ApplicantId == applicantId);
+            ViewBag.ApplicantId = applicantId;
+            return PartialView("PartialList", histories);
         }
 
         protected override void Dispose(bool disposing)

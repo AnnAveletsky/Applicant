@@ -1,0 +1,43 @@
+﻿@model Applicant.Models.History
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-body pager">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.CommunicationDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CommunicationDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TypeCommunication)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TypeCommunication)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.HistoryComments)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.HistoryComments)
+                </dd>
+
+            </dl>
+
+            @using (Ajax.BeginForm("Delete", "Histories", new { id = Model.HistoryId, applicantId = ViewBag.ApplicantId }, new AjaxOptions { UpdateTargetId = "tableHistories" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true" aria-label="Close">Отмена</button>
+                    <input type="submit" value="Delete" class="btn btn-danger" data-toggle="modal" data-target="#myModal" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

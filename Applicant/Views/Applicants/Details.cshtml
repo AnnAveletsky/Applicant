@@ -10,10 +10,12 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
+<h2>Подробнее о соискателе</h2>
+<p>
+    @Html.ActionLink("Редактирование данных о соискателе", "Edit", new { id = Model.AplicantID }) |
+    @Html.ActionLink("Назад к списку соискателей", "Index")
+</p>
 <div>
-    <h4>Applicant</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -190,10 +192,7 @@
         </dd>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AplicantID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
 @section Scripts {
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
 }
