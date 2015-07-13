@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Правка</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>History</h4>
+        <h4>История бесед</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.HistoryId)
@@ -43,15 +43,26 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <button type="submit" class="btn btn-success btn-md" value="Save">
+                    <i class="glyphicon glyphicon-ok"></i>
+                    Сохранить
+                </button>
+                <a class="btn btn-default btn-md" href="@Url.Action("Index", new { id = Model.HistoryId })">
+                    <i class="glyphicon glyphicon-list-alt"></i>
+                    История бесед
+                </a>
+                <a class="btn btn-default btn-md" href="@Url.Action("~/Views/Applicants/Details", new { id = Model.ApplicantId })">
+                    <i class="glyphicon glyphicon-share-alt"></i>
+                    Назад
+                </a>
             </div>
-        </div>
+        </div> 
+
+
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

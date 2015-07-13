@@ -4,11 +4,11 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Удаление</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Вы уверены что хотите удалить данные о кандидате?</h3>
 <div>
-    <h4>Applicant</h4>
+    <h4>Соискатель</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -117,12 +117,21 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <button class="btn btn-danger btn-md" type="submit" value="Delete">
+                <i class="glyphicon glyphicon-remove"></i>
+                Удалить
+            </button>
+            <a class="btn btn-default btn-md" href="@Url.Action("Index")">
+                <i class="glyphicon glyphicon-th-list"></i>
+                К списку
+            </a>
+
         </div>
+
     }
 </div>
