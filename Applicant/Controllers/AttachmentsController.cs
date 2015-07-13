@@ -14,16 +14,6 @@ namespace Applicant.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Attachments
-        public ActionResult Index()
-        {
-            var attachments = db.Attachments.Include(a => a.History);
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(attachments.ToList());
-            }
-            return View(attachments.ToList());
-        }
         // GET: Attachments/List/attachments
         public ActionResult List(IEnumerable<Applicant.Models.Attachment> attachments)
         {
@@ -46,31 +36,7 @@ namespace Applicant.Controllers
             }
             return View("PartialList",db.Attachments.Where(p=>p.ApplicantId==id));
         }
-        // GET: Attachments/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Attachment attachment = db.Attachments.Find(id);
-            if (attachment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(attachment);
-        }
 
-        // GET: Attachments/Create
-        public ActionResult Create()
-        {
-            ViewBag.HistoryId = new SelectList(db.Histories, "HistoryId", "HistoryComments");
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView();
-            }
-            return View();
-        }
 
         // POST: Attachments/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
@@ -119,38 +85,7 @@ namespace Applicant.Controllers
             }
             return Json("");
         }
-        // GET: Attachments/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Attachment attachment = db.Attachments.Find(id);
-            if (attachment == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.HistoryId = new SelectList(db.Histories, "HistoryId", "HistoryComments", attachment.HistoryId);
-            return View(attachment);
-        }
 
-        // POST: Attachments/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AttachmentId,Name,ApplicantId,HistoryId,Attach")] Attachment attachment)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(attachment).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.HistoryId = new SelectList(db.Histories, "HistoryId", "HistoryComments", attachment.HistoryId);
-            return View(attachment);
-        }
 
         // GET: Attachments/Delete/5
         public ActionResult Delete(int? id)
