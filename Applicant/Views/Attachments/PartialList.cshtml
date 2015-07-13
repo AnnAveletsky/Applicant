@@ -14,8 +14,7 @@
                 @using (Ajax.BeginForm("Delete", "Attachments", new { id = item.AttachmentId, applicantId = ViewBag.ApplicantId },
                     new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "myModal" }))
                 {
-                    @*нет контроллёра download*@
-                    <a class="btn btn-default btn-md" href="@Url.Action("Download", new { id = item.AttachmentId }))">
+                    <a class="btn btn-default btn-md" href="@Url.Action("Download", "Attachments", new { id = item.AttachmentId, applicantId = ViewBag.ApplicantId })">
                         <i class="glyphicon glyphicon-download"></i>
                         Загрузить
                     </a>
