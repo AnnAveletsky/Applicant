@@ -39,12 +39,6 @@ namespace Applicant.Controllers
             return View(tag);
         }
 
-        // GET: Tags/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Tags/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -99,39 +93,6 @@ namespace Applicant.Controllers
             ViewBag.ApplicantId = id;
             return PartialView("PartialList", tags1);
         }
-
-        // GET: Tags/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Tag tag = db.Tags.Find(id);
-            if (tag == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tag);
-        }
-
-        // POST: Tags/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TagId,TagName")] Tag tag)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(tag).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(tag);
-        }
-
-
         // GET: Attachments/Delete/5
         public ActionResult Delete(int? id, int applicantId)
         {

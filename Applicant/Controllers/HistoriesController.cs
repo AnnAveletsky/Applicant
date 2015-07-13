@@ -14,15 +14,6 @@ namespace Applicant.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Histories
-        public ActionResult Index()
-        {
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(db.Histories.ToList());
-            }
-            return View(db.Histories.ToList());
-        }
         // GET: Histories/List/histories
         public ActionResult List(IEnumerable<Applicant.Models.History> histories)
         {
@@ -47,15 +38,6 @@ namespace Applicant.Controllers
             return View(history);
         }
 
-        // GET: Histories/Create
-        public ActionResult Create()
-        {
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView();
-            }
-            return View();
-        }
 
         // POST: Histories/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
