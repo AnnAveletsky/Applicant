@@ -22,3 +22,9 @@ select,
 textarea {
     
 }
+.noresizehorizontal{
+    resize:vertical;
+}
+.short{
+    max-width:400px;
+}

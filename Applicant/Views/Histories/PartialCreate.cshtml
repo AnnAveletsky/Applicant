@@ -13,7 +13,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CommunicationDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CommunicationDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.CommunicationDate, new { htmlAttributes = new { @class = "form-control short" } })
                 @Html.ValidationMessageFor(model => model.CommunicationDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -21,7 +21,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TypeCommunication, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.TypeCommunication, htmlAttributes: new { @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.TypeCommunication, htmlAttributes: new { @class = "form-control short" })
                 @Html.ValidationMessageFor(model => model.TypeCommunication, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -29,7 +29,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.HistoryComments, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HistoryComments, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.HistoryComments, new { htmlAttributes = new { @class = "form-control noresizehorizontal short" } })
                 @Html.ValidationMessageFor(model => model.HistoryComments, "", new { @class = "text-danger" })
             </div>
         </div>

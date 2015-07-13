@@ -179,10 +179,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\BD.mdf" />
-    <Content Include="App_Data\BD_log.ldf">
-      <DependentUpon>BD.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-fileinput\css\fileinput.css" />
     <Content Include="Content\bootstrap-fileinput\css\fileinput.min.css" />
     <Content Include="Content\bootstrap-fileinput\img\loading-sm.gif" />
@@ -293,17 +289,14 @@
     <Content Include="Views\Tags\Edit.cshtml" />
     <Content Include="Views\Tags\Index.cshtml" />
     <Content Include="Views\Attachments\PartialList.cshtml" />
-    <Content Include="Views\Histories\Delete.cshtml" />
     <Content Include="Views\Histories\Details.cshtml" />
     <Content Include="Views\Histories\Edit.cshtml" />
-    <Content Include="Views\Histories\Index.cshtml" />
     <Content Include="Views\Histories\PartialList.cshtml" />
     <Content Include="Views\Histories\PartialCreate.cshtml" />
     <Content Include="Views\Attachments\PartialLoad.cshtml" />
     <Content Include="Views\Tags\PartialList.cshtml" />
     <Content Include="Views\Tags\PartialCreate.cshtml" />
     <Content Include="Views\Tags\PartialDelete.cshtml" />
-    <Content Include="Views\Histories\Create.cshtml" />
     <Content Include="Views\Histories\PartialDelete.cshtml" />
     <Content Include="Views\Attachments\PartialDelete.cshtml" />
   </ItemGroup>
@@ -311,7 +304,9 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

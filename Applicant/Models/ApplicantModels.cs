@@ -86,10 +86,11 @@ namespace Applicant.Models
 
 
         [
+            DataType(DataType.MultilineText),
             MaxLength(500),
             Display(Name = "Комментарии")
         ]
-        public string HistoryComments { get; set; }
+        public string Comments { get; set; }
 
         [
             DataType(DataType.Currency),
