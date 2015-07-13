@@ -314,6 +314,7 @@
     <Content Include="Views\Tags\PartialDelete.cshtml" />
     <Content Include="Views\Histories\Create.cshtml" />
     <Content Include="Views\Histories\PartialDelete.cshtml" />
+    <Content Include="Views\Attachments\PartialDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201507041510270_InitialCreate.resx">

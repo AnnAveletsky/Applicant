@@ -1,0 +1,36 @@
+﻿@model Applicant.Models.Attachment
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-body pager">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.History.HistoryComments)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.History.HistoryComments)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+            </dl>
+
+            @using (Ajax.BeginForm("Delete", "Attachments", new { id = Model.AttachmentId, applicantId = ViewBag.ApplicantId }, new AjaxOptions { UpdateTargetId = "tableAttachments" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true" aria-label="Close">Отмена</button>
+                    <input type="submit" class="btn btn-danger" value="Удалить" style="opacity:0.6;" data-toggle="modal" data-target="#myModal" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

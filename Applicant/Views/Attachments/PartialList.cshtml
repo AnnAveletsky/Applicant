@@ -1,26 +1,33 @@
 ﻿@model IEnumerable<Applicant.Models.Attachment>
 
     <table class="table">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Name)</th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Name)</th>
+        <th></th>
+    </tr>
 
     @foreach (var item in Model)
     {
         <tr>
             <td>@Html.DisplayFor(modelItem => item.Name)</td>
             <td>
-               @*нет контроллёра download*@ 
-                <a class="btn btn-default btn-md" href="@Url.Action("Download", new { id = item.AttachmentId }))">
-                    <i class="glyphicon glyphicon-download"></i>
-                    Загрузить
-                </a>
-                <a class="btn btn-default btn-md" href="@Url.Action("Delete", new { id = item.AttachmentId }))">
-                    <i class="glyphicon glyphicon-remove-circle"></i>
-                    Удалить
-                </a>
+                @using (Ajax.BeginForm("Delete", "Attachments", new { id = item.AttachmentId, applicantId = ViewBag.ApplicantId },
+                    new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "myModal" }))
+                {
+                    @*нет контроллёра download*@
+                    <a class="btn btn-default btn-md" href="@Url.Action("Download", new { id = item.AttachmentId }))">
+                        <i class="glyphicon glyphicon-download"></i>
+                        Загрузить
+                    </a>
+                    <button class="btn btn-default btn-md" type="submit" value="Удалить" data-toggle="modal" data-target="#myModal" href="@Url.Action("Delete","Attachments", new { id = item.AttachmentId }))">
+                        <i class="glyphicon glyphicon-remove-circle"></i>
+                        Удалить
+                    </button>
+                }
             </td>
         </tr>
     }
-    </table>
+</table>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+</div>

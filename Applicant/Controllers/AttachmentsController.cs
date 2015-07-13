@@ -28,6 +28,7 @@ namespace Applicant.Controllers
             }
             return View(attachments.ToList());
         }
+        // GET: Attachments/List/ListAttachmentId
         public ActionResult ListApplicantId(int id)
         {
             if (Request.IsAjaxRequest())
@@ -88,7 +89,7 @@ namespace Applicant.Controllers
 
 
         // GET: Attachments/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id,int applicantId)
         {
             if (id == null)
             {
@@ -99,18 +100,24 @@ namespace Applicant.Controllers
             {
                 return HttpNotFound();
             }
-            return View(attachment);
+            var applicant1 = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
+            ViewBag.Attachments = db.Attachments.ToList().Where(p => p.ApplicantId == applicantId);
+            ViewBag.ApplicantId = applicantId;
+            return PartialView("PartialDelete", attachment);
         }
 
         // POST: Attachments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id,int applicantId)
         {
             Attachment attachment = db.Attachments.Find(id);
             db.Attachments.Remove(attachment);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            var applicant1 = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
+            var attachments = db.Attachments.ToList().Where(p => p.ApplicantId == applicantId);
+            ViewBag.ApplicantId = applicantId;
+            return PartialView("PartialList", attachments);
         }
 
         protected override void Dispose(bool disposing)

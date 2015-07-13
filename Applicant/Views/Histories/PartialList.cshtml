@@ -13,51 +13,48 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CommunicationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TypeCommunication)
-        </td>
-        <td>
-            @if (item.HistoryComments!=null && item.HistoryComments.Length > 50) {
-                @Html.DisplayFor(modelItem => item.HistoryComments).ToString().Substring(0, 20);
-                <div>...</div>
-                
-            }
-            else
-            {
-                @Html.DisplayFor(modelItem => item.HistoryComments);
-            }
-        </td>
-        <td>
-            @using (Ajax.BeginForm("Delete", "Histories", new { id = item.HistoryId, applicantId = ViewBag.ApplicantId }, new AjaxOptions
-            {
-                HttpMethod = "Get",
-                UpdateTargetId = "myModal"
-            }))
-            {
-                <a class="btn btn-default btn-sm" href="@Url.Action("Edit", "Histories", new { id = item.HistoryId })">
-                    <i class="glyphicon glyphicon-edit"></i> 
-                    Править
-                </a>
-            <a class="btn btn-default btn-sm" href="@Url.Action("Details", "Histories", new { id = item.HistoryId }) ">
-                    <i class=" glyphicon glyphicon-list-alt">
-                </i>
-                Подробнее
-            </a>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommunicationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeCommunication)
+            </td>
+            <td>
+                @if (item.HistoryComments != null && item.HistoryComments.Length > 50)
+                {
+                    @Html.DisplayFor(modelItem => item.HistoryComments).ToString().Substring(0, 20);
+                    <div>...</div>
 
-            <button class="btn btn-default btn-sm" type="submit" value="Удалить" data-toggle="modal" data-target="#myModal" href="@Url.Action("Delete", "Histories", new { id = item.HistoryId })">
-                <i class="glyphicon glyphicon-remove-circle"></i>
-                Удалить
-            </button>
-            }
-        </td>
-    </tr>
-}
-
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.HistoryComments);
+                }
+            </td>
+            <td>
+                @using (Ajax.BeginForm("Delete", "Histories", new { id = item.HistoryId, applicantId = ViewBag.ApplicantId },
+                    new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "myModal" }))
+                {
+                    <a class="btn btn-default btn-sm" href="@Url.Action("Edit", "Histories", new { id = item.HistoryId })">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Править
+                    </a>
+                    <a class="btn btn-default btn-sm" href="@Url.Action("Details", "Histories", new { id = item.HistoryId }) ">
+                        <i class=" glyphicon glyphicon-list-alt">
+                        </i>
+                        Подробнее
+                    </a>
+                    <button class="btn btn-default btn-sm" type="submit" value="Удалить" data-toggle="modal" data-target="#myModal" href="@Url.Action("Delete", "Histories", new { id = item.HistoryId })">
+                        <i class="glyphicon glyphicon-remove-circle"></i>
+                        Удалить
+                    </button>
+                }
+            </td>
+        </tr>
+    }
 </table>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
