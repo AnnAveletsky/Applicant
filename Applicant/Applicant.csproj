@@ -164,6 +164,7 @@
     <Compile Include="Controllers\HistoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -175,6 +176,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TagModels.cs" />
+    <Compile Include="Pages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -296,6 +298,8 @@
     <Content Include="Views\Tags\PartialDelete.cshtml" />
     <Content Include="Views\Histories\PartialDelete.cshtml" />
     <Content Include="Views\Attachments\PartialDelete.cshtml" />
+    <Content Include="Views\Applicants\PartialList.cshtml" />
+    <Content Include="Views\Applicants\PartialPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

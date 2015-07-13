@@ -13,13 +13,13 @@ namespace Applicant.Controllers
     public class ApplicantsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET: Applicants
         public ActionResult Index()
         {
-            return View(db.Applicants.ToList());
+            
+            return View(db.Applicants);
         }
-
+        
         // GET: Applicants/Details/5
         public ActionResult Details(int? id)
         {
