@@ -51,7 +51,7 @@ namespace Applicant.Controllers
             {
                 foreach (var i in db.Tags.ToList())
                 {
-                    if (String.Compare(i.TagName, tag.TagName) == 0)
+                    if (String.Compare(i.TagName, tag.TagName,true) == 0)
                     {
                         var applicant = db.Applicants.ToList().Find(p => p.AplicantID == id);
                         if (i.Applicants == null)
@@ -70,7 +70,7 @@ namespace Applicant.Controllers
                 db.SaveChanges();
                 foreach (var i in db.Tags.ToList())
                 {
-                    if (String.Compare(i.TagName, tag.TagName)==0)
+                    if (String.Compare(i.TagName, tag.TagName, true) == 0)
                     {
                         var applicant = db.Applicants.ToList().Find(p=>p.AplicantID==id);
                         if (i.Applicants == null)

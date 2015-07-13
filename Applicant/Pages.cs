@@ -63,9 +63,9 @@ namespace Applicant
         {
             foreach (var i in applicants.ToList())
             {
-                if (String.Compare(search, i.FirstName, false) < 0 &&
-                    String.Compare(search, i.MiddleName, false) < 0 &&
-                    String.Compare(search, i.LastName, false) < 0)
+                if (String.Compare(search, i.FirstName,true) < 0 &&
+                    String.Compare(search, i.MiddleName, true) < 0 &&
+                    String.Compare(search, i.LastName, true) < 0)
                 {
                     applicants.Remove(i);
                 }
