@@ -102,14 +102,15 @@ namespace Applicant.Controllers
         }
 
         // GET: Attachments/Delete/5
-        public ActionResult Delete(int? id,int applicantId)
+        public ActionResult Delete(int? id,int? applicantId)
         {
-            if (id == null)
+            if (id == null||applicantId==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Attachment attachment = db.Attachments.Find(id);
-            if (attachment == null)
+            var applicant = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
+            if (attachment == null || applicant==null)
             {
                 return HttpNotFound();
             }

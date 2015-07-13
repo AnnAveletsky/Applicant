@@ -105,18 +105,18 @@ namespace Applicant.Controllers
         }
 
         // GET: Histories/Delete/5
-        public ActionResult Delete(int? id, int applicantId)
+        public ActionResult Delete(int? id, int? applicantId)
         {
-            if (id == null)
+            if (id == null||applicantId==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             History history = db.Histories.Find(id);
-            if (history == null)
+            var applicant = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
+            if (history == null||applicant==null)
             {
                 return HttpNotFound();
             }
-            var applicant1 = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
             ViewBag.Histories = db.Histories.ToList().Where(p => p.ApplicantId == applicantId);
             ViewBag.ApplicantId = applicantId;
             return PartialView("PartialDelete",history);

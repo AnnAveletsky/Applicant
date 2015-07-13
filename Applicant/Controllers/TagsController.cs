@@ -94,19 +94,19 @@ namespace Applicant.Controllers
             return PartialView("PartialList", tags1);
         }
         // GET: Attachments/Delete/5
-        public ActionResult Delete(int? id, int applicantId)
+        public ActionResult Delete(int? id, int? applicantId)
         {
-            if (id == null)
+            if (id == null||applicantId==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Tag tag = db.Tags.Find(id);
-            if (tag == null)
+            Applicant.Models.Applicant applicant = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
+            if (tag == null||applicant==null)
             {
                 return HttpNotFound();
             }
-            var applicant1 = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
-            ViewBag.Tags = db.Tags.ToList().Where(p => p.Applicants.Contains(applicant1));
+            ViewBag.Tags = db.Tags.ToList().Where(p => p.Applicants.Contains(applicant));
             ViewBag.ApplicantId = applicantId;
             return PartialView("PartialDelete",tag);
         }
@@ -118,10 +118,14 @@ namespace Applicant.Controllers
             Tag tag = db.Tags.Find(id);
             Applicant.Models.Applicant applicant=db.Applicants.Find(applicantId);
             tag.Applicants.Remove(applicant);
+            if (tag.Applicants.Count == 0)
+            {
+                db.Tags.Remove(tag);
+            }
             db.SaveChanges();
             var applicant1 = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
-           var tags1 = db.Tags.ToList().Where(p => p.Applicants.Contains(applicant1));
-           ViewBag.ApplicantId = applicantId;
+            var tags1 = db.Tags.ToList().Where(p => p.Applicants.Contains(applicant1));
+            ViewBag.ApplicantId = applicantId;
            return PartialView("PartialList", tags1);
         }
 
