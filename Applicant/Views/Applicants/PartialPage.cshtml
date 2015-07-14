@@ -1,39 +1,16 @@
 ﻿@model Applicant.Page
-
-@Html.Partial("~/Views/Applicants/PartialList.cshtml", Model.Applicants)
-<nav>
-    <ul class="pagination">
-        @if (Model.Back == true)
-        {
-            <li>
-                @Ajax.ActionLink("<<", "ToPage", "Pages",
-                  new { toPage = Model.NowPage - 1, search = Model.Search, countElementsInPage = Model.CountElementsInPage, poleSort=Model.PoleSort },
-                new AjaxOptions {HttpMethod=FormMethod.Post.ToString(), UpdateTargetId = "listApplicants" })
-            </li>
+<div id="list">
+    @Html.Action("List", new {page=Model.NowPage, countElements=Model.CountElementsInPage,pole="", search="" });
+</div>
+<ul class="pagination">
+    @for (int i = 1; i < Model.CountPages+1; i++)
+    {
+        if (@i == Model.NowPage) { 
+            <li class="active"><a onclick="toPage(@i)">@i <span class=" sr-only">(current)</span></a></li>
         }
-        @for (int i = 1; i < Model.CountPages + 1; i++)
+        else
         {
-            if (Model.NowPage == i)
-            {
-                <li class="active">
-                    @Ajax.ActionLink(@i.ToString(), "ToPage", "Pages", new { toPage = i, search = Model.Search, countElementsInPage = Model.CountElementsInPage, poleSort = Model.PoleSort },
-                     new AjaxOptions { HttpMethod = FormMethod.Post.ToString(), UpdateTargetId = "listApplicants" })
-                </li>
-            }
-            else
-            {
-                <li class="disabled">
-                    @Ajax.ActionLink(@i.ToString(), "ToPage", new { toPage = i, search = Model.Search, countElementsInPage = Model.CountElementsInPage, poleSort = Model.PoleSort },
-                    new AjaxOptions { UpdateTargetId = "listApplicants" })
-                </li>
-            }
+            <li ><a onclick="toPage(@i)">@i <span class="sr-only">(current)</span></a></li>
         }
-        @if (Model.Next == true)
-        {
-            <li>
-                @Ajax.ActionLink(">>", "ToPage", new { toPage = Model.NowPage + 1, search = Model.Search, countElementsInPage = Model.CountElementsInPage, poleSort = Model.PoleSort },
-                    new AjaxOptions { UpdateTargetId = "listApplicants" })
-            </li>
-        }
-    </ul>
-</nav>
+    }
+</ul>

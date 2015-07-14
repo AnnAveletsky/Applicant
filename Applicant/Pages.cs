@@ -14,12 +14,16 @@ namespace Applicant
         public string PoleSort{ get; set; }
         public bool Next { get; set; }
         public bool Back { get; set; }
-        public IEnumerable<Applicant.Models.Applicant> Applicants { get; set; }
+        public List<Applicant.Models.Applicant> Applicants { get; set; }
         public Page(IEnumerable<Applicant.Models.Applicant> applicants, string search = "",
-            int? page=1,int? countElementsInPage=10,
+            int? page=1,int? countElementsInPage=5,
             string poleSort="FirstName")
         {
-            Applicants = applicants;
+            Applicants=new List<Models.Applicant>();
+            foreach (var i in applicants.ToList())
+            {
+                Applicants.Add(i);
+            }
             if (search != "")
             {
                 Applicants = ToSearch(search, Applicants.ToList());
@@ -47,7 +51,6 @@ namespace Applicant
         }
         public List<Applicant.Models.Applicant> ToPage(int? page, int? countElement, string pole, List<Applicant.Models.Applicant> applicants)
         {
-            applicants = Sort(pole, applicants).Values.ToList();
             int j = 1;
             foreach (var i in applicants.ToList())
             {

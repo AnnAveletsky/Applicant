@@ -3,13 +3,47 @@
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Соискатели</h2>
 
 <a class="btn btn-primary btn-md" href="@Url.Action("Create")">
     <i class="glyphicon glyphicon-plus"></i>
     Добавить
 </a>
+<div class="btn-group">
+    <button id="value" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">5</button>
+    <ul class="dropdown-menu" role="menu">
+        <li><a onclick="update(5)">5</a></li>
+        <li><a onclick ="update(10)">10</a></li>
+        <li><a onclick="update(20)">20</a></li>
+        <li><a onclick="update(30)">30</a></li>
+    </ul>
+</div>
+<div id="pages">
+   @Html.Partial("PartialPage",new Applicant.Page(Model))
+</div>
+<script type="text/javascript">
+    function update(countElements) {
+        document.getElementById('value').innerHTML = countElements;
+        page = 1;
+        $.ajax({
+            url: "@Url.Action("Page")",
+            data: "page=" + page + "&countElements=" + countElements,
+            success: function (html) {
+                $("#pages").empty();
+                $("#pages").append(html);
+            }
+        });
+    }
 
-
-@Html.Partial("~/Views/Applicants/PartialPage.cshtml", new Applicant.Page(Model))
+    function toPage(page) {
+        var countElements = document.getElementById('value').innerHTML;
+        $.ajax({
+            url: "@Url.Action("Page")",
+            data: "page=" + page + "&countElements=" + countElements,
+            success: function (html) {
+                $("#pages").empty();
+                $("#pages").append(html);
+            }
+        });
+    }
+</script>

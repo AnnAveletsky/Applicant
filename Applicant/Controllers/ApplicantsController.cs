@@ -14,12 +14,20 @@ namespace Applicant.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Applicants
-        public ActionResult Index()
+        public ActionResult Index(int? page,int? countElements)
         {
-            
-            return View(db.Applicants);
+            return View(db.Applicants.ToList());
         }
-        
+        public ActionResult List(int? page, int? countElements, string pole, string search)
+        {
+          var Page=  new Applicant.Page(db.Applicants.ToList(), search, page, countElements, pole);
+            return PartialView("PartialList", Page.Applicants.ToList());
+        }
+        public ActionResult Page(int? page, int? countElements, string pole,string search)
+        {
+            ViewBag.Applicants = db.Applicants.ToList();
+            return PartialView("PartialPage", new Applicant.Page(db.Applicants.ToList(), search, page, countElements, pole));
+        }
         // GET: Applicants/Details/5
         public ActionResult Details(int? id)
         {
