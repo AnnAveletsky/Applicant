@@ -199,7 +199,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap-tags\dist\css\bootstrap-tags.css" />
-    <Content Include="Scripts\bootstrap-tags\dist\js\bootstrap-tags.js" />
+    <Content Include="Scripts\k-bootstrap-tags.js" />
     <Content Include="Scripts\bootstrap-tags\dist\js\bootstrap-tags.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -303,6 +303,7 @@
     <Content Include="Views\Attachments\PartialDelete.cshtml" />
     <Content Include="Views\Applicants\PartialList.cshtml" />
     <Content Include="Views\Applicants\PartialPage.cshtml" />
+    <Content Include="Views\Applicants\Tags.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

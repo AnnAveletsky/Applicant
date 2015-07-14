@@ -15,7 +15,7 @@ namespace Applicant
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-tags").Include(
-                "~/Scripts/bootstrap-tags/dist/js/bootstrap-tags.js"));
+                "~/Scripts/k-bootstrap-tags.js"));
 
             bundles.Add(new StyleBundle("~/Content/bootstrap-tags").Include(
                      "~/Scripts/bootstrap-tags/dist/css/bootstrap-tags.css"));

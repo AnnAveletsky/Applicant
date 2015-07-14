@@ -1,23 +1,33 @@
 ﻿@model IEnumerable<Applicant.Models.Tag>
-<div style=" padding:0; margin-bottom:5px; max-width:758px;">
+@Styles.Render("/Content/bootstrap-tags")
+@Styles.Render("~/Content/css")
+
+<div class="container" style=" padding:0; margin-bottom:5px; max-width:758px;">
+    <div id="applicantsTags"></div>
+
+    <script>
+        function TagsFromBase() {
+            var TagsList = new Array(@Model.Count()).join('ля');
+
+             return TagsList;
+        };
+
+        $(function () {
+            $("#applicantsTags").tags({
+                tagSize: "md",
+                suggestions: ["alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel", "india"],
+                tagData: TagsFromBase()
+            })
+        });
+    </script>
+    @foreach (var item in Model)
+    {@item.TagName}
+</div>
+
+<div>
     <div id="readonly" class="bootstrap-tags bootstrap-3">
-        @foreach (var item in Model)
-        {
-            using (Ajax.BeginForm("Delete", "Tags", new { id = item.TagId, applicantId = ViewBag.ApplicantId }, new AjaxOptions
-            {
-                HttpMethod = "Get",
-                UpdateTargetId = "myModal"
-            }))
-            {
-                @Html.AntiForgeryToken()
-                <div class="tag label btn btn-info md" style="margin:3px;">
-                    <span>
-                        @Html.DisplayFor(modelItem => item.TagName)
-                    </span>
-                    <input type="submit" value="X" style="opacity:0.6; color:white; Background:none; border:none;" data-toggle="modal" data-target="#myModal" />
-                </div>
-            }
-        }
+
+
     </div>
 </div>
 
