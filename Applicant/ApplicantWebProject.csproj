@@ -168,6 +168,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508112255003_Initial.cs" />
+    <Compile Include="Migrations\201508112255003_Initial.Designer.cs">
+      <DependentUpon>201508112255003_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicantModels.cs" />
     <Compile Include="Models\AttachmentModels.cs" />
@@ -309,7 +314,18 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ApplicantClassLibrary\ApplicantClassLibrary.csproj">
+      <Project>{e9786ca6-207e-4c1f-bdef-fbfbff861768}</Project>
+      <Name>ApplicantClassLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201508112255003_Initial.resx">
+      <DependentUpon>201508112255003_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

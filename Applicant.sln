@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Applicant", "Applicant\Applicant.csproj", "{211EC891-6FCE-453C-A1B0-78B29062B1EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicantWebProject", "Applicant\ApplicantWebProject.csproj", "{211EC891-6FCE-453C-A1B0-78B29062B1EC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E9786CA6-207E-4C1F-BDEF-FBFBFF861768} = {E9786CA6-207E-4C1F-BDEF-FBFBFF861768}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicantClassLibrary", "ApplicantClassLibrary\ApplicantClassLibrary.csproj", "{E9786CA6-207E-4C1F-BDEF-FBFBFF861768}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{211EC891-6FCE-453C-A1B0-78B29062B1EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{211EC891-6FCE-453C-A1B0-78B29062B1EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{211EC891-6FCE-453C-A1B0-78B29062B1EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9786CA6-207E-4C1F-BDEF-FBFBFF861768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9786CA6-207E-4C1F-BDEF-FBFBFF861768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9786CA6-207E-4C1F-BDEF-FBFBFF861768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9786CA6-207E-4C1F-BDEF-FBFBFF861768}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
