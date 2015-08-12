@@ -152,21 +152,14 @@
                     </div>
                     <div id="collapseTags" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTags">
                         <div class="panel-body">
-                            @Html.Partial("~/Views/Attachments/PartialLoad.cshtml", Model)
+                            @Html.Partial("~/Views/Attachments/PartialLoad.cshtml", Model.ApplicantId)
                         </div>
                     </div>
                 </div>
             </div>
-            @using (Ajax.BeginForm("ListApplicantId", "Attachments", new { id = Model.ApplicantId },
-                new AjaxOptions { UpdateTargetId = "tableAttachments" }))
-            {
-                <button class="btn btn-default btn-md" id="Обновить" type="submit" value="Обновить">
-                    <i class="glyphicon glyphicon-repeat"></i>
-                    Обновить
-                </button>
-            }
+            
             <div id="tableAttachments">
-                @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments)
+                @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments.ToList())
             </div>
         </dd>
 

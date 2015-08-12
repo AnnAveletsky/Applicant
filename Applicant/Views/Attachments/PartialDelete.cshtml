@@ -22,7 +22,7 @@
 
             </dl>
 
-            @using (Ajax.BeginForm("Delete", "Attachments", new { id = Model.AttachmentId, applicantId = ViewBag.ApplicantId }, new AjaxOptions { UpdateTargetId = "tableAttachments" }))
+            @using (Ajax.BeginForm("Delete", "Attachments", new { id = Model.AttachmentId, applicantId = Model.ApplicantId }, new AjaxOptions { UpdateTargetId = "tableAttachments" }))
             {
                 @Html.AntiForgeryToken()
 

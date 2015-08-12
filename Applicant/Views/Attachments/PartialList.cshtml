@@ -11,10 +11,10 @@
         <tr>
             <td>@Html.DisplayFor(modelItem => item.Name)</td>
             <td>
-                @using (Ajax.BeginForm("Delete", "Attachments", new { id = item.AttachmentId, applicantId = ViewBag.ApplicantId },
+                @using (Ajax.BeginForm("Delete", "Attachments", new { id = item.AttachmentId, applicantId = item.ApplicantId },
                     new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "myModal" }))
                 {
-                    <a class="btn btn-default btn-md" href="@Url.Action("Download", "Attachments", new { id = item.AttachmentId, applicantId = ViewBag.ApplicantId })">
+                    <a class="btn btn-default btn-md" href="@Url.Action("Download", "Attachments", new { id = item.AttachmentId, applicantId = item.ApplicantId })">
                         <i class="glyphicon glyphicon-download"></i>
                         Загрузить
                     </a>

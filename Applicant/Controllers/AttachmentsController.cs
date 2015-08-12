@@ -15,39 +15,28 @@ namespace Applicant.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Attachments/List/
-        public ActionResult List(IEnumerable<Attachment> attachments)
+        public ActionResult List(int applicantId)
         {
             if (Request.IsAjaxRequest())
             {
-                return PartialView(attachments.ToList());
+                return PartialView(db.Applicants.Find(applicantId).Attachments.ToList());
             }
-            return View(attachments.ToList());
+            return View(db.Applicants.Find(applicantId).Attachments.ToList());
         }
 
         // GET: Attachments/Load
-        public JsonResult Load(int id ,IEnumerable<HttpPostedFileBase> file_data)
+        public JsonResult Load(int applicantId ,IEnumerable<HttpPostedFileBase> file_data)
         {
             foreach (var i in file_data.ToList())
             {
-                Attachment attach=new Attachment();
-                attach.ApplicantId = id;
-                attach.Attach = new byte[i.ContentLength];
-                attach.Type = i.ContentType;
-                i.InputStream.Read(attach.Attach, 0, i.ContentLength);
-                attach.Name = i.FileName;
-                db.Attachments.Add(attach);
-                db.SaveChanges();
+                db.AddAttachmentInApplicant(applicantId, i);
             }
-            ViewBag.Attachments = db.Attachments.Where(p => p.ApplicantId == id);
-            ViewBag.ApplicantId = id;
             return Json("");
         }
         // POST: Attachments/Download
         public FileResult Download(int id, int applicantId)
         {
             Attachment attach=db.Attachments.Find(id);
-            ViewBag.Attachments = db.Attachments.Where(p => p.ApplicantId == applicantId);
-            ViewBag.ApplicantId = applicantId;
             return File(attach.Attach,attach.Type,attach.Name);
         }
 
@@ -64,8 +53,6 @@ namespace Applicant.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Attachments = db.Attachments.Where(p => p.ApplicantId == applicantId);
-            ViewBag.ApplicantId = applicantId;
             return PartialView("PartialDelete", attachment);
         }
 
@@ -78,7 +65,6 @@ namespace Applicant.Controllers
             db.Attachments.Remove(attachment);
             db.SaveChanges();
             var attachments = db.Attachments.Where(p => p.ApplicantId == applicantId);
-            ViewBag.ApplicantId = applicantId;
             return PartialView("PartialList", attachments);
         }
 

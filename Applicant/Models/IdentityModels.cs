@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using ApplicantClassLibrary;
+using System.Web;
 
 namespace Applicant.Models
 {
@@ -105,19 +106,6 @@ namespace Applicant.Models
                     where attachment.ApplicantId == applicantId
                     select attachment).ToList();
         }
-        public bool AddAttachmentsInApplicant(AttachmentFields attachment,int? applicantId)
-        {
-            try
-            {
-                Attachments.Add(new Attachment(attachment, applicantId,Applicants.Find(applicantId)));
-                SaveChanges();
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-            return true;
-        }
 
         public Tag CreateTagAndAddTagInApplicant(TagCreate tagAddApplicant)
         {
@@ -146,6 +134,19 @@ namespace Applicant.Models
             {
                 throw new Exception("Ошибка добавления тега. Несколько тегов с одним названием");
             }
+        }
+
+        public Attachment AddAttachmentInApplicant(int applicantId,HttpPostedFileBase filedata)
+        {
+            Attachment attach = new Attachment();
+            attach.ApplicantId = applicantId;
+            attach.Attach = new byte[filedata.ContentLength];
+            attach.Type = filedata.ContentType;
+            filedata.InputStream.Read(attach.Attach, 0, filedata.ContentLength);
+            attach.Name = filedata.FileName;
+            Attachments.Add(attach);
+            SaveChanges();
+            return attach;
         }
     }
 }

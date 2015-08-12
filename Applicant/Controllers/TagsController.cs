@@ -14,10 +14,9 @@ namespace Applicant.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public ActionResult List(IEnumerable<Tag> tags,int aplicantId)
+        public ActionResult List(int aplicantId)
         {
-            ViewBag.ApplicantId = aplicantId;
-            return PartialView("PartialList",tags);
+            return PartialView("PartialList", db.Applicants.Find(aplicantId).Tags.ToList());
         }
 
         // POST: Tags/Create
@@ -43,13 +42,11 @@ namespace Applicant.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Tag tag = db.Tags.Find(id);
-            Applicant.Models.Applicant applicant = db.Applicants.ToList().Find(p => p.ApplicantId == applicantId);
+            Applicant.Models.Applicant applicant = db.Applicants.Find(applicantId);
             if (tag == null||applicant==null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Tags = db.Tags.ToList().Where(p => p.Applicants.Contains(applicant));
-            ViewBag.ApplicantId = applicantId;
             return PartialView("PartialDelete",tag);
         }
         // POST: Tags/Delete/5
@@ -65,10 +62,7 @@ namespace Applicant.Controllers
                 db.Tags.Remove(tag);
             }
             db.SaveChanges();
-            var applicant1 = db.Applicants.ToList().Find(p => p.ApplicantId == applicantId);
-            var tags1 = db.Tags.ToList().Where(p => p.Applicants.Contains(applicant1));
-            ViewBag.ApplicantId = applicantId;
-           return PartialView("PartialList", tags1);
+            return PartialView("PartialList", db.Applicants.Find(applicantId).Tags.ToList());
         }
 
         protected override void Dispose(bool disposing)
