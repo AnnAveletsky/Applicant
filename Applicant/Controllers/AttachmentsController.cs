@@ -14,14 +14,14 @@ namespace Applicant.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Attachments/List/
+        // POST: Attachments/List/
         public ActionResult List(int applicantId)
         {
             if (Request.IsAjaxRequest())
             {
-                return PartialView(db.Applicants.Find(applicantId).Attachments.ToList());
+                return PartialView("PartialList",db.Applicants.Find(applicantId).Attachments.ToList());
             }
-            return View(db.Applicants.Find(applicantId).Attachments.ToList());
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         // GET: Attachments/Load

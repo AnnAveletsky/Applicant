@@ -3,7 +3,6 @@
 <div>
     <input id="input-ru" type="file" multiple class="file-loading">
 </div>
-
 <script>
     $("#input-ru").fileinput({
         language: "ru",
@@ -12,8 +11,8 @@
             });
     $('#input-ru').on('filebatchuploadcomplete', function () {
         $.ajax({
-            url: "@Url.Action("List")",
-            data: "applicantId=" + Model,
+            url: "@Url.Action("List", "Attachments")",
+            data: "applicantId=" + @Model,
             success: function (html) {
                 $("#tableAttachments").empty();
                 $("#tableAttachments").append(html);
