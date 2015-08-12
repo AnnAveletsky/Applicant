@@ -64,8 +64,7 @@ namespace Applicant.Controllers
             Attachment attachment = db.Attachments.Find(id);
             db.Attachments.Remove(attachment);
             db.SaveChanges();
-            var attachments = db.Attachments.Where(p => p.ApplicantId == applicantId);
-            return PartialView("PartialList", attachments);
+            return PartialView("PartialList", db.Attachments.Where(p => p.ApplicantId == applicantId));
         }
 
         protected override void Dispose(bool disposing)

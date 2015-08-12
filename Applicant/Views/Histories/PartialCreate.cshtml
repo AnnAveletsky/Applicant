@@ -1,10 +1,6 @@
-﻿@model Applicant.Models.History
+﻿@model Applicant.Models.HistoryCreate
 
-@using (Ajax.BeginForm("Create", "Histories",
-    new AjaxOptions
-    {
-        UpdateTargetId = "tableHistories"
-    }))
+@using (Ajax.BeginForm("Create", "Histories",new AjaxOptions{UpdateTargetId = "tableHistories"}))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.ApplicantId)

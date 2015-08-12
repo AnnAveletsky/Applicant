@@ -14,14 +14,11 @@ namespace Applicant.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+
         // GET: Histories/List/histories
-        public ActionResult List(IEnumerable<History> histories)
+        public ActionResult List(int applicantId)
         {
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(histories.ToList());
-            }
-            return View(histories.ToList());
+            return PartialView("PartialList", db.Applicants.Find(applicantId).Histories.ToList());
         }
         // GET: Histories/Details/5
         public ActionResult Details(int? id)
@@ -52,8 +49,7 @@ namespace Applicant.Controllers
                 {
                     db.Histories.Add(new History(historyCreate));
                     db.SaveChanges();
-                    var histories = db.Histories.Where(p => p.ApplicantId == historyCreate.ApplicantId);
-                    return PartialView("PartialList", histories);
+                    return PartialView("PartialList", db.Histories.Where(p => p.ApplicantId == historyCreate.ApplicantId));
                 }
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -79,15 +75,17 @@ namespace Applicant.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "HistoryId,CommunicationDate,TypeCommunication,HistoryComments")] History history)
+        public ActionResult Edit(HistoryEdit historyEdit)
         {
+            History history = db.Histories.Find(historyEdit.HistoryId);
+            history.Edit(historyEdit);
             if (ModelState.IsValid)
             {
                 db.Entry(history).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return View("~/View/Applicants/Details/", db.Applicants.Find(history.ApplicantId));
             }
-            return View(history);
+            return HttpNotFound();
         }
 
         // GET: Histories/Delete/5
@@ -98,13 +96,11 @@ namespace Applicant.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             History history = db.Histories.Find(id);
-            var applicant = db.Applicants.ToList().Find(p => p.ApplicantId == applicantId);
+            var applicant = db.Applicants.Find(applicantId);
             if (history == null||applicant==null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Histories = db.Histories.ToList().Where(p => p.ApplicantId == applicantId);
-            ViewBag.ApplicantId = applicantId;
             return PartialView("PartialDelete",history);
         }
 
@@ -116,10 +112,7 @@ namespace Applicant.Controllers
             History history = db.Histories.Find(id);
             db.Histories.Remove(history);
             db.SaveChanges();
-            var applicant1 = db.Applicants.ToList().Find(p => p.ApplicantId == applicantId);
-            var histories = db.Histories.ToList().Where(p => p.ApplicantId == applicantId);
-            ViewBag.ApplicantId = applicantId;
-            return PartialView("PartialList", histories);
+            return PartialView("PartialList", db.Applicants.Find(applicantId).Histories.ToList());
         }
 
         protected override void Dispose(bool disposing)

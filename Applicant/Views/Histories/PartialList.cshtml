@@ -35,19 +35,19 @@
                 }
             </td>
             <td>
-                @using (Ajax.BeginForm("Delete", "Histories", new { id = item.HistoryId, applicantId = ViewBag.ApplicantId },
+                @using (Ajax.BeginForm("Delete", "Histories", new { id = item.HistoryId, applicantId = item.ApplicantId },
                     new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "myModal" }))
                 {
-                    <a class="btn btn-default btn-sm" href="@Url.Action("Edit", "Histories", new { id = item.HistoryId })">
+                    <a class="btn btn-default btn-sm" href="@Url.Action("Edit", "Histories", new { id = item.HistoryId, applicantId = item.ApplicantId })">
                         <i class="glyphicon glyphicon-edit"></i>
                         Править
                     </a>
-                    <a class="btn btn-default btn-sm" href="@Url.Action("Details", "Histories", new { id = item.HistoryId }) ">
+                    <a class="btn btn-default btn-sm" href="@Url.Action("Details", "Histories", new { id = item.HistoryId, applicantId = item.ApplicantId }) ">
                         <i class=" glyphicon glyphicon-list-alt">
                         </i>
                         Подробнее
                     </a>
-                    <button class="btn btn-default btn-sm" type="submit" value="Удалить" data-toggle="modal" data-target="#myModal" href="@Url.Action("Delete", "Histories", new { id = item.HistoryId })">
+                    <button class="btn btn-default btn-sm" type="submit" value="Удалить" data-toggle="modal" data-target="#myModal" href="@Url.Action("Delete", "Histories", new { id = item.HistoryId, applicantId = item.ApplicantId })">
                         <i class="glyphicon glyphicon-remove-circle"></i>
                         Удалить
                     </button>

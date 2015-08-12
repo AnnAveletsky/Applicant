@@ -134,7 +134,7 @@
             <div id="tags">
                 @Html.Partial("~/Views/Tags/PartialList.cshtml", Model.Tags)
             </div>
-            @Html.Partial("~/Views/Tags/PartialCreate.cshtml", new Applicant.Models.TagCreate() {ApplicantId=Model.ApplicantId })
+            @Html.Partial("~/Views/Tags/PartialCreate.cshtml", new Applicant.Models.TagCreate() { ApplicantId = Model.ApplicantId })
 
         </dd>
         <dt>
@@ -157,7 +157,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div id="tableAttachments">
                 @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments.ToList())
             </div>
@@ -176,13 +176,13 @@
                     </div>
                     <div id="collapseDocs" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDocs">
                         <div class="panel-body">
-                            @Html.Partial("~/Views/Histories/PartialCreate.cshtml", new Applicant.Models.History() { ApplicantId = Model.ApplicantId })
+                            @Html.Partial("~/Views/Histories/PartialCreate.cshtml", new Applicant.Models.HistoryCreate() { ApplicantId = Model.ApplicantId })
                         </div>
                     </div>
                 </div>
             </div>
             <div id="tableHistories">
-                @Html.Partial("~/Views/Histories/PartialList.cshtml", Model.Histories)
+                @Html.Action("List", "Histories", new { applicantId = Model.ApplicantId })
             </div>
         </dd>
     </dl>

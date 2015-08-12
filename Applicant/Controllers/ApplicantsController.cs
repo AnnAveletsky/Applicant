@@ -88,7 +88,7 @@ namespace Applicant.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ApplicantEdit applicantEdit)
         {
-            Applicant.Models.Applicant applicant = db.Applicants.Find(applicantEdit);
+            Applicant.Models.Applicant applicant = db.Applicants.Find(applicantEdit.ApplicantId);
             if (ModelState.IsValid)
             {
                 applicant.Edit(applicantEdit);
@@ -119,8 +119,7 @@ namespace Applicant.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Applicant.Models.Applicant applicant = db.Applicants.Find(id);
-            db.Applicants.Remove(applicant);
+            db.Applicants.Remove(db.Applicants.Find(id));
             db.SaveChanges();
             return RedirectToAction("Index");
         }

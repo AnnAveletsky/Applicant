@@ -14,7 +14,7 @@
         <h4>Соискатель</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.AplicantID)
+        @Html.HiddenFor(model => model.ApplicantId)
 
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -125,7 +125,7 @@
                         <i class="glyphicon glyphicon-ok"></i>
                         Сохранить
                     </button>
-                    <a class="btn btn-default btn-md" href="@Url.Action("Details", new { id = Model.AplicantID })">
+                    <a class="btn btn-default btn-md" href="@Url.Action("Details", new { id = Model.ApplicantId })">
                         <i class="glyphicon glyphicon-share-alt"></i>
                         Назад
                     </a>
