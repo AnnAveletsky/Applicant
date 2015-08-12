@@ -14,29 +14,10 @@ namespace Applicant.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Tags
-        public ActionResult Index()
-        {
-            return View(db.Tags.ToList());
-        }
-        public ActionResult List(IEnumerable<Applicant.Models.Tag> tags,int aplicantId)
+        public ActionResult List(IEnumerable<Tag> tags,int aplicantId)
         {
             ViewBag.ApplicantId = aplicantId;
             return PartialView("PartialList",tags);
-        }
-        // GET: Tags/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Tag tag = db.Tags.Find(id);
-            if (tag == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tag);
         }
 
         // POST: Tags/Create
@@ -44,54 +25,15 @@ namespace Applicant.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TagId,TagName,Applicants")] Tag tag,int id)
+        public ActionResult Create(TagCreate tagCreate)
         {
-            
+
+            db.CreateTagAndAddTagInApplicant(tagCreate);
             if (ModelState.IsValid)
             {
-                foreach (var i in db.Tags.ToList())
-                {
-                    if (String.Compare(i.TagName, tag.TagName,true) == 0)
-                    {
-                        var applicant = db.Applicants.ToList().Find(p => p.AplicantID == id);
-                        if (i.Applicants == null)
-                        {
-                            i.Applicants = new List<Applicant.Models.Applicant>();
-                        }
-                        i.Applicants.Add(applicant);
-                        db.SaveChanges();
-                        var tags=db.Tags.ToList().Where(p=>p.Applicants.Contains(applicant));
-                        ViewBag.Tags = tags;
-                        ViewBag.ApplicantId = id;
-                        return PartialView("PartialList", tags);
-                    }
-                }
-                db.Tags.Add(tag);
-                db.SaveChanges();
-                foreach (var i in db.Tags.ToList())
-                {
-                    if (String.Compare(i.TagName, tag.TagName, true) == 0)
-                    {
-                        var applicant = db.Applicants.ToList().Find(p=>p.AplicantID==id);
-                        if (i.Applicants == null)
-                        {
-                            i.Applicants = new List<Applicant.Models.Applicant>();
-                        }
-                        i.Applicants.Add(applicant);
-                        db.SaveChanges();
-                        var tags=db.Tags.ToList().Where(p=>p.Applicants.Contains(applicant));
-                        ViewBag.Tags = tags;
-                        ViewBag.ApplicantId = id;
-                        return PartialView("PartialList", tags);
-                    }
-                }
-                
+                tagCreate.Applicant = db.Applicants.Find(tagCreate.ApplicantId);
             }
-            var applicant1 = db.Applicants.ToList().Find(p => p.AplicantID == id);
-            var tags1 = db.Tags.ToList().Where(p => p.Applicants.Contains(applicant1));
-            ViewBag.Tags = tags1;
-            ViewBag.ApplicantId = id;
-            return PartialView("PartialList", tags1);
+            return PartialView("PartialList", db.Applicants.Find(tagCreate.ApplicantId).Tags.ToList());
         }
         // GET: Attachments/Delete/5
         public ActionResult Delete(int? id, int? applicantId)
@@ -101,7 +43,7 @@ namespace Applicant.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Tag tag = db.Tags.Find(id);
-            Applicant.Models.Applicant applicant = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
+            Applicant.Models.Applicant applicant = db.Applicants.ToList().Find(p => p.ApplicantId == applicantId);
             if (tag == null||applicant==null)
             {
                 return HttpNotFound();
@@ -123,7 +65,7 @@ namespace Applicant.Controllers
                 db.Tags.Remove(tag);
             }
             db.SaveChanges();
-            var applicant1 = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
+            var applicant1 = db.Applicants.ToList().Find(p => p.ApplicantId == applicantId);
             var tags1 = db.Tags.ToList().Where(p => p.Applicants.Contains(applicant1));
             ViewBag.ApplicantId = applicantId;
            return PartialView("PartialList", tags1);

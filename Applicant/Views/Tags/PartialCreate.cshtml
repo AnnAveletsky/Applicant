@@ -1,8 +1,5 @@
-﻿@model Applicant.Models.Tag
-@using (Ajax.BeginForm("Create", "Tags", new { id = ViewBag.ApplicantID }, new AjaxOptions
-{
-    UpdateTargetId = "tags"
-}))
+﻿@model Applicant.Models.TagCreate
+@using (Ajax.BeginForm("Create", "Tags", new AjaxOptions{ UpdateTargetId = "tags"}))
 {
     @Html.AntiForgeryToken()
     

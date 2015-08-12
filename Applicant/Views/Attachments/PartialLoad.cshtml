@@ -7,7 +7,7 @@
 <script>
     $("#input-ru").fileinput({
         language: "ru",
-        uploadUrl: "@Url.Action("Load", "Attachments", new { id=Model.AplicantID})",
+        uploadUrl: "@Url.Action("Load", "Attachments", new { id=Model.ApplicantId})",
                 allowedFileExtensions: ['bmp', 'gif', 'jpeg', 'jpg', 'jpe', 'jp2', 'pdf', 'png', 'psd', 'tga', 'tiff', 'tif', 'ai', 'svg', 'txt', 'rtf', 'odt', 'tex', 'wpd', 'doc', 'docx', 'docm', 'djvu', 'xls', 'xlsx', 'xlsm', 'zip', 'rar', '7z', 'gz', 'tar']
             });
     $('#input-ru').on('filebatchuploadcomplete', function () {

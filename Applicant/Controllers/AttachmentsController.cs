@@ -15,65 +15,15 @@ namespace Applicant.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Attachments/List/
-        public ActionResult List(IEnumerable<Applicant.Models.Attachment> attachments)
+        public ActionResult List(IEnumerable<Attachment> attachments)
         {
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(attachments.ToList());
-            }
-          
             if (Request.IsAjaxRequest())
             {
                 return PartialView(attachments.ToList());
             }
             return View(attachments.ToList());
         }
-        // GET: Attachments/ListAttachmentId/
-        public ActionResult ListApplicantId(int id)
-        {
-            ViewBag.Attachments = db.Attachments.ToList().Where(p => p.ApplicantId == id);
-            ViewBag.ApplicantId = id;
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("PartialList",db.Attachments.Where(p=>p.ApplicantId==id));
-            }
-            return View("PartialList",db.Attachments.Where(p=>p.ApplicantId==id));
-        }
 
-
-        // POST: Attachments/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AttachmentId,Name,ApplicantId,HistoryId,Attach")] Attachment attachment)
-        {
-            if (Request.IsAjaxRequest())
-            {
-                if (ModelState.IsValid)
-                {
-                    foreach (var i in db.Applicants.ToList())
-                    {
-                        if (i.AplicantID == attachment.ApplicantId)
-                        {
-                            i.Attachments.Add(attachment);
-                            break;
-                        }
-                    }
-                    db.Attachments.Add(attachment);
-                    db.SaveChanges();
-                }
-                var attachments = db.Attachments.Where(p => p.ApplicantId == attachment.ApplicantId);
-                return PartialView("PartialList", attachments);
-            }
-            if (ModelState.IsValid)
-            {
-                db.Attachments.Add(attachment);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(attachment);
-        }
         // GET: Attachments/Load
         public JsonResult Load(int id ,IEnumerable<HttpPostedFileBase> file_data)
         {
@@ -88,7 +38,7 @@ namespace Applicant.Controllers
                 db.Attachments.Add(attach);
                 db.SaveChanges();
             }
-            ViewBag.Attachments = db.Attachments.ToList().Where(p => p.ApplicantId == id);
+            ViewBag.Attachments = db.Attachments.Where(p => p.ApplicantId == id);
             ViewBag.ApplicantId = id;
             return Json("");
         }
@@ -96,7 +46,7 @@ namespace Applicant.Controllers
         public FileResult Download(int id, int applicantId)
         {
             Attachment attach=db.Attachments.Find(id);
-            ViewBag.Attachments = db.Attachments.ToList().Where(p => p.ApplicantId == applicantId);
+            ViewBag.Attachments = db.Attachments.Where(p => p.ApplicantId == applicantId);
             ViewBag.ApplicantId = applicantId;
             return File(attach.Attach,attach.Type,attach.Name);
         }
@@ -109,12 +59,12 @@ namespace Applicant.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Attachment attachment = db.Attachments.Find(id);
-            var applicant = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
+            var applicant = db.Applicants.Find(applicantId);
             if (attachment == null || applicant==null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Attachments = db.Attachments.ToList().Where(p => p.ApplicantId == applicantId);
+            ViewBag.Attachments = db.Attachments.Where(p => p.ApplicantId == applicantId);
             ViewBag.ApplicantId = applicantId;
             return PartialView("PartialDelete", attachment);
         }
@@ -127,7 +77,7 @@ namespace Applicant.Controllers
             Attachment attachment = db.Attachments.Find(id);
             db.Attachments.Remove(attachment);
             db.SaveChanges();
-            var attachments = db.Attachments.ToList().Where(p => p.ApplicantId == applicantId);
+            var attachments = db.Attachments.Where(p => p.ApplicantId == applicantId);
             ViewBag.ApplicantId = applicantId;
             return PartialView("PartialList", attachments);
         }

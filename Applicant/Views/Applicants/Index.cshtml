@@ -19,7 +19,7 @@
     </ul>
 </div>
 <div id="pages">
-   @Html.Partial("PartialPage",new Applicant.Page(Model))
+    @Html.Partial("PartialPage", new ApplicantClassLibrary.Page(Model.Count()))
 </div>
 <script type="text/javascript">
     function update(countElements) {

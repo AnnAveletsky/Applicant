@@ -1,6 +1,6 @@
-﻿@model Applicant.Page
+﻿@model ApplicantClassLibrary.Page
 <div id="list">
-    @Html.Action("List", new {page=Model.NowPage, countElements=Model.CountElementsInPage,pole="", search="" })
+    @Html.Action("List", new { page = Model })
 </div>
 <ul class="pagination">
     @for (int i = 1; i < Model.CountPages+1; i++)

@@ -15,7 +15,7 @@ namespace Applicant.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Histories/List/histories
-        public ActionResult List(IEnumerable<Applicant.Models.History> histories)
+        public ActionResult List(IEnumerable<History> histories)
         {
             if (Request.IsAjaxRequest())
             {
@@ -44,33 +44,19 @@ namespace Applicant.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "HistoryId,ApplicantId,CommunicationDate,TypeCommunication,HistoryComments")] History history)
+        public ActionResult Create(HistoryCreate historyCreate)
         {
             if (Request.IsAjaxRequest())
             {
                 if (ModelState.IsValid)
                 {
-                    foreach (var i in db.Applicants.ToList())
-                    {
-                        if (i.AplicantID == history.ApplicantId)
-                        {
-                            i.Histories.Add(history);
-                            break;
-                        }
-                    }
-                    db.Histories.Add(history);
+                    db.Histories.Add(new History(historyCreate));
                     db.SaveChanges();
+                    var histories = db.Histories.Where(p => p.ApplicantId == historyCreate.ApplicantId);
+                    return PartialView("PartialList", histories);
                 }
-                var histories = db.Histories.Where(p => p.ApplicantId == history.ApplicantId);
-                return PartialView("PartialList", histories);
             }
-            if (ModelState.IsValid)
-            {
-                db.Histories.Add(history);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(history);
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         // GET: Histories/Edit/5
@@ -112,7 +98,7 @@ namespace Applicant.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             History history = db.Histories.Find(id);
-            var applicant = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
+            var applicant = db.Applicants.ToList().Find(p => p.ApplicantId == applicantId);
             if (history == null||applicant==null)
             {
                 return HttpNotFound();
@@ -130,7 +116,7 @@ namespace Applicant.Controllers
             History history = db.Histories.Find(id);
             db.Histories.Remove(history);
             db.SaveChanges();
-            var applicant1 = db.Applicants.ToList().Find(p => p.AplicantID == applicantId);
+            var applicant1 = db.Applicants.ToList().Find(p => p.ApplicantId == applicantId);
             var histories = db.Histories.ToList().Where(p => p.ApplicantId == applicantId);
             ViewBag.ApplicantId = applicantId;
             return PartialView("PartialList", histories);

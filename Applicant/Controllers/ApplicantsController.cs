@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Applicant.Models;
+using ApplicantClassLibrary;
 
 namespace Applicant.Controllers
 {
@@ -18,15 +19,13 @@ namespace Applicant.Controllers
         {
             return View(db.Applicants.ToList());
         }
-        public ActionResult List(int? page, int? countElements, string pole, string search)
+        public ActionResult List(Page page)
         {
-          var Page=  new Applicant.Page(db.Applicants.ToList(), search, page, countElements, pole);
-            return PartialView("PartialList", Page.Applicants.ToList());
+            return PartialView("PartialList", db.ApplicantsInPage(page));
         }
-        public ActionResult Page(int? page, int? countElements, string pole,string search)
+        public ActionResult Page(int? page, int? countElements, string pole, string search, OrderSort orderSort)
         {
-            ViewBag.Applicants = db.Applicants.ToList();
-            return PartialView("PartialPage", new Applicant.Page(db.Applicants.ToList(), search, page, countElements, pole));
+            return PartialView("PartialPage", db.Page(page, countElements, search, pole, orderSort));
         }
         // GET: Applicants/Details/5
         public ActionResult Details(int? id)
@@ -54,10 +53,12 @@ namespace Applicant.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AplicantID,FirstName,MiddleName,LastName,Gender,Birthday,Residence,Email,Skype,GitHub,Linkedin,Phone,HistoryComments,Salary")] Applicant.Models.Applicant applicant)
+        public ActionResult Create(ApplicantFields applicantFields)
         {
+            Applicant.Models.Applicant applicant = new Models.Applicant(applicantFields);
             if (ModelState.IsValid)
             {
+
                 db.Applicants.Add(applicant);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -85,10 +86,12 @@ namespace Applicant.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AplicantID,FirstName,MiddleName,LastName,Gender,Birthday,Residence,Email,Skype,GitHub,Linkedin,Phone,HistoryComments,Salary")] Applicant.Models.Applicant applicant)
+        public ActionResult Edit(ApplicantEdit applicantEdit)
         {
+            Applicant.Models.Applicant applicant = db.Applicants.Find(applicantEdit);
             if (ModelState.IsValid)
             {
+                applicant.Edit(applicantEdit);
                 db.Entry(applicant).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

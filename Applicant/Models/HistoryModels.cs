@@ -4,23 +4,12 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using ApplicantClassLibrary;
 
 namespace Applicant.Models
 {
-    public class History
+    public class HistoryFields
     {
-        [Key]
-        public int HistoryId { get; set; }
-
-        [
-            ScaffoldColumn(false),
-            ForeignKey("Applicant")
-        ]
-        public int? ApplicantId { get; set; }
-
-        [Display(Name = "Соискатель")]
-        public Applicant Applicant { get; set; }
-
         [
             DataType(DataType.Date),
             Display(Name = "Дата прохождения")
@@ -39,11 +28,50 @@ namespace Applicant.Models
             MaxLength(500)
         ]
         public string HistoryComments { get; set; }
-        public virtual ICollection<Attachment> Attachments { get; set; }
+        public HistoryFields() { }
+        public HistoryFields(DateTime communicationDate, TypeHistory typeCommunication, string historyComments)
+        {
+            CommunicationDate = communicationDate;
+            TypeCommunication = typeCommunication;
+            HistoryComments = historyComments;
+        }
     }
-    public enum TypeHistory
+    public class HistoryEdit : HistoryFields
     {
-        Interview,
-        Skype
+        [Key]
+        public int HistoryId { get; set; }
+        public HistoryEdit() { }
+        public HistoryEdit(HistoryFields historyFields)
+            : base(historyFields.CommunicationDate, historyFields.TypeCommunication, historyFields.HistoryComments){ }
+        public void Edit(HistoryFields historyFields)
+        {
+            CommunicationDate = historyFields.CommunicationDate;
+            TypeCommunication = historyFields.TypeCommunication;
+            HistoryComments = historyFields.HistoryComments;
+        }
+    }
+    public class HistoryCreate : HistoryEdit
+    {
+        [
+            ScaffoldColumn(false),
+            ForeignKey("Applicant")
+        ]
+        public int? ApplicantId { get; set; }
+
+        [Display(Name = "Соискатель")]
+        public Applicant Applicant { get; set; }
+        public HistoryCreate() :base(){ }
+        public HistoryCreate(HistoryFields historyFields, int? applicantId, Applicant applicant)
+            : base(historyFields)
+        {
+            ApplicantId = applicantId;
+            Applicant = applicant;
+        }
+    }
+    public class History : HistoryCreate
+    {
+        public History() { }
+        public History(HistoryCreate historyCreate)
+            : base(historyCreate,historyCreate.ApplicantId,historyCreate.Applicant) { }
     }
 }

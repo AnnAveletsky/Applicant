@@ -115,22 +115,16 @@ namespace Applicant.Models
             Salary = salary;
         }
     }
-    public class ApplicantCreate:ApplicantFields
-    {
-        public ApplicantCreate() { }
-        public ApplicantCreate(ApplicantFields applicantFields)
-            : base(applicantFields.FirstName, applicantFields.LastName, applicantFields.MiddleName,
-                applicantFields.Gender, applicantFields.Birthday, applicantFields.Residence, applicantFields.Email,
-                applicantFields.Skype, applicantFields.GitHub, applicantFields.Linkedin, applicantFields.Phone,
-                applicantFields.Comments, applicantFields.Salary) { }
-    }
-    public class ApplicantEdit : ApplicantCreate
+    public class ApplicantEdit : ApplicantFields
     {
         [Key]
         public int ApplicantId { get; set; }
         public ApplicantEdit() { }
         public ApplicantEdit(ApplicantFields applicantFields)
-            : base(applicantFields) { }
+            : base(applicantFields.FirstName, applicantFields.LastName, applicantFields.MiddleName,
+                applicantFields.Gender, applicantFields.Birthday, applicantFields.Residence, applicantFields.Email,
+                applicantFields.Skype, applicantFields.GitHub, applicantFields.Linkedin, applicantFields.Phone,
+                applicantFields.Comments, applicantFields.Salary) { }
         public void Edit(ApplicantFields applicantFields)
         {
             FirstName = applicantFields.FirstName;
