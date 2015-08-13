@@ -90,15 +90,15 @@ namespace Applicant.Models
 
         [
             DataType(DataType.Currency),
-            Range(1, 1000000, ErrorMessage = "Необходимо установить от 1 до 1 000 000 руб."),
+            Range(1.0, 1000000.0, ErrorMessage = "Необходимо установить от 1 до 1 000 000 руб."),
             Display(Name = "Зарплата")
         ]
-        public decimal Salary { get; set; }
+        public int Salary { get; set; }
         public ApplicantFields() { }
         public ApplicantFields(string firstName, string lastName, string middleName,
             Gender gender, DateTime birthday, string residence, string email,
             string skype, string gitHub, string linkedin,
-            string phone, string comments, decimal salary)
+            string phone, string comments, int salary)
         {
             FirstName = firstName;
             MiddleName = middleName;

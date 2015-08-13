@@ -12,7 +12,8 @@ namespace Applicant.Models
     {
         [
             DataType(DataType.Date),
-            Display(Name = "Дата прохождения")
+            Display(Name = "Дата прохождения"),
+            Required(ErrorMessage = "Поле должно быть установлено")
         ]
         public DateTime CommunicationDate { get; set; }
 
