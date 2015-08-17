@@ -1,8 +1,8 @@
-﻿@model Applicant.Models.Tag
+﻿@model Applicant.Models.TagCreate
 
 <div class="modal-dialog" role="document">
     <div class="modal-content">
-        @using (Ajax.BeginForm("Delete", "Tags", new { id = Model.TagId, applicantId = ViewBag.ApplicantId }, new AjaxOptions { UpdateTargetId = "tags" }))
+        @using (Ajax.BeginForm("Delete", "Tags",Model, new AjaxOptions { UpdateTargetId = "tags" }))
         {
             @Html.AntiForgeryToken()
             <div class="modal-body pager">

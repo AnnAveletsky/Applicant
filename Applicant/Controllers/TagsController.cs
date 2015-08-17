@@ -14,10 +14,6 @@ namespace Applicant.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public ActionResult List(int aplicantId)
-        {
-            return PartialView("PartialList", db.Applicants.Find(aplicantId).Tags.ToList());
-        }
 
         // POST: Tags/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
@@ -26,13 +22,12 @@ namespace Applicant.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(TagCreate tagCreate)
         {
-
             db.CreateTagAndAddTagInApplicant(tagCreate);
             if (ModelState.IsValid)
             {
                 tagCreate.Applicant = db.Applicants.Find(tagCreate.ApplicantId);
             }
-            return PartialView("PartialList", db.Applicants.Find(tagCreate.ApplicantId).Tags.ToList());
+            return PartialView("PartialList", new TagList() { ApplicantId = tagCreate.ApplicantId, Tags = db.Applicants.Find(tagCreate.ApplicantId).Tags.ToList() });
         }
         // GET: Attachments/Delete/5
         public ActionResult Delete(int? id, int? applicantId)
@@ -41,28 +36,32 @@ namespace Applicant.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tag tag = db.Tags.Find(id);
             Applicant.Models.Applicant applicant = db.Applicants.Find(applicantId);
-            if (tag == null||applicant==null)
+            if (applicant == null)
+            { 
+                return HttpNotFound(); 
+            }
+            TagCreate tagCreate = new TagCreate() { TagId = db.Tags.Find(id).TagId, TagName = db.Tags.Find(id).TagName, ApplicantId = applicant.ApplicantId, Applicant = applicant};
+            if (tagCreate == null)
             {
                 return HttpNotFound();
             }
-            return PartialView("PartialDelete",tag);
+            return PartialView("PartialDelete", tagCreate);
         }
         // POST: Tags/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id,int applicantId)
+        public ActionResult DeleteConfirmed(TagCreate tagCreate)
         {
-            Tag tag = db.Tags.Find(id);
-            Applicant.Models.Applicant applicant=db.Applicants.Find(applicantId);
-            tag.Applicants.Remove(applicant);
+            Applicant.Models.Applicant applicant=db.Applicants.Find(tagCreate.ApplicantId);
+            Tag tag = db.Tags.Find(tagCreate.TagId);
+            applicant.Tags.Remove(tag);
             if (tag.Applicants.Count == 0)
             {
                 db.Tags.Remove(tag);
             }
             db.SaveChanges();
-            return PartialView("PartialList", db.Applicants.Find(applicantId).Tags.ToList());
+            return PartialView("PartialList", new TagList() { Tags = db.Applicants.Find(tagCreate.ApplicantId).Tags.ToList(), ApplicantId = tagCreate.ApplicantId });
         }
 
         protected override void Dispose(bool disposing)

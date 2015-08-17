@@ -1,10 +1,11 @@
 ﻿@model Applicant.Models.Applicant
+@Styles.Render("~/Content/fileinput")
+@Styles.Render("~/Content/bootstrap-tags")
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/bootstrap-tags")
 @Scripts.Render("~/bundles/fileinput")
-@Styles.Render("~/Content/fileinput")
-@Styles.Render("~/Content/bootstrap-tags")
+
 
 @{
     ViewBag.Title = "Details";
@@ -130,12 +131,11 @@
             @Html.DisplayFor(model => model.Salary)
         </dd>
         <dt>Теги</dt>
-        <dd>
-            <div id="tags">
-                @Html.Partial("~/Views/Tags/PartialList.cshtml", Model.Tags)
+        <dd>    
+            <div id ="tags">
+                @Html.Partial("~/Views/Tags/PartialList.cshtml", new Applicant.Models.TagList() { ApplicantId = Model.ApplicantId, Tags = Model.Tags })
             </div>
-            @Html.Partial("~/Views/Tags/PartialCreate.cshtml", new Applicant.Models.TagCreate() { ApplicantId = Model.ApplicantId })
-
+                @Html.Partial("~/Views/Tags/PartialCreate.cshtml", new Applicant.Models.TagCreate() { ApplicantId = Model.ApplicantId })
         </dd>
         <dt>
             Документы

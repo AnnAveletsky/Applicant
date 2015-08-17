@@ -42,12 +42,16 @@ namespace Applicant.Models
         public int ApplicantId { get; set; }
         public Applicant Applicant { get; set; }
         public TagCreate() : base() { }
-        public TagCreate(TagFields tagFields, int applicantId, Applicant applicant)
+        public TagCreate(TagFields tagFields, int applicantId)
             : base(tagFields.TagName)
         {
             ApplicantId = applicantId;
-            Applicant = applicant;
         }
+    }
+    public class TagList
+    {
+        public  IEnumerable<Tag> Tags { get; set; }
+        public int ApplicantId { get; set; }
     }
 
 }

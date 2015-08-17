@@ -1,36 +1,25 @@
-﻿@model IEnumerable<Applicant.Models.Tag>
-@Styles.Render("/Content/bootstrap-tags")
-@Styles.Render("~/Content/css")
-
-<div class="container" style=" padding:0; margin-bottom:5px; max-width:758px;">
-    <div id="applicantsTags"></div>
-
-    <script>
-        function TagsFromBase() {
-            var TagsList = new Array(@Model.Count()).join('ля');
-
-             return TagsList;
-        };
-
-        $(function () {
-            $("#applicantsTags").tags({
-                tagSize: "md",
-                suggestions: ["alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel", "india"],
-                tagData: TagsFromBase()
-            })
-        });
-    </script>
-    @foreach (var item in Model)
-    {@item.TagName}
-</div>
-
-<div>
-    <div id="readonly" class="bootstrap-tags bootstrap-3">
-
-
-    </div>
-</div>
+﻿@model Applicant.Models.TagList
+@foreach (var item in Model.Tags)
+{
+    @Html.AntiForgeryToken()
+        <div class="btn btn-info" style="margin:5px; margin-right:0px">
+            @Html.DisplayFor(modelItem => item.TagName)
+            <input id="value" onclick="del(@item.TagId,@Model.ApplicantId)" type="submit" value="X" style="opacity:0.6; color:white; Background:none; border:none;" data-toggle="modal" data-target="#myModal" />
+        </div>
+}
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
 </div>
+<script type="text/javascript">
+    function del(TagId, ApplicantId) {
+        $.ajax({
+            url: "@Url.Action("Delete", "Tags")",
+            data: "id=" + TagId + "&applicantId=" + ApplicantId,
+            success: function (html) {
+                $("#myModal").empty();
+                $("#myModal").append(html);
+            }
+        });
+    }
+</script>
