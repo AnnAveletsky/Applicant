@@ -14,12 +14,6 @@ namespace Applicant
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap-tags").Include(
-                "~/Scripts/k-bootstrap-tags.js"));
-
-            bundles.Add(new StyleBundle("~/Content/bootstrap-tags").Include(
-                     "~/Scripts/bootstrap-tags/dist/css/bootstrap-tags.css"));
-
             bundles.Add(new ScriptBundle("~/bundles/fileinput").Include(
                 "~/Scripts/fileinput.min.js",
                 "~/Scripts/fileinput_locale_ru.js"));
