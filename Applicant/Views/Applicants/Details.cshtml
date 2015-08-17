@@ -145,21 +145,21 @@
 
         </dd>
     </dl>
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingTag">
-            <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTag" aria-expanded="true" aria-controls="collapseTag">
-                    Добавить новый тег
-                </a>
-            </h4>
-        </div>
-        <div id="collapseTag" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTag">
-            <div class="panel-body">
-                @Html.Partial("~/Views/Tags/PartialCreate.cshtml", new Applicant.Models.TagCreate() { ApplicantId = Model.ApplicantId })
+    <div class="panel-group " id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTag">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTag" aria-expanded="true" aria-controls="collapseTag">
+                        Добавить новый тег
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTag" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTag">
+                <div class="panel-body">
+                    @Html.Partial("~/Views/Tags/PartialCreate.cshtml", new Applicant.Models.TagCreate() { ApplicantId = Model.ApplicantId })
+                </div>
             </div>
         </div>
-    </div>
-    <div class="panel-group " id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingHis">
                 <h4 class="panel-title">
@@ -188,7 +188,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>
 @section Scripts {

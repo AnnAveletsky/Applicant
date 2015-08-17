@@ -13,12 +13,12 @@ namespace Applicant.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201508112255003_Initial"; }
+            get { return "201508172323102_Initial"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return null; }
+            get { return Resources.GetString("Source"); }
         }
         
         string IMigrationMetadata.Target
