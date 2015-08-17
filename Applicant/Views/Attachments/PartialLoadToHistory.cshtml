@@ -1,0 +1,22 @@
+﻿@model Applicant.Models.History
+
+<div>
+    <input id="input-ru" type="file" multiple class="file-loading">
+</div>
+<script>
+    $("#input-ru").fileinput({
+        language: "ru",
+        uploadUrl: "@Url.Action("LoadToHistory", "Attachments", new { historyId = @Model.HistoryId.ToString() })",
+                allowedFileExtensions: ['bmp', 'gif', 'jpeg', 'jpg', 'jpe', 'jp2', 'pdf', 'png', 'psd', 'tga', 'tiff', 'tif', 'ai', 'svg', 'txt', 'rtf', 'odt', 'tex', 'wpd', 'doc', 'docx', 'docm', 'djvu', 'xls', 'xlsx', 'xlsm', 'zip', 'rar', '7z', 'gz', 'tar']
+            });
+    $('#input-ru').on('filebatchuploadcomplete', function () {
+        $.ajax({
+            url: "@Url.Action("ListToHistory", "Attachments")",
+            data: "historyId="+@Model.HistoryId,
+            success: function (html) {
+                $("#tableAttachments").empty();
+                $("#tableAttachments").append(html);
+            }
+        });
+    });
+</script>

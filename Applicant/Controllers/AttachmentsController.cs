@@ -23,13 +23,30 @@ namespace Applicant.Controllers
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
-
+        public ActionResult ListToHistory(int historyId)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("PartialList", db.Histories.Find(historyId).Attachments.ToList());
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
         // GET: Attachments/Load
         public JsonResult Load(int applicantId ,IEnumerable<HttpPostedFileBase> file_data)
         {
             foreach (var i in file_data.ToList())
             {
-                db.AddAttachmentInApplicant(applicantId, i);
+                db.Attachments.Add(db.AddAttachmentInApplicant(i, applicantId));
+               db.SaveChanges();
+            }
+            return Json("");
+        }
+        public JsonResult LoadToHistory(int historyId, IEnumerable<HttpPostedFileBase> file_data)
+        {
+            foreach (var i in file_data.ToList())
+            {
+                db.Histories.Find(historyId).Attachments.Add(db.AddAttachmentInApplicant(i,null));
+                db.SaveChanges();
             }
             return Json("");
         }

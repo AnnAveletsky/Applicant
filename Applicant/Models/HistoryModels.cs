@@ -71,6 +71,7 @@ namespace Applicant.Models
     }
     public class History : HistoryCreate
     {
+        public virtual ICollection<Attachment> Attachments { get; set; }
         public History() { }
         public History(HistoryCreate historyCreate)
             : base(historyCreate,historyCreate.ApplicantId,historyCreate.Applicant) { }

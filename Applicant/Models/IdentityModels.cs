@@ -136,16 +136,17 @@ namespace Applicant.Models
             }
         }
 
-        public Attachment AddAttachmentInApplicant(int applicantId,HttpPostedFileBase filedata)
+        public Attachment AddAttachmentInApplicant(HttpPostedFileBase filedata,int? applicantId)
         {
             Attachment attach = new Attachment();
-            attach.ApplicantId = applicantId;
+            if (applicantId != null)
+            {
+                attach.ApplicantId = applicantId;
+            }
             attach.Attach = new byte[filedata.ContentLength];
             attach.Type = filedata.ContentType;
             filedata.InputStream.Read(attach.Attach, 0, filedata.ContentLength);
             attach.Name = filedata.FileName;
-            Attachments.Add(attach);
-            SaveChanges();
             return attach;
         }
     }

@@ -1,7 +1,11 @@
 ﻿@model Applicant.Models.History
+@Styles.Render("~/Content/fileinput")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/fileinput")
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Подробнее о собеседовании";
 }
 
 <h2>Подробнее</h2>
@@ -33,6 +37,32 @@
         <dd>
             @Html.DisplayFor(model => model.HistoryComments)
         </dd>
+        <dt>
+            Документы
+        </dt>
+
+        <dd>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTags">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTags" aria-expanded="true" aria-controls="collapseTags">
+                                Загрузить новый документ
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTags" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTags">
+                        <div class="panel-body">
+                            @Html.Partial("~/Views/Attachments/PartialLoadToHistory.cshtml", Model)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tableAttachments">
+                @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments.ToList())
+            </div>
+        </dd>
 
     </dl>
 </div>
@@ -41,8 +71,8 @@
         <i class="glyphicon glyphicon-edit"></i>
         Править
     </a>
-    <a class="btn btn-default btn-md" href="@Url.Action("Index")">
+    <a class="btn btn-default btn-md" href="@Url.Action("Details", "Applicants", new { id=Model.ApplicantId})">
         <i class="glyphicon glyphicon-list-alt"></i>
-        К списку
+        Назад к соискателю
     </a>
 </p>
