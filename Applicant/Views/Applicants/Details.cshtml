@@ -18,11 +18,6 @@
             @Html.DisplayFor(model => model.MiddleName)
             @Html.DisplayFor(model => model.LastName)
         </h2>
-        <div id="tags" class="span12" style="margin-bottom:20px;margin-top:4px;">
-            <hr style="margin: 0 0 -4px 0;" />
-            @Html.Partial("~/Views/Tags/PartialList.cshtml", new Applicant.Models.TagList() { ApplicantId = Model.ApplicantId, Tags = Model.Tags })
-            <hr style="margin: 0 0 0 0;" />
-        </div>
     </div>
     <div class="col-md-4">
         <div>
@@ -41,7 +36,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-7">
-
+            <div id="tags" class="span7">
+                <br />
+                @Html.Partial("~/Views/Tags/PartialList.cshtml", new Applicant.Models.TagList() { ApplicantId = Model.ApplicantId, Tags = Model.Tags })
+            </div>
             <table class="table table-hover">
                 <caption>
                     <h4>Личные данные</h4>
@@ -70,7 +68,24 @@
             <table class="dl-horizontal">
                 <caption><h4>Собеседования</h4></caption>
                 <tr>
+                    <th class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingHis">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseHis" aria-expanded="true" aria-controls="collapseHis">
+                                        Добавить новую встречу
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseHis" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingHis">
+                                <div class="panel-body">
+                                    @Html.Partial("~/Views/Histories/PartialCreate.cshtml", new Applicant.Models.HistoryCreate() { ApplicantId = Model.ApplicantId })
+                                </div>
+                            </div>
+                    </th>
+                </tr>
+                <tr>
                     <th id="tableHistories">
+
                         @Html.Action("List", "Histories", new { applicantId = Model.ApplicantId })
                     </th>
                 </tr>
@@ -78,6 +93,24 @@
         </div>
 
         <div class="col-md-5">
+            <br />
+
+            <div class="panel-group " id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTag">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTag" aria-expanded="true" aria-controls="collapseTag">
+                                Добавить новый тег
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTag" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTag">
+                        <div class="panel-body">
+                            @Html.Partial("~/Views/Tags/PartialCreate.cshtml", new Applicant.Models.TagCreate() { ApplicantId = Model.ApplicantId })
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -107,10 +140,27 @@
                     </tr>
                 </table>
             </div>
+
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h4>Документы</h4>
                 </div>
+
+                <div class="panel panel-default" style="margin-bottom:-1px;">
+                    <div class="panel-heading" role="tab" id="headingAttach">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAttach" aria-expanded="true" aria-controls="collapseAttach">
+                                Загрузить новый документ
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseAttach" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAttach">
+                        <div class="panel-body">
+                            @Html.Partial("~/Views/Attachments/PartialLoad.cshtml", Model.ApplicantId)
+                        </div>
+                    </div>
+                </div>
+
                 <div id="tableAttachments">
                     @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments.ToList())
                 </div>
@@ -119,53 +169,6 @@
     </div>
 </div>
 
-<div>
-    <div class="panel-group " id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingTag">
-                <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTag" aria-expanded="true" aria-controls="collapseTag">
-                        Добавить новый тег
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseTag" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTag">
-                <div class="panel-body">
-                    @Html.Partial("~/Views/Tags/PartialCreate.cshtml", new Applicant.Models.TagCreate() { ApplicantId = Model.ApplicantId })
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingHis">
-                <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseHis" aria-expanded="true" aria-controls="collapseHis">
-                        Добавить новую встречу
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseHis" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingHis">
-                <div class="panel-body">
-                    @Html.Partial("~/Views/Histories/PartialCreate.cshtml", new Applicant.Models.HistoryCreate() { ApplicantId = Model.ApplicantId })
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingAttach">
-                <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAttach" aria-expanded="true" aria-controls="collapseAttach">
-                        Загрузить новый документ
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseAttach" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAttach">
-                <div class="panel-body">
-                    @Html.Partial("~/Views/Attachments/PartialLoad.cshtml", Model.ApplicantId)
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
 @section Scripts {
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
 }
