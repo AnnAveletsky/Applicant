@@ -9,150 +9,117 @@
     ViewBag.Title = "Подробнее о соискателе";
 }
 
-<h2>Подробнее о соискателе</h2>
-<p>
-    <div>
-        <a class="btn btn-default btn-md" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
-            <i class="glyphicon glyphicon-pencil"></i>
-            Редактировать данные
-        </a>
-        <a class="btn btn-default btn-md" href="@Url.Action("Index")">
-            <i class="glyphicon glyphicon-th-list"></i>
-            К списку
-        </a>
-    </div>
-</p>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-
-        <dd>
+<link media="only screen and (max-device-width: 950px)" href="~/Content/Site.css" rel="stylesheet" />
+<h4>Подробнее о соискателе</h4>
+<div class="row">
+    <div class="col-lg-8">
+        <h2 style="margin: 0;">
             @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MiddleName)
-        </dt>
-
-        <dd>
             @Html.DisplayFor(model => model.MiddleName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
             @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Birthday)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Birthday)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Residence)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Residence)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Skype)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Skype)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GitHub)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GitHub)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Linkedin)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Linkedin)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Comments)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Comments)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Salary)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Salary)
-        </dd>
-
-        <dt>
-            Теги
-        </dt>
-
-        <dd id="tags">
+        </h2>
+        <div id="tags" class="span12" style="margin-bottom:20px;margin-top:4px;">
+            <hr style="margin: 0 0 -4px 0;" />
             @Html.Partial("~/Views/Tags/PartialList.cshtml", new Applicant.Models.TagList() { ApplicantId = Model.ApplicantId, Tags = Model.Tags })
-        </dd>
+            <hr style="margin: 0 0 0 0;" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div>
+            <a class="btn btn-success btn-md" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
+                <i class="glyphicon glyphicon-pencil"></i>
+                Редактировать данные
+            </a>
+            <a class="btn btn-success btn-md" href="@Url.Action("Index")">
+                <i class="glyphicon glyphicon-th-list"></i>
+                К списку
+            </a>
+        </div>
+    </div>
+</div>
 
-        <dt>
-            Собеседования
-        </dt>
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
 
-        <dd id="tableHistories">
-            @Html.Action("List", "Histories", new { applicantId = Model.ApplicantId })
-        </dd>
+            <table class="table table-hover">
+                <caption>
+                    <h4>Личные данные</h4>
+                </caption>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Gender)</th>
+                    <th>@Html.DisplayFor(model => model.Gender)</th>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Birthday)</th>
+                    <th>@Html.DisplayFor(model => model.Birthday)</th>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Residence)</th>
+                    <th>@Html.DisplayFor(model => model.Residence)</th>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Salary)</th>
+                    <th>@Html.DisplayFor(model => model.Salary)</th>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Comments)</th>
+                    <th>@Html.DisplayFor(model => model.Comments)</th>
+                </tr>
+            </table>
+            <table class="dl-horizontal">
+                <caption><h4>Собеседования</h4></caption>
+                <tr>
+                    <th id="tableHistories">
+                        @Html.Action("List", "Histories", new { applicantId = Model.ApplicantId })
+                    </th>
+                </tr>
+            </table>
+        </div>
 
-        <dt>
-            Документы
-        </dt>
+        <div class="col-md-5">
 
-        <dd id="tableAttachments">
-            @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments.ToList())
-        </dd>
-    </dl>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Контактные данные</h4>
+                </div>
+
+                <table class="table table-hover table-bordered">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Email)</th>
+                        <th>@Html.DisplayFor(model => model.Email)</th>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Skype)</th>
+                        <th>@Html.DisplayFor(model => model.Skype)</th>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.GitHub)</th>
+                        <th>@Html.DisplayFor(model => model.GitHub)</th>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Linkedin)</th>
+                        <th>@Html.DisplayFor(model => model.Linkedin)</th>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                        <th>@Html.DisplayFor(model => model.Phone)</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4>Документы</h4>
+                </div>
+                        <div id="tableAttachments">
+                            @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments.ToList())
+                        </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
     <div class="panel-group " id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingTag">

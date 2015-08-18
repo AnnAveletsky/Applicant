@@ -11,7 +11,7 @@
         <tr>
             <td>@Html.DisplayFor(modelItem => item.Name)</td>
             <td>
-                <a class="btn btn-default btn-md" href="@Url.Action("Download", "Attachments", new { id = item.AttachmentId, applicantId = item.ApplicantId })">
+                <a class="btn btn-info btn-sm" href="@Url.Action("Download", "Attachments", new { id = item.AttachmentId, applicantId = item.ApplicantId })">
                     <i class="glyphicon glyphicon-download"></i>
                     Загрузить
                 </a>
@@ -23,7 +23,7 @@
                 {
                     <button type="submit" class="btn btn-default" onclick="deleteToApplicantToHistory(@item.AttachmentId)">Удалить из соискателя</button>
                 }
-                <button class="btn btn-default btn-md" type="submit" value="Удалить" data-toggle="modal" data-target="#myModal" onclick="delAttach(@item.AttachmentId)">
+                <button class="btn btn-danger btn-sm" type="submit" value="Удалить" data-toggle="modal" data-target="#myModal" onclick="delAttach(@item.AttachmentId)">
                     <i class="glyphicon glyphicon-remove-circle"></i>
                     Удалить
                 </button>
