@@ -142,6 +142,7 @@ namespace Applicant.Models
             if (applicantId != null)
             {
                 attach.ApplicantId = applicantId;
+                attach.Applicant = Applicants.Find(applicantId);
             }
             attach.Attach = new byte[filedata.ContentLength];
             attach.Type = filedata.ContentType;

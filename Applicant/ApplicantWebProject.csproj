@@ -292,6 +292,7 @@
     <Content Include="Views\Applicants\PartialPage.cshtml" />
     <Content Include="Views\Applicants\Tags.cshtml" />
     <Content Include="Views\Attachments\PartialLoadToHistory.cshtml" />
+    <Content Include="Views\Attachments\PartialListToHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

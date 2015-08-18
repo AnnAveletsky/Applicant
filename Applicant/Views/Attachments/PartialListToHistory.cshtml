@@ -49,7 +49,7 @@
     }
     function deleteToApplicantToHistory(attachmentId) {
         $.ajax({
-            url: "@Url.Action("DeleteToApplicant", "Attachments")",
+            url: "@Url.Action("DeleteToApplicantToHistory", "Attachments")",
             data: "attachmentId=" + attachmentId,
         success: function (html) {
             $("#tableAttachments").empty();

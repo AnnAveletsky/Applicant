@@ -19,7 +19,8 @@ namespace Applicant.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                return PartialView("PartialList",db.Applicants.Find(applicantId).Attachments.ToList());
+                var attachments = db.Applicants.Find(applicantId).Attachments;
+                return PartialView("PartialList", attachments.ToList());
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
@@ -56,17 +57,48 @@ namespace Applicant.Controllers
             Attachment attach=db.Attachments.Find(id);
             return File(attach.Attach,attach.Type,attach.Name);
         }
-
-        // GET: Attachments/Delete/5
-        public ActionResult Delete(int? id,int? applicantId)
+        public ActionResult AddToApplicant(int attachmentId)
         {
-            if (id == null||applicantId==null)
+            Attachment attachment = db.Attachments.Find(attachmentId);
+            attachment.History = db.Histories.Find(attachment.HistoryId);
+            Applicant.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
+            attachment.ApplicantId = applicant.ApplicantId;
+            attachment.Applicant = applicant;
+            applicant.Attachments.Add(attachment);
+            db.SaveChanges();
+            return PartialView("PartialListToHistory", attachment.History.Attachments.ToList());
+        }
+        public ActionResult DeleteToApplicant(int attachmentId)
+        {
+            Attachment attachment = db.Attachments.Find(attachmentId);
+            attachment.History = db.Histories.Find(attachment.HistoryId);
+            Applicant.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
+            attachment.ApplicantId = null;
+            attachment.Applicant = null;
+            applicant.Attachments.Remove(attachment);
+            db.SaveChanges();
+            return PartialView("PartialList", applicant.Attachments.ToList());
+        }
+        public ActionResult DeleteToApplicantToHistory(int attachmentId)
+        {
+            Attachment attachment = db.Attachments.Find(attachmentId);
+            attachment.History = db.Histories.Find(attachment.HistoryId);
+            Applicant.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
+            attachment.ApplicantId = null;
+            attachment.Applicant = null;
+            applicant.Attachments.Remove(attachment);
+            db.SaveChanges();
+            return PartialView("PartialListToHistory", attachment.History.Attachments.ToList());
+        }
+        // GET: Attachments/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Attachment attachment = db.Attachments.Find(id);
-            var applicant = db.Applicants.Find(applicantId);
-            if (attachment == null || applicant==null)
+            if (attachment == null)
             {
                 return HttpNotFound();
             }
@@ -76,12 +108,27 @@ namespace Applicant.Controllers
         // POST: Attachments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id,int applicantId)
+        public ActionResult DeleteConfirmed(int id)
         {
             Attachment attachment = db.Attachments.Find(id);
-            db.Attachments.Remove(attachment);
-            db.SaveChanges();
-            return PartialView("PartialList", db.Attachments.Where(p => p.ApplicantId == applicantId));
+            if (attachment.ApplicantId != null)
+            {
+                Applicant.Models.Applicant applicant=db.Applicants.Find(attachment.ApplicantId);
+                db.Attachments.Remove(attachment);
+                db.SaveChanges();
+                return PartialView("PartialList", applicant.Attachments.ToList());
+            }
+            else if(attachment.HistoryId!=null)
+            {
+                History history = db.Histories.Find(attachment.HistoryId);
+                db.Attachments.Remove(attachment);
+                db.SaveChanges();
+                return PartialView("PartialList", history.Attachments.ToList());
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
 
         protected override void Dispose(bool disposing)

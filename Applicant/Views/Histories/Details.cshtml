@@ -13,6 +13,8 @@
 <div>
     <h4>Собеседования</h4>
     <hr />
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model=>Model.ApplicantId)
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.CommunicationDate)
@@ -60,7 +62,7 @@
             </div>
 
             <div id="tableAttachments">
-                @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments.ToList())
+                @Html.Partial("~/Views/Attachments/PartialListToHistory.cshtml", Model.Attachments.ToList())
             </div>
         </dd>
 
@@ -76,3 +78,6 @@
         Назад к соискателю
     </a>
 </p>
+@section Scripts {
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+}

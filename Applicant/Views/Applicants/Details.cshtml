@@ -128,21 +128,29 @@
         <dd>
             @Html.DisplayFor(model => model.Salary)
         </dd>
-        <dt>Теги</dt>
+
+        <dt>
+            Теги
+        </dt>
+
         <dd id="tags">
             @Html.Partial("~/Views/Tags/PartialList.cshtml", new Applicant.Models.TagList() { ApplicantId = Model.ApplicantId, Tags = Model.Tags })
         </dd>
-        <dt>Собеседования</dt>
+
+        <dt>
+            Собеседования
+        </dt>
+
         <dd id="tableHistories">
             @Html.Action("List", "Histories", new { applicantId = Model.ApplicantId })
         </dd>
+
         <dt>
             Документы
         </dt>
+
         <dd id="tableAttachments">
-
             @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments.ToList())
-
         </dd>
     </dl>
     <div class="panel-group " id="accordion" role="tablist" aria-multiselectable="true">
