@@ -1,11 +1,6 @@
 ﻿@model IEnumerable<Applicant.Models.Attachment>
 
-<table class="table">
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.Name)</th>
-        <th></th>
-    </tr>
-
+<table class="table" style="margin:0px">
     @foreach (var item in Model)
     {
         <tr>
@@ -27,15 +22,10 @@
                     <i class="glyphicon glyphicon-remove-circle"></i>
                     Удалить
                 </button>
-
             </td>
         </tr>
     }
 </table>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-
-</div>
 <script>
     function addToApplicant(attachmentId) {
         $.ajax({
