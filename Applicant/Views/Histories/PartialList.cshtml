@@ -1,28 +1,28 @@
 ﻿@model IEnumerable<Applicant.Models.History>
 <table class="table">
-    <tr>
-        <th>
+    <tr class="row">
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.CommunicationDate)
         </th>
-        <th>
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.TypeCommunication)
         </th>
-        <th>
+        <th class="col-md-6">
             @Html.DisplayNameFor(model => model.HistoryComments)
         </th>
-        <th></th>
+        <th class="col-md-2"></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
+        <tr class="row">
+            <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.CommunicationDate)
             </td>
-            <td>
+            <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.TypeCommunication)
             </td>
-            <td>
+            <td class="col-md-6">
                 @if (item.HistoryComments != null && item.HistoryComments.Length > 50)
                 {
                     @Html.DisplayFor(modelItem => item.HistoryComments).ToString().Substring(0, 20);
@@ -34,18 +34,18 @@
                     @Html.DisplayFor(modelItem => item.HistoryComments);
                 }
             </td>
-            <td>
+            <td class="col-md-2">
                 <div class="btn-toolbar">
-                    <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", "Histories", new { id = item.HistoryId })">
+                    <a class="btn btn-primary col-md-12 btn-sm" href="@Url.Action("Edit", "Histories", new { id = item.HistoryId })">
                         <i class="glyphicon glyphicon-edit"></i>
                         Править
                     </a>
-                    <a class="btn btn-info btn-sm" href="@Url.Action("Details", "Histories", new { id = item.HistoryId }) ">
+                    <a class="btn btn-info col-md-12 btn-sm" href="@Url.Action("Details", "Histories", new { id = item.HistoryId }) ">
                         <i class=" glyphicon glyphicon-list-alt">
                         </i>
                         Подробнее
                     </a>
-                    <button class="btn btn-danger btn-sm" onclick="delHis(@item.HistoryId)" type="submit" value="Удалить" data-toggle="modal" data-target="#myModal">
+                    <button class="btn btn-danger col-md-12 btn-sm" onclick="delHis(@item.HistoryId)" type="submit" value="Удалить" data-toggle="modal" data-target="#myModal">
                         <i class="glyphicon glyphicon-remove-circle"></i>
                         Удалить
                     </button>

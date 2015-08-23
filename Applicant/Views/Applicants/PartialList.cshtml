@@ -1,12 +1,14 @@
 ﻿@model IEnumerable<Applicant.Models.Applicant>
 <div id="no-more-tables">
-    <table class="col-sm-12 table-striped table-condensed cf">
+    <table class="col-sm-12 table-striped table-condensed  table-hover cf">
         <thead class="cf">
             <tr>
                 <th></th>
-                <th>@Html.DisplayNameFor(model => model.FirstName)</th>
-                <th>@Html.DisplayNameFor(model => model.MiddleName)</th>
-                <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                    @Html.DisplayNameFor(model => model.MiddleName)
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
                 <th>@Html.DisplayNameFor(model => model.Gender)</th>
                 <th>@Html.DisplayNameFor(model => model.Birthday)</th>
                 <th>@Html.DisplayNameFor(model => model.Residence)</th>
@@ -14,6 +16,7 @@
                 <th>@Html.DisplayNameFor(model => model.Skype)</th>
                 <th>@Html.DisplayNameFor(model => model.Phone)</th>
                 <th>@Html.DisplayNameFor(model => model.Salary)</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -22,20 +25,16 @@
                 <tr>
                     <td>
                         <span style="padding:0; margin:0">
-                            <a class="btn btn-default btn-sm" role="button" title="Редактировать" data-toggle="popover" href="@Url.Action("Edit", new { id = item.ApplicantId })">
-                                <i class="glyphicon glyphicon-edit"></i>
-                            </a>
-                            <a class="btn btn-default btn-sm" role="button" title="Подробней" data-toggle="popover" href="@Url.Action("Details", new { id = item.ApplicantId })">
+                            <a class="btn btn-default btn-md" role="button" title="Подробней" data-toggle="popover" href="@Url.Action("Details", new { id = item.ApplicantId })">
                                 <i class="glyphicon glyphicon-share-alt"></i>
                             </a>
-                            <a class="btn btn-default btn-sm" role="button" title="Удалить" data-toggle="popover" href="@Url.Action("Delete", new { id = item.ApplicantId })">
-                                <i class="glyphicon glyphicon-remove"></i>
-                            </a>
-                        </span>
+                        </span>     
                     </td>
-                    <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
-                    <td>@Html.DisplayFor(modelItem => item.MiddleName)</td>
-                    <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                        @Html.DisplayFor(modelItem => item.MiddleName)
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
                     <td>@Html.DisplayFor(modelItem => item.Gender)</td>
                     <td>@Html.DisplayFor(modelItem => item.Birthday)</td>
                     <td>@Html.DisplayFor(modelItem => item.Residence)</td>
@@ -43,6 +42,16 @@
                     <td>@Html.DisplayFor(modelItem => item.Skype)</td>
                     <td>@Html.DisplayFor(modelItem => item.Phone)</td>
                     <td>@Html.DisplayFor(modelItem => item.Salary)</td>
+                    <td>
+                        <span style="padding:0; margin:0">
+                            <a class="btn btn-default btn-sm" role="button" title="Редактировать" data-toggle="popover" href="@Url.Action("Edit", new { id = item.ApplicantId })">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                            <a class="btn btn-default btn-sm" role="button" title="Удалить" data-toggle="popover" href="@Url.Action("Delete", new { id = item.ApplicantId })">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </a>
+                        </span>
+                    </td>
                 </tr>
             }
         </tbody>

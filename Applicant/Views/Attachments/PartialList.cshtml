@@ -4,13 +4,13 @@
     @foreach (var item in Model)
     {
         <tr class="row">
-            <td class="col-md-6">@Html.DisplayFor(modelItem => item.Name)</td>
-            <td class="col-md-6">
-                <a class="btn btn-info btn-sm" href="@Url.Action("Download", "Attachments", new { id = item.AttachmentId, applicantId = item.ApplicantId })">
+            <td class="col-md-9">@Html.DisplayFor(modelItem => item.Name)</td>
+            <td class="col-md-3">
+                <a class="btn btn-info col-md-12 btn-sm" href="@Url.Action("Download", "Attachments", new { id = item.AttachmentId, applicantId = item.ApplicantId })">
                     <i class="glyphicon glyphicon-download"></i>
                     Загрузить
                 </a>
-                <button class="btn btn-danger btn-sm" type="submit" value="Удалить" data-toggle="modal" data-target="#myModal" onclick="delAttach(@item.AttachmentId)">
+                <button class="btn btn-danger col-md-12 btn-sm" type="submit" value="Удалить" data-toggle="modal" data-target="#myModal" onclick="delAttach(@item.AttachmentId)">
                     <i class="glyphicon glyphicon-remove-circle"></i>
                     Удалить
                 </button>
