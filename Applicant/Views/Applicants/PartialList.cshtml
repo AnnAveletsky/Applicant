@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<Applicant.Models.Applicant>
-<div id="no-more-tables">
-    <table class="col-sm-12 table-striped table-condensed  table-hover cf">
+    <table class="col-md-12 table-striped table-condensed  table-hover cf">
         <thead class="cf">
             <tr>
                 <th></th>
@@ -9,12 +8,9 @@
                     @Html.DisplayNameFor(model => model.MiddleName)
                     @Html.DisplayNameFor(model => model.LastName)
                 </th>
-                <th>@Html.DisplayNameFor(model => model.Gender)</th>
-                <th>@Html.DisplayNameFor(model => model.Birthday)</th>
+                <th>Возраст</th>
                 <th>@Html.DisplayNameFor(model => model.Residence)</th>
-                <th>@Html.DisplayNameFor(model => model.Email)</th>
-                <th>@Html.DisplayNameFor(model => model.Skype)</th>
-                <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                <th>Контакты</th>
                 <th>@Html.DisplayNameFor(model => model.Salary)</th>
                 <th></th>
             </tr>
@@ -22,7 +18,13 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
+                    var cl="";
+                    if(item.Gender==ApplicantClassLibrary.Gender.Мужской){
+                        cl="info";
+                    }else{
+                        cl="danger";
+                    }
+                <tr class=@cl>
                     <td>
                         <span style="padding:0; margin:0">
                             <a class="btn btn-default btn-md" role="button" title="Подробней" data-toggle="popover" href="@Url.Action("Details", new { id = item.ApplicantId })">
@@ -35,13 +37,30 @@
                         @Html.DisplayFor(modelItem => item.MiddleName)
                         @Html.DisplayFor(modelItem => item.LastName)
                     </td>
-                    <td>@Html.DisplayFor(modelItem => item.Gender)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Birthday)</td>
+                    @{
+                        int YearsPassed = DateTime.Now.Year - item.Birthday.Year;
+                        if (DateTime.Now.Month < item.Birthday.Month || (DateTime.Now.Month == item.Birthday.Month && DateTime.Now.Day < item.Birthday.Day))
+                            {
+                                YearsPassed--;
+                            }
+                    }
+                    <td>@YearsPassed</td>
                     <td>@Html.DisplayFor(modelItem => item.Residence)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Skype)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Phone)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Salary)</td>
+                    <td>
+                        @if (item.Email != null)
+                        {
+                            <div> E-mail: @Html.DisplayFor(modelItem => item.Email) </div>
+                        }
+                        @if (item.Skype != null)
+                        {
+                            <div> Skype: @Html.DisplayFor(modelItem => item.Skype)</div>
+                        }
+                        @if (item.Phone != null)
+                        {
+                            <div> Phone: @Html.DisplayFor(modelItem => item.Phone)</div>
+                        }
+                    </td>
+                    <td>@Int32.Parse(item.Salary.ToString())p.</td>
                     <td>
                         <span style="padding:0; margin:0">
                             <a class="btn btn-default btn-sm" role="button" title="Редактировать" data-toggle="popover" href="@Url.Action("Edit", new { id = item.ApplicantId })">
@@ -56,4 +75,3 @@
             }
         </tbody>
     </table>
-</div>

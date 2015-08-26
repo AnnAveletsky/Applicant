@@ -1,4 +1,8 @@
 ﻿@model ApplicantClassLibrary.Page
+@if (Model.Search != "")
+{
+    <p>По запросу "@Model.Search" найдено</p>
+}
 <div id="list">
     @Html.Action("List", new { page = Model })
 </div>

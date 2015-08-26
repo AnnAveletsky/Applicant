@@ -54,7 +54,16 @@
                     <th>@Html.DisplayNameFor(model => model.Birthday)</th>
                 </tr>
                 <tr>
-                    <td>@Html.DisplayFor(model => model.Birthday)</td>
+                    <td>
+                        @{
+                            int YearsPassed = DateTime.Now.Year - Model.Birthday.Year;
+                            if (DateTime.Now.Month < Model.Birthday.Month || (DateTime.Now.Month == Model.Birthday.Month && DateTime.Now.Day < Model.Birthday.Day))
+                            {
+                                YearsPassed--;
+                            }
+                        }
+                        @Html.DisplayFor(model => model.Birthday) (@YearsPassed лет)
+                    </td>
                 </tr>
                 <tr>
                     <th>@Html.DisplayNameFor(model => model.Residence)</th>
@@ -66,14 +75,17 @@
                     <th>@Html.DisplayNameFor(model => model.Salary)</th>
                 </tr>
                 <tr>
-                    <td>@Html.DisplayFor(model => model.Salary)</td>
+                    <td>@Int32.Parse(Model.Salary.ToString())p.</td>
                 </tr>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.Comments)</th>
-                </tr>
-                <tr>
-                    <td>@Html.DisplayFor(model => model.Comments)</td>
-                </tr>            
+                @if (Model.Comments != null)
+                {
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Comments)</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayFor(model => model.Comments)</td>
+                    </tr>   
+                }         
             </table>
             <a class="btn btn-success col-md-12 btn-md" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
                 <i class="glyphicon glyphicon-pencil"></i>
@@ -120,18 +132,24 @@
                         <th>@Html.DisplayNameFor(model => model.Email)</th>
                         <th>@Html.DisplayFor(model => model.Email)</th>
                     </tr>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Skype)</th>
-                        <th>@Html.DisplayFor(model => model.Skype)</th>
-                    </tr>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.GitHub)</th>
-                        <th>@Html.DisplayFor(model => model.GitHub)</th>
-                    </tr>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Linkedin)</th>
-                        <th>@Html.DisplayFor(model => model.Linkedin)</th>
-                    </tr>
+                    @if (Model.Skype != null) { 
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Skype)</th>
+                            <th>@Html.DisplayFor(model => model.Skype)</th>
+                        </tr>
+                    }
+                    @if (Model.GitHub != null) { 
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.GitHub)</th>
+                            <th>@Html.DisplayFor(model => model.GitHub)</th>
+                        </tr>
+                    }
+                    @if (Model.Linkedin != null) { 
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Linkedin)</th>
+                            <th>@Html.DisplayFor(model => model.Linkedin)</th>
+                        </tr>
+                    }
                     <tr>
                         <th>@Html.DisplayNameFor(model => model.Phone)</th>
                         <th>@Html.DisplayFor(model => model.Phone)</th>
