@@ -58,7 +58,7 @@
                    @class = "form-control short",
                    @Value = Model.Birthday.Year +
                        "-" + ((Model.Birthday.Month >= 10) ? Model.Birthday.Month + "" : ("0" + Model.Birthday.Month)) +
-                       "-" + (Model.Birthday.Day >= 0 ? Model.Birthday.Day + "" : "0" + Model.Birthday.Day)
+                       "-" + (Model.Birthday.Day >= 10 ? Model.Birthday.Day + "" : "0" + Model.Birthday.Day)
                }
            })
                 @Html.ValidationMessageFor(model => model.Birthday, "", new{@class = "text-danger" })
