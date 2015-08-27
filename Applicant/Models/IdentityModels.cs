@@ -39,66 +39,89 @@ namespace Applicant.Models
         {
             return new ApplicationDbContext();
         }
-        public Page Page(int? page, int? countElements,string search, string pole = "FirstName", 
-            OrderSort orderSort = OrderSort.Прямой)
-        {
-            return new Page(Applicants.Local.Count, page, countElements, pole, orderSort, search);
-        }
         public List<Applicant> ApplicantsInPage(Page page)
         {
             var applicants = from applicant in Applicants
                              select applicant;
-            if (page.Search != "")
+            applicants = Search(page.SortSearch, applicants);
+            applicants = Sort(page.SortSearch, applicants);
+            applicants = ToPage(page, applicants);
+            return applicants.ToList();
+        }
+        public IQueryable<Applicant> Search(SortSearch sortSearch, IQueryable<Applicant> applicants)
+        {
+            if (sortSearch.Search != "" && sortSearch.Search != null)
             {
-                applicants = from applicant in applicants
-                             where applicant.FirstName == page.Search ||
-                                 applicant.LastName == page.Search ||
-                                 applicant.MiddleName == page.Search
-                             select applicant;
+                return from applicant in applicants
+                       where applicant.FirstName == sortSearch.Search ||
+                           applicant.LastName == sortSearch.Search ||
+                           applicant.MiddleName == sortSearch.Search
+                       select applicant;
             }
-            if (page.PoleSort == "FirstName" && page.OrderSort == OrderSort.Прямой)
+            else
             {
-                applicants = (from applicant in applicants
+                return applicants;
+            }
+        }
+        public IQueryable<Applicant> Sort(SortSearch sortSearch,IQueryable<Applicant> applicants)
+        {
+            if (sortSearch.PoleSort == PoleSort.Фамилия && sortSearch.OrderSort == OrderSort.Прямой)
+            {
+                return (from applicant in applicants
                               orderby applicant.FirstName
                               select applicant);
             }
-            else if (page.PoleSort == "FirstName" && page.OrderSort == OrderSort.Обратный)
+            else if (sortSearch.PoleSort == PoleSort.Фамилия && sortSearch.OrderSort == OrderSort.Обратный)
             {
-                applicants = (from applicant in applicants
+                return (from applicant in applicants
                               orderby applicant.FirstName descending
                               select applicant);
             }
-            else if (page.PoleSort == "MiddleName" && page.OrderSort == OrderSort.Прямой)
+            else if (sortSearch.PoleSort == PoleSort.Имя && sortSearch.OrderSort == OrderSort.Прямой)
             {
-                applicants = (from applicant in applicants
+                return (from applicant in applicants
                               orderby applicant.MiddleName
                               select applicant);
             }
-            else if (page.PoleSort == "MiddleName" && page.OrderSort == OrderSort.Обратный)
+            else if (sortSearch.PoleSort == PoleSort.Имя && sortSearch.OrderSort == OrderSort.Обратный)
             {
-                applicants = (from applicant in applicants
+                return (from applicant in applicants
                               orderby applicant.MiddleName descending
                               select applicant);
             }
-            else if (page.PoleSort == "LastName" && page.OrderSort == OrderSort.Прямой)
+            else if (sortSearch.PoleSort == PoleSort.Отчество && sortSearch.OrderSort == OrderSort.Прямой)
             {
-                applicants = (from applicant in applicants
+                return (from applicant in applicants
                               orderby applicant.LastName
                               select applicant);
             }
-            else if (page.PoleSort == "LastName" && page.OrderSort == OrderSort.Обратный)
+            else if (sortSearch.PoleSort == PoleSort.Отчество && sortSearch.OrderSort == OrderSort.Обратный)
             {
-                applicants = (from applicant in applicants
+                return (from applicant in applicants
                               orderby applicant.LastName descending
+                              select applicant);
+            }
+            else if (sortSearch.PoleSort == PoleSort.Возраст && sortSearch.OrderSort == OrderSort.Прямой)
+            {
+                return (from applicant in applicants
+                              orderby applicant.Birthday
+                              select applicant);
+            }
+            else if (sortSearch.PoleSort == PoleSort.Возраст && sortSearch.OrderSort == OrderSort.Обратный)
+            {
+                return (from applicant in applicants
+                              orderby applicant.Birthday descending
                               select applicant);
             }
             else
             {
                 throw new Exception("Ошибка запроса");
             }
-            applicants = applicants.Skip((page.NowPage-1) * page.CountElementsInPage)
-                .Take((page.NowPage-1) * page.CountElementsInPage + page.CountElementsInPage);
-            return applicants.ToList();
+        }
+        public IQueryable<Applicant> ToPage(Page page, IQueryable<Applicant> applicants)
+        {
+            return applicants.Skip((page.NowPage - 1) * page.SortSearch.CountElementsInPage)
+                .Take((page.NowPage - 1) * page.SortSearch.CountElementsInPage + page.SortSearch.CountElementsInPage);
         }
         public List<Attachment> FindAttachmentsApplicant(int? applicantId)
         {

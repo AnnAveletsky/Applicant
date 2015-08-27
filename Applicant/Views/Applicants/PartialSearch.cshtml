@@ -1,0 +1,27 @@
+﻿@model ApplicantClassLibrary.SortSearch
+@using (Html.BeginForm("Index"))
+{
+    @Html.AntiForgeryToken()
+    <div class="row" style="padding:15px;">
+        <div class="form-group col-md-4">
+            @Html.Label("Порядок сортировки", htmlAttributes: new { @class = "control-label" })
+            @Html.EnumDropDownListFor(model => model.OrderSort, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="form-group col-md-4">
+            @Html.Label("Порядок поле сортировки", htmlAttributes: new { @class = "control-label" })
+            @Html.EnumDropDownListFor(model => model.PoleSort, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="form-group col-md-4">
+            @Html.Label("Количество элементов на странице", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.CountElementsInPage, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group col-md-12">
+            <div class="input-group">
+                @Html.EditorFor(model => model.Search, new { htmlAttributes = new { @class = "form-control", @placeholder = "Search", @type = "text" } })
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+}

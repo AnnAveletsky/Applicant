@@ -42,7 +42,9 @@
     <Compile Include="Gender.cs" />
     <Compile Include="OrderSort.cs" />
     <Compile Include="Page.cs" />
+    <Compile Include="PoleSort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortSearch.cs" />
     <Compile Include="TypeHistory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

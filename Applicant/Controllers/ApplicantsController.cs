@@ -15,17 +15,35 @@ namespace Applicant.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Applicants
-        public ActionResult Index(int? page,int? countElements)
+        public ActionResult Index(SortSearch sortSearch )
         {
-            return View(db.Applicants.ToList());
+            return View(sortSearch);
         }
         public ActionResult List(Page page)
         {
             return PartialView("PartialList", db.ApplicantsInPage(page));
         }
-        public ActionResult Page(int? page, int? countElements, string pole, string search, OrderSort orderSort)
+        public ActionResult Page(SortSearch sortSearch,int? nowPage=1)
         {
-            return PartialView("PartialPage", db.Page(page, countElements, search, pole, orderSort));
+            return PartialView("PartialPage", new Page(sortSearch,db.Applicants.Count(),nowPage));
+        }
+        public string CountResults(SortSearch sortSearch)
+        {
+            var applicants = from applicant in db.Applicants
+                             select applicant;
+            int count = db.Search(sortSearch,applicants).Count();
+            if (count == 0)
+            {
+                return "ничего не найдено";
+            }
+            else if (count < 5)
+            {
+                return "найдено " + count + " результата";
+            }
+            else
+            {
+                return "найдено " + count + " результов";
+            }
         }
         // GET: Applicants/Details/5
         public ActionResult Details(int? id)

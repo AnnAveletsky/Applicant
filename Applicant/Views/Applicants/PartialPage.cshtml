@@ -1,20 +1,34 @@
 ﻿@model ApplicantClassLibrary.Page
-@if (Model.Search != "")
-{
-    <p>По запросу "@Model.Search" найдено</p>
-}
-<div id="list">
-    @Html.Action("List", new { page = Model })
-</div>
+
+@Html.Action("List", new { page=Model })
+
 <ul class="pagination">
-    @for (int i = 1; i < Model.CountPages+1; i++)
+    @for (int nowPage = 1; nowPage < Model.CountPages + 1; nowPage++)
     {
-        if (@i == Model.NowPage) { 
-            <li class="active"><a onclick="toPage(@i)">@i <span class=" sr-only">(current)</span></a></li>
+        @Html.HiddenFor(model => nowPage)
+        if (@nowPage == Model.NowPage)
+        {
+            <li class="active"><a onclick="toPage(@nowPage)">@nowPage <span class=" sr-only">(current)</span></a></li>
         }
         else
         {
-            <li ><a onclick="toPage(@i)">@i <span class="sr-only">(current)</span></a></li>
+            <li ><a onclick="toPage(@nowPage)">@nowPage <span class="sr-only">(current)</span></a></li>
         }
     }
 </ul>
+<script>
+    function toPage(nowPage) {
+        $.ajax({
+            url: "@Url.Action("Page")",
+            data: "nowPage=" + nowPage
+                + "&countElementsInPage=" + @Model.SortSearch.CountElementsInPage
+                + "&search=" + "@Model.SortSearch.Search"
+                + "&poleSort=" + "@Model.SortSearch.PoleSort" 
+                + "&orderSort=" + "@Model.SortSearch.OrderSort",
+            success: function (html) {
+                $("#pages").empty();
+                $("#pages").append(html);
+            }
+        });
+    }
+</script>

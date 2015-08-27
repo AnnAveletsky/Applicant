@@ -1,69 +1,42 @@
-﻿@model IEnumerable<Applicant.Models.Applicant>
+﻿@model ApplicantClassLibrary.SortSearch
 
 @{
     ViewBag.Title = "Соискатели";
 }
-<h2>Соискатели</h2>
-<a class="btn btn-primary btn-md" href="@Url.Action("Create")">
-    <i class="glyphicon glyphicon-plus"></i>
-    Добавить соискателя
-</a>
-<div class="input-group">
-    <input type="text" class="form-control" placeholder="Search">
-    <span class="input-group-btn">
-        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-    </span>
-</div>
-<div class="btn-group">
-    <button id="CountElementsInPage" value="5" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Количество записей на страницу: 5</button>
-    <ul class="dropdown-menu">
-        <li><a onclick="updateCountElementsInPage(5); toPage(1,5,'', '');">5</a></li>
-        <li><a onclick="updateCountElementsInPage(10); toPage(1, 10, '');">10</a></li>
-        <li><a onclick="updateCountElementsInPage(20); toPage(1,20, '');">20</a></li>
-        <li><a onclick="updateCountElementsInPage(30); toPage(1,30, '');">30</a></li>
-        <li><a onclick="updateCountElementsInPage('все'); toPage(1,'@Model.Count()', '');">Все</a></li>
-    </ul>
-</div>
-<div class="btn-group">
-    <button id="PoleSort" value="MiddleName" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Сортировать по фамилии</button>
-    <ul class="dropdown-menu">
-        <li><a onclick="updatePoleSort('по фамилии', 'FirstName')">по фамилии</a></li>
-        <li><a onclick="updatePoleSort('по имени', 'MiddleName')">по имени</a></li>
-        <li><a onclick="updatePoleSort('по отчеству', 'LastName')">по отчеству</a></li>
-    </ul>
-</div>
-            <button id="OrderSort" value="d" onclick="OrderSort()" class="btn btn-default"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+@if (Model.Search != ""&&Model.Search!=null)
+{
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Соискатели</h2>
+            <p>По запросу "@Model.Search" @Html.Action("CountResults", new { sortSearch = Model }). Назад ко всем соискателям</p>
+            <a class="btn btn-primary btn-md" href="@Url.Action("Create")">
+                <i class="glyphicon glyphicon-plus"></i>
+                Добавить соискателя
+            </a>
+        </div>
+        <div class="col-md-8">
+            @Html.Partial("PartialSearch", Model)
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Соискатели</h2>
+            <a class="btn btn-primary btn-md" href="@Url.Action("Create")">
+                <i class="glyphicon glyphicon-plus"></i>
+                Добавить соискателя
+            </a>
+        </div>
+        <div class="col-md-8">
+            @Html.Partial("PartialSearch", Model)
+        </div>
+    </div>
+}
 <div id="pages">
-    @Html.Partial("PartialPage", new ApplicantClassLibrary.Page(Model.Count()))
+    @Html.Action("Page", new { sortSearch=Model })
 </div>
-<script type="text/javascript">
-    function OrderSort() {
-        if (document.getElementById('OrderSort').value == "d") {
-            document.getElementById('OrderSort').innerHTML = '<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>';
-            document.getElementById('OrderSort').value = "u";
-        } else if (document.getElementById('OrderSort').value == "u") {
-            document.getElementById('OrderSort').innerHTML = '<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>';
-            document.getElementById('OrderSort').value = "d";
-        }
-    }
-    function updateCountElementsInPage(countElementsInPage) {
-        document.getElementById('CountElementsInPage').innerHTML = 'Количество записей на страницу: ' + countElementsInPage;
-        document.getElementById('CountElementsInPage').value = countElementsInPage;
-    }
-    function updatePoleSort(poleSort,value) {
-        document.getElementById('PoleSort').innerHTML = 'Сортировать ' + poleSort;
-        document.getElementById('PoleSort').value = value;
-    }
-    function toPage(page, countElements, search,pole, orderSort) {
-        $.ajax({
-            url: "@Url.Action("Page")",
-            data: "page=" + page + "&countElements=" + countElements 
-                + "&search=" + search
-                + "&pole" + pole + "&orderSort=" + orderSort,
-            success: function (html) {
-                $("#pages").empty();
-                $("#pages").append(html);
-            }
-        });
-    }
-</script>
+@section Scripts {
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+}
