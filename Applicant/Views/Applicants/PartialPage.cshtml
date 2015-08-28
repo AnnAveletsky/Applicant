@@ -16,12 +16,12 @@
         }
     }
 </ul>
-<script>
+<script type="text/javascript">
     function toPage(nowPage) {
         $.ajax({
             url: "@Url.Action("Page")",
             data: "nowPage=" + nowPage
-                + "&countElementsInPage=" + @Model.SortSearch.CountElementsInPage
+                + "&countElementsInPage=" + "@Model.SortSearch.CountElementsInPage"
                 + "&search=" + "@Model.SortSearch.Search"
                 + "&poleSort=" + "@Model.SortSearch.PoleSort" 
                 + "&orderSort=" + "@Model.SortSearch.OrderSort",

@@ -30,7 +30,14 @@ namespace ApplicantClassLibrary
             SortSearch = sortSearch;
             CountApplicants = countApplicants;
             NowPage = (int)nowPage;
-            CountPages = countApplicants / sortSearch.CountElementsInPage + 1;
+            if (countApplicants % sortSearch.CountElementsInPage > 0)
+            {
+                CountPages = countApplicants / sortSearch.CountElementsInPage + 1;
+            }
+            else
+            {
+                CountPages = countApplicants / sortSearch.CountElementsInPage;
+            }
             if (CountPages > 1)
             {
                 Back = true;

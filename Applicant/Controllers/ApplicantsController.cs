@@ -25,13 +25,11 @@ namespace Applicant.Controllers
         }
         public ActionResult Page(SortSearch sortSearch,int? nowPage=1)
         {
-            return PartialView("PartialPage", new Page(sortSearch,db.Applicants.Count(),nowPage));
+            return PartialView("PartialPage", new Page(sortSearch, db.CountApplicant(sortSearch), nowPage));
         }
         public string CountResults(SortSearch sortSearch)
         {
-            var applicants = from applicant in db.Applicants
-                             select applicant;
-            int count = db.Search(sortSearch,applicants).Count();
+            int count = db.CountApplicant(sortSearch);
             if (count == 0)
             {
                 return "ничего не найдено";
@@ -112,9 +110,8 @@ namespace Applicant.Controllers
                 applicant.Edit(applicantEdit);
                 db.Entry(applicant).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            return View(applicant);
+            return View("Details", applicant);
         }
 
         // GET: Applicants/Delete/5
@@ -140,10 +137,6 @@ namespace Applicant.Controllers
             db.Applicants.Remove(db.Applicants.Find(id));
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        public ActionResult Tags(){
-            return View();
         }
 
         protected override void Dispose(bool disposing)
