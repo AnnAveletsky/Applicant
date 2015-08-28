@@ -83,7 +83,7 @@ namespace Applicant.Controllers
             {
                 db.Entry(history).State = EntityState.Modified;
                 db.SaveChanges();
-                return View("~/View/Applicants/Details/", db.Applicants.Find(history.ApplicantId));
+                return View("Details", history);
             }
             return HttpNotFound();
         }

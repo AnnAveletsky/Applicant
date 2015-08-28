@@ -8,39 +8,66 @@
     ViewBag.Title = "Подробнее о собеседовании";
 }
 
-<h3>Подробнее</h3>
+<div class="media">
 
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h4>Собеседования</h4>
+    <div class="media-body">
+        <h3 class="media-heading">Подробнее</h3>
     </div>
+    <div class="media-left">
+        <a class="btn btn-default btn-md media-object" style="margin:0px;margin-bottom:10px;margin-top:10px;" href="@Url.Action("Details", "Applicants", new { id=Model.ApplicantId})">
+            <i class="glyphicon glyphicon-list-alt"></i>
+            Назад к соискателю
+        </a>
+    </div>
+</div>
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => Model.ApplicantId)
-    <table class="table table-hover">
-        <tr>
-            <th class="col-md-6">@Html.DisplayNameFor(model => model.CommunicationDate)</th>
-            <td class="col-md-6">@Html.DisplayFor(model => model.CommunicationDate)</td>
-        </tr>
-        <tr>
-            <th class="col-md-6">@Html.DisplayNameFor(model => model.TypeCommunication)</th>
-            <td class="col-md-6">@Html.DisplayFor(model => model.TypeCommunication)</td>
-        </tr>
-        <tr>
-            <th class="col-md-6">@Html.DisplayNameFor(model => model.HistoryComments)</th>
-            <td class="col-md-6">@Html.DisplayFor(model => model.HistoryComments)</td>
-        </tr>
-    </table>
-    <div class="panel-group" id="accordion" style="margin-bottom:-1px;" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingTags">
-                <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTags" aria-expanded="true" aria-controls="collapseTags">
-                        Загрузить новый документ
-                    </a>
-                </h4>
+<div class="row">
+    <div class="col-md-7">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="media">
+                    <div class="media-body">
+                        <h4 class="media-heading">О собеседовании</h4>
+                    </div>
+                    <div class="media-right">
+                        <a class="btn btn-primary btn-sm media-object" href="@Url.Action("Edit", new { id = Model.HistoryId })">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-
-            <div id="collapseTags" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTags">
+            <table class="table table-bordered cf">
+                <tr>
+                    <th class="navbar-default">@Html.DisplayNameFor(model => model.CommunicationDate)</th>
+                    <td>@Html.DisplayFor(model => model.CommunicationDate)</td>
+                </tr>
+                <tr>
+                    <th class="navbar-default">@Html.DisplayNameFor(model => model.TypeCommunication)</th>
+                    <td>@Html.DisplayFor(model => model.TypeCommunication)</td>
+                </tr>
+                <tr>
+                    <th class="navbar-default">@Html.DisplayNameFor(model => model.HistoryComments)</th>
+                    <td>@Html.DisplayFor(model => model.HistoryComments)</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="panel panel-info">
+            <div class="panel-heading" role="tab" id="headingAttach">
+                <div class="media">
+                    <div class="media-body">
+                        <h4 class="media-heading">Документы</h4>
+                    </div>
+                    <div class="media-right">
+                        <a class="btn btn-success btn-sm media-object" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAttach" aria-expanded="true" aria-controls="collapseAttach">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="collapseAttach" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAttach">
                 <div class="panel-body">
                     @Html.Partial("~/Views/Attachments/PartialLoadToHistory.cshtml", Model)
                 </div>
@@ -51,20 +78,9 @@
         </div>
     </div>
 </div>
+    @section Scripts {
+        @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+    }
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
-        <p>
-            <a class="btn btn-primary btn-md" href="@Url.Action("Edit", "Histories", new { id = Model.HistoryId })">
-                <i class="glyphicon glyphicon-edit"></i>
-                Править
-            </a>
-            <a class="btn btn-primary btn-md" href="@Url.Action("Details", "Applicants", new { id=Model.ApplicantId})">
-                <i class="glyphicon glyphicon-list-alt"></i>
-                Назад к соискателю
-            </a>
-        </p>
-        @section Scripts {
-            @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
-        }
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-
-        </div>
+    </div>

@@ -3,25 +3,23 @@
 <table class="table table-hover" style="margin:0px">
     @foreach (var item in Model)
     {
-        <tr class="row">
-            <td class="col-md-9">@Html.DisplayFor(modelItem => item.Name)</td>
-            <td class="col-md-3">
-                <a class="btn btn-info col-md-12 btn-sm" href="@Url.Action("Download", "Attachments", new { id = item.AttachmentId, applicantId = item.ApplicantId })">
+        <tr>
+            <td>
+                <a class="btn btn-info btn-sm" href="@Url.Action("Download", "Attachments", new { id = item.AttachmentId, applicantId = item.ApplicantId })">
                     <i class="glyphicon glyphicon-download"></i>
-                    Загрузить
                 </a>
-                <button class="btn btn-danger col-md-12 btn-sm" type="submit" value="Удалить" data-toggle="modal" data-target="#myModal" onclick="delAttach(@item.AttachmentId)">
-                    <i class="glyphicon glyphicon-remove-circle"></i>
-                    Удалить
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+            <td>
+                @if (item.HistoryId != null)
+                {
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="deleteToApplicantToHistory(@item.AttachmentId)">
+                        <i class="glyphicon glyphicon-paperclip"></i>
+                    </button>
+                }
+                <button class="btn btn-danger btn-sm" type="submit" value="Удалить" data-toggle="modal" data-target="#myModal" onclick="delAttach(@item.AttachmentId)">
+                    <i class="glyphicon glyphicon-remove"></i>
                 </button>
-                @if (item.ApplicantId == null)
-                {
-                    <button class="btn btn-default" onclick="addToApplicant(@item.AttachmentId)">Добавить к соискателю</button>
-                }
-                else if (item.HistoryId != null)
-                {
-                    <button type="submit" class="btn btn-default" onclick="deleteToApplicantToHistory(@item.AttachmentId)">Удалить из соискателя</button>
-                }
             </td>
         </tr>
     }

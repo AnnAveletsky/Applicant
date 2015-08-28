@@ -2,7 +2,7 @@
 @foreach (var item in Model.Tags)
 {
     @Html.AntiForgeryToken()
-    <div class="label label-primary" style="margin:2px 1px; height: 26px">
+    <div class="label label-info" style="margin:2px 1px; height: 26px">
         @Html.DisplayFor(modelItem => item.TagName)
         <input id="value" onclick="delTag(@item.TagId,@Model.ApplicantId)" type="submit" value="X" style="opacity:0.6; color:white; Background:none; border:none;" data-toggle="modal" data-target="#myModal" />
     </div>

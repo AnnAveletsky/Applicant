@@ -13,22 +13,25 @@
 
 <link media="only screen and (max-device-width: 950px)" href="~/Content/Site.css" rel="stylesheet" />
 
+
 <div class="row">
     <div class="col-md-12">
         <h4>Подробнее о соискателе</h4>
-    </div>
-    <div class="col-md-8">
-        <h2 style="margin: 0;">
-            @Html.DisplayFor(model => model.FirstName)
-            @Html.DisplayFor(model => model.MiddleName)
-            @Html.DisplayFor(model => model.LastName)
-        </h2>
-    </div>
-    <div class="col-md-4">
-        <a class="btn btn-success col-md-12 btn-md" href="@Url.Action("Index", new ApplicantClassLibrary.SortSearch() {CountElementsInPage=5,OrderSort=ApplicantClassLibrary.OrderSort.Прямой,PoleSort=ApplicantClassLibrary.PoleSort.Фамилия })">
-            <i class="glyphicon glyphicon-th-list"></i>
-            К списку
-        </a>
+        <div class="media">
+            <div class="media-body">
+                <h2 class="media-heading">
+                    @Html.DisplayFor(model => model.FirstName)
+                    @Html.DisplayFor(model => model.MiddleName)
+                    @Html.DisplayFor(model => model.LastName)
+                </h2>
+            </div>
+            <div class="media-right media-middle">
+                <a class="btn btn-default media-object btn-md" href="@Url.Action("Index", new ApplicantClassLibrary.SortSearch() {CountElementsInPage=5,OrderSort=ApplicantClassLibrary.OrderSort.Прямой,PoleSort=ApplicantClassLibrary.PoleSort.Фамилия })">
+                    <i class="glyphicon glyphicon-th-list"></i>
+                    К списку
+                </a>
+            </div>
+        </div>
     </div>
     <div class="col-md-8">
         <div id="tags" style="margin-bottom:10px;">
@@ -36,21 +39,21 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-info">
                     <div class="panel-heading">
                         <div class="media">
                             <div class="media-body">
                                 <h4 class="media-heading">Личные данные</h4>
                             </div>
                             <div class="media-right">
-                                <a class="btn btn-success btn-sm media-object" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
+                                <a class="btn btn-primary btn-sm media-object" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
                                     <i class="glyphicon glyphicon-edit"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <table class="table table-hover table-striped table-bordered">
-                        <tr rowspan="2">
+                    <table class="table table-striped table-bordered cf">
+                        <tr>
                             <th>@Html.DisplayNameFor(model => model.Gender)</th>
                         </tr>
                         <tr>
@@ -113,7 +116,7 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <div class=" panel panel-default">
+                <div class=" panel panel-info">
                     <div class="panel-heading">
                         <div class="media">
                             <div class="media-body">
@@ -141,94 +144,121 @@
     <div class="col-md-4">
         @Html.Partial("~/Views/Tags/PartialCreate.cshtml", new Applicant.Models.TagCreate() { ApplicantId = Model.ApplicantId })
 
-        <div class="panel panel-primary">
+        <div class="panel panel-info">
             <div class="panel-heading">
                 <div class="media">
                     <div class="media-body">
                         <h4 class="media-heading">Контактные данные</h4>
                     </div>
                     <div class="media-right">
-                        <a class="btn btn-success btn-sm media-object" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
+                        <a class="btn btn-primary btn-sm media-object" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <table class="table table-hover table-bordered">
+            <table class="table table-condensed  table-hover cf">
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.Email)</th>
-                    <th>@Html.DisplayFor(model => model.Email)</th>
+                    <th class="navbar-default">@Html.DisplayNameFor(model => model.Email)</th>
+                    <td>@Html.DisplayFor(model => model.Email)</td>
                 </tr>
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.Phone)</th>
-                    <th>@Html.DisplayFor(model => model.Phone)</th>
+                    <th class="navbar-default">@Html.DisplayNameFor(model => model.Phone)</th>
+                    <td>@Html.DisplayFor(model => model.Phone)</td>
                 </tr>
                 @if (Model.Skype != null)
                 {
                     <tr>
-                        <th>@Html.DisplayNameFor(model => model.Skype)</th>
-                        <th>@Html.DisplayFor(model => model.Skype)</th>
-                    </tr>
-                }
-                @if (Model.WebSite != null)
-                {
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.WebSite)</th>
-                        <th>@Html.DisplayFor(model => model.WebSite)</th>
-                    </tr>
-                }
-                @if (Model.GitHub != null)
-                {
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.GitHub)</th>
-                        <th>@Html.DisplayFor(model => model.GitHub)</th>
-                    </tr>
-                }
-                @if (Model.Linkedin != null)
-                {
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Linkedin)</th>
-                        <th>@Html.DisplayFor(model => model.Linkedin)</th>
-                    </tr>
-                }
-                @if (Model.Facebook != null)
-                {
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Facebook)</th>
-                        <th>@Html.DisplayFor(model => model.Facebook)</th>
-                    </tr>
-                }
-                @if (Model.VKontakte != null)
-                {
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.VKontakte)</th>
-                        <th>@Html.DisplayFor(model => model.VKontakte)</th>
+                        <th class="navbar-default">@Html.DisplayNameFor(model => model.Skype)</th>
+                        <td>@Html.DisplayFor(model => model.Skype)</td>
                     </tr>
                 }
             </table>
         </div>
-
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h4>Документы</h4>
-            </div>
-
-            <div class="panel panel-default" style="margin-bottom:-1px;">
-                <div class="panel-heading" role="tab" id="headingAttach">
-                    <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAttach" aria-expanded="true" aria-controls="collapseAttach">
-                            Загрузить новый документ
-                        </a>
-                    </h4>
+        @if (Model.WebSite != null || Model.GitHub != null || Model.Linkedin != null || Model.Facebook != null || Model.VKontakte != null)
+        {
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="media">
+                        <div class="media-body">
+                            <h4 class="media-heading">Web-страницы</h4>
+                        </div>
+                        <div class="media-right">
+                            <a class="btn btn-primary btn-sm media-object" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div id="collapseAttach" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAttach">
-                    <div class="panel-body">
-                        @Html.Partial("~/Views/Attachments/PartialLoad.cshtml", Model.ApplicantId)
+
+                <table class="table table-striped table-condensed cf">
+                    @if (Model.WebSite != null)
+                    {
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.WebSite)</th>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayFor(model => model.WebSite)</td>
+                        </tr>
+                    }
+                    @if (Model.GitHub != null)
+                    {
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.GitHub)</th>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayFor(model => model.GitHub)</td>
+                        </tr>
+                    }
+                    @if (Model.Linkedin != null)
+                    {
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Linkedin)</th>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayFor(model => model.Linkedin)</td>
+                        </tr>
+                    }
+                    @if (Model.Facebook != null)
+                    {
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Facebook)</th>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayFor(model => model.Facebook)</td>
+                        </tr>
+                    }
+                    @if (Model.VKontakte != null)
+                    {
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.VKontakte)</th>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayFor(model => model.VKontakte)</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+        <div class="panel panel-info">
+            <div class="panel-heading" role="tab" id="headingAttach">
+                <div class="media">
+                    <div class="media-body">
+                        <h4 class="media-heading">Документы</h4>
+                    </div>
+                    <div class="media-right">
+                        <a class="btn btn-success btn-sm media-object" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAttach" aria-expanded="true" aria-controls="collapseAttach">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </a>
                     </div>
                 </div>
             </div>
-
+            <div id="collapseAttach" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAttach">
+                <div class="panel-body">
+                    @Html.Partial("~/Views/Attachments/PartialLoad.cshtml", Model.ApplicantId)
+                </div>
+            </div>
             <div id="tableAttachments">
                 @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments.ToList())
             </div>
