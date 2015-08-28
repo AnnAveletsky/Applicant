@@ -51,6 +51,20 @@ namespace Applicant.Models
         public string Residence { get; set; }
 
         [
+            DataType(DataType.Currency),
+            Range(1, 1000000, ErrorMessage = "Необходимо установить от 1 до 1 000 000 руб."),
+            Display(Name = "Зарплата")
+        ]
+        public int Salary { get; set; }
+
+        [
+            DataType(DataType.MultilineText),
+            MaxLength(500),
+            Display(Name = "Комментарии")
+        ]
+        public string Comments { get; set; }
+
+        [
             Required(ErrorMessage = "Поле должно быть установлено"),
             EmailAddressAttribute,
             Display(Name = "E-mail")
@@ -61,6 +75,20 @@ namespace Applicant.Models
             Display(Name = "Skype")
         ]
         public string Skype { get; set; }
+
+        [
+            Required(ErrorMessage = "Поле должно быть установлено"),
+            Display(Name = "Телефон"),
+            PhoneAttribute
+        ]
+        public string Phone { get; set; }
+
+        [
+            DataType(DataType.Url),
+            Display(Name = "Персональный WebSite")
+        ]
+
+        public string WebSite { get; set; }
 
         [
             DataType(DataType.Url),
@@ -75,25 +103,17 @@ namespace Applicant.Models
         public string Linkedin { get; set; }
 
         [
-            Required(ErrorMessage = "Поле должно быть установлено"),
-            Display(Name = "Телефон"),
-            PhoneAttribute
+            DataType(DataType.Url),
+            Display(Name = "Страница на Facebook")
         ]
-        public string Phone { get; set; }
+        public string Facebook { get; set; }
 
         [
-            DataType(DataType.MultilineText),
-            MaxLength(500),
-            Display(Name = "Комментарии")
+            DataType(DataType.Url),
+            Display(Name = "Страница ВКонтакте")
         ]
-        public string Comments { get; set; }
+        public string VKontakte { get; set; }
 
-        [
-            DataType(DataType.Currency),
-            Range(1, 1000000, ErrorMessage = "Необходимо установить от 1 до 1 000 000 руб."),
-            Display(Name = "Зарплата")
-        ]
-        public int Salary { get; set; }
         public ApplicantFields() { }
         public ApplicantFields(string firstName, string lastName, string middleName,
             Gender gender, DateTime birthday, string residence, string email,

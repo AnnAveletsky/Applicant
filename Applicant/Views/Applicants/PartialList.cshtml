@@ -1,77 +1,83 @@
 ﻿@model IEnumerable<Applicant.Models.Applicant>
     <table class="col-md-12 table-striped table-condensed  table-hover cf">
-        <thead class="cf">
-            <tr>
-                <th></th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstName)
-                    @Html.DisplayNameFor(model => model.MiddleName)
-                    @Html.DisplayNameFor(model => model.LastName)
-                </th>
-                <th>Возраст</th>
-                <th>@Html.DisplayNameFor(model => model.Residence)</th>
-                <th>Контакты</th>
-                <th>@Html.DisplayNameFor(model => model.Salary)</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
+    <thead class="cf">
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+                @Html.DisplayNameFor(model => model.MiddleName)
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>Возраст</th>
+            <th>@Html.DisplayNameFor(model => model.Residence)</th>
+            <th>@Html.DisplayNameFor(model => model.Salary)</th>
+            <th>Контакты</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var cl = "";
+            if (item.Gender == ApplicantClassLibrary.Gender.Мужской)
             {
-                    var cl="";
-                    if(item.Gender==ApplicantClassLibrary.Gender.Мужской){
-                        cl="info";
-                    }else{
-                        cl="danger";
-                    }
-                <tr class=@cl>
-                    <td>
-                        <span style="padding:0; margin:0">
-                            <a class="btn btn-default btn-md" role="button" title="Подробней" data-toggle="popover" href="@Url.Action("Details", new { id = item.ApplicantId })">
-                                <i class="glyphicon glyphicon-share-alt"></i>
-                            </a>
-                        </span>     
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                        @Html.DisplayFor(modelItem => item.MiddleName)
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    @{
-                        int YearsPassed = DateTime.Now.Year - item.Birthday.Year;
-                        if (DateTime.Now.Month < item.Birthday.Month || (DateTime.Now.Month == item.Birthday.Month && DateTime.Now.Day < item.Birthday.Day))
-                            {
-                                YearsPassed--;
-                            }
-                    }
-                    <td>@YearsPassed</td>
-                    <td>@Html.DisplayFor(modelItem => item.Residence)</td>
-                    <td>
-                        @if (item.Email != null)
-                        {
-                            <div> E-mail: @Html.DisplayFor(modelItem => item.Email) </div>
-                        }
-                        @if (item.Skype != null)
-                        {
-                            <div> Skype: @Html.DisplayFor(modelItem => item.Skype)</div>
-                        }
-                        @if (item.Phone != null)
-                        {
-                            <div> Phone: @Html.DisplayFor(modelItem => item.Phone)</div>
-                        }
-                    </td>
-                    <td>@Int32.Parse(item.Salary.ToString())p.</td>
-                    <td>
-                        <span style="padding:0; margin:0">
-                            <a class="btn btn-default btn-sm" role="button" title="Редактировать" data-toggle="popover" href="@Url.Action("Edit", new { id = item.ApplicantId })">
-                                <i class="glyphicon glyphicon-edit"></i>
-                            </a>
-                            <a class="btn btn-default btn-sm" role="button" title="Удалить" data-toggle="popover" href="@Url.Action("Delete", new { id = item.ApplicantId })">
-                                <i class="glyphicon glyphicon-remove"></i>
-                            </a>
-                        </span>
-                    </td>
-                </tr>
+                cl = "info";
             }
-        </tbody>
-    </table>
+            else
+            {
+                cl = "danger";
+            }
+            <tr class=@cl>
+                <td>
+                    <span style="padding:0; margin:0">
+                        <a class="btn btn-default btn-md" role="button" title="Подробней" data-toggle="popover" href="@Url.Action("Details", new { id = item.ApplicantId })">
+                            <i class="glyphicon glyphicon-share-alt"></i>
+                        </a>
+                    </span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                    @Html.DisplayFor(modelItem => item.MiddleName)
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                
+                @{
+            int YearsPassed = DateTime.Now.Year - item.Birthday.Year;
+            if (DateTime.Now.Month < item.Birthday.Month || (DateTime.Now.Month == item.Birthday.Month && DateTime.Now.Day < item.Birthday.Day))
+            {
+                YearsPassed--;
+            }
+                }
+                <td>@YearsPassed</td>
+                <td>@Html.DisplayFor(modelItem => item.Residence)</td>
+                <td>@Int32.Parse(item.Salary.ToString())p.</td>
+                <td>
+                    @if (item.Email != null)
+                    {
+                        <div> E-mail: @Html.DisplayFor(modelItem => item.Email) </div>
+                    }
+                    @if (item.Skype != null)
+                    {
+                        <div> Skype: @Html.DisplayFor(modelItem => item.Skype)</div>
+                    }
+                    @if (item.Phone != null)
+                    {
+                        <div> Phone: @Html.DisplayFor(modelItem => item.Phone)</div>
+                    }
+                </td>
+                
+                <td>
+                    <span style="padding:0; margin:0">
+                        <a class="btn btn-default btn-sm" role="button" title="Редактировать" data-toggle="popover" href="@Url.Action("Edit", new { id = item.ApplicantId })">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                        <a class="btn btn-default btn-sm" role="button" title="Удалить" data-toggle="popover" href="@Url.Action("Delete", new { id = item.ApplicantId })">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </a>
+                    </span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

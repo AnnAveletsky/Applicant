@@ -21,7 +21,7 @@
     </div>
     <div class="col-md-4">
         <div>
-            <a class="btn btn-success col-md-8 btn-md" href="@Url.Action("Index")">
+            <a class="btn btn-success col-md-8 btn-md" href="@Url.Action("Index", new ApplicantClassLibrary.SortSearch() {CountElementsInPage=5,OrderSort=ApplicantClassLibrary.OrderSort.Прямой,PoleSort=ApplicantClassLibrary.PoleSort.Фамилия })">
                 <i class="glyphicon glyphicon-th-list"></i>
                 К списку
             </a>
@@ -61,8 +61,22 @@
                             {
                                 YearsPassed--;
                             }
+                            string strYears="";
+                            if (YearsPassed > 16)
+                            {
+                                if (YearsPassed % 10 == 1) { 
+                                    strYears = "(" + @YearsPassed + " год)";
+                                }else  if (YearsPassed % 10 < 5) { 
+                                    strYears = "(" + @YearsPassed + " года)";
+                                }
+                                else
+                                {
+                                    strYears = "(" + @YearsPassed + " лет)";
+                                }
+                            }
                         }
-                        @Html.DisplayFor(model => model.Birthday) (@YearsPassed лет)
+                        @Html.DisplayFor(model => model.Birthday) @strYears
+                        
                     </td>
                 </tr>
                 <tr>
@@ -132,10 +146,21 @@
                         <th>@Html.DisplayNameFor(model => model.Email)</th>
                         <th>@Html.DisplayFor(model => model.Email)</th>
                     </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                        <th>@Html.DisplayFor(model => model.Phone)</th>
+                    </tr>
                     @if (Model.Skype != null) { 
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.Skype)</th>
                             <th>@Html.DisplayFor(model => model.Skype)</th>
+                        </tr>
+                    }
+                    @if (Model.WebSite != null)
+                    {
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.WebSite)</th>
+                            <th>@Html.DisplayFor(model => model.WebSite)</th>
                         </tr>
                     }
                     @if (Model.GitHub != null) { 
@@ -150,10 +175,20 @@
                             <th>@Html.DisplayFor(model => model.Linkedin)</th>
                         </tr>
                     }
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Phone)</th>
-                        <th>@Html.DisplayFor(model => model.Phone)</th>
-                    </tr>
+                    @if (Model.Facebook != null)
+                    {
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Facebook)</th>
+                            <th>@Html.DisplayFor(model => model.Facebook)</th>
+                        </tr>
+                    }
+                    @if (Model.VKontakte != null)
+                    {
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.VKontakte)</th>
+                            <th>@Html.DisplayFor(model => model.VKontakte)</th>
+                        </tr>
+                    }
                 </table>
             </div>
 
