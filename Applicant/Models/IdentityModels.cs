@@ -126,6 +126,21 @@ namespace Applicant.Models
                                   select applicant);
                 }
             }
+            else if (sortSearch.PoleSort == PoleSort.Зарплата)
+            {
+                if (sortSearch.OrderSort == OrderSort.Прямой)
+                {
+                    applicants = (from applicant in applicants
+                                  orderby applicant.Salary
+                                  select applicant);
+                }
+                else
+                {
+                    applicants = (from applicant in applicants
+                                  orderby applicant.Salary descending
+                                  select applicant);
+                }
+            }
             else
             {
                 throw new Exception("Ошибка запроса");

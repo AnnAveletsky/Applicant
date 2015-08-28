@@ -2,7 +2,7 @@
 @using (Ajax.BeginForm("Create", "Tags", new AjaxOptions { UpdateTargetId = "tags", OnSuccess = "$('#reset').click()" }))
 {
     @Html.AntiForgeryToken()
-    <div class="input-group" style="margin:5px;margin-bottom:10px">
+    <div class="input-group" style="margin-top:10px;margin-bottom:10px;">
         @Html.HiddenFor(model => Model.ApplicantId)
         @Html.HiddenFor(model => Model.TagId)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -12,7 +12,7 @@
             <button id="reset" type="reset" class="btn btn-default" formtarget="myForm">X</button>
             <button type="submit" value="Create" class="btn btn-default btn-md">
                 <i class="glyphicon glyphicon-plus"></i>
-                Добавить
+                Добавить тег
             </button>
         </div>
     </div>
