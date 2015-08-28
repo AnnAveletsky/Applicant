@@ -106,30 +106,29 @@
                 </a>
             </div>
             <div class="col-md-8">
-                <table class="dl-horizontal col-md-12">
-                    <caption><h4>Собеседования</h4></caption>
-                    <tr>
-                        <th class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingHis">
-                                <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseHis" aria-expanded="true" aria-controls="collapseHis">
-                                        Добавить новую встречу
-                                    </a>
-                                </h4>
+                <div class=" panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4>Собеседования</h4>
                             </div>
-                            <div id="collapseHis" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingHis">
-                                <div class="panel-body">
-                                    @Html.Partial("~/Views/Histories/PartialCreate.cshtml", new Applicant.Models.HistoryCreate() { ApplicantId = Model.ApplicantId })
-                                </div>
+                            <div class="col-md-4">
+                                <h5 class="btn btn-success btn-sm col-md-12" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    Добавить
+                                </h5>
                             </div>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th id="tableHistories">
-                            @Html.Action("List", "Histories", new { applicantId = Model.ApplicantId })
-                        </th>
-                    </tr>
-                </table>
+                        </div>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @Html.Partial("~/Views/Histories/PartialCreate.cshtml", new Applicant.Models.HistoryCreate() { ApplicantId = Model.ApplicantId })
+                        </div>
+                    </div>
+                    <div id="tableHistories">
+                        @Html.Action("List", "Histories", new { applicantId = Model.ApplicantId })
+                    </div>
+                </div>
             </div>
         </div>
     </div>

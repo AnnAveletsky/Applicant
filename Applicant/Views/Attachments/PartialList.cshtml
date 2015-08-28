@@ -49,7 +49,7 @@
     }
     function delAttach(id) {
         $.ajax({
-            url: "@Url.Action("Delete", "Attachments")",
+            url: "/Attachments/Delete/",
             data: "id=" + id,
         success: function (html) {
             $("#myModal").empty();
