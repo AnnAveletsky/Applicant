@@ -1,18 +1,12 @@
 ﻿@{
     ViewBag.Title = "Home Page";
     string Search = "";
-    ApplicantClassLibrary.PoleSort PoleSort = ApplicantClassLibrary.PoleSort.Фамилия;
-    ApplicantClassLibrary.OrderSort OrderSort = ApplicantClassLibrary.OrderSort.Прямой;
-    int CountElementsInPage = 5;
 }
 @using (Html.BeginForm("Index", "Applicants"))
 { 
     @Html.AntiForgeryToken()
 <div class="jumbotron">
     <h1>Aplicant</h1>
-    @Html.HiddenFor(model => PoleSort)
-    @Html.HiddenFor(model => OrderSort)
-    @Html.HiddenFor(model => CountElementsInPage)
     <div id="custom-search-input">
         <div class="form-group">
             <div class="input-group help-block row">

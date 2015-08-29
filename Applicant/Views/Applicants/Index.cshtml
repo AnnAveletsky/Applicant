@@ -3,37 +3,37 @@
 @{
     ViewBag.Title = "Соискатели";
 }
-@if (Model.Search != ""&&Model.Search!=null)
-{
+
     <div class="row">
-        <div class="col-md-4">
-            <h2>Соискатели</h2>
-            <p>По запросу "@Model.Search" @Html.Action("CountResults", new { sortSearch = Model }). Назад ко всем соискателям</p>
-            <a class="btn btn-success btn-md" href="@Url.Action("Create")">
-                <i class="glyphicon glyphicon-plus"></i>
-                Добавить соискателя
-            </a>
+    <div class="col-md-4">
+        <div class="media" style="margin:5px;">
+            <div class="media-body">
+                <h2 class="media-heading">Соискатели</h2>
+            </div>
+            <div class="media-right media-middle">
+                <a class="btn btn-success btn-md media-object" href="@Url.Action("Create")">
+                    <i class="glyphicon glyphicon-plus"></i>
+                </a>
+            </div>
         </div>
-        <div class="col-md-8">
-            @Html.Partial("PartialSearch", Model)
-        </div>
+        @if (Model.Search != "" && Model.Search != null)
+        {
+            <div class="media" style="margin:5px;">
+                <div class="media-body">
+                    <p>По запросу "@Model.Search" @Html.Action("CountResults", new { sortSearch = Model })</p>
+                </div>
+                <div class="media-right media-middle">
+                    <a class="btn btn-default btn-md media-object" href="@Url.Action("Index")">
+                        <i class="glyphicon glyphicon-list"></i>
+                    </a>
+                </div>
+            </div>
+        }
     </div>
-}
-else
-{
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Соискатели</h2>
-            <a class="btn btn-success btn-md" href="@Url.Action("Create")">
-                <i class="glyphicon glyphicon-plus"></i>
-                Добавить соискателя
-            </a>
-        </div>
-        <div class="col-md-8">
-            @Html.Partial("PartialSearch", Model)
-        </div>
+    <div class="col-md-8">
+        @Html.Partial("PartialSearch", Model)
     </div>
-}
+</div>
 <div id="pages">
     @Html.Action("Page", new { sortSearch=Model })
 </div>

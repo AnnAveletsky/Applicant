@@ -3,7 +3,7 @@ namespace ApplicantClassLibrary
 {
     public enum OrderSort
     {
-        Прямой,
-        Обратный
+        Прямой=0,
+        Обратный=1
     }
 }

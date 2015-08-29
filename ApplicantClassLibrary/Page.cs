@@ -27,6 +27,10 @@ namespace ApplicantClassLibrary
 
         public Page(SortSearch sortSearch, int countApplicants, int? nowPage = 1)
         {
+            if (sortSearch.CountElementsInPage==0)
+            {
+                sortSearch.CountElementsInPage = 5;
+            }
             SortSearch = sortSearch;
             CountApplicants = countApplicants;
             NowPage = (int)nowPage;
