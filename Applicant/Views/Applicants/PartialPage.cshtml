@@ -1,22 +1,28 @@
 ﻿@model ApplicantClassLibrary.Page
 
 @Html.Action("List", new { page = Model })
-<nav>
-    <ul class="pagination">
-        @for (int nowPage = 1; nowPage < Model.CountPages + 1; nowPage++)
-        {
-            @Html.HiddenFor(model => nowPage)
-            if (@nowPage == Model.NowPage)
-            {
-                <li class="active"><a onclick="toPage(@nowPage)">@nowPage <span class=" sr-only">(current)</span></a></li>
-            }
-            else
-            {
-                <li><a onclick="toPage(@nowPage)">@nowPage <span class="sr-only">(current)</span></a></li>
-            }
-        }
-    </ul>
-</nav>
+
+<div class="parent">
+    <div class="block">
+        <nav>
+            <ul class="pagination">
+                @for (int nowPage = 1; nowPage < Model.CountPages + 1; nowPage++)
+                {
+                    @Html.HiddenFor(model => nowPage)
+                    if (@nowPage == Model.NowPage)
+                    {
+                        <li class="active"><a onclick="toPage(@nowPage)">@nowPage <span class=" sr-only">(current)</span></a></li>
+                    }
+                    else
+                    {
+                        <li><a onclick="toPage(@nowPage)">@nowPage <span class="sr-only">(current)</span></a></li>
+                    }
+                }
+            </ul>
+        </nav>
+    </div>
+</div>
+
 <script type="text/javascript">
     function toPage(nowPage) {
         $.ajax({

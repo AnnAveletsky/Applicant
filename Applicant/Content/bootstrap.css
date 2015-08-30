@@ -45,10 +45,17 @@ template {
 }
 a {
   background-color: transparent;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 a:active,
 a:hover {
   outline: 0;
+   -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 abbr[title] {
   border-bottom: 1px dotted;
@@ -4614,7 +4621,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination {
   display: inline-block;
   padding-left: 0;
-  margin: 20px 0;
+  position:relative;
   border-radius: 4px;
 }
 .pagination > li {
