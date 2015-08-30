@@ -3,39 +3,34 @@
 @{
     ViewBag.Title = "Соискатели";
 }
-
-    <div class="row">
-    <div class="col-md-4">
-        <div class="media" style="margin:5px;">
-            <div class="media-body">
-                <h2 class="media-heading">Соискатели</h2>
-            </div>
-            <div class="media-right media-middle">
-                <a class="btn btn-success btn-md media-object" href="@Url.Action("Create")">
+<div class="row" style="margin-top:20px">
+    <div class="col-md-7">
+        <header class="form-group">
+            <h2>
+                Соискатели
+                <a class=" btn btn-success btn-sm " href="@Url.Action("Create")">
                     <i class="glyphicon glyphicon-plus"></i>
                 </a>
-            </div>
-        </div>
+            </h2>
+
+        </header>
         @if (Model.Search != "" && Model.Search != null)
         {
-            <div class="media" style="margin:5px;">
-                <div class="media-body">
-                    <p>По запросу "@Model.Search" @Html.Action("CountResults", new { sortSearch = Model })</p>
-                </div>
-                <div class="media-right media-middle">
-                    <a class="btn btn-default btn-md media-object" href="@Url.Action("Index")">
-                        <i class="glyphicon glyphicon-list"></i>
-                    </a>
-                </div>
-            </div>
+            <p>
+                По запросу "@Model.Search" @Html.Action("CountResults", new { sortSearch = Model })  
+                <a class="btn btn-default btn-sm" href="@Url.Action("Index")">
+                    Назад ко всем записям
+                    <i class="glyphicon glyphicon-list"></i>
+                </a>
+            </p>
         }
     </div>
-    <div class="col-md-8">
+    <div class="col-md-5">
         @Html.Partial("PartialSearch", Model)
     </div>
 </div>
 <div id="pages">
-    @Html.Action("Page", new { sortSearch=Model })
+    @Html.Action("Page", new { sortSearch = Model })
 </div>
 @section Scripts {
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")

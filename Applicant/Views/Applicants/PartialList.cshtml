@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Applicant.Models.Applicant>
-    <table class="col-md-12 table-striped table-condensed  table-hover cf">
-    <thead class="cf">
+<table class="col-md-12 table-hover">
+    <thead class="panel panel-heading panel-default">
         <tr>
             <th></th>
             <th>
@@ -29,7 +29,7 @@
             }
             <tr class=@cl>
                 <td>
-                    <span style="padding:0; margin:0">
+                    <span style="padding:5px; margin:0">
                         <a class="btn btn-info btn-sm" role="button" title="Подробней" data-toggle="popover" href="@Url.Action("Details", new { id = item.ApplicantId })">
                             <i class="glyphicon glyphicon-share-alt"></i>
                         </a>
@@ -40,7 +40,7 @@
                     @Html.DisplayFor(modelItem => item.MiddleName)
                     @Html.DisplayFor(modelItem => item.LastName)
                 </td>
-                
+
                 @{
             int YearsPassed = DateTime.Now.Year - item.Birthday.Year;
             if (DateTime.Now.Month < item.Birthday.Month || (DateTime.Now.Month == item.Birthday.Month && DateTime.Now.Day < item.Birthday.Day))
@@ -65,7 +65,7 @@
                         <div> Phone: @Html.DisplayFor(modelItem => item.Phone)</div>
                     }
                 </td>
-                
+
                 <td>
                     <span style="padding:0; margin:0">
                         <a class="btn btn-primary btn-sm" role="button" title="Редактировать" data-toggle="popover" href="@Url.Action("Edit", new { id = item.ApplicantId })">
@@ -80,4 +80,3 @@
         }
     </tbody>
 </table>
-
