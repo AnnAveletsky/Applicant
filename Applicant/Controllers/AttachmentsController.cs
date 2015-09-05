@@ -28,7 +28,7 @@ namespace Applicant.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                return PartialView("PartialList", db.Histories.Find(historyId).Attachments.ToList());
+                return PartialView("PartialListToHistory", db.Histories.Find(historyId).Attachments.ToList());
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
@@ -77,7 +77,7 @@ namespace Applicant.Controllers
             attachment.Applicant = null;
             applicant.Attachments.Remove(attachment);
             db.SaveChanges();
-            return PartialView("PartialList", applicant.Attachments.ToList());
+            return PartialView("PartialListToHistory", applicant.Attachments.ToList());
         }
         public ActionResult DeleteToApplicantToHistory(int attachmentId)
         {
@@ -123,7 +123,7 @@ namespace Applicant.Controllers
                 History history = db.Histories.Find(attachment.HistoryId);
                 db.Attachments.Remove(attachment);
                 db.SaveChanges();
-                return PartialView("PartialList", history.Attachments.ToList());
+                return PartialView("PartialListToHistory", history.Attachments.ToList());
             }
             else
             {
