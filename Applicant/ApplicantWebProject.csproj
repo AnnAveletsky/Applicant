@@ -198,7 +198,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\castom-style.css" />
     <Content Include="Content\Icons\Icon.png" />
-    <Content Include="Content\Icons\Kkf0X.png" />
+    <Content Include="Content\Icons\Original.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
