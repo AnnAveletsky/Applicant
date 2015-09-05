@@ -49,13 +49,13 @@
                     <i class="glyphicon glyphicon-ok"></i>
                     Сохранить
                 </button>
-                <a class="btn btn-default btn-md" href="@Url.Action("Index", new { id = Model.HistoryId })">
-                    <i class="glyphicon glyphicon-list-alt"></i>
-                    История бесед
-                </a>
-                <a class="btn btn-default btn-md" href="@Url.Action("~/Views/Applicants/Details", new { id = Model.ApplicantId })">
+                <a class="btn btn-info btn-md" href="@Url.Action("Details","Histories", new { id = Model.HistoryId })">
                     <i class="glyphicon glyphicon-share-alt"></i>
-                    Назад
+                    К собеседованию
+                </a>
+                <a class="btn btn-info btn-md" href="@Url.Action("Details","Applicants", new { id = Model.ApplicantId })">
+                    <i class="glyphicon glyphicon-share-alt"></i>
+                    К соискателю
                 </a>
             </div>
         </div> 
