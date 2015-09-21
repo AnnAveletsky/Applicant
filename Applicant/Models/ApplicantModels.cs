@@ -68,7 +68,7 @@ namespace Applicant.Models
             Required(ErrorMessage = "Поле должно быть установлено"),
             EmailAddressAttribute,
             Display(Name = "E-mail"),
-            RegularExpression(@"[0-9a-zA-Z]+@[0-9a-zA-Z]+.[0-9a-zA-Z]+", ErrorMessage = "Некорректный адрес"),
+            RegularExpression(@"[0-9a-zA-Z.-]+[@][0-9a-zA-Z]+[.][0-9a-zA-Z]+", ErrorMessage = "Некорректный адрес"),
             DataType(DataType.EmailAddress)
         ]
         public string Email { get; set; }
