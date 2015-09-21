@@ -67,7 +67,9 @@ namespace Applicant.Models
         [
             Required(ErrorMessage = "Поле должно быть установлено"),
             EmailAddressAttribute,
-            Display(Name = "E-mail")
+            Display(Name = "E-mail"),
+            RegularExpression(@"[0-9a-zA-Z]+@[0-9a-zA-Z]+.[0-9a-zA-Z]+", ErrorMessage = "Некорректный адрес"),
+            DataType(DataType.EmailAddress)
         ]
         public string Email { get; set; }
 
@@ -118,7 +120,7 @@ namespace Applicant.Models
         public ApplicantFields(string firstName, string lastName, string middleName,
             Gender gender, DateTime birthday, string residence, string email,
             string skype, string gitHub, string linkedin,
-            string phone, string comments, int salary)
+            string phone, string comments, int salary,string website, string facebook, string vkontakte)
         {
             FirstName = firstName;
             MiddleName = middleName;
@@ -133,6 +135,9 @@ namespace Applicant.Models
             Phone = phone;
             Comments = comments;
             Salary = salary;
+            WebSite = website;
+            Facebook = facebook;
+            VKontakte = vkontakte;
         }
     }
     public class ApplicantEdit : ApplicantFields
@@ -144,7 +149,7 @@ namespace Applicant.Models
             : base(applicantFields.FirstName, applicantFields.LastName, applicantFields.MiddleName,
                 applicantFields.Gender, applicantFields.Birthday, applicantFields.Residence, applicantFields.Email,
                 applicantFields.Skype, applicantFields.GitHub, applicantFields.Linkedin, applicantFields.Phone,
-                applicantFields.Comments, applicantFields.Salary) { }
+                applicantFields.Comments, applicantFields.Salary, applicantFields.WebSite, applicantFields.Facebook, applicantFields.VKontakte) { }
         public void Edit(ApplicantFields applicantFields)
         {
             FirstName = applicantFields.FirstName;
@@ -160,6 +165,9 @@ namespace Applicant.Models
             Phone = applicantFields.Phone;
             Comments = applicantFields.Comments;
             Salary = applicantFields.Salary;
+            WebSite = applicantFields.WebSite;
+            Facebook = applicantFields.Facebook;
+            VKontakte = applicantFields.VKontakte;
         }
     }
     public class Applicant : ApplicantEdit
