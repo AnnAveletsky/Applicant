@@ -10,12 +10,11 @@ namespace Applicant.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return Redirect("/");
         }
 
-        public ActionResult About()
+        public ActionResult FAQ()
         {
-            ViewBag.Message = "Your application description page.";
 
             return View();
         }
