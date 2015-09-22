@@ -134,8 +134,13 @@ namespace Applicant.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            db.Applicants.Remove(db.Applicants.Find(id));
-            db.SaveChanges();
+            
+                Applicant.Models.Applicant applicant = db.Applicants.Find(id);
+                db.DeleteAttachments(applicant);
+                db.DeleteHistories(applicant);
+                db.Applicants.Remove(applicant);
+                db.SaveChanges();
+            
             return RedirectToAction("Index");
         }
 

@@ -110,8 +110,9 @@ namespace Applicant.Controllers
         {
             History history = db.Histories.Find(id);
             Applicant.Models.Applicant applicant = db.Applicants.Find(history.ApplicantId);
+
+            db.DeleteAttachments(history);
             db.Histories.Remove(history);
-            
             db.SaveChanges();
             return PartialView("PartialList", applicant.Histories.ToList());
         }

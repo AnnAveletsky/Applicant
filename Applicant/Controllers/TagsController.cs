@@ -53,14 +53,15 @@ namespace Applicant.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(TagCreate tagCreate)
         {
-            Applicant.Models.Applicant applicant=db.Applicants.Find(tagCreate.ApplicantId);
-            Tag tag = db.Tags.Find(tagCreate.TagId);
-            applicant.Tags.Remove(tag);
-            if (tag.Applicants.Count == 0)
+            try
             {
-                db.Tags.Remove(tag);
+                db.DeleteTag(tagCreate);
+                db.SaveChanges();
             }
-            db.SaveChanges();
+            catch (Exception e)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             return PartialView("PartialList", new TagList() { Tags = db.Applicants.Find(tagCreate.ApplicantId).Tags.ToList(), ApplicantId = tagCreate.ApplicantId });
         }
 

@@ -73,13 +73,13 @@ namespace Applicant.Models
                                   orderby applicant.FirstName
                                   select applicant);
                 }
-                else 
+                else
                 {
                     applicants = (from applicant in applicants
                                   orderby applicant.FirstName descending
                                   select applicant);
                 }
-                
+
             }
             else if (sortSearch.PoleSort == PoleSort.Имя)
             {
@@ -195,7 +195,7 @@ namespace Applicant.Models
             }
         }
 
-        public Attachment AddAttachmentInApplicant(HttpPostedFileBase filedata,int? applicantId)
+        public Attachment AddAttachmentInApplicant(HttpPostedFileBase filedata, int? applicantId)
         {
             Attachment attach = new Attachment();
             if (applicantId != null)
@@ -208,6 +208,48 @@ namespace Applicant.Models
             filedata.InputStream.Read(attach.Attach, 0, filedata.ContentLength);
             attach.Name = filedata.FileName;
             return attach;
+        }
+        public void DeleteAttachments(Applicant applicant)
+        {
+            
+                var attachments = (from attachment in Attachments
+                                   where attachment.ApplicantId == applicant.ApplicantId||
+                                   attachment.History.ApplicantId==applicant.ApplicantId
+                                   select attachment);
+                
+                Attachments.RemoveRange(attachments);
+            
+            
+        }
+        public void DeleteAttachments(History history)
+        {
+            var attachments = (from attachment in Attachments
+                               where attachment.HistoryId == history.HistoryId
+                               select attachment);
+            Attachments.RemoveRange(attachments);
+        }
+        public void DeleteHistories(Applicant applicant)
+        {
+            var histories = (from history in Histories
+                             where history.ApplicantId == applicant.ApplicantId
+                             select history);
+            Histories.RemoveRange(histories);
+        }
+        public void DeleteTag(TagCreate tagCreate)
+        {
+            Applicant applicant = Applicants.Find(tagCreate.ApplicantId);
+            Tag tag = Tags.Find(tagCreate.TagId);
+            applicant.Tags.Remove(tag);
+            if (tag.Applicants.Count == 0)
+            {
+                Tags.Remove(tag);
+            }
+        }
+        public void DeleteTags(Applicant applicant)
+        {
+            foreach(Tag tag in Tags){
+                DeleteTag(new TagCreate(tag,applicant.ApplicantId));
+            }
         }
     }
 }
