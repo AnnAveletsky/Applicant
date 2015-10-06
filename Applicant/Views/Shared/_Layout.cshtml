@@ -27,9 +27,11 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/Applicants/Index">
-                    <img src="~/Content/Icons/Icon.png" width="30"/>
+                    <p>
+                        <img src="~/Content/Icons/Icon.png" width="23" />
+                        Соискатели
+                    </p>
                 </a>
-                @Html.ActionLink("Соискатели", "Index", "Applicants", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -44,7 +46,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year – Приложение поиска кандидатов на работу</p>
         </footer>
     </div>
 

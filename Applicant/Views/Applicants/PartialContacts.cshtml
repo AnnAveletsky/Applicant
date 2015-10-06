@@ -1,0 +1,34 @@
+﻿@model Applicant.Models.Applicant
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <div class="media">
+            <div class="media-body">
+                <h4 class="media-heading">Контактные данные</h4>
+            </div>
+            <div class="media-right">
+                <a class="btn btn-primary btn-sm media-object" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-condensed  table-hover cf">
+        <tr>
+            <th class="navbar-default">@Html.DisplayNameFor(model => model.Email)</th>
+            <td>@Html.DisplayFor(model => model.Email)</td>
+        </tr>
+        <tr>
+            <th class="navbar-default">@Html.DisplayNameFor(model => model.Phone)</th>
+            <td>@Html.DisplayFor(model => model.Phone)</td>
+        </tr>
+        @if (Model.Skype != null)
+        {
+            <tr>
+                <th class="navbar-default">@Html.DisplayNameFor(model => model.Skype)</th>
+                <td>@Html.DisplayFor(model => model.Skype)</td>
+            </tr>
+        }
+    </table>
+</div>

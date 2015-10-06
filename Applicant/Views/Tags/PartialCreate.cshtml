@@ -7,20 +7,18 @@
     @Html.HiddenFor(model => Model.TagId)
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="row" style="margin:0px; margin-top:10px;margin-bottom:10px;">
-        <div class="input-group col-md-12">
-            @Html.EditorFor(model => model.TagName, new { htmlAttributes = new { id = "myForm", @type = "text", @class = "form-control", @placeholder = "Добавить тег" } })
-            <div class="input-group-btn">
-                <button id="reset" type="reset" class="btn btn-default" formtarget="myForm">
-                    <i class="glyphicon glyphicon-erase"></i>
-                </button>
-                <button type="submit" value="Create" class="btn btn-success btn-md">
-                    <i class="glyphicon glyphicon-plus"></i>
-                </button>
-            </div>
+    <div class="input-group input-group-sm">
+        @Html.EditorFor(model => model.TagName, new { htmlAttributes = new { id = "myForm", @type = "text", @class = "form-control", @placeholder = "Добавить тег" } })
+        <div class="input-group-btn ">
+            <button id="reset" type="reset" class="btn btn-default btn-sm " formtarget="myForm">
+                <i class="glyphicon glyphicon-erase"></i>
+            </button>
+            <button type="submit" value="Create" class="btn btn-success btn-sm">
+                <i class="glyphicon glyphicon-plus"></i>
+            </button>
         </div>
-        <div class="col-md-12">
-            @Html.ValidationMessageFor(model => model.TagName, "", new { @class = "text-danger" })
-        </div>
+    </div>
+    <div>
+        @Html.ValidationMessageFor(model => model.TagName, "", new { @class = "text-danger" })
     </div>
 }

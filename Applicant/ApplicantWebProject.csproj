@@ -298,6 +298,12 @@
     <Content Include="Views\Attachments\PartialListToHistory.cshtml" />
     <Content Include="Views\Applicants\PartialSearch.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Applicants\PartialWebPages.cshtml" />
+    <Content Include="Views\Applicants\PartialContacts.cshtml" />
+    <Content Include="Views\Applicants\PartialProfile.cshtml" />
+    <Content Include="Views\Applicants\PartialHistories.cshtml" />
+    <Content Include="Views\Applicants\PartialAttachments.cshtml" />
+    <Content Include="Views\Applicants\PartialTags.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
