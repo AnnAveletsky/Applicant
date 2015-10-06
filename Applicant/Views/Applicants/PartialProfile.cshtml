@@ -59,10 +59,10 @@
         @if (Model.Comments != null)
         {
             <tr>
-                <th>@Html.DisplayNameFor(model => model.Comments)</th>
+                <th colspan="2">@Html.DisplayNameFor(model => model.Comments)</th>
             </tr>
             <tr>
-                <td>@Html.DisplayFor(model => model.Comments)</td>
+                <td colspan="2">@Html.DisplayFor(model => model.Comments)</td>
             </tr>
         }
     </table>
