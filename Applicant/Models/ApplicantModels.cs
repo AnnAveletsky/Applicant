@@ -51,11 +51,35 @@ namespace Applicant.Models
         public string Residence { get; set; }
 
         [
+            Display(Name = "Тип зарплаты"),
+            Required(ErrorMessage = "Поле должно быть установлено"),
+        ]
+        public TypeSalary TypeSalary{ get; set; }
+        [
             DataType(DataType.Currency),
             Range(1, 1000000, ErrorMessage = "Необходимо установить от 1 до 1 000 000 руб."),
-            Display(Name = "Зарплата")
+            Required(ErrorMessage = "Поле должно быть установлено"),
+            Display(Name = "Желаемая зарплата")
         ]
         public int Salary { get; set; }
+
+        [
+            Required(ErrorMessage = "Поле должно быть установлено"),
+            Display(Name = "Валюта")
+        ]
+        public TypeMoney TypeMoney { get; set; }
+
+        [
+            Required(ErrorMessage = "Поле должно быть установлено"),
+            Display(Name = "Тип сотрудничества")
+        ]
+        public TypeWork TypeWork { get; set; }
+
+        [
+            Required(ErrorMessage = "Поле должно быть установлено"),
+            Display(Name = "Тип занятости")
+        ]
+        public TypeBussy TypeBussy { get; set; }
 
         [
             DataType(DataType.MultilineText),
