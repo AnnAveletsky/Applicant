@@ -140,11 +140,16 @@ namespace Applicant.Models
         ]
         public string VKontakte { get; set; }
 
+
+
         public ApplicantFields() { }
         public ApplicantFields(string firstName, string lastName, string middleName,
             Gender gender, DateTime birthday, string residence, string email,
             string skype, string gitHub, string linkedin,
-            string phone, string comments, int salary,string website, string facebook, string vkontakte)
+            string phone, string comments, 
+            int salary,TypeSalary typeSalary,TypeMoney typeMoney,
+            TypeWork typeWork,TypeBussy typeBussy,
+            string website, string facebook, string vkontakte)
         {
             FirstName = firstName;
             MiddleName = middleName;
@@ -159,6 +164,10 @@ namespace Applicant.Models
             Phone = phone;
             Comments = comments;
             Salary = salary;
+            TypeSalary= typeSalary;
+            TypeMoney = typeMoney;
+            TypeWork= typeWork;
+            TypeBussy = typeBussy;
             WebSite = website;
             Facebook = facebook;
             VKontakte = vkontakte;
@@ -168,12 +177,17 @@ namespace Applicant.Models
     {
         [Key]
         public int ApplicantId { get; set; }
+        public int? PhotoId { get; set; }
+        public Attachment Photo { get; set; }
         public ApplicantEdit() { }
         public ApplicantEdit(ApplicantFields applicantFields)
             : base(applicantFields.FirstName, applicantFields.LastName, applicantFields.MiddleName,
                 applicantFields.Gender, applicantFields.Birthday, applicantFields.Residence, applicantFields.Email,
                 applicantFields.Skype, applicantFields.GitHub, applicantFields.Linkedin, applicantFields.Phone,
-                applicantFields.Comments, applicantFields.Salary, applicantFields.WebSite, applicantFields.Facebook, applicantFields.VKontakte) { }
+                applicantFields.Comments,
+            applicantFields.Salary, applicantFields.TypeSalary,applicantFields.TypeMoney,
+            applicantFields.TypeWork, applicantFields.TypeBussy,
+            applicantFields.WebSite, applicantFields.Facebook, applicantFields.VKontakte) { }
         public void Edit(ApplicantFields applicantFields)
         {
             FirstName = applicantFields.FirstName;
@@ -189,9 +203,20 @@ namespace Applicant.Models
             Phone = applicantFields.Phone;
             Comments = applicantFields.Comments;
             Salary = applicantFields.Salary;
+            TypeSalary = applicantFields.TypeSalary;
+            TypeMoney = applicantFields.TypeMoney;
+            TypeWork = applicantFields.TypeWork;
+            TypeBussy = applicantFields.TypeBussy;
             WebSite = applicantFields.WebSite;
             Facebook = applicantFields.Facebook;
             VKontakte = applicantFields.VKontakte;
+            PhotoId = null;
+            Photo = null;
+        }
+        public void EditPhoto(int? photoId,Attachment photo)
+        {
+            PhotoId = photoId;
+            Photo = photo;
         }
     }
     public class Applicant : ApplicantEdit

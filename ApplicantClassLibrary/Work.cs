@@ -14,6 +14,7 @@ namespace ApplicantClassLibrary
     public  enum TypeBussy
     {
         Полная=0,
-        Частичная=1
+        Частичная=1,
+        Разовая=2
     }
 }
