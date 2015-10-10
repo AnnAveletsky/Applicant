@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Applicant.Models;
 using ApplicantClassLibrary;
+using System.Web.Script.Serialization;
 
 namespace Applicant.Controllers
 {
@@ -15,34 +16,23 @@ namespace Applicant.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Applicants
-        public ActionResult Index(SortSearch sortSearch )
+        public ActionResult Index()
         {
-            return View(sortSearch);
+            return View();
         }
-        public ActionResult List(Page page)
+        public JsonResult List()
         {
-            return PartialView("PartialList", db.ApplicantsInPage(page));
-        }
-        public ActionResult Page(SortSearch sortSearch,int? nowPage=1)
-        {
-            return PartialView("PartialPage", new Page(sortSearch, db.CountApplicant(sortSearch), nowPage));
-        }
-        public string CountResults(SortSearch sortSearch)
-        {
-            int count = db.CountApplicant(sortSearch);
-            if (count == 0)
+            var json = db.Applicants.Select(i => new
             {
-                return "ничего не найдено";
-            }
-            else if (count < 5)
-            {
-                return "найдено " + count + " результата";
-            }
-            else
-            {
-                return "найдено " + count + " результов";
-            }
+                Фамилия = i.FirstName,
+                Имя=i.MiddleName,
+                Отчество=i.LastName,
+                Возраст = (DateTime.Now.Month < i.Birthday.Month || (DateTime.Now.Month == i.Birthday.Month && DateTime.Now.Day < i.Birthday.Day) ? DateTime.Now.Year - i.Birthday.Year - 1 : DateTime.Now.Year - i.Birthday.Year),
+                Город=i.Residence
+            });
+            return Json(new {data= json }, JsonRequestBehavior.AllowGet);
         }
+
         // GET: Applicants/Details/5
         public ActionResult Details(int? id)
         {

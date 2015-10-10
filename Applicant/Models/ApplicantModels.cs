@@ -12,14 +12,14 @@ namespace Applicant.Models
         [
             Required(ErrorMessage = "Поле должно быть установлено"),
             StringLength(50, MinimumLength = 2, ErrorMessage = "Длина строки должна быть от 2 до 50 символов"),
-            Display(Name = "Фамилия")
+            Display(Name = "Фамилия"),
         ]
         public string FirstName { get; set; }
 
         [
             Required(ErrorMessage = "Поле должно быть установлено"),
             StringLength(50, MinimumLength = 2, ErrorMessage = "Длина строки должна быть от 2 до 50 символов"),
-            Display(Name = "Имя")
+            Display(Name = "Имя"),
         ]
         public string MiddleName { get; set; }
 
