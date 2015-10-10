@@ -466,7 +466,6 @@
     <Content Include="Views\Tags\PartialDelete.cshtml" />
     <Content Include="Views\Histories\PartialDelete.cshtml" />
     <Content Include="Views\Attachments\PartialDelete.cshtml" />
-    <Content Include="Views\Applicants\PartialList.cshtml" />
     <Content Include="Views\Applicants\Tags.cshtml" />
     <Content Include="Views\Attachments\PartialLoadToHistory.cshtml" />
     <Content Include="Views\Attachments\PartialListToHistory.cshtml" />
