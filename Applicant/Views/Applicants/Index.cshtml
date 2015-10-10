@@ -1,8 +1,9 @@
-﻿@model ApplicantClassLibrary.SortSearch
+﻿
 
 @{
     ViewBag.Title = "Соискатели";
 }
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
 <div class="row" style="margin-top:20px">
     <div class="col-md-7">
         <header class="form-group">
@@ -13,24 +14,48 @@
                 </a>
             </h2>
         </header>
-        @if (Model.Search != "" && Model.Search != null)
-        {
-            <p>
-                По запросу "@Model.Search" @Html.Action("CountResults", new { sortSearch = Model })  
-                <a class="btn btn-default btn-sm" href="@Url.Action("Index")">
-                    Назад ко всем записям
-                    <i class="glyphicon glyphicon-list"></i>
-                </a>
-            </p>
-        }
-    </div>
-    <div class="col-md-5">
-        @Html.Partial("PartialSearch", Model)
-    </div>
+        </div>
 </div>
-<div id="pages">
-    @Html.Action("Page", new { sortSearch = Model })
-</div>
+
+<table id="listTable" class="display" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Возраст</th>
+            <th>Город</th>
+        </tr>
+    </thead>
+
+    <tfoot>
+        <tr>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Возраст</th>
+            <th>Город</th>
+        </tr>
+    </tfoot>
+</table>
+
 @section Scripts {
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
 }
+<script src="~/Scripts/jquery-2.1.3.js"></script>
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#listTable').DataTable({
+            "ajax": "Applicants/List",
+            "columns": [
+                { "data": "Фамилия" },
+                { "data": "Имя" },
+                { "data": "Отчество" },
+                { "data": "Возраст" },
+                { "data": "Город" }
+            ]
+        });
+    });
+</script>

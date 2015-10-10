@@ -8,6 +8,7 @@ using System.Linq;
 using System.Collections.Generic;
 using ApplicantClassLibrary;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Applicant.Models
 {
@@ -39,126 +40,24 @@ namespace Applicant.Models
         {
             return new ApplicationDbContext();
         }
-        public List<Applicant> ApplicantsInPage(Page page)
-        {
-            var applicants = from applicant in Applicants
-                             select applicant;
-            applicants = Search(page.SortSearch, applicants);
-            applicants = Sort(page.SortSearch, applicants);
-            applicants = ToPage(page, applicants);
-            return applicants.ToList();
-        }
-        public IQueryable<Applicant> Search(SortSearch sortSearch, IQueryable<Applicant> applicants)
-        {
-            if (sortSearch.Search != "" && sortSearch.Search != null)
-            {
-                return from applicant in applicants
-                       where applicant.FirstName == sortSearch.Search ||
-                           applicant.LastName == sortSearch.Search ||
-                           applicant.MiddleName == sortSearch.Search
-                       select applicant;
-            }
-            else
-            {
-                return applicants;
-            }
-        }
-        public IQueryable<Applicant> Sort(SortSearch sortSearch, IQueryable<Applicant> applicants)
-        {
-            if (sortSearch.PoleSort == PoleSort.Фамилия)
-            {
-                if (sortSearch.OrderSort == OrderSort.Прямой)
-                {
-                    applicants = (from applicant in applicants
-                                  orderby applicant.FirstName
-                                  select applicant);
-                }
-                else
-                {
-                    applicants = (from applicant in applicants
-                                  orderby applicant.FirstName descending
-                                  select applicant);
-                }
 
-            }
-            else if (sortSearch.PoleSort == PoleSort.Имя)
-            {
-                if (sortSearch.OrderSort == OrderSort.Прямой)
-                {
-                    applicants = (from applicant in applicants
-                                  orderby applicant.MiddleName
-                                  select applicant);
-                }
-                else
-                {
-                    applicants = (from applicant in applicants
-                                  orderby applicant.MiddleName descending
-                                  select applicant);
-                }
-            }
-            else if (sortSearch.PoleSort == PoleSort.Отчество)
-            {
-                if (sortSearch.OrderSort == OrderSort.Прямой)
-                {
-                    applicants = (from applicant in applicants
-                                  orderby applicant.LastName
-                                  select applicant);
-                }
-                else
-                {
-                    applicants = (from applicant in applicants
-                                  orderby applicant.LastName descending
-                                  select applicant);
-                }
-            }
-            else if (sortSearch.PoleSort == PoleSort.Возраст)
-            {
-                if (sortSearch.OrderSort == OrderSort.Прямой)
-                {
-                    applicants = (from applicant in applicants
-                                  orderby applicant.Birthday
-                                  select applicant);
-                }
-                else
-                {
-                    applicants = (from applicant in applicants
-                                  orderby applicant.Birthday descending
-                                  select applicant);
-                }
-            }
-            else if (sortSearch.PoleSort == PoleSort.Зарплата)
-            {
-                if (sortSearch.OrderSort == OrderSort.Прямой)
-                {
-                    applicants = (from applicant in applicants
-                                  orderby applicant.Salary
-                                  select applicant);
-                }
-                else
-                {
-                    applicants = (from applicant in applicants
-                                  orderby applicant.Salary descending
-                                  select applicant);
-                }
-            }
-            else
-            {
-                throw new Exception("Ошибка запроса");
-            }
-            return applicants;
-        }
-        public IQueryable<Applicant> ToPage(Page page, IQueryable<Applicant> applicants)
+        public string StringJsonApplicants()
         {
-            return applicants.Skip((page.NowPage - 1) * page.SortSearch.CountElementsInPage)
-                   .Take(page.SortSearch.CountElementsInPage);
+            
+            string stringJsonApplicants = "{"+"data"+": [";
+            foreach (var i in Applicants)
+            {
+                stringJsonApplicants +="["+ 
+                    i.FirstName + "," + 
+                    i.MiddleName + "," + 
+                    i.LastName + "," + 
+                    i.Birthday + "," + 
+                    i.Residence+"],";
+            }
+            stringJsonApplicants += "]}";
+            return stringJsonApplicants;
         }
-
-        public int CountApplicant(SortSearch sortSearch)
-        {
-            var applicants = from applicant in Applicants
-                             select applicant;
-            return Search(sortSearch, applicants).Count();
-        }
+        
         public List<Attachment> FindAttachmentsApplicant(int? applicantId)
         {
             return (from attachment in Attachments
