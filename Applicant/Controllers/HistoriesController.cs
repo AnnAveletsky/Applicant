@@ -14,11 +14,21 @@ namespace Applicant.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-
-        // GET: Histories/List/histories
-        public ActionResult List(int applicantId)
+        public JsonResult List(int id)
         {
-            return PartialView("PartialList", db.Applicants.Find(applicantId).Histories.ToList());
+            var histories = db.Applicants.Find(id).Histories;
+            var json = histories.Select(i => new
+            {
+                Дата = "<a href='/../../Histories/Details/" + i.HistoryId + "'><i class='glyphicon glyphicon-calendar'></i> " + i.CommunicationDate.Day + "." + i.CommunicationDate.Month + "." + i.CommunicationDate.Year + "</a>",
+                Тип=i.TypeCommunication.ToString(),
+                Коментарии=i.HistoryComments
+            });
+            return Json(new { data = json }, JsonRequestBehavior.AllowGet);
+        }
+        // GET: Histories/List/histories
+        public ActionResult PartialList(int applicantId)
+        {
+            return PartialView("PartialList", db.Applicants.Find(applicantId));
         }
         // GET: Histories/Details/5
         public ActionResult Details(int? id)
@@ -49,7 +59,7 @@ namespace Applicant.Controllers
                 {
                     db.Histories.Add(new History(historyCreate));
                     db.SaveChanges();
-                    return PartialView("PartialList", db.Histories.Where(p => p.ApplicantId == historyCreate.ApplicantId));
+                    return PartialView("PartialList", db.Applicants.Find(historyCreate.ApplicantId));
                 }
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
