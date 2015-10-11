@@ -15,12 +15,21 @@ namespace Applicant.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // POST: Attachments/List/
-        public ActionResult List(int applicantId)
+        public JsonResult List(int id)
         {
            
-                var attachments = db.Applicants.Find(applicantId).Attachments;
-                return PartialView("PartialList", attachments.ToList());
-           
+                var attachments = db.Applicants.Find(id).Attachments;
+                var json = attachments.Select(i => new
+                {
+                    Название = "<a href='/../../Attachments/Download/" + i.AttachmentId + "'><i class='glyphicon glyphicon-download'></i> " + i.Name + "</a>" ,
+                    УдалениеДобавление=((i.HistoryId != null)?"<button type='submit' class='btn btn-danger btn-sm' onclick='deleteToApplicantToHistory("+i.AttachmentId+")'><i class='glyphicon glyphicon-paperclip'></i></button>":"<button class='btn btn-danger btn-sm' type='submit' value='Удалить' data-toggle='modal' data-target='#myModal' onclick='delAttach("+i.AttachmentId+")'> <i class='glyphicon glyphicon-remove'></i> </button>")
+                });
+                return Json(new { data = json }, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult PartialList(int id)
+        {
+            return PartialView("PartialList", db.Applicants.Find(id));
+
         }
         public ActionResult ListToHistory(int historyId)
         {
@@ -48,7 +57,7 @@ namespace Applicant.Controllers
             return Json("");
         }
         // POST: Attachments/Download
-        public FileResult Download(int id, int applicantId)
+        public FileResult Download(int id)
         {
             Attachment attach=db.Attachments.Find(id);
             return File(attach.Attach,attach.Type,attach.Name);
@@ -112,7 +121,7 @@ namespace Applicant.Controllers
                 Applicant.Models.Applicant applicant=db.Applicants.Find(attachment.ApplicantId);
                 db.Attachments.Remove(attachment);
                 db.SaveChanges();
-                return PartialView("PartialList", applicant.Attachments.ToList());
+                return PartialView("PartialList", applicant);
             }
             else if(attachment.HistoryId!=null)
             {

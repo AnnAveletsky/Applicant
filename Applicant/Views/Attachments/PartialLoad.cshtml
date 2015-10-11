@@ -11,8 +11,8 @@
             });
     $('#input-ru').on('filebatchuploadcomplete', function () {
         $.ajax({
-            url: "@Url.Action("List", "Attachments")",
-            data: "applicantId=" + @Model,
+            url: "@Url.Action("PartialList", "Attachments")",
+            data: "id=" + @Model,
             success: function (html) {
                 $("#tableAttachments").empty();
                 $("#tableAttachments").append(html);

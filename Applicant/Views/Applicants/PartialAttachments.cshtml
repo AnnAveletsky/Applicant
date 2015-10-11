@@ -1,5 +1,5 @@
 ﻿@model Applicant.Models.Applicant
-
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 <div class="panel panel-info">
     <div class="panel-heading" role="tab" id="headingAttach">
         <div class="media">
@@ -19,6 +19,6 @@
         </div>
     </div>
     <div id="tableAttachments">
-        @Html.Action("List", "Attachments", new { applicantId = Model.ApplicantId })
+        @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model )
     </div>
 </div>
