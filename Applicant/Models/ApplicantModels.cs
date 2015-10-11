@@ -140,7 +140,9 @@ namespace Applicant.Models
         ]
         public string VKontakte { get; set; }
 
+        public byte[] Photo { get; set; }
 
+        public string TypePhoto { get; set; }
 
         public ApplicantFields() { }
         public ApplicantFields(string firstName, string lastName, string middleName,
@@ -177,8 +179,6 @@ namespace Applicant.Models
     {
         [Key]
         public int ApplicantId { get; set; }
-        public int? PhotoId { get; set; }
-        public Attachment Photo { get; set; }
         public ApplicantEdit() { }
         public ApplicantEdit(ApplicantFields applicantFields)
             : base(applicantFields.FirstName, applicantFields.LastName, applicantFields.MiddleName,
@@ -210,13 +210,6 @@ namespace Applicant.Models
             WebSite = applicantFields.WebSite;
             Facebook = applicantFields.Facebook;
             VKontakte = applicantFields.VKontakte;
-            PhotoId = null;
-            Photo = null;
-        }
-        public void EditPhoto(int? photoId,Attachment photo)
-        {
-            PhotoId = photoId;
-            Photo = photo;
         }
     }
     public class Applicant : ApplicantEdit

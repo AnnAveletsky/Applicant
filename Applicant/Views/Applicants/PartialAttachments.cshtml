@@ -19,6 +19,6 @@
         </div>
     </div>
     <div id="tableAttachments">
-        @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model.Attachments.ToList())
+        @Html.Action("List", "Attachments", new { applicantId = Model.ApplicantId })
     </div>
 </div>

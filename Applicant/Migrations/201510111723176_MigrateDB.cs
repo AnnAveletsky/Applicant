@@ -3,7 +3,7 @@ namespace Applicant.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class MigrateDB : DbMigration
     {
         public override void Up()
         {
@@ -12,7 +12,6 @@ namespace Applicant.Migrations
                 c => new
                     {
                         ApplicantId = c.Int(nullable: false, identity: true),
-                        PhotoId = c.Int(),
                         FirstName = c.String(nullable: false, maxLength: 50),
                         MiddleName = c.String(nullable: false, maxLength: 50),
                         LastName = c.String(nullable: false, maxLength: 50),
@@ -33,11 +32,8 @@ namespace Applicant.Migrations
                         Linkedin = c.String(),
                         Facebook = c.String(),
                         VKontakte = c.String(),
-                        Photo_AttachmentId = c.Int(),
                     })
-                .PrimaryKey(t => t.ApplicantId)
-                .ForeignKey("dbo.Attachments", t => t.Photo_AttachmentId)
-                .Index(t => t.Photo_AttachmentId);
+                .PrimaryKey(t => t.ApplicantId);
             
             CreateTable(
                 "dbo.Attachments",
@@ -49,15 +45,12 @@ namespace Applicant.Migrations
                         Type = c.String(nullable: false),
                         Name = c.String(nullable: false, maxLength: 50),
                         Attach = c.Binary(),
-                        Applicant_ApplicantId = c.Int(),
                     })
                 .PrimaryKey(t => t.AttachmentId)
                 .ForeignKey("dbo.Applicants", t => t.ApplicantId)
                 .ForeignKey("dbo.Histories", t => t.HistoryId)
-                .ForeignKey("dbo.Applicants", t => t.Applicant_ApplicantId)
                 .Index(t => t.ApplicantId)
-                .Index(t => t.HistoryId)
-                .Index(t => t.Applicant_ApplicantId);
+                .Index(t => t.HistoryId);
             
             CreateTable(
                 "dbo.Histories",
@@ -173,8 +166,6 @@ namespace Applicant.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.TagApplicants", "Applicant_ApplicantId", "dbo.Applicants");
             DropForeignKey("dbo.TagApplicants", "Tag_TagId", "dbo.Tags");
-            DropForeignKey("dbo.Applicants", "Photo_AttachmentId", "dbo.Attachments");
-            DropForeignKey("dbo.Attachments", "Applicant_ApplicantId", "dbo.Applicants");
             DropForeignKey("dbo.Attachments", "HistoryId", "dbo.Histories");
             DropForeignKey("dbo.Histories", "ApplicantId", "dbo.Applicants");
             DropForeignKey("dbo.Attachments", "ApplicantId", "dbo.Applicants");
@@ -187,10 +178,8 @@ namespace Applicant.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.Histories", new[] { "ApplicantId" });
-            DropIndex("dbo.Attachments", new[] { "Applicant_ApplicantId" });
             DropIndex("dbo.Attachments", new[] { "HistoryId" });
             DropIndex("dbo.Attachments", new[] { "ApplicantId" });
-            DropIndex("dbo.Applicants", new[] { "Photo_AttachmentId" });
             DropTable("dbo.TagApplicants");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
