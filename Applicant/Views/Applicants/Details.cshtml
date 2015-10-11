@@ -23,8 +23,11 @@
                     @Html.DisplayFor(model => model.FirstName)
                     @Html.DisplayFor(model => model.MiddleName)
                     @Html.DisplayFor(model => model.LastName)
+                    
                 </h2>
+                
             </div>
+            
             <div class="media-right media-middle">
                 <a class="btn btn-default media-object btn-sm" href="@Url.Action("Index")">
                     <i class="glyphicon glyphicon-th-list"></i>
@@ -43,6 +46,10 @@
                 @Html.Partial("~/Views/Applicants/PartialProfile.cshtml", Model)
                 @Html.Partial("~/Views/Applicants/PartialContacts.cshtml", Model)
                 @Html.Partial("~/Views/Applicants/PartialWebPages.cshtml", Model)
+            <a class="btn btn-danger btn-sm media-object" href="@Url.Action("Delete", new { id = Model.ApplicantId })">
+                Удалить соискателя
+                <i class="glyphicon glyphicon-remove"></i>
+            </a>
         </div>
         <div class="col-md-8">
             @Html.Partial("~/Views/Applicants/PartialAttachments.cshtml", Model)

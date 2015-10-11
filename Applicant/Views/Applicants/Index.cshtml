@@ -17,12 +17,10 @@
         </div>
 </div>
 
-<table id="listTable" class="table table-striped table-bordered" cellspacing="0">
+<table id="listTable" class="table table-bordered table-hover " cellspacing="0">
     <thead>
         <tr>
-            <th>Фамилия</th>
-            <th>Имя</th>
-            <th>Отчество</th>
+            <th>Фамилия и имя</th>
             <th>Возраст</th>
             <th>Город</th>
         </tr>
@@ -30,9 +28,7 @@
 
     <tfoot>
         <tr>
-            <th>Фамилия</th>
-            <th>Имя</th>
-            <th>Отчество</th>
+            <th>Фамилия и имя</th>
             <th>Возраст</th>
             <th>Город</th>
         </tr>
@@ -47,15 +43,22 @@
 <script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('#listTable').DataTable({
+        var table = $('#listTable').DataTable({
             "ajax": "Applicants/List",
             "columns": [
-                { "data": "Фамилия" },
-                { "data": "Имя" },
-                { "data": "Отчество" },
+                { "data": "ФамилияИмя" },
                 { "data": "Возраст" },
                 { "data": "Город" }
             ]
+        });
+        $('#listTable tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('info')) {
+                $(this).removeClass('info');
+            }
+            else {
+                table.$('tr.info').removeClass('info');
+                $(this).addClass('info');
+            }
         });
     });
 </script>

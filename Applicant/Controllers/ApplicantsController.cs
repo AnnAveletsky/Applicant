@@ -24,9 +24,7 @@ namespace Applicant.Controllers
         {
             var json = db.Applicants.Select(i => new
             {
-                Фамилия = i.FirstName,
-                Имя=i.MiddleName,
-                Отчество=i.LastName,
+                ФамилияИмя = "<a href=/Applicants/Details/" + i.ApplicantId + "><span class='glyphicon glyphicon-user' aria-hidden='true'></span> " + i.FirstName + " " + i.MiddleName+"</a>",
                 Возраст = (DateTime.Now.Month < i.Birthday.Month || (DateTime.Now.Month == i.Birthday.Month && DateTime.Now.Day < i.Birthday.Day) ? DateTime.Now.Year - i.Birthday.Year - 1 : DateTime.Now.Year - i.Birthday.Year),
                 Город=i.Residence
             });
