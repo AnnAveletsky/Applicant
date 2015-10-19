@@ -41,22 +41,6 @@ namespace Applicant.Models
             return new ApplicationDbContext();
         }
 
-        public string StringJsonApplicants()
-        {
-            
-            string stringJsonApplicants = "{"+"data"+": [";
-            foreach (var i in Applicants)
-            {
-                stringJsonApplicants +="["+ 
-                    i.FirstName + "," + 
-                    i.MiddleName + "," + 
-                    i.LastName + "," + 
-                    i.Birthday + "," + 
-                    i.Residence+"],";
-            }
-            stringJsonApplicants += "]}";
-            return stringJsonApplicants;
-        }
         
         public List<Attachment> FindAttachmentsApplicant(int? applicantId)
         {

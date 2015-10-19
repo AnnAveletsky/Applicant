@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="~/Content/Icons/Original.png" type="image/png">
@@ -13,10 +13,10 @@
     <meta name="description" content="Management application records of interviews with the applicant" />
 </head>
 <body>
-   <div class="pl">
+    <div class="pl">
         <div class="round1"></div>
         <div class="pl_l"></div>
-       </div>
+    </div>
     <div class="navbar navbar-inverse navbar-fixed-top" style="z-index: 999;">
         <div class="container">
             <div class="navbar-header">
@@ -36,12 +36,15 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
                     <li>@Html.ActionLink("F.A.Q.", "FAQ", "Home")</li>
+
                 </ul>
+
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
+        @{ Html.RenderAction("Details", "Languages");}
         @RenderBody()
         <hr />
         <footer>
