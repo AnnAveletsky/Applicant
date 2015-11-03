@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Applicant.Models
+namespace ApplicantWeb.Models
 {
     public class TagFields
     {

@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EnterEmail" xml:space="preserve">
-    <value>Введите email</value>
+  <data name="FirstName" xml:space="preserve">
+    <value>Фамилия</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>Русский</value>
+  <data name="RequiredFieldError" xml:space="preserve">
+    <value>Поле должно быть заполнено</value>
   </data>
 </root>

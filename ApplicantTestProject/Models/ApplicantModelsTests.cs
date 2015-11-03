@@ -8,20 +8,20 @@ namespace ApplicantTestProject.Models
     [TestClass]
     public class ApplicantModelsTests
     {
-        private Applicant.Models.ApplicantFields ApplicantFields1;
-        private Applicant.Models.ApplicantFields ApplicantFields2;
-        private Applicant.Models.ApplicantFields ApplicantFields3;
+        private ApplicantWeb.Models.ApplicantFields ApplicantFields1;
+        private ApplicantWeb.Models.ApplicantFields ApplicantFields2;
+        private ApplicantWeb.Models.ApplicantFields ApplicantFields3;
 
-        private Applicant.Models.ApplicantEdit ApplicantEdit1;
-        private Applicant.Models.ApplicantEdit ApplicantEdit2;
+        private ApplicantWeb.Models.ApplicantEdit ApplicantEdit1;
+        private ApplicantWeb.Models.ApplicantEdit ApplicantEdit2;
 
-        private Applicant.Models.Applicant Applicant1;
-        private Applicant.Models.Applicant Applicant2;
-        private Applicant.Models.Applicant Applicant3;
+        private ApplicantWeb.Models.Applicant Applicant1;
+        private ApplicantWeb.Models.Applicant Applicant2;
+        private ApplicantWeb.Models.Applicant Applicant3;
 
-        public List<Applicant.Models.History> Histories;
-        public List<Applicant.Models.Tag> Tags;
-        public List<Applicant.Models.Attachment> Attachments;
+        public List<ApplicantWeb.Models.History> Histories;
+        public List<ApplicantWeb.Models.Tag> Tags;
+        public List<ApplicantWeb.Models.Attachment> Attachments;
 
       
         

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Applicant.Models;
+using ApplicantWeb.Models;
 
-namespace Applicant.Controllers
+namespace ApplicantWeb.Controllers
 {
     public class TagsController : Controller
     {
@@ -36,7 +36,7 @@ namespace Applicant.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Applicant.Models.Applicant applicant = db.Applicants.Find(applicantId);
+            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(applicantId);
             if (applicant == null)
             { 
                 return HttpNotFound(); 

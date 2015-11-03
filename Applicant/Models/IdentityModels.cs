@@ -10,7 +10,7 @@ using ApplicantClassLibrary;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Applicant.Models
+namespace ApplicantWeb.Models
 {
     // Чтобы добавить данные профиля для пользователя, можно добавить дополнительные свойства в класс ApplicationUser. Дополнительные сведения см. по адресу: http://go.microsoft.com/fwlink/?LinkID=317594.
     public class ApplicationUser : IdentityUser

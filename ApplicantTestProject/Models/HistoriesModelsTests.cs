@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Applicant.Models;
+using ApplicantWeb.Models;
 
 namespace ApplicantTestProject.Models
 {
@@ -13,13 +13,13 @@ namespace ApplicantTestProject.Models
         History History;
         HistoryEdit HistoryEdit;
 
-        Applicant.Models.Applicant Applicant;
+        ApplicantWeb.Models.Applicant Applicant;
 
         [TestInitialize]
         [TestMethod]
         public void InitHistories()
         {
-            Applicant = new Applicant.Models.Applicant();
+            Applicant = new ApplicantWeb.Models.Applicant();
             HistoryFields = new HistoryFields(new DateTime(2015, 09, 15), ApplicantClassLibrary.TypeHistory.Interview, "Здорово!!!");
             HistoryCreate = new HistoryCreate(HistoryFields, Applicant.ApplicantId, Applicant);
             History = new History(HistoryCreate);

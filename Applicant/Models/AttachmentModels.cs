@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Applicant.Models
+namespace ApplicantWeb.Models
 {
     public class AttachmentFields
     {

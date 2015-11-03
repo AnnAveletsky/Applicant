@@ -6,11 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Applicant.Models;
+using ApplicantWeb.Models;
 using ApplicantClassLibrary;
 using System.Web.Script.Serialization;
 
-namespace Applicant.Controllers
+namespace ApplicantWeb.Controllers
 {
     public class ApplicantsController : Controller
     {
@@ -38,7 +38,7 @@ namespace Applicant.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Applicant.Models.Applicant applicant = db.Applicants.Find(id);
+            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(id);
             if (applicant == null)
             {
                 return HttpNotFound();
@@ -59,7 +59,7 @@ namespace Applicant.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ApplicantFields applicantFields)
         {
-            Applicant.Models.Applicant applicant = new Models.Applicant(applicantFields);
+            ApplicantWeb.Models.Applicant applicant = new Models.Applicant(applicantFields);
             if (ModelState.IsValid)
             {
 
@@ -77,7 +77,7 @@ namespace Applicant.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Applicant.Models.Applicant applicant = db.Applicants.Find(id);
+            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(id);
             if (applicant == null)
             {
                 return HttpNotFound();
@@ -92,7 +92,7 @@ namespace Applicant.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ApplicantEdit applicantEdit)
         {
-            Applicant.Models.Applicant applicant = db.Applicants.Find(applicantEdit.ApplicantId);
+            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(applicantEdit.ApplicantId);
             if (ModelState.IsValid)
             {
                 applicant.Edit(applicantEdit);
@@ -109,7 +109,7 @@ namespace Applicant.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Applicant.Models.Applicant applicant = db.Applicants.Find(id);
+            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(id);
             if (applicant == null)
             {
                 return HttpNotFound();
@@ -122,8 +122,8 @@ namespace Applicant.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            
-                Applicant.Models.Applicant applicant = db.Applicants.Find(id);
+
+            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(id);
                 db.DeleteAttachments(applicant);
                 db.DeleteHistories(applicant);
                 db.Applicants.Remove(applicant);

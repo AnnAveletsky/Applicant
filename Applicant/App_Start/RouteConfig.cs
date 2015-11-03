@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Applicant
+namespace ApplicantWeb
 {
     public class RouteConfig
     {
@@ -13,16 +13,10 @@ namespace Applicant
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
-                name: "lang",
-                url: "{lang}/{controller}/{action}/{id}",
-                defaults: new { controller = "Applicants", action = "Index", id = UrlParameter.Optional },
-                constraints: new { lang = @"ru|en" }
-            );
-            routes.MapRoute(
 
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Applicants", action = "Index", id = UrlParameter.Optional, lang = "ru" }
+                defaults: new { controller = "Applicants", action = "Index", id = UrlParameter.Optional  }
             );
         }
     }

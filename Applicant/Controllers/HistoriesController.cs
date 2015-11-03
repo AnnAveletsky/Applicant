@@ -6,9 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Applicant.Models;
+using ApplicantWeb.Models;
 
-namespace Applicant.Controllers
+namespace ApplicantWeb.Controllers
 {
     public class HistoriesController : Controller
     {
@@ -119,7 +119,7 @@ namespace Applicant.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             History history = db.Histories.Find(id);
-            Applicant.Models.Applicant applicant = db.Applicants.Find(history.ApplicantId);
+            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(history.ApplicantId);
 
             db.DeleteAttachments(history);
             db.Histories.Remove(history);

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Applicant.Models;
+using ApplicantWeb.Models;
 
-namespace Applicant.Controllers
+namespace ApplicantWeb.Controllers
 {
     public class AttachmentsController : Controller
     {
@@ -66,7 +66,7 @@ namespace Applicant.Controllers
         {
             Attachment attachment = db.Attachments.Find(attachmentId);
             attachment.History = db.Histories.Find(attachment.HistoryId);
-            Applicant.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
+            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
             attachment.ApplicantId = applicant.ApplicantId;
             attachment.Applicant = applicant;
             applicant.Attachments.Add(attachment);
@@ -77,7 +77,7 @@ namespace Applicant.Controllers
         {
             Attachment attachment = db.Attachments.Find(attachmentId);
             attachment.History = db.Histories.Find(attachment.HistoryId);
-            Applicant.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
+            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
             attachment.ApplicantId = null;
             attachment.Applicant = null;
             applicant.Attachments.Remove(attachment);
@@ -88,7 +88,7 @@ namespace Applicant.Controllers
         {
             Attachment attachment = db.Attachments.Find(attachmentId);
             attachment.History = db.Histories.Find(attachment.HistoryId);
-            Applicant.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
+            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
             attachment.ApplicantId = null;
             attachment.Applicant = null;
             applicant.Attachments.Remove(attachment);
@@ -118,7 +118,7 @@ namespace Applicant.Controllers
             Attachment attachment = db.Attachments.Find(id);
             if (attachment.ApplicantId != null)
             {
-                Applicant.Models.Applicant applicant=db.Applicants.Find(attachment.ApplicantId);
+                ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(attachment.ApplicantId);
                 db.Attachments.Remove(attachment);
                 db.SaveChanges();
                 return PartialView("PartialList", applicant);

@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Applicant.Models;
+using ApplicantWeb.Models;
 
 namespace ApplicantTestProject.Models
 {
@@ -13,7 +13,7 @@ namespace ApplicantTestProject.Models
 
         AttachmentFields AttachmentFields;
 
-        Applicant.Models.Applicant Applicant;
+        ApplicantWeb.Models.Applicant Applicant;
 
         History History;
 
@@ -24,7 +24,7 @@ namespace ApplicantTestProject.Models
             Attachment1 = new Attachment();
 
             AttachmentFields = new AttachmentFields("Файл",".txt",null);
-            Applicant=new Applicant.Models.Applicant();
+            Applicant=new ApplicantWeb.Models.Applicant();
             Attachment2 = new Attachment(AttachmentFields,Applicant.ApplicantId,Applicant);
 
             History = new History();

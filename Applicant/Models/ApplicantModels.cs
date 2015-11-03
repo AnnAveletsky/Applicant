@@ -4,15 +4,18 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using ApplicantClassLibrary;
-
-namespace Applicant.Models
+using System.Data.Entity;
+using System.Resources;
+using System.Globalization;
+namespace ApplicantWeb.Models
 {
     public class ApplicantFields
     {
         [
-            Required(ErrorMessage = "Поле должно быть установлено"),
+            Required(ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
+                  ErrorMessageResourceName = "RequiredFieldError"),
             StringLength(50, MinimumLength = 2, ErrorMessage = "Длина строки должна быть от 2 до 50 символов"),
-            Display(Name = "Фамилия"),
+            Display(Name = "FirstName", ResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant)),
         ]
         public string FirstName { get; set; }
 

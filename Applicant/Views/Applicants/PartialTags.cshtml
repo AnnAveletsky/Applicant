@@ -1,9 +1,9 @@
-﻿@model Applicant.Models.Applicant
+﻿@model ApplicantWeb.Models.Applicant
 <div class="row">
     <div class="col-md-9" id="tags" style="margin-bottom:10px;">
-        @Html.Partial("~/Views/Tags/PartialList.cshtml", new Applicant.Models.TagList() { ApplicantId = Model.ApplicantId, Tags = Model.Tags })
+        @Html.Partial("~/Views/Tags/PartialList.cshtml", new ApplicantWeb.Models.TagList() { ApplicantId = Model.ApplicantId, Tags = Model.Tags })
     </div>
     <div class="col-md-3" style="margin-bottom:10px;">
-        @Html.Partial("~/Views/Tags/PartialCreate.cshtml", new Applicant.Models.TagCreate() { ApplicantId = Model.ApplicantId })
+        @Html.Partial("~/Views/Tags/PartialCreate.cshtml", new ApplicantWeb.Models.TagCreate() { ApplicantId = Model.ApplicantId })
     </div>
 </div>

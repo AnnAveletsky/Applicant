@@ -1,6 +1,19 @@
-﻿@model Applicant.Models.Language
-@using (Html.BeginForm("ChangeLanguage", "Languages", new { @class = "" }))
-{
-    <p>Язык  @Html.EnumDropDownListFor(model => model.CurrentLang, htmlAttributes: new { @class = "form-control short" })
-    </p>
-}
+﻿@model ApplicantWeb.Models.Language
+
+<div class="row">
+    @using (Html.BeginForm("ChangeCulture", "Languages",FormMethod.Post))
+    {
+            <div class="col-md-2">
+                <h5>
+                    Язык
+                </h5>
+            </div>
+            <div class="col-md-4" >
+                @Html.EnumDropDownListFor(model => model.CurrentLang, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary">
+                <i class="glyphicon glyphicon-edit"></i>
+                Выбрать язык
+            </button>
+    }
+</div>

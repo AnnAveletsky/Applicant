@@ -1,4 +1,4 @@
-﻿@model Applicant.Models.Applicant
+﻿@model ApplicantWeb.Models.Applicant
 
 <div class=" panel panel-info">
     <div class="panel-heading">
@@ -15,7 +15,7 @@
     </div>
     <div id="collapse1" class="panel-collapse collapse">
         <div class="panel-body">
-            @Html.Partial("~/Views/Histories/PartialCreate.cshtml", new Applicant.Models.HistoryCreate() { ApplicantId = Model.ApplicantId })
+            @Html.Partial("~/Views/Histories/PartialCreate.cshtml", new ApplicantWeb.Models.HistoryCreate() { ApplicantId = Model.ApplicantId })
         </div>
     </div>
     <div id="tableHistories">

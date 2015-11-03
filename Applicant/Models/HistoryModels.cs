@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using ApplicantClassLibrary;
 
-namespace Applicant.Models
+namespace ApplicantWeb.Models
 {
     public class HistoryFields
     {

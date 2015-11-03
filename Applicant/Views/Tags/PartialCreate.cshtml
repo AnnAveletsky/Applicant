@@ -1,4 +1,4 @@
-﻿@model Applicant.Models.TagCreate
+﻿@model ApplicantWeb.Models.TagCreate
 @using (Ajax.BeginForm("Create", "Tags", new AjaxOptions { UpdateTargetId = "tags", OnSuccess = "$('#reset').click()" }))
 {
     @Html.AntiForgeryToken()
