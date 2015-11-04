@@ -7,8 +7,7 @@
 
 @{
     ViewBag.Title = "Подробнее о соискателе: " + Html.DisplayFor(model => model.FirstName) + " "
-            + Html.DisplayFor(model => model.MiddleName) + " "
-            + Html.DisplayFor(model => model.LastName);
+            + Html.DisplayFor(model => model.MiddleName);
 }
 
 <link media="only screen and (max-device-width: 950px)" href="~/Content/Site.css" rel="stylesheet" />
@@ -22,7 +21,6 @@
                 <h2 class="media-heading">
                     @Html.DisplayFor(model => model.FirstName)
                     @Html.DisplayFor(model => model.MiddleName)
-                    @Html.DisplayFor(model => model.LastName)
                     
                 </h2>
                 

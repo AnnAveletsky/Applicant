@@ -28,13 +28,6 @@ namespace ApplicantWeb.Models
 
         [
             Required(ErrorMessage = "Поле должно быть установлено"),
-            StringLength(50, MinimumLength = 2, ErrorMessage = "Длина строки должна быть от 2 до 50 символов"),
-            Display(Name = "Отчество")
-        ]
-        public string LastName { get; set; }
-
-        [
-            Required(ErrorMessage = "Поле должно быть установлено"),
             Display(Name = "Пол")
         ]
         public Gender Gender { get; set; }
@@ -57,7 +50,7 @@ namespace ApplicantWeb.Models
             Display(Name = "Тип зарплаты"),
             Required(ErrorMessage = "Поле должно быть установлено"),
         ]
-        public TypeSalary TypeSalary{ get; set; }
+        public string TypeSalary{ get; set; }
         [
             DataType(DataType.Currency),
             Range(1, 1000000, ErrorMessage = "Необходимо установить от 1 до 1 000 000 руб."),
@@ -70,7 +63,7 @@ namespace ApplicantWeb.Models
             Required(ErrorMessage = "Поле должно быть установлено"),
             Display(Name = "Валюта")
         ]
-        public TypeMoney TypeMoney { get; set; }
+        public string TypeMoney { get; set; }
 
         [
             Required(ErrorMessage = "Поле должно быть установлено"),
@@ -148,17 +141,16 @@ namespace ApplicantWeb.Models
         public string TypePhoto { get; set; }
 
         public ApplicantFields() { }
-        public ApplicantFields(string firstName, string lastName, string middleName,
+        public ApplicantFields(string firstName, string middleName,
             Gender gender, DateTime birthday, string residence, string email,
             string skype, string gitHub, string linkedin,
             string phone, string comments, 
-            int salary,TypeSalary typeSalary,TypeMoney typeMoney,
+            int salary,string typeSalary,string typeMoney,
             TypeWork typeWork,TypeBussy typeBussy,
             string website, string facebook, string vkontakte)
         {
             FirstName = firstName;
             MiddleName = middleName;
-            LastName = lastName;
             Birthday = birthday;
             Gender = gender;
             Residence = residence;
@@ -184,7 +176,7 @@ namespace ApplicantWeb.Models
         public int ApplicantId { get; set; }
         public ApplicantEdit() { }
         public ApplicantEdit(ApplicantFields applicantFields)
-            : base(applicantFields.FirstName, applicantFields.LastName, applicantFields.MiddleName,
+            : base(applicantFields.FirstName, applicantFields.MiddleName,
                 applicantFields.Gender, applicantFields.Birthday, applicantFields.Residence, applicantFields.Email,
                 applicantFields.Skype, applicantFields.GitHub, applicantFields.Linkedin, applicantFields.Phone,
                 applicantFields.Comments,
@@ -195,7 +187,6 @@ namespace ApplicantWeb.Models
         {
             FirstName = applicantFields.FirstName;
             MiddleName = applicantFields.MiddleName;
-            LastName = applicantFields.LastName;
             Birthday = applicantFields.Birthday;
             Gender = applicantFields.Gender;
             Residence = applicantFields.Residence;
