@@ -1,7 +1,7 @@
 ﻿@model ApplicantWeb.Models.Applicant
 <div class="row">
     <div class="col-md-9" id="tags" style="margin-bottom:10px;">
-        @Html.Partial("~/Views/Tags/PartialList.cshtml", new ApplicantWeb.Models.TagList() { ApplicantId = Model.ApplicantId, Tags = Model.Tags })
+        @Html.Action("ToList", "Tags", new { ApplicantId=Model.ApplicantId })
     </div>
     <div class="col-md-3" style="margin-bottom:10px;">
         @Html.Partial("~/Views/Tags/PartialCreate.cshtml", new ApplicantWeb.Models.TagCreate() { ApplicantId = Model.ApplicantId })

@@ -40,7 +40,10 @@ namespace ApplicantWeb.Models
         {
             return new ApplicationDbContext();
         }
-
+        public List<Tag> ToList(int ApplicantId)
+        {
+            return (from tag in Applicants.Find(ApplicantId).Tags orderby tag.TagName select tag).ToList();
+        }
         
         public List<Attachment> FindAttachmentsApplicant(int? applicantId)
         {

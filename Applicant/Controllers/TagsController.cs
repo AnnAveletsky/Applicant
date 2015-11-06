@@ -23,11 +23,11 @@ namespace ApplicantWeb.Controllers
         public ActionResult Create(TagCreate tagCreate)
         {
             db.CreateTagAndAddTagInApplicant(tagCreate);
-            if (ModelState.IsValid)
-            {
-                tagCreate.Applicant = db.Applicants.Find(tagCreate.ApplicantId);
-            }
-            return PartialView("PartialList", new TagList() { ApplicantId = tagCreate.ApplicantId, Tags = db.Applicants.Find(tagCreate.ApplicantId).Tags.ToList() });
+            return PartialView("PartialList", new TagList() { ApplicantId = tagCreate.ApplicantId, Tags = db.ToList(tagCreate.ApplicantId) });
+        }
+        public ActionResult ToList(int ApplicantId)
+        {
+            return PartialView("PartialList", new TagList() { ApplicantId = ApplicantId, Tags = db.ToList(ApplicantId) });
         }
         // GET: Attachments/Delete/5
         public ActionResult Delete(int? id, int? applicantId)
@@ -62,7 +62,7 @@ namespace ApplicantWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return PartialView("PartialList", new TagList() { Tags = db.Applicants.Find(tagCreate.ApplicantId).Tags.ToList(), ApplicantId = tagCreate.ApplicantId });
+            return PartialView("PartialList", new TagList() { Tags = db.ToList(tagCreate.ApplicantId), ApplicantId = tagCreate.ApplicantId });
         }
 
         protected override void Dispose(bool disposing)
