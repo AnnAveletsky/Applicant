@@ -511,7 +511,6 @@
     <Content Include="Views\Attachments\PartialLoadToHistory.cshtml" />
     <Content Include="Views\Attachments\PartialListToHistory.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
-    <Content Include="Views\Applicants\PartialWebPages.cshtml" />
     <Content Include="Views\Applicants\PartialContacts.cshtml" />
     <Content Include="Views\Applicants\PartialProfile.cshtml" />
     <Content Include="Views\Applicants\PartialHistories.cshtml" />

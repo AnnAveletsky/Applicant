@@ -13,52 +13,75 @@
 <link media="only screen and (max-device-width: 950px)" href="~/Content/Site.css" rel="stylesheet" />
 
 
-<div class="row">
-    <div class="col-md-12">
-        <h4>Подробнее о соискателе</h4>
-        <div class="media">
-            <div class="media-body">
-                <h2 class="media-heading">
-                    @Html.DisplayFor(model => model.FirstName)
-                    @Html.DisplayFor(model => model.MiddleName)
-                    
-                </h2>
-                
-            </div>
-            
-            <div class="media-right media-middle">
-                <a class="btn btn-default media-object btn-sm" href="@Url.Action("Index")">
-                    <i class="glyphicon glyphicon-th-list"></i>
-                    К списку
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-12">
-        @Html.Partial("~/Views/Applicants/PartialTags.cshtml", Model)
-    </div>
-</div>
-    <div class="row">
+<div class="row content">
         <div class="col-md-4">
-                @Html.Partial("~/Views/Applicants/PartialProfile.cshtml", Model)
-                @Html.Partial("~/Views/Applicants/PartialContacts.cshtml", Model)
-                @Html.Partial("~/Views/Applicants/PartialWebPages.cshtml", Model)
-            <a class="btn btn-danger btn-sm media-object" href="@Url.Action("Delete", new { id = Model.ApplicantId })">
-                Удалить соискателя
-                <i class="glyphicon glyphicon-remove"></i>
-            </a>
+            <div class="box box-primary">
+                <div class=" box-body">
+                    <img class="profile-user-img img-responsive img-circle" src="" alt="User profile picture">
+                    <h3 class="profile-username text-center">
+                        @Html.DisplayFor(model => model.FirstName)
+                    @Html.DisplayFor(model => model.MiddleName)
+                </h3>
+                    <p class="text-muted text-center">@Html.DisplayFor(model => model.BaseProfileJob)</p>
+                <strong><i class="fa fa-pencil margin-r-5"></i> Навыки</strong>
+                @Html.Partial("~/Views/Applicants/PartialTags.cshtml", Model)
+            </div>
         </div>
-        <div class="col-md-8">
-            @Html.Partial("~/Views/Applicants/PartialAttachments.cshtml", Model)
-            @Html.Partial("~/Views/Applicants/PartialHistories.cshtml", Model)
+            <div class="box box-primary">
+                <div class=" box-header">
+                    <div class="media">
+                        <div class="media-body">
+                            <h4 class="media-heading">Информация о соискателе</h4>
+                        </div>
+                        <div class="media-right">
+                            <a class="btn btn-primary btn-sm media-object" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    @Html.Partial("~/Views/Applicants/PartialProfile.cshtml", Model)
+                    <a class="btn btn-danger btn-sm media-object" href="@Url.Action("Delete", new { id = Model.ApplicantId })">
+                        Удалить соискателя
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </div>
+            </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#histories" data-toggle="tab" aria-expanded="true">Собеседования</a>
+                        </li>
+                        <li>
+                            <a href="#attachments" data-toggle="tab" aria-expanded="false">Документы</a>
+                        </li>
+                        <li>
+                            <a href="#contacts" data-toggle="tab" aria-expanded="false">Контакты</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="histories">
+                            @Html.Partial("~/Views/Applicants/PartialHistories.cshtml", Model)
+                        </div>
+                        <div class="tab-pane" id="attachments">
+                            @Html.Partial("~/Views/Applicants/PartialAttachments.cshtml", Model)
+                        </div>
+                        <div class="tab-pane" id="contacts">
+                            @Html.Partial("~/Views/Applicants/PartialContacts.cshtml", Model)
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
 
-@section Scripts {
-    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
-}
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        @section Scripts {
+            @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+        }
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
-</div>
+        </div>

@@ -1,24 +1,25 @@
 ﻿@model ApplicantWeb.Models.Applicant
 
-<div class="panel panel-info">
-    <div class="panel-heading" role="tab" id="headingAttach">
-        <div class="media">
-            <div class="media-body">
-                <h4 class="media-heading">Документы</h4>
-            </div>
-            <div class="media-right">
-                <a class="btn btn-success btn-sm media-object" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAttach" aria-expanded="true" aria-controls="collapseAttach">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                </a>
-            </div>
+<div class="box-header">
+    <div class="media">
+        <div class="media-body">
+            <h4 class="media-heading">Документы</h4>
+        </div>
+        <div class="media-right">
+            <a class="btn btn-success btn-sm media-object" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAttach" aria-expanded="true" aria-controls="collapseAttach">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </a>
         </div>
     </div>
+</div>
+
+<div class="box-body">
     <div id="collapseAttach" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAttach">
         <div class="panel-body">
             @Html.Partial("~/Views/Attachments/PartialLoad.cshtml", Model.ApplicantId)
         </div>
     </div>
     <div id="tableAttachments">
-        @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model )
+        @Html.Partial("~/Views/Attachments/PartialList.cshtml", Model)
     </div>
 </div>

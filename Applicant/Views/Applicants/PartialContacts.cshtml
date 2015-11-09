@@ -1,34 +1,75 @@
 ﻿@model ApplicantWeb.Models.Applicant
 
-<div class="panel panel-info">
-    <div class="panel-heading">
-        <div class="media">
-            <div class="media-body">
-                <h4 class="media-heading">Контактные данные</h4>
-            </div>
-            <div class="media-right">
-                <a class="btn btn-primary btn-sm media-object" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
-                    <i class="glyphicon glyphicon-edit"></i>
-                </a>
-            </div>
-        </div>
+<div class="media">
+    <div class="media-body">
+        <h4 class="media-heading">Контактные данные</h4>
     </div>
-
-    <table class="table table-condensed  table-hover cf">
-        <tr>
-            <th class="navbar-default">@Html.DisplayNameFor(model => model.Email)</th>
-            <td>@Html.DisplayFor(model => model.Email)</td>
-        </tr>
-        <tr>
-            <th class="navbar-default">@Html.DisplayNameFor(model => model.Phone)</th>
-            <td>@Html.DisplayFor(model => model.Phone)</td>
-        </tr>
-        @if (Model.Skype != null)
-        {
-            <tr>
-                <th class="navbar-default">@Html.DisplayNameFor(model => model.Skype)</th>
-                <td>@Html.DisplayFor(model => model.Skype)</td>
-            </tr>
-        }
-    </table>
+    <div class="media-right">
+        <a class="btn btn-primary btn-sm media-object" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
+            <i class="glyphicon glyphicon-edit"></i>
+        </a>
+    </div>
 </div>
+
+<table class="table table-condensed">
+    <tr>
+        <th class="">@Html.DisplayNameFor(model => model.Email)</th>
+        <td>@Html.DisplayFor(model => model.Email)</td>
+    </tr>
+    <tr>
+        <th class="">@Html.DisplayNameFor(model => model.Phone)</th>
+        <td>@Html.DisplayFor(model => model.Phone)</td>
+    </tr>
+    @if (Model.Skype != null)
+    {
+        <tr>
+            <th class="">@Html.DisplayNameFor(model => model.Skype)</th>
+            <td>@Html.DisplayFor(model => model.Skype)</td>
+        </tr>
+    }
+    @if (Model.WebSite != null)
+    {
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.WebSite)</th>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(model => model.WebSite)</td>
+        </tr>
+    }
+    @if (Model.GitHub != null)
+    {
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.GitHub)</th>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(model => model.GitHub)</td>
+        </tr>
+    }
+    @if (Model.Linkedin != null)
+    {
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Linkedin)</th>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(model => model.Linkedin)</td>
+        </tr>
+    }
+    @if (Model.Facebook != null)
+    {
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Facebook)</th>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(model => model.Facebook)</td>
+        </tr>
+    }
+    @if (Model.VKontakte != null)
+    {
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.VKontakte)</th>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(model => model.VKontakte)</td>
+        </tr>
+    }
+</table>

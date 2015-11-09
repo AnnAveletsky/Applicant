@@ -37,10 +37,10 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(model => model.BaseProfileJob, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control short" } })
-                        @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.BaseProfileJob, new { htmlAttributes = new { @class = "form-control short" } })
+                        @Html.ValidationMessageFor(model => model.BaseProfileJob, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -61,6 +61,16 @@
                     <div class="col-md-8">
                         @Html.EditorFor(model => model.Residence, new { htmlAttributes = new { @class = "form-control short" } })
                         @Html.ValidationMessageFor(model => model.Residence, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control short" } })
+                        @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -94,8 +104,8 @@
                         <div class="input-group short">
                             <div class="input-group-btn">
                                 <select id="TypeSalary" name="TypeSalary" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <option>Помесячная</option>
-                                    <option>По часовая</option>
+                                    <option>В месяц</option>
+                                    <option>В час</option>
                                 </select>
                             </div>
                             <input type="text" id="Salary" name="Salary" class="form-control" aria-label="...">

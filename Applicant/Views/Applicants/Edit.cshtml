@@ -39,22 +39,14 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(model => model.BaseProfileJob, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EditorFor(model => model.Birthday, new
-           {
-               htmlAttributes = new
-               {
-                   @class = "form-control short",
-                   @Value = Model.Birthday.Year +
-                       "-" + ((Model.Birthday.Month >= 10) ? Model.Birthday.Month + "" : ("0" + Model.Birthday.Month)) +
-                       "-" + (Model.Birthday.Day >= 10 ? Model.Birthday.Day + "" : "0" + Model.Birthday.Day)
-               }
-           })
-                        @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.BaseProfileJob, new { htmlAttributes = new { @class = "form-control short" } })
+                        @Html.ValidationMessageFor(model => model.BaseProfileJob, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
+
             <div class="col-md-5">
                 <div class="form-group">
                     @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -74,6 +66,24 @@
                     <div class="col-md-8">
                         @Html.EditorFor(model => model.Residence, new { htmlAttributes = new { @class = "form-control short" } })
                         @Html.ValidationMessageFor(model => model.Residence, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Birthday, new
+           {
+               htmlAttributes = new
+               {
+                   @class = "form-control short",
+                   @Value = Model.Birthday.Year +
+                       "-" + ((Model.Birthday.Month >= 10) ? Model.Birthday.Month + "" : ("0" + Model.Birthday.Month)) +
+                       "-" + (Model.Birthday.Day >= 10 ? Model.Birthday.Day + "" : "0" + Model.Birthday.Day)
+               }
+           })
+                        @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -107,16 +117,17 @@
                         <div class="input-group short">
                             <div class="input-group-btn">
                                 <select id="TypeSalary" name="TypeSalary" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    @if (Model.TypeSalary == "Помесячная") { 
-                                        <option selected>Помесячная</option>
-                                        <option>По часовая</option>
+                                    @if (Model.TypeSalary == "В месяц")
+                                    {
+                                        <option selected>В месяц</option>
+                                        <option>В час</option>
                                     }
                                     else
                                     {
-                                        <option>Помесячная</option>
-                                        <option selected>По часовая</option>
+                                        <option>В месяц</option>
+                                        <option selected>В час</option>
                                     }
-                                    
+
                                 </select>
                             </div>
                             <input type="text" id="Salary" value="@Model.Salary" name="Salary" class="form-control" aria-label="...">

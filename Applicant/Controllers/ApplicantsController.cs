@@ -101,7 +101,7 @@ namespace ApplicantWeb.Controllers
                 db.Entry(applicant).State = EntityState.Modified;
                 db.SaveChanges();
             }
-            return View("Details", applicant);
+            return Redirect(Url.Action("Details", "Applicants", new { id= applicant.ApplicantId }));
         }
 
         // GET: Applicants/Delete/5

@@ -28,6 +28,12 @@ namespace ApplicantWeb.Models
 
         [
             Required(ErrorMessage = "Поле должно быть установлено"),
+            Display(Name = "Основной профиль работы")
+        ]
+        public string BaseProfileJob { get; set; }
+
+        [
+            Required(ErrorMessage = "Поле должно быть установлено"),
             Display(Name = "Пол")
         ]
         public Gender Gender { get; set; }
@@ -52,8 +58,7 @@ namespace ApplicantWeb.Models
         ]
         public string TypeSalary{ get; set; }
         [
-            DataType(DataType.Currency),
-            Range(1, 1000000, ErrorMessage = "Необходимо установить от 1 до 1 000 000 руб."),
+            Range(1, 1000000, ErrorMessage = "Необходимо установить от 1 до 1 000 000"),
             Required(ErrorMessage = "Поле должно быть установлено"),
             Display(Name = "Желаемая зарплата")
         ]
@@ -67,7 +72,7 @@ namespace ApplicantWeb.Models
 
         [
             Required(ErrorMessage = "Поле должно быть установлено"),
-            Display(Name = "Тип сотрудничества")
+            Display(Name = "Желаемый тип сотрудничества")
         ]
         public TypeWork TypeWork { get; set; }
 
@@ -141,7 +146,8 @@ namespace ApplicantWeb.Models
         public string TypePhoto { get; set; }
 
         public ApplicantFields() { }
-        public ApplicantFields(string firstName, string middleName,
+        public ApplicantFields(string firstName, string middleName, 
+            string  baseProfileJob,
             Gender gender, DateTime birthday, string residence, string email,
             string skype, string gitHub, string linkedin,
             string phone, string comments, 
@@ -151,6 +157,7 @@ namespace ApplicantWeb.Models
         {
             FirstName = firstName;
             MiddleName = middleName;
+            BaseProfileJob = baseProfileJob;
             Birthday = birthday;
             Gender = gender;
             Residence = residence;
@@ -176,7 +183,7 @@ namespace ApplicantWeb.Models
         public int ApplicantId { get; set; }
         public ApplicantEdit() { }
         public ApplicantEdit(ApplicantFields applicantFields)
-            : base(applicantFields.FirstName, applicantFields.MiddleName,
+            : base(applicantFields.FirstName, applicantFields.MiddleName,applicantFields.BaseProfileJob,
                 applicantFields.Gender, applicantFields.Birthday, applicantFields.Residence, applicantFields.Email,
                 applicantFields.Skype, applicantFields.GitHub, applicantFields.Linkedin, applicantFields.Phone,
                 applicantFields.Comments,
@@ -187,6 +194,7 @@ namespace ApplicantWeb.Models
         {
             FirstName = applicantFields.FirstName;
             MiddleName = applicantFields.MiddleName;
+            BaseProfileJob = applicantFields.BaseProfileJob;
             Birthday = applicantFields.Birthday;
             Gender = applicantFields.Gender;
             Residence = applicantFields.Residence;
