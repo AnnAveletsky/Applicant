@@ -15,16 +15,40 @@ namespace ApplicantWeb.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // POST: Attachments/List/
-        public JsonResult List(int id)
+        public JsonResult List(int? id,int? idHistory)
         {
-           
+            if (idHistory == null&&id!=null)
+            {
                 var attachments = db.Applicants.Find(id).Attachments;
                 var json = attachments.Select(i => new
                 {
-                    Название = "<a href='/../../Attachments/Download/" + i.AttachmentId + "'><i class='glyphicon glyphicon-download'></i> " + i.Name + "</a>" ,
-                    УдалениеДобавление=((i.HistoryId != null)?"<button type='submit' class='btn btn-danger btn-sm' onclick='deleteToApplicantToHistory("+i.AttachmentId+")'><i class='glyphicon glyphicon-paperclip'></i></button>":"")+" <button class='btn btn-danger btn-sm' type='submit' value='Удалить' data-toggle='modal' data-target='#myModal' onclick='delAttach("+i.AttachmentId+")'> <i class='glyphicon glyphicon-remove'></i> </button>"
+                    Название = "<a href='/../../Attachments/Download/" + i.AttachmentId + "'><i class='glyphicon glyphicon-download'></i> " + i.Name + "</a>",
+                    УдалениеДобавление = ((i.HistoryId != null) ? "<button type='submit' class='btn btn-danger btn-sm' onclick='deleteToApplicantToHistory(" + i.AttachmentId + ")'><i class='glyphicon glyphicon-paperclip'></i></button>" : "") + " <button class='btn btn-danger btn-sm' type='submit' value='Удалить' data-toggle='modal' data-target='#myModal' onclick='delAttach(" + i.AttachmentId + ")'> <i class='glyphicon glyphicon-remove'></i> </button>"
                 });
                 return Json(new { data = json }, JsonRequestBehavior.AllowGet);
+            }
+            else if(idHistory!=null&&id==null)
+            {
+                var history = db.Histories.Find(idHistory);
+                if (history != null)
+                {
+                    var attachments = history.Attachments;
+                    var json = attachments.Select(i => new
+                    {
+                        Название = "<a href='/../../Attachments/Download/" + i.AttachmentId + "'><i class='glyphicon glyphicon-download'></i> " + i.Name + "</a>",
+                        УдалениеДобавление =  ((i.ApplicantId == null)?("<button class='btn btn-success btn-sm' onclick='addToApplicant("+i.AttachmentId+")'><i class='glyphicon glyphicon-paperclip'></i></button>"):  ((i.HistoryId != null)?("<button type='submit' class='btn btn-danger btn-sm' onclick='deleteToApplicantToHistory("+i.AttachmentId+")'><i class='glyphicon glyphicon-paperclip'></i></button>"):("")))+("<button class='btn btn-danger btn-sm' type='submit' value='Удалить' data-toggle='modal' data-target='#myModal' onclick='del(")+i.AttachmentId+(")'> <i class='glyphicon glyphicon-remove'></i></button>")
+                    });
+                    return Json(new { data = json }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
         }
         public ActionResult PartialList(int id)
         {
@@ -33,9 +57,7 @@ namespace ApplicantWeb.Controllers
         }
         public ActionResult ListToHistory(int historyId)
         {
-            
-                return PartialView("PartialListToHistory", db.Histories.Find(historyId).Attachments.ToList());
-       
+             return PartialView("PartialListToHistory", db.Histories.Find(historyId));
         }
         // GET: Attachments/Load
         public JsonResult Load(int applicantId ,IEnumerable<HttpPostedFileBase> file_data)
@@ -71,7 +93,7 @@ namespace ApplicantWeb.Controllers
             attachment.Applicant = applicant;
             applicant.Attachments.Add(attachment);
             db.SaveChanges();
-            return PartialView("PartialListToHistory", attachment.History.Attachments.ToList());
+            return PartialView("PartialListToHistory", attachment.History);
         }
         public ActionResult DeleteToApplicant(int attachmentId)
         {

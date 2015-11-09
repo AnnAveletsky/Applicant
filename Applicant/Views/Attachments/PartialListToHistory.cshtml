@@ -1,41 +1,41 @@
-﻿@model IEnumerable<ApplicantWeb.Models.Attachment>
+﻿@model ApplicantWeb.Models.History
 
-<table class="table" style="margin:0px">
-    @foreach (var item in Model)
-    {
+<table id="listAttachments" class="table table-bordered table-hover " cellspacing="0">
+    <thead>
         <tr>
-            <td>
-                <a class="btn btn-info btn-sm" href="@Url.Action("Download", "Attachments", new { id = item.AttachmentId, applicantId = item.ApplicantId })">
-                    <i class="glyphicon glyphicon-download"></i>
-                </a>
-            </td>
-            <td>@Html.DisplayFor(modelItem => item.Name)</td>
-            <td>
-                
-                
-                @if (item.ApplicantId == null)
-                {
-                    <button class="btn btn-success btn-sm" onclick="addToApplicant(@item.AttachmentId)">
-                        <i class="glyphicon glyphicon-paperclip"></i>
-                    </button>
-                }
-                else if (item.HistoryId != null)
-                {
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="deleteToApplicantToHistory(@item.AttachmentId)">
-                        <i class="glyphicon glyphicon-paperclip"></i>
-                    </button>
-                }
-                <button class="btn btn-danger btn-sm" type="submit" value="Удалить" data-toggle="modal" data-target="#myModal" onclick="del(@item.AttachmentId)">
-                    <i class="glyphicon glyphicon-remove"></i>
-                </button>
-            </td>
+            <th>Название</th>
+            <th></th>
         </tr>
-    }
+    </thead>
 </table>
+<script src="~/Scripts/jquery-2.1.3.js"></script>
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
+
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
 </div>
+<script>
+    $(document).ready(function () {
+        var table = $('#listAttachments').DataTable({
+            "ajax": "@Url.Action("List", "Attachments", new { idHistory = Model.HistoryId })",
+            "columns": [
+                { "data": "Название", },
+                { "data": "УдалениеДобавление", }
+            ]
+        });
+        $('#listAttachments tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('info')) {
+                $(this).removeClass('info');
+            }
+            else {
+                table.$('tr.info').removeClass('info');
+                $(this).addClass('info');
+            }
+        });
+    });
+</script>
 <script>
     function addToApplicant(attachmentId) {
         $.ajax({
@@ -51,21 +51,21 @@
         $.ajax({
             url: "@Url.Action("DeleteToApplicantToHistory", "Attachments")",
             data: "attachmentId=" + attachmentId,
-        success: function (html) {
-            $("#tableAttachments").empty();
-            $("#tableAttachments").append(html);
-        }
-    });
+            success: function (html) {
+                $("#tableAttachments").empty();
+                $("#tableAttachments").append(html);
+            }
+        });
     }
     function del(id) {
         $.ajax({
             url: "@Url.Action("Delete", "Attachments")",
             data: "id=" + id,
-        success: function (html) {
-            $("#myModal").empty();
-            $("#myModal").append(html);
-        }
-    });
+            success: function (html) {
+                $("#myModal").empty();
+                $("#myModal").append(html);
+            }
+        });
     }
 </script>
 @section Scripts {

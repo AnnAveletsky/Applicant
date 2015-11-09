@@ -4,39 +4,39 @@
     ViewBag.Title = "Соискатели";
 }
 <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-<div class="row" style="margin-top:20px">
-    <div class="col-md-7">
-        <header class="form-group">
-            <h2>
+<div class="content">
+    <div class="box box-info">
+        <header class="box-header">
+            <h2 class="box-title">
                 Соискатели
                 <a class=" btn btn-success btn-sm " href="@Url.Action("Create")">
                     <i class="glyphicon glyphicon-plus"></i>
                 </a>
             </h2>
         </header>
+        <div class="box-body">
+            <table id="listTable" class=" table table-bordered table-hover " cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Фамилия и имя</th>
+                        <th>Возраст</th>
+                        <th>Город</th>
+                        <th>Теги</th>
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <th>Фамилия и имя</th>
+                        <th>Возраст</th>
+                        <th>Город</th>
+                        <th>Теги</th>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
+    </div>
 </div>
-
-<table id="listTable" class="table table-bordered table-hover " cellspacing="0">
-    <thead>
-        <tr>
-            <th>Фамилия и имя</th>
-            <th>Возраст</th>
-            <th>Город</th>
-            <th>Теги</th>
-        </tr>
-    </thead>
-
-    <tfoot>
-        <tr>
-            <th>Фамилия и имя</th>
-            <th>Возраст</th>
-            <th>Город</th>
-            <th>Теги</th>
-        </tr>
-    </tfoot>
-</table>
-
 @section Scripts {
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
 }

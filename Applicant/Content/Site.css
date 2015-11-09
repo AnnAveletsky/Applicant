@@ -1,7 +1,9 @@
-﻿
+﻿html{
+    
+   
+}
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    background: #F8F8FF;
 }
 
 /* Set padding to keep content from hitting the edges */
