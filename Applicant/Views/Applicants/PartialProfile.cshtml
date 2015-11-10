@@ -1,63 +1,82 @@
 ﻿@model ApplicantWeb.Models.Applicant
 
-
-<table class="table table-condensed">
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.Gender)</th>
-        <td class="text-muted">@Html.DisplayFor(model => model.Gender)</td>
-    </tr>
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.Birthday)</th>
-        <td>
-            @{
-                int YearsPassed = DateTime.Now.Year - Model.Birthday.Year;
-                if (DateTime.Now.Month < Model.Birthday.Month || (DateTime.Now.Month == Model.Birthday.Month && DateTime.Now.Day < Model.Birthday.Day))
-                {
-                    YearsPassed--;
-                }
-                string strYears = "";
-                if (YearsPassed > 16)
-                {
-                    if (YearsPassed % 10 == 1)
-                    {
-                        strYears = "(" + @YearsPassed + " год)";
+<div class="box box-primary">
+    <div class=" box-header">
+        <div class="media">
+            <div class="media-body">
+                <h4 class="media-heading">Информация о соискателе</h4>
+            </div>
+            <div class="media-right">
+                <a class="btn btn-primary btn-sm media-object" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="box-body">
+        <table class="table table-condensed">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Gender)</th>
+                <td class="text-muted">@Html.DisplayFor(model => model.Gender)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Birthday)</th>
+                <td>
+                    @{
+                        int YearsPassed = DateTime.Now.Year - Model.Birthday.Year;
+                        if (DateTime.Now.Month < Model.Birthday.Month || (DateTime.Now.Month == Model.Birthday.Month && DateTime.Now.Day < Model.Birthday.Day))
+                        {
+                            YearsPassed--;
+                        }
+                        string strYears = "";
+                        if (YearsPassed > 16)
+                        {
+                            if (YearsPassed % 10 == 1)
+                            {
+                                strYears = "(" + @YearsPassed + " год)";
+                            }
+                            else if (YearsPassed % 10 < 5)
+                            {
+                                strYears = "(" + @YearsPassed + " года)";
+                            }
+                            else
+                            {
+                                strYears = "(" + @YearsPassed + " лет)";
+                            }
+                        }
                     }
-                    else if (YearsPassed % 10 < 5)
-                    {
-                        strYears = "(" + @YearsPassed + " года)";
-                    }
-                    else
-                    {
-                        strYears = "(" + @YearsPassed + " лет)";
-                    }
-                }
+                    @Html.DisplayFor(model => model.Birthday) @strYears
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Residence)</th>
+                <td>@Html.DisplayFor(model => model.Residence)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.TypeWork)</th>
+                <td>@Html.DisplayFor(model => model.TypeWork)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Salary)</th>
+                <td>
+                    @Html.DisplayFor(model => model.TypeSalary)
+                    @Html.DisplayFor(model => model.Salary)
+                    @Html.DisplayFor(model => model.TypeMoney)
+                </td>
+            </tr>
+            @if (Model.Comments != null)
+            {
+                <tr>
+                    <th colspan="2">@Html.DisplayNameFor(model => model.Comments)</th>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-justify">@Html.DisplayFor(model => model.Comments)</td>
+                </tr>
             }
-            @Html.DisplayFor(model => model.Birthday) @strYears
-        </td>
-    </tr>
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.Residence)</th>
-        <td>@Html.DisplayFor(model => model.Residence)</td>
-    </tr>
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.TypeWork)</th>
-        <td>@Html.DisplayFor(model => model.TypeWork)</td>
-    </tr>
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.Salary)</th>
-        <td>
-            @Html.DisplayFor(model => model.TypeSalary)
-            @Html.DisplayFor(model => model.Salary)
-            @Html.DisplayFor(model => model.TypeMoney)
-        </td>
-    </tr>
-    @if (Model.Comments != null)
-    {
-        <tr>
-            <th colspan="2">@Html.DisplayNameFor(model => model.Comments)</th>
-        </tr>
-        <tr>
-            <td colspan="2" class="text-justify">@Html.DisplayFor(model => model.Comments)</td>
-        </tr>
-    }
-</table>
+        </table>
+        <a class="btn btn-danger btn-sm media-object" href="@Url.Action("Delete", new { id = Model.ApplicantId })">
+            Удалить соискателя
+            <i class="glyphicon glyphicon-remove"></i>
+        </a>
+    </div>
+</div>

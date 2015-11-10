@@ -47,7 +47,27 @@ namespace ApplicantWeb.Controllers
             }
             return View(applicant);
         }
-
+        public ActionResult Photo(int idApplicant)
+        {
+            var applicant = db.Applicants.Find(idApplicant);
+            return PartialView("PartialPhoto", applicant.Photo);
+        }
+        public ActionResult AttachmentToAva(int idAttachment)
+        {
+            var attachment = db.Attachments.Find(idAttachment);
+            if (attachment != null)
+            {
+                var applicant = db.Applicants.Find(attachment.ApplicantId);
+                if (applicant != null)
+                {
+                    applicant.Photo = attachment.Attach;
+                    db.SaveChanges();
+                    return PartialView("PartialPhoto", applicant.Photo);
+                }
+            }
+            return HttpNotFound();
+        }
+        
         // GET: Applicants/Create
         public ActionResult Create()
         {

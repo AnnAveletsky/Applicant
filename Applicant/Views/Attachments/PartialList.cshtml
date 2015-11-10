@@ -32,6 +32,16 @@
     });
 </script>
 <script>
+    function toAva(attachmentId){
+        $.ajax({
+            url: "@Url.Action("AttachmentToAva", "Applicants")",
+            data: "idAttachment=" + attachmentId,
+        success: function (html) {
+            $("#photo").empty();
+            $("#photo").append(html);
+        }
+    });
+    }
     function addToApplicant(attachmentId) {
         $.ajax({
             url: "@Url.Action("AddToApplicant", "Attachments")",

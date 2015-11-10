@@ -1,0 +1,7 @@
+﻿@model byte[]
+@if (Model != null)
+{
+    @Html.Raw("<img class='profile-user-img img-responsive img-circle' style=' margin:0px auto;' src=\"data:image/jpeg;base64,"
+     + Convert.ToBase64String(Model) + "\" />")
+}
+

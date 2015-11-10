@@ -518,6 +518,7 @@
     <Content Include="Views\Applicants\PartialTags.cshtml" />
     <Content Include="Views\Applicants\PartialSalary.cshtml" />
     <Content Include="Views\Languages\Details.cshtml" />
+    <Content Include="Views\Applicants\PartialPhoto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

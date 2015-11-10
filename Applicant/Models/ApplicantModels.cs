@@ -143,8 +143,6 @@ namespace ApplicantWeb.Models
 
         public byte[] Photo { get; set; }
 
-        public string TypePhoto { get; set; }
-
         public ApplicantFields() { }
         public ApplicantFields(string firstName, string middleName, 
             string  baseProfileJob,

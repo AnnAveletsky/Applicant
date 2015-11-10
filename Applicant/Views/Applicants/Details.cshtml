@@ -17,7 +17,9 @@
     <div class="col-md-4">
         <div class="box box-primary">
             <div class=" box-body">
-                <img class="profile-user-img img-responsive img-circle" src="" alt="User profile picture">
+                <div id="photo">
+                    @Html.Action("Photo", new { idApplicant = Model.ApplicantId })
+                </div>
                 <h3 class="profile-username text-center">
                     @Html.DisplayFor(model => model.FirstName)
                     @Html.DisplayFor(model => model.MiddleName)
@@ -27,27 +29,8 @@
                 @Html.Partial("~/Views/Applicants/PartialTags.cshtml", Model)
             </div>
         </div>
-        <div class="box box-primary">
-            <div class=" box-header">
-                <div class="media">
-                    <div class="media-body">
-                        <h4 class="media-heading">Информация о соискателе</h4>
-                    </div>
-                    <div class="media-right">
-                        <a class="btn btn-primary btn-sm media-object" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
-                            <i class="glyphicon glyphicon-edit"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="box-body">
-                @Html.Partial("~/Views/Applicants/PartialProfile.cshtml", Model)
-                <a class="btn btn-danger btn-sm media-object" href="@Url.Action("Delete", new { id = Model.ApplicantId })">
-                    Удалить соискателя
-                    <i class="glyphicon glyphicon-remove"></i>
-                </a>
-            </div>
-        </div>
+
+        @Html.Partial("~/Views/Applicants/PartialProfile.cshtml", Model)
     </div>
 
     <div class="col-md-8">
@@ -77,8 +60,6 @@
         </div>
     </div>
 </div>
-
-
 @section Scripts {
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
 }
