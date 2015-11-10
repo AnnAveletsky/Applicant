@@ -36,6 +36,10 @@ namespace Applicant.Controllers
          public ActionResult Details()
          {
              HttpCookie cookie = Request.Cookies["lang"];
+             if (cookie == null||cookie.Value==null)
+             {
+                 cookie = new HttpCookie("lang","ru");
+             }
              return PartialView("Details", new Language() { CurrentLang = Language.ToLang(cookie.Value) });
          }
     }
