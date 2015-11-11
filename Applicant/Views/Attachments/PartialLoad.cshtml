@@ -1,15 +1,37 @@
 ﻿@model int
-
-<div>
-    <input id="input-ru" type="file" multiple class="file-loading">
-</div>
+@if (System.Globalization.CultureInfo.CurrentCulture.Name.Contains("ru"))
+{
+    <div>
+        <input id="input-ru" type="file" multiple class="file-loading">
+    </div>
+}
+else
+{
+    <div>
+        <input id="input-25" type="file" multiple class="file-loading">
+    </div>
+}
 <script>
     $("#input-ru").fileinput({
         language: "ru",
         uploadUrl: "@Url.Action("Load", "Attachments", new { applicantId = Model })",
-                allowedFileExtensions: ['bmp', 'gif', 'jpeg', 'jpg', 'jpe', 'jp2', 'pdf', 'png', 'psd', 'tga', 'tiff', 'tif', 'ai', 'svg', 'txt', 'rtf', 'odt', 'tex', 'wpd', 'doc', 'docx', 'docm', 'djvu', 'xls', 'xlsx', 'xlsm', 'zip', 'rar', '7z', 'gz', 'tar']
-            });
+        allowedFileExtensions: ['bmp', 'gif', 'jpeg', 'jpg', 'jpe', 'jp2', 'pdf', 'png', 'psd', 'tga', 'tiff', 'tif', 'ai', 'svg', 'txt', 'rtf', 'odt', 'tex', 'wpd', 'doc', 'docx', 'docm', 'djvu', 'xls', 'xlsx', 'xlsm', 'zip', 'rar', '7z', 'gz', 'tar']
+    });
     $('#input-ru').on('filebatchuploadcomplete', function () {
+        $.ajax({
+            url: "@Url.Action("PartialList", "Attachments")",
+            data: "id=" + @Model,
+            success: function (html) {
+                $("#tableAttachments").empty();
+                $("#tableAttachments").append(html);
+            }
+        });
+    });
+    $("#input-25").fileinput({
+        uploadUrl: "@Url.Action("Load", "Attachments", new { applicantId = Model })",
+        allowedFileExtensions: ['bmp', 'gif', 'jpeg', 'jpg', 'jpe', 'jp2', 'pdf', 'png', 'psd', 'tga', 'tiff', 'tif', 'ai', 'svg', 'txt', 'rtf', 'odt', 'tex', 'wpd', 'doc', 'docx', 'docm', 'djvu', 'xls', 'xlsx', 'xlsm', 'zip', 'rar', '7z', 'gz', 'tar']
+    });
+    $('#input-25').on('filebatchuploadcomplete', function () {
         $.ajax({
             url: "@Url.Action("PartialList", "Attachments")",
             data: "id=" + @Model,

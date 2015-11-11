@@ -14,7 +14,7 @@
         <h3 class="media-heading">Подробнее</h3>
     </div>
     <div class="media-left">
-        <a class="btn btn-default btn-md media-object" style="margin:0px;margin-bottom:10px;margin-top:10px;" href="@Url.Action("Details", "Applicants", new { id=Model.ApplicantId})">
+        <a class="btn btn-info btn-md media-object" style="margin:0px;margin-bottom:10px;margin-top:10px;" href="@Url.Action("Details", "Applicants", new { id=Model.ApplicantId})">
             <i class="glyphicon glyphicon-list-alt"></i>
             Назад к соискателю
         </a>
@@ -60,7 +60,7 @@
                     <a href="#comments" data-toggle="tab" aria-expanded="true">@Html.DisplayNameFor(model => model.HistoryComments)</a>
                 </li>
                 <li>
-                    <a href="#attachments" data-toggle="tab" aria-expanded="false">Документы</a>
+                    <a href="#attachments" data-toggle="tab" aria-expanded="false">@ApplicantWeb.App_LocalResources.Attachment.Attachments</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -71,7 +71,7 @@
                     <div class="panel-heading" role="tab" id="headingAttach">
                         <div class="media">
                             <div class="media-body">
-                                <h4 class="media-heading">Документы</h4>
+                                <h4 class="media-heading">@ApplicantWeb.App_LocalResources.Attachment.Attachments</h4>
                             </div>
                             <div class="media-right">
                                 <a class="btn btn-success btn-sm media-object" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAttach" aria-expanded="true" aria-controls="collapseAttach">

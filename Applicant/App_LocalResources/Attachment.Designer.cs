@@ -68,5 +68,14 @@ namespace ApplicantWeb.App_LocalResources {
                 return ResourceManager.GetString("Attachments", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Название.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
     }
 }

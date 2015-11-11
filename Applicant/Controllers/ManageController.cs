@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ApplicantWeb.Models;
-using Applicant.Filters;
+using ApplicantWeb.Filters;
 
 namespace ApplicantWeb.Controllers
 {

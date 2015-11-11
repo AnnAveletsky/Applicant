@@ -79,7 +79,7 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Skills(tags).
+        ///   Ищет локализованную строку, похожую на Навыки(теги).
         /// </summary>
         public static string Skills {
             get {

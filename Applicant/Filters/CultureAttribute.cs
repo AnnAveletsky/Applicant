@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using ApplicantClassLibrary;
 
-namespace Applicant.Filters
+namespace ApplicantWeb.Filters
 {
     public class CultureAttribute : FilterAttribute, IActionFilter
     {

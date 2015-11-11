@@ -61,11 +61,38 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Дата.
+        /// </summary>
+        public static string CommunicationDate {
+            get {
+                return ResourceManager.GetString("CommunicationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на История собеседований.
         /// </summary>
         public static string Histories {
             get {
                 return ResourceManager.GetString("Histories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Коментарии.
+        /// </summary>
+        public static string HistoryComments {
+            get {
+                return ResourceManager.GetString("HistoryComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Тип встречи.
+        /// </summary>
+        public static string TypeCommunication {
+            get {
+                return ResourceManager.GetString("TypeCommunication", resourceCulture);
             }
         }
     }

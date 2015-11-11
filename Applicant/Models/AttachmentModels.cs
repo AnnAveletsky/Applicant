@@ -17,7 +17,7 @@ namespace ApplicantWeb.Models
         [
             Required(ErrorMessage = "Поле должно быть установлено"),
             StringLength(50, MinimumLength = 3, ErrorMessage = "Длина строки должна быть от 3 до 50 символов"),
-            Display(Name = "Название")
+            Display(Name = "Title", ResourceType = typeof(ApplicantWeb.App_LocalResources.Attachment))
         ]
         public string Name { get; set; }
 

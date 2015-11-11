@@ -3,7 +3,7 @@
 }
 <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 <div class="content">
-    <div class="box box-info">
+    <div class="box box-primary">
         <header class="box-header">
             <h2 class="box-title">
                 @ApplicantWeb.App_LocalResources.Applicant.Applicants
@@ -56,9 +56,17 @@
             if ($(this).hasClass('info')) {
                 $(this).removeClass('info');
             }
+            else if ($(this).hasClass('danger')) {
+                $(this).removeClass('danger');
+            }
             else {
                 table.$('tr.info').removeClass('info');
-                $(this).addClass('info');
+                table.$('tr.danger').removeClass('danger');
+                if ($(this).children().children().hasClass('man')) {
+                    $(this).addClass('info');
+                } else {
+                    $(this).addClass('danger');
+                }
             }
         });
     });

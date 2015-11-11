@@ -182,6 +182,36 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Applicant.en.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_LocalResources\Attachment.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Attachment.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_LocalResources\Attachment.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Attachment.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_LocalResources\History.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>History.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_LocalResources\History.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>History.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_LocalResources\Tag.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Tag.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_LocalResources\Tag.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Tag.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -507,7 +537,6 @@
     <Content Include="Views\Tags\PartialDelete.cshtml" />
     <Content Include="Views\Histories\PartialDelete.cshtml" />
     <Content Include="Views\Attachments\PartialDelete.cshtml" />
-    <Content Include="Views\Applicants\Tags.cshtml" />
     <Content Include="Views\Attachments\PartialLoadToHistory.cshtml" />
     <Content Include="Views\Attachments\PartialListToHistory.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
@@ -539,12 +568,30 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Applicant.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="App_LocalResources\Tag.resx" />
-    <Content Include="App_LocalResources\History.resx" />
-    <Content Include="App_LocalResources\Attachment.resx" />
-    <Content Include="App_LocalResources\Attachment.en.resx" />
-    <Content Include="App_LocalResources\History.en.resx" />
-    <Content Include="App_LocalResources\Tag.en.resx" />
+    <EmbeddedResource Include="App_LocalResources\Tag.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Tag.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\History.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>History.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\Attachment.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Attachment.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\Attachment.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Attachment.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\History.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>History.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\Tag.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Tag.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510111723176_MigrateDB.resx">
       <DependentUpon>201510111723176_MigrateDB.cs</DependentUpon>
     </EmbeddedResource>

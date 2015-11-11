@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ApplicantWeb.Models;
-using Applicant.Filters;
+using ApplicantWeb.Filters;
 
 namespace ApplicantWeb.Controllers
 {

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using ApplicantWeb.Models;
 using System.Drawing;
 using System.IO;
-using Applicant.Filters;
+using ApplicantWeb.Filters;
 
 namespace ApplicantWeb.Controllers
 {

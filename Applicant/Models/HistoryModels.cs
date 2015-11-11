@@ -12,20 +12,20 @@ namespace ApplicantWeb.Models
     {
         [
             DataType(DataType.Date),
-            Display(Name = "Дата прохождения"),
+            Display(Name = "CommunicationDate", ResourceType = typeof(ApplicantWeb.App_LocalResources.History)),
             Required(ErrorMessage = "Поле должно быть установлено")
         ]
         public DateTime CommunicationDate { get; set; }
 
         [
             Required(ErrorMessage = "Поле должно быть установлено"),
-            Display(Name = "Тип встречи")
+            Display(Name = "TypeCommunication", ResourceType = typeof(ApplicantWeb.App_LocalResources.History))
         ]
         public TypeHistory TypeCommunication { get; set; }
 
         [
             DataType(DataType.MultilineText),
-            Display(Name = "Коментарии"),
+            Display(Name = "HistoryComments", ResourceType = typeof(ApplicantWeb.App_LocalResources.History)),
             MaxLength(500)
         ]
         public string HistoryComments { get; set; }
@@ -59,7 +59,6 @@ namespace ApplicantWeb.Models
         ]
         public int? ApplicantId { get; set; }
 
-        [Display(Name = "Соискатель")]
         public Applicant Applicant { get; set; }
         public HistoryCreate() :base(){ }
         public HistoryCreate(HistoryFields historyFields, int? applicantId, Applicant applicant)

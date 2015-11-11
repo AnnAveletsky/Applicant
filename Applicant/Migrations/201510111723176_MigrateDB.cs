@@ -1,4 +1,4 @@
-namespace Applicant.Migrations
+namespace ApplicantWeb.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
