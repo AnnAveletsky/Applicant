@@ -57,10 +57,10 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Residence, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EditorFor(model => model.Residence, new { htmlAttributes = new { @class = "form-control short" } })
-                        @Html.ValidationMessageFor(model => model.Residence, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control short" } })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -79,19 +79,19 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.TypeWork, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(model => model.TypeСooperation, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EnumDropDownListFor(model => model.TypeWork, htmlAttributes: new { @class = "form-control short" })
-                        @Html.ValidationMessageFor(model => model.TypeWork, "", new { @class = "text-danger" })
+                        @Html.EnumDropDownListFor(model => model.TypeСooperation, htmlAttributes: new { @class = "form-control short" })
+                        @Html.ValidationMessageFor(model => model.TypeСooperation, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
             <div class="col-md-5">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.TypeBussy, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(model => model.TypeEmployment, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EnumDropDownListFor(model => model.TypeBussy, htmlAttributes: new { @class = "form-control short" })
-                        @Html.ValidationMessageFor(model => model.TypeBussy, "", new { @class = "text-danger" })
+                        @Html.EnumDropDownListFor(model => model.TypeEmployment, htmlAttributes: new { @class = "form-control short" })
+                        @Html.ValidationMessageFor(model => model.TypeEmployment, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -170,10 +170,10 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.GitHub, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(model => model.Repository, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EditorFor(model => model.GitHub, new { htmlAttributes = new { @class = "form-control short" } })
-                        @Html.ValidationMessageFor(model => model.GitHub, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.Repository, new { htmlAttributes = new { @class = "form-control short" } })
+                        @Html.ValidationMessageFor(model => model.Repository, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>

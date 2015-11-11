@@ -25,7 +25,7 @@
                     @Html.DisplayFor(model => model.MiddleName)
                 </h3>
                 <p class="text-muted text-center">@Html.DisplayFor(model => model.BaseProfileJob)</p>
-                <strong><i class="fa fa-pencil margin-r-5"></i> Навыки</strong>
+                <strong><i class="fa fa-pencil margin-r-5"></i>@ApplicantWeb.App_LocalResources.Tag.Skills</strong>
                 @Html.Partial("~/Views/Applicants/PartialTags.cshtml", Model)
             </div>
         </div>
@@ -37,13 +37,13 @@
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a href="#histories" data-toggle="tab" aria-expanded="true">Собеседования</a>
+                    <a href="#histories" data-toggle="tab" aria-expanded="true">@ApplicantWeb.App_LocalResources.History.Histories</a>
                 </li>
                 <li>
-                    <a href="#attachments" data-toggle="tab" aria-expanded="false">Документы</a>
+                    <a href="#attachments" data-toggle="tab" aria-expanded="false">@ApplicantWeb.App_LocalResources.Attachment.Attachments</a>
                 </li>
                 <li>
-                    <a href="#contacts" data-toggle="tab" aria-expanded="false">Контакты</a>
+                    <a href="#contacts" data-toggle="tab" aria-expanded="false">@ApplicantWeb.App_LocalResources.Applicant.Contacts</a>
                 </li>
             </ul>
             <div class="tab-content">

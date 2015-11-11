@@ -9,9 +9,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ApplicantWeb.Models;
+using Applicant.Filters;
 
 namespace ApplicantWeb.Controllers
 {
+    [Culture]
     [Authorize]
     public class AccountController : Controller
     {

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ApplicantClassLibrary
 {
-    public enum TypeWork
+    public enum TypeСooperation
     {
         Очное=0,
         Удалённое=1
     }
-    public  enum TypeBussy
+    public enum TypeEmployment
     {
         Полная=0,
         Частичная=1,

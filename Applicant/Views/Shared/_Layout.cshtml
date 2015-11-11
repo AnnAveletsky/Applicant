@@ -21,23 +21,33 @@
         <div class="pl_l"></div>
     </div>
     <header class="main-header">
-        <a href="/" class="logo">
-            <span class="logo-lg">
-                <b>
-                    <img src="~/Content/Icons/Icon.png" width="23" />
-                    Соискатели
-                </b>
-            </span>
-        </a>
-        <nav class="navbar navbar-static-top" role="navigation">
-            <div class="navbar-custom-menu navbar-left">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("F.A.Q.", "FAQ", "Home")</li>
-                </ul>
+        <div class="navbar-header">
+            <a href="/" class="logo">
+                <span class="logo-lg">
+                    <b>
+                        <img src="~/Content/Icons/Icon.png" width="23" />
+                        @ApplicantWeb.App_LocalResources.Applicant.Applicants
+                    </b>
+                </span>
+            </a>
+            
+        </div>
+        
+        <nav class="navbar navbar-static-top">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="glyphicon glyphicon-menu-hamburger"></i>
+            </button>
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <div class="navbar-custom-menu navbar-left">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink(ApplicantWeb.App_LocalResources.Applicant.Contacts, "Contact", "Home")</li>
+                            <li>@Html.ActionLink(ApplicantWeb.App_LocalResources.Applicant.FAQ, "FAQ", "Home")</li>
+                        </ul>
+                    </div>
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
-            @Html.Partial("_LoginPartial")
-            @Html.Action("Details", "Languages")
         </nav>
     </header>
     <div class="container body-content">
@@ -45,7 +55,14 @@
         <hr />
         <footer class="box box-info">
             <div class="box-body">
-                <p>&copy; @DateTime.Now.Year – Приложение поиска кандидатов на работу</p>
+                <div class="row">
+                    <div class="col-md-9">
+                        <p>
+                            &copy; @DateTime.Now.Year – @ApplicantWeb.App_LocalResources.Applicant.Footer
+                        </p>
+                    </div>
+                        @Html.Action("Details", "Languages")
+                </div>
             </div>
         </footer>
     </div>

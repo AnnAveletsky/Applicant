@@ -1,14 +1,12 @@
-﻿
-
-@{
-    ViewBag.Title = "Соискатели";
+﻿@{
+    ViewBag.Title = ApplicantWeb.App_LocalResources.Applicant.Applicants;
 }
 <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 <div class="content">
     <div class="box box-info">
         <header class="box-header">
             <h2 class="box-title">
-                Соискатели
+                @ApplicantWeb.App_LocalResources.Applicant.Applicants
                 <a class=" btn btn-success btn-sm " href="@Url.Action("Create")">
                     <i class="glyphicon glyphicon-plus"></i>
                 </a>
@@ -18,19 +16,19 @@
             <table id="listTable" class=" table table-bordered table-hover " cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Фамилия и имя</th>
-                        <th>Возраст</th>
-                        <th>Город</th>
-                        <th>Теги</th>
+                        <th>@ApplicantWeb.App_LocalResources.Applicant.FullName</th>
+                        <th>@ApplicantWeb.App_LocalResources.Applicant.Years</th>
+                        <th>@ApplicantWeb.App_LocalResources.Applicant.City</th>
+                        <th>@ApplicantWeb.App_LocalResources.Applicant.Tags</th>
                     </tr>
                 </thead>
 
                 <tfoot>
                     <tr>
-                        <th>Фамилия и имя</th>
-                        <th>Возраст</th>
-                        <th>Город</th>
-                        <th>Теги</th>
+                        <th>@ApplicantWeb.App_LocalResources.Applicant.FullName</th>
+                        <th>@ApplicantWeb.App_LocalResources.Applicant.Years</th>
+                        <th>@ApplicantWeb.App_LocalResources.Applicant.City</th>
+                        <th>@ApplicantWeb.App_LocalResources.Applicant.Tags</th>
                     </tr>
                 </tfoot>
             </table>

@@ -117,10 +117,97 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Applicants" xml:space="preserve">
+    <value>Соискатели</value>
+  </data>
+  <data name="BaseProfileJob" xml:space="preserve">
+    <value>Основной профиль работы</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>День рождения</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Коментарии</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Контакты</value>
+  </data>
+  <data name="DeleteApplicant" xml:space="preserve">
+    <value>Удалить соискателя</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Личный Email</value>
+  </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>Страница в Facebook</value>
+  </data>
+  <data name="FAQ" xml:space="preserve">
+    <value>Помощь</value>
+  </data>
   <data name="FirstName" xml:space="preserve">
     <value>Фамилия</value>
   </data>
+  <data name="Footer" xml:space="preserve">
+    <value>Поиск соискателей на работу</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Фамилия и имя</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Пол</value>
+  </data>
+  <data name="InformationAboutTheApplicant" xml:space="preserve">
+    <value>Информация об соискателе</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Linkedin" xml:space="preserve">
+    <value>Страница в Linkedin</value>
+  </data>
+  <data name="MiddleName" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="Repository" xml:space="preserve">
+    <value>Личный репозиторий</value>
+  </data>
   <data name="RequiredFieldError" xml:space="preserve">
     <value>Поле должно быть заполнено</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>Желаемая зарплата</value>
+  </data>
+  <data name="Skype" xml:space="preserve">
+    <value>Имя в Skype</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Теги</value>
+  </data>
+  <data name="TypeEmployment" xml:space="preserve">
+    <value>Тип желаемой занятости</value>
+  </data>
+  <data name="TypeMoney" xml:space="preserve">
+    <value>Тип денег</value>
+  </data>
+  <data name="TypeSalary" xml:space="preserve">
+    <value>Тип желаемой зарплаты</value>
+  </data>
+  <data name="TypeСooperation" xml:space="preserve">
+    <value>Тип желаемого сотрудничества</value>
+  </data>
+  <data name="VKontakte" xml:space="preserve">
+    <value>Страница в VKontakte</value>
+  </data>
+  <data name="WebSite" xml:space="preserve">
+    <value>Персональный website</value>
+  </data>
+  <data name="Years" xml:space="preserve">
+    <value>Возраст</value>
   </data>
 </root>

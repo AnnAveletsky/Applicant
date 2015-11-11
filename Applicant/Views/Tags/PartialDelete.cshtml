@@ -6,7 +6,7 @@
         {
             @Html.AntiForgeryToken()
             <div class="modal-body pager">
-                <h3>Вы уверены что ходите удалить тег @Html.DisplayFor(modelItem => Model.TagName)?</h3>
+                <h3>@ApplicantWeb.App_LocalResources.Tag.DeleteTag @Html.DisplayFor(modelItem => Model.TagName)?</h3>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true" aria-label="Close">Отмена</button>

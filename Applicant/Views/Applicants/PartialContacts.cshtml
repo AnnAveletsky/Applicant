@@ -2,7 +2,7 @@
 
 <div class="media">
     <div class="media-body">
-        <h4 class="media-heading">Контактные данные</h4>
+        <h4 class="media-heading">@ApplicantWeb.App_LocalResources.Applicant.Contacts</h4>
     </div>
     <div class="media-right">
         <a class="btn btn-primary btn-sm media-object" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
@@ -36,13 +36,13 @@
             <td>@Html.DisplayFor(model => model.WebSite)</td>
         </tr>
     }
-    @if (Model.GitHub != null)
+    @if (Model.Repository != null)
     {
         <tr>
-            <th>@Html.DisplayNameFor(model => model.GitHub)</th>
+            <th>@Html.DisplayNameFor(model => model.Repository)</th>
         </tr>
         <tr>
-            <td>@Html.DisplayFor(model => model.GitHub)</td>
+            <td>@Html.DisplayFor(model => model.Repository)</td>
         </tr>
     }
     @if (Model.Linkedin != null)

@@ -8,7 +8,7 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <div class="input-group input-group-sm">
-        @Html.EditorFor(model => model.TagName, new { htmlAttributes = new { id = "myForm", @type = "text", @class = "form-control", @placeholder = "Добавить тег" } })
+        @Html.EditorFor(model => model.TagName, new { htmlAttributes = new { id = "myForm", @type = "text", @class = "form-control", @placeholder = @ApplicantWeb.App_LocalResources.Tag.AddSkills } })
         <div class="input-group-btn ">
             <button id="reset" type="reset" class="btn btn-default btn-sm " formtarget="myForm">
                 <i class="glyphicon glyphicon-erase"></i>

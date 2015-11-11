@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using ApplicantClassLibrary;
 
 namespace Applicant.Filters
 {
@@ -15,13 +16,14 @@ namespace Applicant.Filters
             // Получаем куки из контекста, которые могут содержать установленную культуру
             HttpCookie cultureCookie = filterContext.HttpContext.Request.Cookies["lang"];
             if (cultureCookie != null)
+            {
                 cultureName = cultureCookie.Value;
+            }
             else
+            {
                 cultureName = "ru";
-
-            // Список культур
-            List<string> cultures = new List<string>() { "ru", "en" };
-            if (!cultures.Contains(cultureName))
+            }
+            if (!CultureLang.StringToCulture.Keys.Contains(cultureName))
             {
                 cultureName = "ru";
             }

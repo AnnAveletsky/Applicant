@@ -539,6 +539,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Applicant.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="App_LocalResources\Tag.resx" />
+    <Content Include="App_LocalResources\History.resx" />
+    <Content Include="App_LocalResources\Attachment.resx" />
+    <Content Include="App_LocalResources\Attachment.en.resx" />
+    <Content Include="App_LocalResources\History.en.resx" />
+    <Content Include="App_LocalResources\Tag.en.resx" />
     <EmbeddedResource Include="Migrations\201510111723176_MigrateDB.resx">
       <DependentUpon>201510111723176_MigrateDB.cs</DependentUpon>
     </EmbeddedResource>

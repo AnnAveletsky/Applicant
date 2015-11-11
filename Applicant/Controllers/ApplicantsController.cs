@@ -9,9 +9,11 @@ using System.Web.Mvc;
 using ApplicantWeb.Models;
 using ApplicantClassLibrary;
 using System.Web.Script.Serialization;
+using Applicant.Filters;
 
 namespace ApplicantWeb.Controllers
 {
+    [Culture]
     public class ApplicantsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -27,7 +29,7 @@ namespace ApplicantWeb.Controllers
             {
                 ФамилияИмя = "<a style='color:" + (i.Gender == Gender.Мужской ? "#00c0ef" : "#FF1493") + "' href=/Applicants/Details/" + i.ApplicantId + "><span class='glyphicon glyphicon-user' aria-hidden='true'></span> " + i.FirstName + " " + i.MiddleName + "</a>",
                 Возраст = (DateTime.Now.Month < i.Birthday.Month || (DateTime.Now.Month == i.Birthday.Month && DateTime.Now.Day < i.Birthday.Day) ? DateTime.Now.Year - i.Birthday.Year - 1 : DateTime.Now.Year - i.Birthday.Year),
-                Город = i.Residence,
+                Город = i.City,
                 Теги =i.Tags.OrderBy(k=>k.TagName).Select(j => " <div class='label label-info'>" + j.TagName + "</div>")
             });
             return Json(new {data= json }, JsonRequestBehavior.AllowGet);

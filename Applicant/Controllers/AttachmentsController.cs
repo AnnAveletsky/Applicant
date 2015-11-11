@@ -9,9 +9,11 @@ using System.Web.Mvc;
 using ApplicantWeb.Models;
 using System.Drawing;
 using System.IO;
+using Applicant.Filters;
 
 namespace ApplicantWeb.Controllers
 {
+    [Culture]
     public class AttachmentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

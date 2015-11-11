@@ -7,9 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ApplicantWeb.Models;
+using Applicant.Filters;
+
 
 namespace ApplicantWeb.Controllers
 {
+    [Culture]
     public class HistoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

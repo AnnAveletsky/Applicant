@@ -4,7 +4,7 @@
     <div class=" box-header">
         <div class="media">
             <div class="media-body">
-                <h4 class="media-heading">Информация о соискателе</h4>
+                <h4 class="media-heading">@ApplicantWeb.App_LocalResources.Applicant.InformationAboutTheApplicant</h4>
             </div>
             <div class="media-right">
                 <a class="btn btn-primary btn-sm media-object" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
@@ -49,12 +49,16 @@
                 </td>
             </tr>
             <tr>
-                <th>@Html.DisplayNameFor(model => model.Residence)</th>
-                <td>@Html.DisplayFor(model => model.Residence)</td>
+                <th>@Html.DisplayNameFor(model => model.City)</th>
+                <td>@Html.DisplayFor(model => model.City)</td>
             </tr>
             <tr>
-                <th>@Html.DisplayNameFor(model => model.TypeWork)</th>
-                <td>@Html.DisplayFor(model => model.TypeWork)</td>
+                <th>@Html.DisplayNameFor(model => model.TypeEmployment)</th>
+                <td>@Html.DisplayFor(model => model.TypeEmployment)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.TypeСooperation)</th>
+                <td>@Html.DisplayFor(model => model.TypeСooperation)</td>
             </tr>
             <tr>
                 <th>@Html.DisplayNameFor(model => model.Salary)</th>
@@ -75,7 +79,7 @@
             }
         </table>
         <a class="btn btn-danger btn-sm media-object" href="@Url.Action("Delete", new { id = Model.ApplicantId })">
-            Удалить соискателя
+            @ApplicantWeb.App_LocalResources.Applicant.DeleteApplicant
             <i class="glyphicon glyphicon-remove"></i>
         </a>
     </div>
