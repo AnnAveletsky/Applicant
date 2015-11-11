@@ -88,6 +88,15 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Собеседования.
+        /// </summary>
+        public static string Interviews {
+            get {
+                return ResourceManager.GetString("Interviews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Тип встречи.
         /// </summary>
         public static string TypeCommunication {

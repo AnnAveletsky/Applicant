@@ -126,6 +126,9 @@
   <data name="HistoryComments" xml:space="preserve">
     <value>Коментарии</value>
   </data>
+  <data name="Interviews" xml:space="preserve">
+    <value>Собеседования</value>
+  </data>
   <data name="TypeCommunication" xml:space="preserve">
     <value>Тип встречи</value>
   </data>

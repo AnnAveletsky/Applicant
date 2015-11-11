@@ -210,4 +210,37 @@
   <data name="Years" xml:space="preserve">
     <value>Возраст</value>
   </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AddNewApplicant" xml:space="preserve">
+    <value>Добавить соискателя</value>
+  </data>
+  <data name="Appicant" xml:space="preserve">
+    <value>Соискатель</value>
+  </data>
+  <data name="ApplicantHeader" xml:space="preserve">
+    <value>Соискатель</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="EditPersonalData" xml:space="preserve">
+    <value>Правка личных данных соискателя</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="PersonalData" xml:space="preserve">
+    <value>Личные данные</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="ToTheList" xml:space="preserve">
+    <value>К списку</value>
+  </data>
 </root>

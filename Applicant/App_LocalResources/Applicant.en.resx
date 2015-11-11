@@ -207,4 +207,40 @@
   <data name="Years" xml:space="preserve">
     <value>Years</value>
   </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Add new</value>
+  </data>
+  <data name="AddNewApplicant" xml:space="preserve">
+    <value>Add new applicant</value>
+  </data>
+  <data name="Applicant" xml:space="preserve">
+    <value>Applicant</value>
+  </data>
+  <data name="ApplicantHeader" xml:space="preserve">
+    <value>Applicant</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="EditPersonalData" xml:space="preserve">
+    <value>Editing the applicant's personal data</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="PersonalData" xml:space="preserve">
+    <value>Personal data</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Registration</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ToTheList" xml:space="preserve">
+    <value>To the list</value>
+  </data>
+  <data name="VKontakte" xml:space="preserve">
+    <value>Page in VK</value>
+  </data>
 </root>

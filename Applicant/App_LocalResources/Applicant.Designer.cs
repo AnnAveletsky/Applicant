@@ -61,11 +61,56 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Добавить.
+        /// </summary>
+        public static string AddNew {
+            get {
+                return ResourceManager.GetString("AddNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Добавить соискателя.
+        /// </summary>
+        public static string AddNewApplicant {
+            get {
+                return ResourceManager.GetString("AddNewApplicant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Соискатель.
+        /// </summary>
+        public static string Appicant {
+            get {
+                return ResourceManager.GetString("Appicant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Соискатель.
+        /// </summary>
+        public static string ApplicantHeader {
+            get {
+                return ResourceManager.GetString("ApplicantHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Соискатели.
         /// </summary>
         public static string Applicants {
             get {
                 return ResourceManager.GetString("Applicants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Назад.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
             }
         }
         
@@ -120,6 +165,15 @@ namespace ApplicantWeb.App_LocalResources {
         public static string DeleteApplicant {
             get {
                 return ResourceManager.GetString("DeleteApplicant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Правка личных данных соискателя.
+        /// </summary>
+        public static string EditPersonalData {
+            get {
+                return ResourceManager.GetString("EditPersonalData", resourceCulture);
             }
         }
         
@@ -214,6 +268,15 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Вход.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Имя.
         /// </summary>
         public static string MiddleName {
@@ -223,11 +286,29 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Личные данные.
+        /// </summary>
+        public static string PersonalData {
+            get {
+                return ResourceManager.GetString("PersonalData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Телефон.
         /// </summary>
         public static string Phone {
             get {
                 return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Регистрация.
+        /// </summary>
+        public static string Registration {
+            get {
+                return ResourceManager.GetString("Registration", resourceCulture);
             }
         }
         
@@ -259,6 +340,15 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Сохранить.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Имя в Skype.
         /// </summary>
         public static string Skype {
@@ -273,6 +363,15 @@ namespace ApplicantWeb.App_LocalResources {
         public static string Tags {
             get {
                 return ResourceManager.GetString("Tags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на К списку.
+        /// </summary>
+        public static string ToTheList {
+            get {
+                return ResourceManager.GetString("ToTheList", resourceCulture);
             }
         }
         

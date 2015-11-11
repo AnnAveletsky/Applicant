@@ -126,6 +126,9 @@
   <data name="HistoryComments" xml:space="preserve">
     <value>Comments</value>
   </data>
+  <data name="Interviews" xml:space="preserve">
+    <value>Interviews</value>
+  </data>
   <data name="TypeCommunication" xml:space="preserve">
     <value>Type communication</value>
   </data>
