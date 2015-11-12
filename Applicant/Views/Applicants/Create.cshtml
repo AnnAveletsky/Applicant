@@ -45,17 +45,6 @@
             </div>
             <div class="col-md-5">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-4" })
-                    <div class="col-md-8">
-                        @Html.EnumDropDownListFor(model => model.Gender, htmlAttributes: new { @class = "form-control short" })
-                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-5">
-                <div class="form-group">
                     @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
                         @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control short" } })
@@ -63,7 +52,35 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        <input id="Gender" name="Gender" hidden="hidden" value="0" />
+                        <a id="Male" class="btn btn-primary" onclick="toMale()">♂</a>
+                        <a id="Female" class="btn btn-default " onclick="toFemale()">♀</a>
+                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <script>
+                function toMale() {
+                    $('#Female').removeClass('btn-danger');
+                    $('#Female').addClass('btn-default');
+                    $('#Male').removeClass('btn-default');
+                    $('#Male').addClass('btn-primary');
+                    $('#Gender').val('0');
+                }
+                function toFemale() {
+                    $('#Female').removeClass('btn-default');
+                    $('#Female').addClass('btn-danger');
+                    $('#Male').removeClass('btn-primary');
+                    $('#Male').addClass('btn-default');
+                    $('#Gender').val('1');
+                }
+            </script>
             <div class="col-md-5">
                 <div class="form-group">
                     @Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -80,7 +97,10 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.TypeСooperation, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EnumDropDownListFor(model => model.TypeСooperation, htmlAttributes: new { @class = "form-control short" })
+                        <select id="TypeСooperation" name="TypeСooperation" class="form-control short" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <option selected value="0">@ApplicantWeb.App_LocalResources.Applicant.PersonalPresence</option>
+                            <option value="1">@ApplicantWeb.App_LocalResources.Applicant.Remote</option>
+                        </select>
                         @Html.ValidationMessageFor(model => model.TypeСooperation, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -89,7 +109,11 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.TypeEmployment, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EnumDropDownListFor(model => model.TypeEmployment, htmlAttributes: new { @class = "form-control short" })
+                        <select id="TypeEmployment" name="TypeEmployment" class="form-control short" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <option selected value="0">@ApplicantWeb.App_LocalResources.Applicant.FullTime</option>
+                            <option value="1">@ApplicantWeb.App_LocalResources.Applicant.PartTime</option>
+                            <option value="2">@ApplicantWeb.App_LocalResources.Applicant.OneTime</option>
+                        </select>
                         @Html.ValidationMessageFor(model => model.TypeEmployment, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -102,16 +126,16 @@
                     <div class="col-md-8">
                         <div class="input-group short">
                             <div class="input-group-btn">
-                                <select id="TypeSalary" name="TypeSalary" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <option>В месяц</option>
-                                    <option>В час</option>
+                                <select id="TypeSalary" name="TypeSalary" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <option selected value="0">@ApplicantWeb.App_LocalResources.Applicant.InMonth</option>
+                                    <option value="1">@ApplicantWeb.App_LocalResources.Applicant.InHour</option>
                                 </select>
-                            </div>
+                            </div> 
                             <input type="text" id="Salary" name="Salary" class="form-control" aria-label="...">
                             <div class="input-group-btn">
-                                <select class="btn btn-default dropdown-toggle" id="TypeMoney" name="TypeMoney">
-                                    <option>₽</option>
-                                    <option>$</option>
+                                <select class="btn btn-primary dropdown-toggle" id="TypeMoney" name="TypeMoney">
+                                    <option selected value="0">₽</option>
+                                    <option value="1">$</option>
                                 </select>
                             </div>
                         </div>

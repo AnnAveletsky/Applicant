@@ -39,7 +39,7 @@ namespace ApplicantWeb.Models
                   ErrorMessageResourceName = "RequiredFieldError"),
             Display(Name = "Gender", ResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant))
         ]
-        public Gender Gender { get; set; }
+        public int Gender { get; set; }
 
         [
             Required(ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
@@ -62,7 +62,7 @@ namespace ApplicantWeb.Models
             Required(ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
                   ErrorMessageResourceName = "RequiredFieldError"),
         ]
-        public string TypeSalary{ get; set; }
+        public int TypeSalary{ get; set; }
         [
             Range(1, 1000000, ErrorMessage = "Необходимо установить от 1 до 1 000 000"),
             Required(ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
@@ -76,21 +76,21 @@ namespace ApplicantWeb.Models
                   ErrorMessageResourceName = "RequiredFieldError"),
             Display(Name = "TypeMoney", ResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant))
         ]
-        public string TypeMoney { get; set; }
+        public int TypeMoney { get; set; }
 
         [
             Required(ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
                   ErrorMessageResourceName = "RequiredFieldError"),
             Display(Name = "TypeСooperation", ResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant))
         ]
-        public TypeСooperation TypeСooperation { get; set; }
+        public int TypeСooperation { get; set; }
 
         [
             Required(ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
                   ErrorMessageResourceName = "RequiredFieldError"),
             Display(Name = "TypeEmployment", ResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant))
         ]
-        public TypeEmployment TypeEmployment { get; set; }
+        public int TypeEmployment { get; set; }
 
         [
             DataType(DataType.MultilineText),
@@ -158,11 +158,11 @@ namespace ApplicantWeb.Models
         public ApplicantFields() { }
         public ApplicantFields(string firstName, string middleName, 
             string  baseProfileJob,
-            Gender gender, DateTime birthday, string city, string email,
+            int gender, DateTime birthday, string city, string email,
             string skype, string personalRepository, string linkedin,
             string phone, string comments, 
-            int salary,string typeSalary,string typeMoney,
-            TypeСooperation typeСooperation, TypeEmployment typeEmployment,
+            int salary,int typeSalary,int typeMoney,
+            int typeСooperation, int typeEmployment,
             string website, string facebook, string vkontakte)
         {
             FirstName = firstName;

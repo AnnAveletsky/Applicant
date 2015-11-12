@@ -253,7 +253,7 @@
                             <i class="glyphicon glyphicon-ok"></i>
                             @ApplicantWeb.App_LocalResources.Applicant.Save
                         </button>
-                        <a class="btn btn-default btn-md" onclick="history.back()">
+                        <a class="btn btn-default btn-md" href='@Url.Action("Details",new{id=Model.ApplicantId}).ToString()'>
                             <i class="glyphicon glyphicon-share-alt"></i>
                             @ApplicantWeb.App_LocalResources.Applicant.Back
                         </a>

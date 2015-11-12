@@ -243,4 +243,25 @@
   <data name="ToTheList" xml:space="preserve">
     <value>К списку</value>
   </data>
+  <data name="InHour" xml:space="preserve">
+    <value>В час</value>
+  </data>
+  <data name="InMonth" xml:space="preserve">
+    <value>В месяц</value>
+  </data>
+  <data name="FullTime" xml:space="preserve">
+    <value>Полная занятость</value>
+  </data>
+  <data name="OneTime" xml:space="preserve">
+    <value>Одноразовое сотрудничество</value>
+  </data>
+  <data name="PartTime" xml:space="preserve">
+    <value>Частичная занятость</value>
+  </data>
+  <data name="PersonalPresence" xml:space="preserve">
+    <value>Личное присутствие</value>
+  </data>
+  <data name="Remote" xml:space="preserve">
+    <value>Удалённое</value>
+  </data>
 </root>

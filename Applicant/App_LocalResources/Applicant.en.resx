@@ -243,4 +243,25 @@
   <data name="VKontakte" xml:space="preserve">
     <value>Page in VK</value>
   </data>
+  <data name="InHour" xml:space="preserve">
+    <value>In hour</value>
+  </data>
+  <data name="InMonth" xml:space="preserve">
+    <value>In month</value>
+  </data>
+  <data name="FullTime" xml:space="preserve">
+    <value>Full time</value>
+  </data>
+  <data name="OneTime" xml:space="preserve">
+    <value>One time</value>
+  </data>
+  <data name="PartTime" xml:space="preserve">
+    <value>Part time</value>
+  </data>
+  <data name="PersonalPresence" xml:space="preserve">
+    <value>Personal presence</value>
+  </data>
+  <data name="Remote" xml:space="preserve">
+    <value>Remote</value>
+  </data>
 </root>

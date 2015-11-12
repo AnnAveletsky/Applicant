@@ -21,7 +21,7 @@ namespace ApplicantWeb.Models
             Required(ErrorMessage = "Поле должно быть установлено"),
             Display(Name = "TypeCommunication", ResourceType = typeof(ApplicantWeb.App_LocalResources.History))
         ]
-        public TypeHistory TypeCommunication { get; set; }
+        public int TypeCommunication { get; set; }
 
         [
             DataType(DataType.MultilineText),
@@ -30,7 +30,7 @@ namespace ApplicantWeb.Models
         ]
         public string HistoryComments { get; set; }
         public HistoryFields() { }
-        public HistoryFields(DateTime communicationDate, TypeHistory typeCommunication, string historyComments)
+        public HistoryFields(DateTime communicationDate, int typeCommunication, string historyComments)
         {
             CommunicationDate = communicationDate;
             TypeCommunication = typeCommunication;

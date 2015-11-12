@@ -232,6 +232,15 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Полная занятость.
+        /// </summary>
+        public static string FullTime {
+            get {
+                return ResourceManager.GetString("FullTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Пол.
         /// </summary>
         public static string Gender {
@@ -246,6 +255,24 @@ namespace ApplicantWeb.App_LocalResources {
         public static string InformationAboutTheApplicant {
             get {
                 return ResourceManager.GetString("InformationAboutTheApplicant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на В час.
+        /// </summary>
+        public static string InHour {
+            get {
+                return ResourceManager.GetString("InHour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на В месяц.
+        /// </summary>
+        public static string InMonth {
+            get {
+                return ResourceManager.GetString("InMonth", resourceCulture);
             }
         }
         
@@ -286,11 +313,38 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Одноразовое сотрудничество.
+        /// </summary>
+        public static string OneTime {
+            get {
+                return ResourceManager.GetString("OneTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Частичная занятость.
+        /// </summary>
+        public static string PartTime {
+            get {
+                return ResourceManager.GetString("PartTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Личные данные.
         /// </summary>
         public static string PersonalData {
             get {
                 return ResourceManager.GetString("PersonalData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Личное присутствие.
+        /// </summary>
+        public static string PersonalPresence {
+            get {
+                return ResourceManager.GetString("PersonalPresence", resourceCulture);
             }
         }
         
@@ -309,6 +363,15 @@ namespace ApplicantWeb.App_LocalResources {
         public static string Registration {
             get {
                 return ResourceManager.GetString("Registration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Удалённое.
+        /// </summary>
+        public static string Remote {
+            get {
+                return ResourceManager.GetString("Remote", resourceCulture);
             }
         }
         

@@ -27,7 +27,7 @@ namespace ApplicantWeb.Controllers
         {
             var json = db.Applicants.Select(i => new
             {
-                ФамилияИмя = "<a class='"+(i.Gender==Gender.Мужской?"man":"woman")+"' href=/Applicants/Details/" + i.ApplicantId + "><span class='glyphicon glyphicon-user' aria-hidden='true'></span> " + i.FirstName + " " + i.MiddleName + "</a>",
+                ФамилияИмя = "<a class='"+(i.Gender==0?"man":"woman")+"' href=/Applicants/Details/" + i.ApplicantId + "><span class='glyphicon glyphicon-user' aria-hidden='true'></span> " + i.FirstName + " " + i.MiddleName + "</a>",
                 Возраст = (DateTime.Now.Month < i.Birthday.Month || (DateTime.Now.Month == i.Birthday.Month && DateTime.Now.Day < i.Birthday.Day) ? DateTime.Now.Year - i.Birthday.Year - 1 : DateTime.Now.Year - i.Birthday.Year),
                 Город = i.City,
                 Теги =i.Tags.OrderBy(k=>k.TagName).Select(j => " <div class='label label-info'>" + j.TagName + "</div>")
