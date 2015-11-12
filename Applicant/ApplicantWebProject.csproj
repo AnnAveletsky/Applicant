@@ -403,6 +403,7 @@
     <None Include="Properties\PublishProfiles\Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\New one.pubxml" />
     <None Include="Properties\PublishProfiles\Zip-publish.pubxml" />
+    <None Include="Properties\PublishProfiles\ZIP.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\advanced_script.js" />
     <Content Include="Scripts\bootstrap.js" />
