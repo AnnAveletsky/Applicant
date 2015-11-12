@@ -23,7 +23,7 @@ namespace ApplicantWeb.Controllers
             var json = histories.Select(i => new
             {
                 Дата = "<a href='/../../Histories/Details/" + i.HistoryId + "'><i class='glyphicon glyphicon-calendar'></i> " + i.CommunicationDate.Day + "." + i.CommunicationDate.Month + "." + i.CommunicationDate.Year + "</a>",
-                Тип=i.TypeCommunication.ToString(),
+                Тип = (i.TypeCommunication == 0) ? ApplicantWeb.App_LocalResources.History.Skype : ApplicantWeb.App_LocalResources.History.Interview,
                 Коментарии=i.HistoryComments
             });
             return Json(new { data = json }, JsonRequestBehavior.AllowGet);

@@ -264,4 +264,7 @@
   <data name="Remote" xml:space="preserve">
     <value>Remote</value>
   </data>
+  <data name="AboutApplicant" xml:space="preserve">
+    <value>Information about applicant</value>
+  </data>
 </root>

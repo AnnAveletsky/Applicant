@@ -264,4 +264,7 @@
   <data name="Remote" xml:space="preserve">
     <value>Удалённое</value>
   </data>
+  <data name="AboutApplicant" xml:space="preserve">
+    <value>Подробно о соискателе</value>
+  </data>
 </root>

@@ -1,6 +1,6 @@
 ﻿@model ApplicantWeb.Models.HistoryCreate
 
-@using (Ajax.BeginForm("Create", "Histories", new AjaxOptions { UpdateTargetId = "tableHistories", OnSuccess = "clear()" }))
+@using (Ajax.BeginForm("Create", "Histories", new AjaxOptions { UpdateTargetId = "tableHistories", OnSuccess = "clearDate()" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.ApplicantId)
@@ -21,24 +21,26 @@
                 @Html.LabelFor(model => model.TypeCommunication, htmlAttributes: new { @class = "control-label col-md-2" })
             </div>
             <div class="col-md-9">
-                <div class="form-control short">@ApplicantWeb.App_LocalResources.History.TypeCommunication</div>
-                /*Дописать*/
+                <select id="TypeCommunication" name="TypeCommunication" class="form-control short" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <option selected value="0">@ApplicantWeb.App_LocalResources.History.Skype</option>
+                    <option value="1">@ApplicantWeb.App_LocalResources.History.Interview</option>
+                </select>
             </div>
-         </div>
+        </div>
 
         <div class="form-group row">
             <div class="col-md-3">
                 @Html.LabelFor(model => model.HistoryComments, htmlAttributes: new { @class = "control-label col-md-2" })
             </div>
-            
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.HistoryComments, new { htmlAttributes = new { @class = "form-control noresizehorizontal short" } })
-                    @Html.ValidationMessageFor(model => model.HistoryComments, "", new { @class = "text-danger" })
-                </div>
+
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.HistoryComments, new { htmlAttributes = new { @class = "form-control noresizehorizontal short" } })
+                @Html.ValidationMessageFor(model => model.HistoryComments, "", new { @class = "text-danger" })
             </div>
+        </div>
         <div class="form-group ">
             <div class="col-md-offset-2 col-md-10">
-                <button class="btn btn-success btn-md" type="submit" value="Create" >
+                <button class="btn btn-success btn-md" type="submit" value="Create">
                     <i class="glyphicon glyphicon-plus"></i>
                     Добавить
                 </button>
@@ -46,14 +48,16 @@
         </div>
     </div>
 }
+
 <script>
-    function clear() {
+    function clearDate() {
         $('#HistoryComments').val("");
         $('#CommunicationDate').val("дд.мм.гггг");
         $('#TypeCommunication').val("0");
         $('#createHistory').click();
     }
 </script>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

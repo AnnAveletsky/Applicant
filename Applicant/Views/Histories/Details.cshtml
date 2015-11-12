@@ -5,18 +5,18 @@
 @Scripts.Render("~/bundles/fileinput")
 
 @{
-    ViewBag.Title = "Подробнее о собеседовании";
+    ViewBag.Title = ApplicantWeb.App_LocalResources.History.MoreAboutTheInterview;
 }
 
 <div class="media">
 
     <div class="media-body">
-        <h3 class="media-heading">Подробнее</h3>
+        <h3 class="media-heading">@ApplicantWeb.App_LocalResources.History.MoreAboutTheInterview</h3>
     </div>
     <div class="media-left">
-        <a class="btn btn-info btn-md media-object" style="margin:0px;margin-bottom:10px;margin-top:10px;" href="@Url.Action("Details", "Applicants", new { id=Model.ApplicantId})">
+        <a class="btn btn-info btn-md media-object" style="margin:0;margin-bottom:10px;margin-top:10px;" href="@Url.Action("Details", "Applicants", new { id=Model.ApplicantId})">
             <i class="glyphicon glyphicon-list-alt"></i>
-            Назад к соискателю
+            @ApplicantWeb.App_LocalResources.History.BackToTheApplicant
         </a>
     </div>
 </div>
@@ -29,7 +29,7 @@
                 <div class="panel-heading">
                     <div class="media">
                         <div class="media-body">
-                            <h4 class="media-heading">О собеседовании</h4>
+                            <h4 class="media-heading">@ApplicantWeb.App_LocalResources.History.InfoAboutInterview</h4>
                         </div>
                         <div class="media-right">
                             <a class="btn btn-primary btn-sm media-object" href="@Url.Action("Edit", new { id = Model.HistoryId })">
@@ -47,7 +47,7 @@
                     </tr>
                     <tr>
                         <th>@Html.DisplayNameFor(model => model.TypeCommunication)</th>
-                        <td>@Html.DisplayFor(model => model.TypeCommunication)</td>
+                        <td>@((Model.TypeCommunication == 0) ? ApplicantWeb.App_LocalResources.History.Skype : ApplicantWeb.App_LocalResources.History.Interview)</td>
                     </tr>
                 </table>
             </div>

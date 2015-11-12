@@ -65,22 +65,7 @@
                     </div>
                 </div>
             </div>
-            <script>
-                function toMale() {
-                    $('#Female').removeClass('btn-danger');
-                    $('#Female').addClass('btn-default');
-                    $('#Male').removeClass('btn-default');
-                    $('#Male').addClass('btn-primary');
-                    $('#Gender').val('0');
-                }
-                function toFemale() {
-                    $('#Female').removeClass('btn-default');
-                    $('#Female').addClass('btn-danger');
-                    $('#Male').removeClass('btn-primary');
-                    $('#Male').addClass('btn-default');
-                    $('#Gender').val('1');
-                }
-            </script>
+            
             <div class="col-md-5">
                 <div class="form-group">
                     @Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -139,7 +124,7 @@
                                 </select>
                             </div>
                         </div>
-                    </div><!-- /input-group -->
+                    </div>
                 </div>
                 <div class="col-md-12">
                     @Html.ValidationMessageFor(model => model.TypeSalary, "", new { @class = "text-danger" })
@@ -259,4 +244,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/advanced")
 }

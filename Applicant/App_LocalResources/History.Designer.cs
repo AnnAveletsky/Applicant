@@ -61,6 +61,15 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Назад к соискателю.
+        /// </summary>
+        public static string BackToTheApplicant {
+            get {
+                return ResourceManager.GetString("BackToTheApplicant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Дата.
         /// </summary>
         public static string CommunicationDate {
@@ -88,11 +97,47 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Информация об интервью.
+        /// </summary>
+        public static string InfoAboutInterview {
+            get {
+                return ResourceManager.GetString("InfoAboutInterview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Интервью .
+        /// </summary>
+        public static string Interview {
+            get {
+                return ResourceManager.GetString("Interview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Собеседования.
         /// </summary>
         public static string Interviews {
             get {
                 return ResourceManager.GetString("Interviews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подробней о собеседовании.
+        /// </summary>
+        public static string MoreAboutTheInterview {
+            get {
+                return ResourceManager.GetString("MoreAboutTheInterview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Skype беседа.
+        /// </summary>
+        public static string Skype {
+            get {
+                return ResourceManager.GetString("Skype", resourceCulture);
             }
         }
         

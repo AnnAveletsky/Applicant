@@ -17,7 +17,12 @@
         <table class="table table-condensed">
             <tr>
                 <th>@Html.DisplayNameFor(model => model.Gender)</th>
-                <td class="text-muted">@Html.DisplayFor(model => model.Gender)</td>
+                <td class="text-muted">
+                    @if (Model.Gender == 0)
+                    {<p class="label label-primary pull-right">♂</p>}
+                    else
+                    {<p class="label label-danger pull-right">♀</p>}
+                </td>
             </tr>
             <tr>
                 <th>@Html.DisplayNameFor(model => model.Birthday)</th>
@@ -31,22 +36,27 @@
                         string strYears = "";
                         if (YearsPassed > 16)
                         {
-                            if (YearsPassed % 10 == 1)
+                            if (System.Globalization.CultureInfo.CurrentCulture.Name.Contains("en"))
                             {
-                                strYears = "(" + @YearsPassed + " год)";
-                            }
-                            else if (YearsPassed % 10 < 5)
-                            {
-                                strYears = "(" + @YearsPassed + " года)";
-                            }
-                            else
-                            {
-                                strYears = "(" + @YearsPassed + " лет)";
-                            }
+                                strYears = "(" + @YearsPassed + " years old)";
+                            }else
+                                if (YearsPassed % 10 == 1 && System.Globalization.CultureInfo.CurrentCulture.Name.Contains("ru"))
+                                {
+                                    strYears = "(" + @YearsPassed + " год)";
+                                }
+                                else if (YearsPassed % 10 < 5 && YearsPassed % 10 != 0)
+                                {
+                                    strYears = "(" + @YearsPassed + " года)";
+                                }
+                                else
+                                {
+                                    strYears = "(" + @YearsPassed + " лет)";
+                                }
                         }
                     }
                     @Html.DisplayFor(model => model.Birthday) @strYears
                 </td>
+
             </tr>
             <tr>
                 <th>@Html.DisplayNameFor(model => model.City)</th>
@@ -54,18 +64,51 @@
             </tr>
             <tr>
                 <th>@Html.DisplayNameFor(model => model.TypeEmployment)</th>
-                <td>@Html.DisplayFor(model => model.TypeEmployment)</td>
+                <td>
+                    @switch (Model.TypeEmployment)
+                    {
+                        case 0:
+                            <p>@ApplicantWeb.App_LocalResources.Applicant.FullTime</p>
+                            break;
+                        case 1:
+                            <p>@ApplicantWeb.App_LocalResources.Applicant.PartTime</p>
+                            break;
+                        case 2:
+                            <p>@ApplicantWeb.App_LocalResources.Applicant.OneTime</p>
+                            break;
+                    }
+                </td>
+
             </tr>
             <tr>
                 <th>@Html.DisplayNameFor(model => model.TypeСooperation)</th>
-                <td>@Html.DisplayFor(model => model.TypeСooperation)</td>
+                <td>
+                    @if (Model.TypeСooperation == 0)
+                    {
+                        <p>@ApplicantWeb.App_LocalResources.Applicant.PersonalPresence</p>
+                    }
+                    else
+                    {
+                        <p>@ApplicantWeb.App_LocalResources.Applicant.Remote</p>
+                    }
+                </td>
             </tr>
             <tr>
                 <th>@Html.DisplayNameFor(model => model.Salary)</th>
                 <td>
-                    @Html.DisplayFor(model => model.TypeSalary)
                     @Html.DisplayFor(model => model.Salary)
-                    @Html.DisplayFor(model => model.TypeMoney)
+                    @if (Model.TypeSalary == 0)
+                    {<span>₽</span>}
+                    else
+                    {<span>$</span>}
+                    @if (Model.TypeSalary == 0)
+                    {
+                        <span>@ApplicantWeb.App_LocalResources.Applicant.InMonth</span>
+                    }
+                    else
+                    {
+                        <span>@ApplicantWeb.App_LocalResources.Applicant.InHour</span>
+                    }
                 </td>
             </tr>
             @if (Model.Comments != null)

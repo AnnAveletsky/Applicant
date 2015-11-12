@@ -32,6 +32,9 @@ namespace ApplicantWeb
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            //Собственный скрипт
+            bundles.Add(new ScriptBundle("~/bundles/advanced").Include(
+                      "~/Scripts/advanced_script.js"));
         }
     }
 }

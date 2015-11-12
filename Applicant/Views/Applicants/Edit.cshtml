@@ -48,23 +48,35 @@
 
             <div class="col-md-5">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EnumDropDownListFor(model => model.Gender, htmlAttributes: new { @class = "form-control short" })
-                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control short" } })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
         </div>
 
-
         <div class="row">
             <div class="col-md-5">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control short" } })
-                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+
+                        @if (Model.Gender == 0)
+                        {
+                            <input id="Gender" name="Gender" hidden="hidden" value="0" />
+                            <a id="Male" class="btn btn-primary" onclick="toMale()">♂</a>
+                            <a id="Female" class="btn btn-default " onclick="toFemale()">♀</a>
+                        }
+                        else
+                        {
+                            <input id="Gender" name="Gender" hidden="hidden" value="1" />
+                            <a id="Male" class="btn btn-default" onclick="toMale()">♂</a>
+                            <a id="Female" class="btn btn-danger" onclick="toFemale()">♀</a>
+                        }
+                        
+                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -93,17 +105,48 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.TypeСooperation, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EnumDropDownListFor(model => model.TypeСooperation, htmlAttributes: new { @class = "form-control short" })
+                        <select id="TypeСooperation" name="TypeСooperation" class="form-control short" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @if (Model.TypeСooperation == 0)
+                            {
+                                <option selected value="0">@ApplicantWeb.App_LocalResources.Applicant.PersonalPresence</option>
+                                <option value="1">@ApplicantWeb.App_LocalResources.Applicant.Remote</option>
+                            }
+                            else
+                            {
+                                <option value="0">@ApplicantWeb.App_LocalResources.Applicant.PersonalPresence</option>
+                                <option selected value="1">@ApplicantWeb.App_LocalResources.Applicant.Remote</option>
+                            }
+                        </select>
                         @Html.ValidationMessageFor(model => model.TypeСooperation, "", new { @class = "text-danger" })
                     </div>
+
                 </div>
             </div>
             <div class="col-md-5">
                 <div class="form-group">
                     @Html.LabelFor(model => model.TypeEmployment, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EnumDropDownListFor(model => model.TypeEmployment, htmlAttributes: new { @class = "form-control short" })
-                        @Html.ValidationMessageFor(model => model.TypeEmployment, "", new { @class = "text-danger" })
+                        <select id="TypeEmployment" name="TypeEmployment" class="form-control short" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @switch (Model.TypeEmployment)
+                            {
+                                case 0:
+                                    <option selected value="0">@ApplicantWeb.App_LocalResources.Applicant.FullTime</option>
+                                    <option value="1">@ApplicantWeb.App_LocalResources.Applicant.PartTime</option>
+                                    <option value="2">@ApplicantWeb.App_LocalResources.Applicant.OneTime</option>
+                                    break;
+                                case 1:
+                                    <option value="0">@ApplicantWeb.App_LocalResources.Applicant.FullTime</option>
+                                    <option selected value="1">@ApplicantWeb.App_LocalResources.Applicant.PartTime</option>
+                                    <option value="2">@ApplicantWeb.App_LocalResources.Applicant.OneTime</option>
+                                    break;
+                                case 2:
+                                    <option value="0">@ApplicantWeb.App_LocalResources.Applicant.FullTime</option>
+                                    <option value="1">@ApplicantWeb.App_LocalResources.Applicant.PartTime</option>
+                                    <option selected value="2">@ApplicantWeb.App_LocalResources.Applicant.OneTime</option>
+                                    break;
+                            }
+                        </select>
+                       @Html.ValidationMessageFor(model => model.TypeEmployment, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -116,23 +159,22 @@
                         <div class="input-group short">
                             <div class="input-group-btn">
                                 <select id="TypeSalary" name="TypeSalary" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    @if (Model.TypeSalary == "В месяц")
+                                    @if (Model.TypeSalary == 0)
                                     {
-                                        <option selected>В месяц</option>
-                                        <option>В час</option>
+                                        <option selected>@ApplicantWeb.App_LocalResources.Applicant.InMonth</option>
+                                        <option>@ApplicantWeb.App_LocalResources.Applicant.InHour</option>
                                     }
                                     else
                                     {
-                                        <option>В месяц</option>
-                                        <option selected>В час</option>
+                                        <option>@ApplicantWeb.App_LocalResources.Applicant.InMonth</option>
+                                        <option selected>@ApplicantWeb.App_LocalResources.Applicant.InHour</option>
                                     }
-
                                 </select>
                             </div>
                             <input type="text" id="Salary" value="@Model.Salary" name="Salary" class="form-control" aria-label="...">
                             <div class="input-group-btn">
                                 <select class="btn btn-default dropdown-toggle" id="TypeMoney" name="TypeMoney">
-                                    @if (Model.TypeSalary == "₽")
+                                    @if (Model.TypeSalary == 0)
                                     {
                                         <option selected>₽</option>
                                         <option>$</option>
@@ -145,7 +187,7 @@
                                 </select>
                             </div>
                         </div>
-                    </div><!-- /input-group -->
+                    </div>
                 </div>
                 <div class="col-md-12">
                     @Html.ValidationMessageFor(model => model.TypeSalary, "", new { @class = "text-danger" })
@@ -266,5 +308,6 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/advanced")
 }
 

@@ -1,17 +1,18 @@
 ﻿@model ApplicantWeb.Models.Applicant
-@Styles.Render("~/Content/fileinput")
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryval")
-@Scripts.Render("~/bundles/fileinput")
-
-
+    @Styles.Render("~/Content/fileinput")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/fileinput")
 @{
-    ViewBag.Title = "Подробнее о соискателе: " + Html.DisplayFor(model => model.FirstName) + " "
+    ViewBag.Title = @ApplicantWeb.App_LocalResources.Applicant.AboutApplicant + Html.DisplayFor(model => model.FirstName) + " "
             + Html.DisplayFor(model => model.MiddleName);
 }
 
 <link media="only screen and (max-device-width: 950px)" href="~/Content/Site.css" rel="stylesheet" />
 
+<header>
+    <h2>@ApplicantWeb.App_LocalResources.Applicant.AboutApplicant</h2>
+</header>
 
 <div class="row content">
     <div class="col-md-4">
@@ -60,9 +61,11 @@
         </div>
     </div>
 </div>
-@section Scripts {
-    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
-}
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
 </div>
+
+@section Scripts {
+     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")   
+}

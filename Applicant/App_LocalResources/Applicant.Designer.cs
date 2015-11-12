@@ -61,6 +61,15 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Подробно о соискателе.
+        /// </summary>
+        public static string AboutApplicant {
+            get {
+                return ResourceManager.GetString("AboutApplicant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Добавить.
         /// </summary>
         public static string AddNew {

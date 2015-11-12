@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BackToTheApplicant" xml:space="preserve">
+    <value>Back to the applicant</value>
+  </data>
   <data name="CommunicationDate" xml:space="preserve">
     <value>Communication date</value>
   </data>
@@ -126,8 +129,20 @@
   <data name="HistoryComments" xml:space="preserve">
     <value>Comments</value>
   </data>
+  <data name="InfoAboutInterview" xml:space="preserve">
+    <value>Info about interview</value>
+  </data>
+  <data name="Interview" xml:space="preserve">
+    <value>Interview</value>
+  </data>
   <data name="Interviews" xml:space="preserve">
     <value>Interviews</value>
+  </data>
+  <data name="MoreAboutTheInterview" xml:space="preserve">
+    <value>More about the interview</value>
+  </data>
+  <data name="Skype" xml:space="preserve">
+    <value>Skype</value>
   </data>
   <data name="TypeCommunication" xml:space="preserve">
     <value>Type communication</value>
