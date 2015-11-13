@@ -3,41 +3,30 @@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/fileinput")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
 
 @{
     ViewBag.Title = ApplicantWeb.App_LocalResources.History.MoreAboutTheInterview;
 }
-
-<div class="media">
-
-    <div class="media-body">
-        <h3 class="media-heading">@ApplicantWeb.App_LocalResources.History.MoreAboutTheInterview</h3>
-    </div>
-    <div class="media-left">
-        <a class="btn btn-info btn-md media-object" style="margin:0;margin-bottom:10px;margin-top:10px;" href="@Url.Action("Details", "Applicants", new { id=Model.ApplicantId})">
-            <i class="glyphicon glyphicon-list-alt"></i>
-            @ApplicantWeb.App_LocalResources.History.BackToTheApplicant
-        </a>
-    </div>
-</div>
 @Html.AntiForgeryToken()
 @Html.HiddenFor(model => Model.ApplicantId)
+<header>
+    <h2>
+        @ApplicantWeb.App_LocalResources.History.InfoAboutInterview
+       
+    </h2>
+</header>
+
 <div class="row">
     <div class="col-md-4">
         <div class="box box-primary">
             <div class=" box-header">
-                <div class="panel-heading">
-                    <div class="media">
-                        <div class="media-body">
-                            <h4 class="media-heading">@ApplicantWeb.App_LocalResources.History.InfoAboutInterview</h4>
-                        </div>
-                        <div class="media-right">
-                            <a class="btn btn-primary btn-sm media-object" href="@Url.Action("Edit", new { id = Model.HistoryId })">
-                                <i class="glyphicon glyphicon-edit"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <h4>
+                    @ApplicantWeb.App_LocalResources.History.InfoAboutInterview
+                    <a class="btn btn-primary btn-sm pull-right" href="@Url.Action("Edit", new { id = Model.HistoryId })">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                </h4>
             </div>
             <div class="box-body">
                 <table class="table table-bordered">
@@ -57,7 +46,8 @@
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a href="#comments" data-toggle="tab" aria-expanded="true">@Html.DisplayNameFor(model => model.HistoryComments)</a>
+                    <a href="#comments" data-toggle="tab" aria-expanded="true">
+                    @Html.DisplayNameFor(model => model.HistoryComments)</a>
                 </li>
                 <li>
                     <a href="#attachments" data-toggle="tab" aria-expanded="false">@ApplicantWeb.App_LocalResources.Attachment.Attachments</a>
@@ -65,20 +55,22 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="comments">
+                    <h3>
+                        @ApplicantWeb.App_LocalResources.History.HistoryComments
+                        <a class="btn btn-primary btn-sm pull-right" href="@Url.Action("Edit", new { id = Model.HistoryId })">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </h3> 
                     @Html.DisplayFor(model => model.HistoryComments)
                 </div>
                 <div class="tab-pane" id="attachments">
-                    <div class="panel-heading" role="tab" id="headingAttach">
-                        <div class="media">
-                            <div class="media-body">
-                                <h4 class="media-heading">@ApplicantWeb.App_LocalResources.Attachment.Attachments</h4>
-                            </div>
-                            <div class="media-right">
-                                <a class="btn btn-success btn-sm media-object" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAttach" aria-expanded="true" aria-controls="collapseAttach">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                </a>
-                            </div>
-                        </div>
+                    <div role="tab" id="headingAttach">
+                        <h3>
+                            @ApplicantWeb.App_LocalResources.Attachment.Attachments
+                        <a class="btn btn-success btn-sm pull-right" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAttach" aria-expanded="true" aria-controls="collapseAttach">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </a>
+                    </h3>
                     </div>
                     <div id="collapseAttach" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAttach">
                         <div class="panel-body">
@@ -86,17 +78,19 @@
                         </div>
                     </div>
                     <div id="tableAttachments">
-                        @Html.Action("ListToHistory","Attachments", new { historyId =Model.HistoryId})
+                        @Html.Action("ListToHistory", "Attachments", new { historyId = Model.HistoryId })
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-</div>
-    @section Scripts {
-        @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
-    }
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-
+    <div class="col-md-12">
+        <a href="@Url.Action("Delete", "Histories", new {id=Model.HistoryId })" class="btn btn-danger btn-sm pull-left">
+            <i class="glyphicon glyphicon-remove"></i> @ApplicantWeb.App_LocalResources.History.DeleteHistory
+        </a>
+        <a class="btn btn-info btn-sm pull-right" href="@Url.Action("Details", "Applicants", new { id=Model.ApplicantId})">
+            <i class="glyphicon glyphicon-list-alt"></i>
+            @ApplicantWeb.App_LocalResources.History.BackToTheApplicant
+        </a>
     </div>
+</div>

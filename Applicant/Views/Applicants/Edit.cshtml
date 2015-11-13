@@ -75,7 +75,7 @@
                             <a id="Male" class="btn btn-default" onclick="toMale()">♂</a>
                             <a id="Female" class="btn btn-danger" onclick="toFemale()">♀</a>
                         }
-                        
+
                         @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -135,18 +135,18 @@
                                     <option value="2">@ApplicantWeb.App_LocalResources.Applicant.OneTime</option>
                                     break;
                                 case 1:
-                                    <option value="0">@ApplicantWeb.App_LocalResources.Applicant.FullTime</option>
-                                    <option selected value="1">@ApplicantWeb.App_LocalResources.Applicant.PartTime</option>
-                                    <option value="2">@ApplicantWeb.App_LocalResources.Applicant.OneTime</option>
+                                <option value="0">@ApplicantWeb.App_LocalResources.Applicant.FullTime</option>
+                                <option selected value="1">@ApplicantWeb.App_LocalResources.Applicant.PartTime</option>
+                                <option value="2">@ApplicantWeb.App_LocalResources.Applicant.OneTime</option>
                                     break;
                                 case 2:
-                                    <option value="0">@ApplicantWeb.App_LocalResources.Applicant.FullTime</option>
-                                    <option value="1">@ApplicantWeb.App_LocalResources.Applicant.PartTime</option>
-                                    <option selected value="2">@ApplicantWeb.App_LocalResources.Applicant.OneTime</option>
+                                <option value="0">@ApplicantWeb.App_LocalResources.Applicant.FullTime</option>
+                                <option value="1">@ApplicantWeb.App_LocalResources.Applicant.PartTime</option>
+                                <option selected value="2">@ApplicantWeb.App_LocalResources.Applicant.OneTime</option>
                                     break;
                             }
                         </select>
-                       @Html.ValidationMessageFor(model => model.TypeEmployment, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.TypeEmployment, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -291,13 +291,13 @@
             <div class="col-md-8">
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-success btn-md" value="Save">
+                        <button type="submit" class="btn btn-success btn-sm" value="Save">
                             <i class="glyphicon glyphicon-ok"></i>
                             @ApplicantWeb.App_LocalResources.Applicant.Save
                         </button>
-                        <a class="btn btn-default btn-md" href='@Url.Action("Details",new{id=Model.ApplicantId}).ToString()'>
+                        <a class="btn btn-default btn-sm" href='@Url.Action("Details",new{id=Model.ApplicantId}).ToString()'>
                             <i class="glyphicon glyphicon-share-alt"></i>
-                            @ApplicantWeb.App_LocalResources.Applicant.Back
+                            @ApplicantWeb.App_LocalResources.Applicant.BackToApplicant
                         </a>
                     </div>
                 </div>

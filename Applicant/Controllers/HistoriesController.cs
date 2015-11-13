@@ -113,7 +113,7 @@ namespace ApplicantWeb.Controllers
             {
                 return HttpNotFound();
             }
-            return PartialView("PartialDelete",history);
+            return View("Delete",history);
         }
 
         // POST: Histories/Delete/5
@@ -122,12 +122,11 @@ namespace ApplicantWeb.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             History history = db.Histories.Find(id);
-            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(history.ApplicantId);
-
+            var idApplicant=history.ApplicantId;
             db.DeleteAttachments(history);
             db.Histories.Remove(history);
             db.SaveChanges();
-            return PartialView("PartialList", applicant.Histories.ToList());
+            return Redirect(Url.Action("Details", "Applicants", new { id = idApplicant }));
         }
 
         protected override void Dispose(bool disposing)

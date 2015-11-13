@@ -61,6 +61,15 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Назад к собеседыванию.
+        /// </summary>
+        public static string BackToHistory {
+            get {
+                return ResourceManager.GetString("BackToHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Назад к соискателю.
         /// </summary>
         public static string BackToTheApplicant {
@@ -75,6 +84,24 @@ namespace ApplicantWeb.App_LocalResources {
         public static string CommunicationDate {
             get {
                 return ResourceManager.GetString("CommunicationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Удалить сбоседование из истории.
+        /// </summary>
+        public static string DeleteHistory {
+            get {
+                return ResourceManager.GetString("DeleteHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Редактирование собеседования в истории.
+        /// </summary>
+        public static string EditingInterviewHistory {
+            get {
+                return ResourceManager.GetString("EditingInterviewHistory", resourceCulture);
             }
         }
         
@@ -147,6 +174,15 @@ namespace ApplicantWeb.App_LocalResources {
         public static string TypeCommunication {
             get {
                 return ResourceManager.GetString("TypeCommunication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на В действительно хотите удалить собеседование из истории?.
+        /// </summary>
+        public static string WantDeleteHistory {
+            get {
+                return ResourceManager.GetString("WantDeleteHistory", resourceCulture);
             }
         }
     }

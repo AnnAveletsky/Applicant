@@ -10,13 +10,14 @@ namespace ApplicantWeb.Models
     public class AttachmentFields
     {
         [
-            Required(ErrorMessage = "Поле должно быть установлено"),
+            Required(ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
+                  ErrorMessageResourceName = "RequiredFieldError"),
         ]
         public string Type { get; set; }
 
         [
-            Required(ErrorMessage = "Поле должно быть установлено"),
-            StringLength(50, MinimumLength = 3, ErrorMessage = "Длина строки должна быть от 3 до 50 символов"),
+            Required(ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
+                  ErrorMessageResourceName = "RequiredFieldError"),
             Display(Name = "Title", ResourceType = typeof(ApplicantWeb.App_LocalResources.Attachment))
         ]
         public string Name { get; set; }

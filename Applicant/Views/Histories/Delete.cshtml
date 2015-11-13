@@ -1,0 +1,55 @@
+﻿@model ApplicantWeb.Models.History
+
+<h3>@ApplicantWeb.App_LocalResources.History.WantDeleteHistory</h3>
+<div class="row">
+    <div class="col-md-4">
+        <div class="box box-primary">
+            <div class=" box-header">
+                <h4>
+                    @ApplicantWeb.App_LocalResources.History.InfoAboutInterview
+                </h4>
+            </div>
+            <div class="box-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.CommunicationDate)</th>
+                        <td>@Html.DisplayFor(model => model.CommunicationDate)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.TypeCommunication)</th>
+                        <td>@((Model.TypeCommunication == 0) ? ApplicantWeb.App_LocalResources.History.Skype : ApplicantWeb.App_LocalResources.History.Interview)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h4>
+                    @ApplicantWeb.App_LocalResources.History.HistoryComments
+                </h4>
+            </div>
+            <div class="box-body">
+                @Html.DisplayFor(model => model.HistoryComments)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        @using (Html.BeginForm())
+        {
+            <div class="pull-right">
+                @Html.AntiForgeryToken()
+                <a class="btn btn-info btn-sm" href="@Url.Action("Details", "Histories", new { id = Model.HistoryId })">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                    @ApplicantWeb.App_LocalResources.History.BackToHistory
+                </a>
+                <button class="btn btn-danger btn-sm" type="submit" value="Delete">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    @ApplicantWeb.App_LocalResources.Applicant.Delete
+                </button>
+            </div>
+        }
+    </div>
+</div>
+

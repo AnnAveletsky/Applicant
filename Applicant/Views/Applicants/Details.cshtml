@@ -1,20 +1,19 @@
 ﻿@model ApplicantWeb.Models.Applicant
-    @Styles.Render("~/Content/fileinput")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/fileinput")
+@Styles.Render("~/Content/fileinput")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/fileinput")
 @{
     ViewBag.Title = @ApplicantWeb.App_LocalResources.Applicant.AboutApplicant + Html.DisplayFor(model => model.FirstName) + " "
             + Html.DisplayFor(model => model.MiddleName);
 }
 
 <link media="only screen and (max-device-width: 950px)" href="~/Content/Site.css" rel="stylesheet" />
-
 <header>
     <h2>@ApplicantWeb.App_LocalResources.Applicant.AboutApplicant</h2>
 </header>
 
-<div class="row content">
+<div class="row">
     <div class="col-md-4">
         <div class="box box-primary">
             <div class=" box-body">
@@ -30,8 +29,20 @@
                 @Html.Partial("~/Views/Applicants/PartialTags.cshtml", Model)
             </div>
         </div>
-
-        @Html.Partial("~/Views/Applicants/PartialProfile.cshtml", Model)
+        <div class="box box-primary">
+            <div class=" box-header">
+                <h4 class="media-heading">
+                    @ApplicantWeb.App_LocalResources.Applicant.InformationAboutTheApplicant
+                    <a class="btn btn-primary pull-right btn-sm" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                </h4>
+            </div>
+            <div class="box-body">
+                @Html.Partial("~/Views/Applicants/PartialProfile.cshtml", Model)
+                
+            </div>
+        </div>
     </div>
 
     <div class="col-md-8">
@@ -60,6 +71,14 @@
             </div>
         </div>
     </div>
+    <div class="col-md-12">
+        <a class="btn btn-danger pull-left btn-sm" href="@Url.Action("Delete", new { id = Model.ApplicantId })">
+            <i class="glyphicon glyphicon-remove"></i>@ApplicantWeb.App_LocalResources.Applicant.DeleteApplicant
+        </a>
+        <a class="btn btn-info pull-right btn-sm" href="@Url.Action("Index")">
+            <i class="glyphicon glyphicon-info-sign"></i>@ApplicantWeb.App_LocalResources.Applicant.ToApplicants
+        </a>
+    </div>
 </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -67,5 +86,5 @@
 </div>
 
 @section Scripts {
-     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")   
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
 }

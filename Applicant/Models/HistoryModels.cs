@@ -13,12 +13,14 @@ namespace ApplicantWeb.Models
         [
             DataType(DataType.Date),
             Display(Name = "CommunicationDate", ResourceType = typeof(ApplicantWeb.App_LocalResources.History)),
-            Required(ErrorMessage = "Поле должно быть установлено")
+            Required(ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
+                  ErrorMessageResourceName = "RequiredFieldError")
         ]
         public DateTime CommunicationDate { get; set; }
 
         [
-            Required(ErrorMessage = "Поле должно быть установлено"),
+            Required(ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
+                  ErrorMessageResourceName = "RequiredFieldError"),
             Display(Name = "TypeCommunication", ResourceType = typeof(ApplicantWeb.App_LocalResources.History))
         ]
         public int TypeCommunication { get; set; }

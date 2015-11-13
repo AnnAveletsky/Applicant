@@ -14,7 +14,8 @@ namespace ApplicantWeb.Models
         [
             Required(ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
                   ErrorMessageResourceName = "RequiredFieldError"),
-            StringLength(50, MinimumLength = 2, ErrorMessage = "Длина строки должна быть от 2 до 50 символов"),
+            StringLength(50, MinimumLength = 2, ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
+                  ErrorMessageResourceName = "StringLength2in50"),
             Display(Name = "FirstName", ResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant)),
         ]
         public string FirstName { get; set; }
@@ -22,7 +23,8 @@ namespace ApplicantWeb.Models
         [
             Required(ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
                   ErrorMessageResourceName = "RequiredFieldError"),
-            StringLength(50, MinimumLength = 2, ErrorMessage = "Длина строки должна быть от 2 до 50 символов"),
+            StringLength(50, MinimumLength = 2, ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
+                  ErrorMessageResourceName = "StringLength2in50"),
             Display(Name = "MiddleName", ResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant)),
         ]
         public string MiddleName { get; set; }
@@ -64,9 +66,12 @@ namespace ApplicantWeb.Models
         ]
         public int TypeSalary{ get; set; }
         [
-            Range(1, 1000000, ErrorMessage = "Необходимо установить от 1 до 1 000 000"),
+            Range(1, 1000000, ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
+                  ErrorMessageResourceName = "MoneyValue"),
             Required(ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
                   ErrorMessageResourceName = "RequiredFieldError"),
+            RegularExpression(@"[0-9]", ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
+                  ErrorMessageResourceName = "InvalidSalary"),
             Display(Name = "Salary", ResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant))
         ]
         public int Salary { get; set; }
@@ -104,7 +109,8 @@ namespace ApplicantWeb.Models
                   ErrorMessageResourceName = "RequiredFieldError"),
             EmailAddressAttribute,
             Display(Name = "Email", ResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant)),
-            RegularExpression(@"[0-9a-zA-Z.-]+[@][0-9a-zA-Z]+[.][0-9a-zA-Z]+", ErrorMessage = "Некорректный адрес"),
+            RegularExpression(@"[0-9a-zA-Z.-]+[@][0-9a-zA-Z]+[.][0-9a-zA-Z]+", ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
+                  ErrorMessageResourceName = "InvalidAddress"),
             DataType(DataType.EmailAddress)
         ]
         public string Email { get; set; }

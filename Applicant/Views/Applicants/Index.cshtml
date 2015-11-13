@@ -2,37 +2,35 @@
     ViewBag.Title = ApplicantWeb.App_LocalResources.Applicant.Applicants;
 }
 <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-<div class="content">
-    <div class="box box-primary">
-        <header class="box-header">
-            <h2 class="box-title">
-                @ApplicantWeb.App_LocalResources.Applicant.Applicants
-                <a class=" btn btn-success btn-sm " href="@Url.Action("Create")">
-                    <i class="glyphicon glyphicon-plus"></i>
-                </a>
-            </h2>
-        </header>
-        <div class="box-body">
-            <table id="listTable" class=" table table-bordered table-hover " cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>@ApplicantWeb.App_LocalResources.Applicant.FullName</th>
-                        <th>@ApplicantWeb.App_LocalResources.Applicant.Years</th>
-                        <th>@ApplicantWeb.App_LocalResources.Applicant.City</th>
-                        <th>@ApplicantWeb.App_LocalResources.Applicant.Tags</th>
-                    </tr>
-                </thead>
+<header class="box-header">
+    <h1>
+        @ApplicantWeb.App_LocalResources.Applicant.Applicants
+        <a class=" btn btn-success btn-sm pull-right" href="@Url.Action("Create")">
+            <i class="glyphicon glyphicon-plus"></i>
+        </a>
+    </h1>
+</header>
+<div class="box box-primary">
+    <div class="box-body">
+        <table id="listTable" class=" table table-bordered table-hover " cellspacing="0">
+            <thead>
+                <tr>
+                    <th>@ApplicantWeb.App_LocalResources.Applicant.FullName</th>
+                    <th>@ApplicantWeb.App_LocalResources.Applicant.Years</th>
+                    <th>@ApplicantWeb.App_LocalResources.Applicant.City</th>
+                    <th>@ApplicantWeb.App_LocalResources.Applicant.Tags</th>
+                </tr>
+            </thead>
 
-                <tfoot>
-                    <tr>
-                        <th>@ApplicantWeb.App_LocalResources.Applicant.FullName</th>
-                        <th>@ApplicantWeb.App_LocalResources.Applicant.Years</th>
-                        <th>@ApplicantWeb.App_LocalResources.Applicant.City</th>
-                        <th>@ApplicantWeb.App_LocalResources.Applicant.Tags</th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
+            <tfoot>
+                <tr>
+                    <th>@ApplicantWeb.App_LocalResources.Applicant.FullName</th>
+                    <th>@ApplicantWeb.App_LocalResources.Applicant.Years</th>
+                    <th>@ApplicantWeb.App_LocalResources.Applicant.City</th>
+                    <th>@ApplicantWeb.App_LocalResources.Applicant.Tags</th>
+                </tr>
+            </tfoot>
+        </table>
     </div>
 </div>
 @section Scripts {

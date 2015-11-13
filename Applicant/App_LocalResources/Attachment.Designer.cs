@@ -77,5 +77,14 @@ namespace ApplicantWeb.App_LocalResources {
                 return ResourceManager.GetString("Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вы действительно хотите удалить прикреплённый файл?.
+        /// </summary>
+        public static string WantDeleteAttachment {
+            get {
+                return ResourceManager.GetString("WantDeleteAttachment", resourceCulture);
+            }
+        }
     }
 }

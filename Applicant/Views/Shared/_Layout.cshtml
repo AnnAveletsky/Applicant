@@ -30,9 +30,9 @@
                     </b>
                 </span>
             </a>
-            
+
         </div>
-        
+
         <nav class="navbar navbar-static-top">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                 <i class="glyphicon glyphicon-menu-hamburger"></i>
@@ -50,10 +50,10 @@
             </div>
         </nav>
     </header>
-    <div class="container body-content">
+    <div class="container">
         @RenderBody()
         <hr />
-        <footer class="box box-primary">
+        <footer class="box box-primary footer">
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-9">
@@ -61,12 +61,11 @@
                             &copy; @DateTime.Now.Year – @ApplicantWeb.App_LocalResources.Applicant.Footer
                         </p>
                     </div>
-                        @Html.Action("Details", "Languages")
+                    @Html.Action("Details", "Languages")
                 </div>
             </div>
         </footer>
     </div>
-
     @RenderSection("scripts", required: false)
     <script src="~/Scripts/loaded.js"></script>
 </body>

@@ -1,129 +1,112 @@
 ﻿@model ApplicantWeb.Models.Applicant
 
-<div class="box box-primary">
-    <div class=" box-header">
-        <div class="media">
-            <div class="media-body">
-                <h4 class="media-heading">@ApplicantWeb.App_LocalResources.Applicant.InformationAboutTheApplicant</h4>
-            </div>
-            <div class="media-right">
-                <a class="btn btn-primary btn-sm media-object" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
-                    <i class="glyphicon glyphicon-edit"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="box-body">
-        <table class="table table-condensed">
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Gender)</th>
-                <td class="text-muted">
-                    @if (Model.Gender == 0)
-                    {<p class="label label-primary pull-right">♂</p>}
-                    else
-                    {<p class="label label-danger pull-right">♀</p>}
-                </td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Birthday)</th>
-                <td>
-                    @{
-                        int YearsPassed = DateTime.Now.Year - Model.Birthday.Year;
-                        if (DateTime.Now.Month < Model.Birthday.Month || (DateTime.Now.Month == Model.Birthday.Month && DateTime.Now.Day < Model.Birthday.Day))
-                        {
-                            YearsPassed--;
-                        }
-                        string strYears = "";
-                        if (YearsPassed > 16)
-                        {
-                            if (System.Globalization.CultureInfo.CurrentCulture.Name.Contains("en"))
-                            {
-                                strYears = "(" + @YearsPassed + " years old)";
-                            }else
-                                if (YearsPassed % 10 == 1 && System.Globalization.CultureInfo.CurrentCulture.Name.Contains("ru"))
-                                {
-                                    strYears = "(" + @YearsPassed + " год)";
-                                }
-                                else if (YearsPassed % 10 < 5 && YearsPassed % 10 != 0)
-                                {
-                                    strYears = "(" + @YearsPassed + " года)";
-                                }
-                                else
-                                {
-                                    strYears = "(" + @YearsPassed + " лет)";
-                                }
-                        }
-                    }
-                    @Html.DisplayFor(model => model.Birthday) @strYears
-                </td>
 
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.City)</th>
-                <td>@Html.DisplayFor(model => model.City)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.TypeEmployment)</th>
-                <td>
-                    @switch (Model.TypeEmployment)
+<table class="table table-condensed">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Gender)</th>
+        <td class="text-muted">
+            @if (Model.Gender == 0)
+            {<p class="label label-primary pull-right">♂</p>}
+            else
+            {<p class="label label-danger pull-right">♀</p>}
+        </td>
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Birthday)</th>
+        <td>
+            @{
+                int YearsPassed = DateTime.Now.Year - Model.Birthday.Year;
+                if (DateTime.Now.Month < Model.Birthday.Month || (DateTime.Now.Month == Model.Birthday.Month && DateTime.Now.Day < Model.Birthday.Day))
+                {
+                    YearsPassed--;
+                }
+                string strYears = "";
+                if (YearsPassed > 16)
+                {
+                    if (System.Globalization.CultureInfo.CurrentCulture.Name.Contains("en"))
                     {
-                        case 0:
-                            <p>@ApplicantWeb.App_LocalResources.Applicant.FullTime</p>
-                            break;
-                        case 1:
-                            <p>@ApplicantWeb.App_LocalResources.Applicant.PartTime</p>
-                            break;
-                        case 2:
-                            <p>@ApplicantWeb.App_LocalResources.Applicant.OneTime</p>
-                            break;
-                    }
-                </td>
-
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.TypeСooperation)</th>
-                <td>
-                    @if (Model.TypeСooperation == 0)
-                    {
-                        <p>@ApplicantWeb.App_LocalResources.Applicant.PersonalPresence</p>
+                        strYears = "(" + @YearsPassed + " years old)";
                     }
                     else
-                    {
-                        <p>@ApplicantWeb.App_LocalResources.Applicant.Remote</p>
-                    }
-                </td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Salary)</th>
-                <td>
-                    @Html.DisplayFor(model => model.Salary)
-                    @if (Model.TypeSalary == 0)
-                    {<span>₽</span>}
-                    else
-                    {<span>$</span>}
-                    @if (Model.TypeSalary == 0)
-                    {
-                        <span>@ApplicantWeb.App_LocalResources.Applicant.InMonth</span>
-                    }
-                    else
-                    {
-                        <span>@ApplicantWeb.App_LocalResources.Applicant.InHour</span>
-                    }
-                </td>
-            </tr>
-            @if (Model.Comments != null)
-            {
-                <tr>
-                    <th colspan="2">@Html.DisplayNameFor(model => model.Comments)</th>
-                </tr>
-                <tr>
-                    <td colspan="2" class="text-justify">@Html.DisplayFor(model => model.Comments)</td>
-                </tr>
+                        if (YearsPassed % 10 == 1 && System.Globalization.CultureInfo.CurrentCulture.Name.Contains("ru"))
+                        {
+                            strYears = "(" + @YearsPassed + " год)";
+                        }
+                        else if (YearsPassed % 10 < 5 && YearsPassed % 10 != 0)
+                        {
+                            strYears = "(" + @YearsPassed + " года)";
+                        }
+                        else
+                        {
+                            strYears = "(" + @YearsPassed + " лет)";
+                        }
+                }
             }
-        </table>
-        <a class="btn btn-danger btn-sm media-object" href="@Url.Action("Delete", new { id = Model.ApplicantId })">
-            @ApplicantWeb.App_LocalResources.Applicant.DeleteApplicant
-            <i class="glyphicon glyphicon-remove"></i>
-        </a>
-    </div>
-</div>
+            @Html.DisplayFor(model => model.Birthday) @strYears
+        </td>
+
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.City)</th>
+        <td>@Html.DisplayFor(model => model.City)</td>
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.TypeEmployment)</th>
+        <td>
+            @switch (Model.TypeEmployment)
+            {
+                case 0:
+                    <p>@ApplicantWeb.App_LocalResources.Applicant.FullTime</p>
+                    break;
+                case 1:
+                <p>@ApplicantWeb.App_LocalResources.Applicant.PartTime</p>
+                    break;
+                case 2:
+                <p>@ApplicantWeb.App_LocalResources.Applicant.OneTime</p>
+                    break;
+            }
+        </td>
+
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.TypeСooperation)</th>
+        <td>
+            @if (Model.TypeСooperation == 0)
+            {
+                <p>@ApplicantWeb.App_LocalResources.Applicant.PersonalPresence</p>
+            }
+            else
+            {
+                <p>@ApplicantWeb.App_LocalResources.Applicant.Remote</p>
+            }
+        </td>
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Salary)</th>
+        <td>
+            @Html.DisplayFor(model => model.Salary)
+            @if (Model.TypeSalary == 0)
+            {<span>₽</span>}
+            else
+            {<span>$</span>}
+            @if (Model.TypeSalary == 0)
+            {
+                <span>@ApplicantWeb.App_LocalResources.Applicant.InMonth</span>
+            }
+            else
+            {
+                <span>@ApplicantWeb.App_LocalResources.Applicant.InHour</span>
+            }
+        </td>
+    </tr>
+    @if (Model.Comments != null)
+    {
+        <tr>
+            <th colspan="2">@Html.DisplayNameFor(model => model.Comments)</th>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-justify">@Html.DisplayFor(model => model.Comments)</td>
+        </tr>
+    }
+</table>
+

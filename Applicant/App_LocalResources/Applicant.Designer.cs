@@ -115,11 +115,11 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Назад.
+        ///   Ищет локализованную строку, похожую на Назад к соискателю.
         /// </summary>
-        public static string Back {
+        public static string BackToApplicant {
             get {
-                return ResourceManager.GetString("Back", resourceCulture);
+                return ResourceManager.GetString("BackToApplicant", resourceCulture);
             }
         }
         
@@ -138,6 +138,15 @@ namespace ApplicantWeb.App_LocalResources {
         public static string Birthday {
             get {
                 return ResourceManager.GetString("Birthday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отмена.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
         
@@ -165,6 +174,15 @@ namespace ApplicantWeb.App_LocalResources {
         public static string Contacts {
             get {
                 return ResourceManager.GetString("Contacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Удалить.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
             }
         }
         
@@ -286,6 +304,24 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Некорректный адрес.
+        /// </summary>
+        public static string InvalidAddress {
+            get {
+                return ResourceManager.GetString("InvalidAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Некоректная желаемая зарплата.
+        /// </summary>
+        public static string InvalidSalary {
+            get {
+                return ResourceManager.GetString("InvalidSalary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Язык.
         /// </summary>
         public static string Language {
@@ -318,6 +354,15 @@ namespace ApplicantWeb.App_LocalResources {
         public static string MiddleName {
             get {
                 return ResourceManager.GetString("MiddleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Необходимо установить от 1 до 1 000 000.
+        /// </summary>
+        public static string MoneyValue {
+            get {
+                return ResourceManager.GetString("MoneyValue", resourceCulture);
             }
         }
         
@@ -430,11 +475,29 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Длина строки должна быть от 2 до 50 символов.
+        /// </summary>
+        public static string StringLength2in50 {
+            get {
+                return ResourceManager.GetString("StringLength2in50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Теги.
         /// </summary>
         public static string Tags {
             get {
                 return ResourceManager.GetString("Tags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на К списку всех соискателей.
+        /// </summary>
+        public static string ToApplicants {
+            get {
+                return ResourceManager.GetString("ToApplicants", resourceCulture);
             }
         }
         
@@ -489,6 +552,15 @@ namespace ApplicantWeb.App_LocalResources {
         public static string VKontakte {
             get {
                 return ResourceManager.GetString("VKontakte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вы уверены что хотите удалить данные о соискателе?.
+        /// </summary>
+        public static string WantDeleteApplicant {
+            get {
+                return ResourceManager.GetString("WantDeleteApplicant", resourceCulture);
             }
         }
         

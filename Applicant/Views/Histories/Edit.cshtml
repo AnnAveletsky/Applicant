@@ -1,19 +1,17 @@
 ﻿@model ApplicantWeb.Models.History
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = ApplicantWeb.App_LocalResources.History.EditingInterviewHistory;
 }
-
-<h2 >Правка</h2>
-
-
+<header>
+    <h2>@ApplicantWeb.App_LocalResources.History.EditingInterviewHistory</h2>
+</header>
+<hr />
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
-        <h4>История бесед</h4>
-        <hr />
+        
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.HistoryId)
         <div class="form-group">
@@ -30,7 +28,19 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TypeCommunication, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.TypeCommunication, htmlAttributes: new { @class = "form-control short" })
+                @if (Model.TypeCommunication == 0) { 
+                <select id="TypeCommunication" name="TypeCommunication" class="form-control short" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <option selected value="0">@ApplicantWeb.App_LocalResources.History.Skype</option>
+                    <option value="1">@ApplicantWeb.App_LocalResources.History.Interview</option>
+                </select>
+                }
+                else
+                {
+                    <select id="TypeCommunication" name="TypeCommunication" class="form-control short" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <option  value="0">@ApplicantWeb.App_LocalResources.History.Skype</option>
+                        <option selected value="1">@ApplicantWeb.App_LocalResources.History.Interview</option>
+                    </select>
+                }
                 @Html.ValidationMessageFor(model => model.TypeCommunication, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -45,17 +55,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button type="submit" class="btn btn-success btn-md" value="Save">
+                <button type="submit" class="btn btn-success btn-sm" value="Save">
                     <i class="glyphicon glyphicon-ok"></i>
-                    Сохранить
+                    @ApplicantWeb.App_LocalResources.Applicant.Save
                 </button>
-                <a class="btn btn-info btn-md" href="@Url.Action("Details","Histories", new { id = Model.HistoryId })">
+                <a class="btn btn-info btn-sm" href="@Url.Action("Details","Histories", new { id = Model.HistoryId })">
                     <i class="glyphicon glyphicon-share-alt"></i>
-                    К собеседованию
-                </a>
-                <a class="btn btn-info btn-md" href="@Url.Action("Details","Applicants", new { id = Model.ApplicantId })">
-                    <i class="glyphicon glyphicon-share-alt"></i>
-                    К соискателю
+                    @ApplicantWeb.App_LocalResources.History.BackToHistory
                 </a>
             </div>
         </div> 

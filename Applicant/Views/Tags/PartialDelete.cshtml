@@ -1,16 +1,16 @@
 ﻿@model ApplicantWeb.Models.TagCreate
 
 <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content modal-primary">
         @using (Ajax.BeginForm("Delete", "Tags",Model, new AjaxOptions { UpdateTargetId = "tags" }))
         {
             @Html.AntiForgeryToken()
-            <div class="modal-body pager">
-                <h3>@ApplicantWeb.App_LocalResources.Tag.DeleteTag @Html.DisplayFor(modelItem => Model.TagName)?</h3>
+            <div class="modal-header">
+                <h4>@ApplicantWeb.App_LocalResources.Tag.DeleteTag @Html.DisplayFor(modelItem => Model.TagName)?</h4>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true" aria-label="Close">Отмена</button>
-                <input type="submit" class="btn btn-danger" value="Удалить" style="opacity:0.6;" data-toggle="modal" data-target="#myModal"/>
+                <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true" aria-label="Close">@ApplicantWeb.App_LocalResources.Applicant.Cancel</button>
+                <input type="submit" class="btn btn-danger" value="@ApplicantWeb.App_LocalResources.Applicant.Delete" data-toggle="modal" data-target="#myModal"/>
             </div>
         }
     </div>

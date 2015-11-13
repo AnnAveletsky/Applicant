@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BackToHistory" xml:space="preserve">
+    <value>Назад к собеседыванию</value>
+  </data>
   <data name="BackToTheApplicant" xml:space="preserve">
     <value>Назад к соискателю</value>
   </data>
   <data name="CommunicationDate" xml:space="preserve">
     <value>Дата</value>
+  </data>
+  <data name="DeleteHistory" xml:space="preserve">
+    <value>Удалить сбоседование из истории</value>
+  </data>
+  <data name="EditingInterviewHistory" xml:space="preserve">
+    <value>Редактирование собеседования в истории</value>
   </data>
   <data name="Histories" xml:space="preserve">
     <value>История собеседований</value>
@@ -146,5 +155,8 @@
   </data>
   <data name="TypeCommunication" xml:space="preserve">
     <value>Тип встречи</value>
+  </data>
+  <data name="WantDeleteHistory" xml:space="preserve">
+    <value>В действительно хотите удалить собеседование из истории?</value>
   </data>
 </root>

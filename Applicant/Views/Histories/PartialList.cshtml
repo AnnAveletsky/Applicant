@@ -33,16 +33,4 @@
         });
     });
 </script>
-   <script>
-       function delHis(id) {
-           $.ajax({
-               url: "/Histories/Delete/",
-               data: "id=" + id,
-               success: function (html) {
-                   $("#myModal").empty();
-                   $("#myModal").append(html);
-               }
-           });
-       }
-</script>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+

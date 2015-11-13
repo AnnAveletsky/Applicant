@@ -11,8 +11,10 @@ namespace ApplicantWeb.Models
         [Key]
         public int TagId { get; set; }
         [
-            Required(ErrorMessage = "Поле должно быть установлено"),
-            StringLength(50, MinimumLength = 2, ErrorMessage = "Длина строки должна быть от 2 до 50 символов"),
+            Required(ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
+                  ErrorMessageResourceName = "RequiredFieldError"),
+            StringLength(50, MinimumLength = 2, ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
+                  ErrorMessageResourceName = "StringLength2in50"),
             Display(Name = "Тег"),
         ]
         public string TagName { get; set; }

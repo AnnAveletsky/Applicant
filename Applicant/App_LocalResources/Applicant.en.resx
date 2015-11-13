@@ -219,9 +219,6 @@
   <data name="ApplicantHeader" xml:space="preserve">
     <value>Applicant</value>
   </data>
-  <data name="Back" xml:space="preserve">
-    <value>Back</value>
-  </data>
   <data name="EditPersonalData" xml:space="preserve">
     <value>Editing the applicant's personal data</value>
   </data>
@@ -266,5 +263,32 @@
   </data>
   <data name="AboutApplicant" xml:space="preserve">
     <value>Information about applicant</value>
+  </data>
+  <data name="BackToApplicant" xml:space="preserve">
+    <value>Back to applicant</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="WantDeleteApplicant" xml:space="preserve">
+    <value>Are you sure you want to delete the data on the applicant?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ToApplicants" xml:space="preserve">
+    <value>To all applicants</value>
+  </data>
+  <data name="InvalidAddress" xml:space="preserve">
+    <value>Invalid address</value>
+  </data>
+  <data name="InvalidSalary" xml:space="preserve">
+    <value>Incorrect desired salary</value>
+  </data>
+  <data name="MoneyValue" xml:space="preserve">
+    <value>Must be set from 1 to 1 000 000</value>
+  </data>
+  <data name="StringLength2in50" xml:space="preserve">
+    <value>The string length should be between 2 and 50 characters</value>
   </data>
 </root>

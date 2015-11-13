@@ -537,7 +537,6 @@
     <Content Include="Views\Tags\PartialList.cshtml" />
     <Content Include="Views\Tags\PartialCreate.cshtml" />
     <Content Include="Views\Tags\PartialDelete.cshtml" />
-    <Content Include="Views\Histories\PartialDelete.cshtml" />
     <Content Include="Views\Attachments\PartialDelete.cshtml" />
     <Content Include="Views\Attachments\PartialLoadToHistory.cshtml" />
     <Content Include="Views\Attachments\PartialListToHistory.cshtml" />
@@ -550,6 +549,7 @@
     <Content Include="Views\Applicants\PartialSalary.cshtml" />
     <Content Include="Views\Languages\Details.cshtml" />
     <Content Include="Views\Applicants\PartialPhoto.cshtml" />
+    <Content Include="Views\Histories\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
