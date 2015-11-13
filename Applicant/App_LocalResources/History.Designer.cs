@@ -61,6 +61,15 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Добавить.
+        /// </summary>
+        public static string AddNew {
+            get {
+                return ResourceManager.GetString("AddNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Назад к собеседыванию.
         /// </summary>
         public static string BackToHistory {

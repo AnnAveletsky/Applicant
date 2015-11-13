@@ -61,6 +61,15 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Добваить файл в прикреплйнные файлы соискателя.
+        /// </summary>
+        public static string AttachFileToApplicant {
+            get {
+                return ResourceManager.GetString("AttachFileToApplicant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Прикреплёные файлы.
         /// </summary>
         public static string Attachments {
@@ -70,11 +79,38 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Сделать аватаром.
+        /// </summary>
+        public static string MoveToAvatar {
+            get {
+                return ResourceManager.GetString("MoveToAvatar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Удалить файл.
+        /// </summary>
+        public static string RemoveFile {
+            get {
+                return ResourceManager.GetString("RemoveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Название.
         /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Открепить файл от соискателя.
+        /// </summary>
+        public static string UndockFile {
+            get {
+                return ResourceManager.GetString("UndockFile", resourceCulture);
             }
         }
         

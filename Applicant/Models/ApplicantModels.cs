@@ -70,7 +70,7 @@ namespace ApplicantWeb.Models
                   ErrorMessageResourceName = "MoneyValue"),
             Required(ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
                   ErrorMessageResourceName = "RequiredFieldError"),
-            RegularExpression(@"[0-9]", ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
+            RegularExpression(@"\d+", ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant),
                   ErrorMessageResourceName = "InvalidSalary"),
             Display(Name = "Salary", ResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant))
         ]

@@ -19,8 +19,8 @@
             @using (Ajax.BeginForm("Delete", "Attachments", new { id = Model.AttachmentId, applicantId = Model.ApplicantId }, new AjaxOptions { UpdateTargetId = "tableAttachments" }))
             {
                 @Html.AntiForgeryToken()
-                <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true" aria-label="Close">@ApplicantWeb.App_LocalResources.Applicant.Cancel</button>
-                <input type="submit" class="btn btn-danger" value="@ApplicantWeb.App_LocalResources.Applicant.Delete" data-toggle="modal" data-target="#myModal" />
+                <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true" aria-label="Close"><i class="glyphicon glyphicon-ban-circle"></i> @ApplicantWeb.App_LocalResources.Applicant.Cancel</button>
+                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-remove"></i> @ApplicantWeb.App_LocalResources.Applicant.Delete</button>
             }
         </div>
     </div>

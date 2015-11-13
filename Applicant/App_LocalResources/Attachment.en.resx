@@ -117,11 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AttachFileToApplicant" xml:space="preserve">
+    <value>Attach the file to common applicant attachment</value>
+  </data>
   <data name="Attachments" xml:space="preserve">
     <value>Attachments files</value>
   </data>
+  <data name="MoveToAvatar" xml:space="preserve">
+    <value>Make it Avatar</value>
+  </data>
+  <data name="RemoveFile" xml:space="preserve">
+    <value>Remove file</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Title</value>
+  </data>
+  <data name="UndockFile" xml:space="preserve">
+    <value>Undock file from applicant attachment</value>
   </data>
   <data name="WantDeleteAttachment" xml:space="preserve">
     <value>Are you sure you want to delete file attachment?</value>

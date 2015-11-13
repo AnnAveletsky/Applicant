@@ -117,12 +117,14 @@ namespace ApplicantWeb.Controllers
         public ActionResult Edit(ApplicantEdit applicantEdit)
         {
             ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(applicantEdit.ApplicantId);
-            //Была исключена валидация!
+            if (ModelState.IsValid)
+            {
                 applicant.Edit(applicantEdit);
                 db.Entry(applicant).State = EntityState.Modified;
                 db.SaveChanges();
-
-            return Redirect(Url.Action("Details", "Applicants", new { id= applicant.ApplicantId }));
+                return Redirect(Url.Action("Details", "Applicants", new { id = applicant.ApplicantId }));
+            }
+            return View(applicant);
         }
 
         // GET: Applicants/Delete/5

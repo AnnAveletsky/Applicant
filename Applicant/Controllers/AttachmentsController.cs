@@ -26,8 +26,18 @@ namespace ApplicantWeb.Controllers
                 var attachments = db.Applicants.Find(id).Attachments;
                 var json = attachments.Select(i => new
                 {
-                    Название = "<a href='/../../Attachments/Download/" + i.AttachmentId + "'><i class='glyphicon glyphicon-download'></i> " + i.Name + "</a>",
-                    УдалениеДобавление = ((i.Name.EndsWith(".png")||i.Name.EndsWith(".jpg")||i.Name.EndsWith(".jpeg")) ? "<button type='submit' class='btn btn-primary btn-sm' onclick='toAva(" + i.AttachmentId + ")'><i class='glyphicon glyphicon-user'></i></button>" : "") + ((i.HistoryId != null) ? "<button type='submit' class='btn btn-danger btn-sm' onclick='deleteToApplicantToHistory(" + i.AttachmentId + ")'><i class='glyphicon glyphicon-paperclip'></i></button>" : "") + " <button class='btn btn-danger btn-sm' type='submit' value='Удалить' data-toggle='modal' data-target='#myModal' onclick='delAttach(" + i.AttachmentId + ")'> <i class='glyphicon glyphicon-remove'></i> </button>"
+                    Название = "<a href='/../../Attachments/Download/" + i.AttachmentId + "'>"+
+                    "<i class='glyphicon glyphicon-download'></i> " + i.Name + "</a>",
+                    УдалениеДобавление = ((i.Name.EndsWith(".png") || i.Name.EndsWith(".jpg") || i.Name.EndsWith(".jpeg")) ? 
+                    //Сделать аватаркой
+                    " <button type='submit' data-placement='bottom' title='" + ApplicantWeb.App_LocalResources.Attachment.MoveToAvatar + "' class='btn btn-primary btn-sm' onclick='toAva(" + i.AttachmentId + ")'>"+
+                    "<i class='glyphicon glyphicon-user'></i></button>" : "") + ((i.HistoryId != null) ? 
+                    //Открепить от соискателя
+                    " <button type='submit' data-placement='bottom' title='" + ApplicantWeb.App_LocalResources.Attachment.UndockFile + "' class='btn btn-danger btn-sm' onclick='deleteToApplicantToHistory(" + i.AttachmentId + ")'>"+
+                    "<i class='glyphicon glyphicon-paperclip'></i></button>" : "") + 
+                    //Удалить файл
+                    " <button type='submit' data-placement='bottom' title='" + ApplicantWeb.App_LocalResources.Attachment.RemoveFile + "' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#myModal' onclick='delAttach(" + i.AttachmentId + ")'>" +
+                    " <i class='glyphicon glyphicon-remove'></i> </button>"
                 });
                 return Json(new { data = json }, JsonRequestBehavior.AllowGet);
             }
@@ -39,8 +49,18 @@ namespace ApplicantWeb.Controllers
                     var attachments = history.Attachments;
                     var json = attachments.Select(i => new
                     {
-                        Название = "<a href='/../../Attachments/Download/" + i.AttachmentId + "'><i class='glyphicon glyphicon-download'></i> " + i.Name + "</a>",
-                        УдалениеДобавление =  ((i.ApplicantId == null)?("<button class='btn btn-success btn-sm' onclick='addToApplicant("+i.AttachmentId+")'><i class='glyphicon glyphicon-paperclip'></i></button>"):  ((i.HistoryId != null)?(" <button type='submit' class='btn btn-danger btn-sm' onclick='deleteToApplicantToHistory("+i.AttachmentId+")'><i class='glyphicon glyphicon-paperclip'></i></button>"):("")))+(" <button class='btn btn-danger btn-sm' type='submit' value='Удалить' data-toggle='modal' data-target='#myModal' onclick='del(")+i.AttachmentId+(")'> <i class='glyphicon glyphicon-remove'></i></button>")
+                        Название = "<a href='/../../Attachments/Download/" + i.AttachmentId + "'>"+
+                            "<i class='glyphicon glyphicon-download'></i> " + i.Name + "</a>",
+                        УдалениеДобавление = ((i.ApplicantId == null) ? 
+                        //Прикрепить файл к соискателю
+                        ("<button class='btn btn-success btn-sm' data-placement='bottom' title='" + ApplicantWeb.App_LocalResources.Attachment.AttachFileToApplicant + "' onclick='addToApplicant(" + i.AttachmentId + ")'>"+
+                            "<i class='glyphicon glyphicon-paperclip'></i></button>") : ((i.HistoryId != null) ? 
+                            //Открепить файл от соискателя
+                            (" <button type='submit' class='btn btn-danger btn-sm' data-placement='bottom' title='" + ApplicantWeb.App_LocalResources.Attachment.UndockFile + "' onclick='deleteToApplicantToHistory(" + i.AttachmentId + ")'>"+
+                            "<i class='glyphicon glyphicon-paperclip'></i></button>") : (""))) + 
+                            //Удалить файл
+                            (" <button type='submit' data-placement='bottom' title='" + ApplicantWeb.App_LocalResources.Attachment.RemoveFile + "' class='btn btn-danger btn-sm'  data-toggle='modal' data-target='#myModal' onclick='del(") + i.AttachmentId + (")'>" +
+                            "<i class='glyphicon glyphicon-remove'></i></button>")
                     });
                     return Json(new { data = json }, JsonRequestBehavior.AllowGet);
                 }
@@ -68,8 +88,16 @@ namespace ApplicantWeb.Controllers
         {
             foreach (var i in file_data.ToList())
             {
-                db.Attachments.Add(db.AddAttachmentInApplicant(i, applicantId));
-               db.SaveChanges();
+                try 
+                {
+                    db.Attachments.Add(db.AddAttachmentInApplicant(i, applicantId));
+                    db.SaveChanges();
+                }
+                catch (Exception except)
+                {
+                    return Json("{error: 'You are not allowed to upload such a file. ('"+ except.Message+")}");
+                }
+             
             }
             return Json("");
         }
@@ -77,8 +105,16 @@ namespace ApplicantWeb.Controllers
         {
             foreach (var i in file_data.ToList())
             {
-                db.Histories.Find(historyId).Attachments.Add(db.AddAttachmentInApplicant(i,null));
-                db.SaveChanges();
+                try
+                {
+                    db.Histories.Find(historyId).Attachments.Add(db.AddAttachmentInApplicant(i, null));
+                    db.SaveChanges();
+                }
+                catch (Exception except)
+                {
+                    return Json("{error: 'You are not allowed to upload such a file. ('" + except.Message + ")}");
+                }
+               
             }
             return Json("");
         }

@@ -40,8 +40,8 @@
         {
             <div class="pull-right">
                 @Html.AntiForgeryToken()
-                <a class="btn btn-info btn-sm" href="@Url.Action("Details", "Histories", new { id = Model.HistoryId })">
-                    <i class="glyphicon glyphicon-info-sign"></i>
+                <a class="btn btn-default btn-sm" href="@Url.Action("Details", "Histories", new { id = Model.HistoryId })">
+                    <i class="glyphicon glyphicon-share-alt"></i>
                     @ApplicantWeb.App_LocalResources.History.BackToHistory
                 </a>
                 <button class="btn btn-danger btn-sm" type="submit" value="Delete">

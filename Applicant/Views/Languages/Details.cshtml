@@ -2,7 +2,7 @@
 
 @using (Html.BeginForm("ChangeCulture", "Languages", FormMethod.Post, new { @id = "form" }))
 {
-    <div class="col-md-1">@ApplicantWeb.App_LocalResources.Applicant.Language</div>
+    <div class="col-md-1" style="top:7px;">@ApplicantWeb.App_LocalResources.Applicant.Language</div>
     <div class="col-md-2"> 
         @Html.EnumDropDownListFor(model => model.CurrentLang, htmlAttributes: new { @class = "form-control", @onchange = "$('#form').submit()" })
     </div>

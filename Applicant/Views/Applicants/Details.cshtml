@@ -33,9 +33,9 @@
             <div class=" box-header">
                 <h4 class="media-heading">
                     @ApplicantWeb.App_LocalResources.Applicant.InformationAboutTheApplicant
-                    <a class="btn btn-primary pull-right btn-sm" href="@Url.Action("Edit", new { id = Model.ApplicantId })">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </a>
+                    <button class="btn btn-primary pull-right btn-sm" title=@ApplicantWeb.App_LocalResources.Applicant.EditPersonalData href="@Url.Action("Edit", new { id = Model.ApplicantId }) ">
+                        <i class=" glyphicon glyphicon-edit"></i>
+                    </button>
                 </h4>
             </div>
             <div class="box-body">
@@ -73,10 +73,10 @@
     </div>
     <div class="col-md-12">
         <a class="btn btn-danger pull-left btn-sm" href="@Url.Action("Delete", new { id = Model.ApplicantId })">
-            <i class="glyphicon glyphicon-remove"></i>@ApplicantWeb.App_LocalResources.Applicant.DeleteApplicant
+            <i class="glyphicon glyphicon-remove"></i> @ApplicantWeb.App_LocalResources.Applicant.DeleteApplicant
         </a>
-        <a class="btn btn-info pull-right btn-sm" href="@Url.Action("Index")">
-            <i class="glyphicon glyphicon-info-sign"></i>@ApplicantWeb.App_LocalResources.Applicant.ToApplicants
+        <a class="btn btn-default pull-right btn-sm" href="@Url.Action("Index")">
+            <i class="glyphicon glyphicon-share-alt"></i> @ApplicantWeb.App_LocalResources.Applicant.ToApplicants
         </a>
     </div>
 </div>
