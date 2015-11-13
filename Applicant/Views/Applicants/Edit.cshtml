@@ -288,18 +288,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-success btn-sm" value="Save">
-                            <i class="glyphicon glyphicon-ok"></i>
-                            @ApplicantWeb.App_LocalResources.Applicant.Save
-                        </button>
-                        <a class="btn btn-default btn-sm" href='@Url.Action("Details",new{id=Model.ApplicantId}).ToString()'>
-                            <i class="glyphicon glyphicon-share-alt"></i>
-                            @ApplicantWeb.App_LocalResources.Applicant.BackToApplicant
-                        </a>
-                    </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-offset-7 col-md-5">
+                <div class="form-group " style="margin:auto">
+                    <a class="btn btn-info btn-sm" href='@Url.Action("Details",new{id=Model.ApplicantId}).ToString()'>
+                        <i class="glyphicon glyphicon-info-sign"></i>
+                        @ApplicantWeb.App_LocalResources.Applicant.BackToApplicant
+                    </a>
+                    <button type="submit" class="btn btn-success btn-sm" value="Save">
+                        <i class="glyphicon glyphicon-ok"></i>
+                        @ApplicantWeb.App_LocalResources.Applicant.Save
+                    </button>
                 </div>
             </div>
         </div>

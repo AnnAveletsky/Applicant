@@ -65,7 +65,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-md-5">
                 <div class="form-group">
                     @Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -115,7 +115,7 @@
                                     <option selected value="0">@ApplicantWeb.App_LocalResources.Applicant.InMonth</option>
                                     <option value="1">@ApplicantWeb.App_LocalResources.Applicant.InHour</option>
                                 </select>
-                            </div> 
+                            </div>
                             <input type="text" id="Salary" name="Salary" class="form-control" aria-label="...">
                             <div class="input-group-btn">
                                 <select class="btn btn-primary dropdown-toggle" id="TypeMoney" name="TypeMoney">
@@ -133,7 +133,7 @@
                 </div>
             </div>
         </div>
-        
+
         <h3>@ApplicantWeb.App_LocalResources.Applicant.Contacts</h3>
         <div class="row">
             <div class="col-md-5">
@@ -155,26 +155,26 @@
                 </div>
             </div>
         </div>
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Skype, htmlAttributes: new { @class = "control-label col-md-4" })
-                        <div class="col-md-8">
-                            @Html.EditorFor(model => model.Skype, new { htmlAttributes = new { @class = "form-control short" } })
-                            @Html.ValidationMessageFor(model => model.Skype, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.WebSite, htmlAttributes: new { @class = "control-label col-md-4" })
-                        <div class="col-md-8">
-                            @Html.EditorFor(model => model.WebSite, new { htmlAttributes = new { @class = "form-control short" } })
-                            @Html.ValidationMessageFor(model => model.WebSite, "", new { @class = "text-danger" })
-                        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Skype, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Skype, new { htmlAttributes = new { @class = "form-control short" } })
+                        @Html.ValidationMessageFor(model => model.Skype, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.WebSite, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.WebSite, new { htmlAttributes = new { @class = "form-control short" } })
+                        @Html.ValidationMessageFor(model => model.WebSite, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-5">
                 <div class="form-group">
@@ -225,15 +225,16 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-8">
-                <div class="form-actions no-color ">
-                    <button class="btn btn-success btn-md col-md-offset-2 " type="submit" value="Create">
+        </div>
+        <div class="row">
+            <div class="col-md-offset-7 col-md-5">
+                <div class="form-group " style="margin:auto">
+                    <button class="btn btn-success btn-sm col-md-offset-2 " type="submit" value="Create">
                         <i class="glyphicon glyphicon-ok"></i>
                         @ApplicantWeb.App_LocalResources.Applicant.AddNew
                     </button>
-                    <a class="btn btn-default btn-md" href="@Url.Action("Index")">
-                        <i class="glyphicon glyphicon-th-list"></i>
+                    <a class="btn btn-info btn-sm" href="@Url.Action("Index")">
+                        <i class="glyphicon glyphicon-info-sign"></i>
                         @ApplicantWeb.App_LocalResources.Applicant.ToTheList
                     </a>
                 </div>
