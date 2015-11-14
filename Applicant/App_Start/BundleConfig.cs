@@ -17,6 +17,7 @@ namespace ApplicantWeb
             bundles.Add(new ScriptBundle("~/bundles/fileinput").Include(
                 "~/Scripts/fileinput.min.js",
                 "~/Scripts/fileinput_locale_ru.js"));
+
             bundles.Add(new StyleBundle("~/Content/fileinput").Include(
                       "~/Content/bootstrap-fileinput/css/fileinput.min.css"));
 
@@ -35,6 +36,13 @@ namespace ApplicantWeb
             //Собственный скрипт
             bundles.Add(new ScriptBundle("~/bundles/advanced").Include(
                       "~/Scripts/advanced_script.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/fonts").Include(
+                "~/Content/fonts/font-awesome.min.css"));
+            
+            bundles.Add(new StyleBundle("~/bundles/admin-lte").Include(
+                "~/Content/admin-lte/css/AdminLTE.min.css",
+                "~/Content/admin-lte/css/skins/_all-skins.min.css"));
         }
     }
 }

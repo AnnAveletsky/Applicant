@@ -53,11 +53,16 @@ namespace ApplicantWeb
             // Настройка логики проверки паролей
             manager.PasswordValidator = new PasswordValidator
             {
+                //минимальная длина пароля
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
+                //как минимум один символ-не буква-цифра
+                RequireNonLetterOrDigit = false,
+                //как минимум одну цифру
                 RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                //как минимум один символ нижнего регистра
+                RequireLowercase = false,
+                //как минимум один символ верхнего регистра
+                RequireUppercase = false,
             };
 
             // Настройка параметров блокировки по умолчанию

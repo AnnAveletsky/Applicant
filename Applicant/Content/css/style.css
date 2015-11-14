@@ -1,0 +1,17 @@
+﻿.wrapper {
+	width: 750px;
+	margin: 0 auto;
+}
+.content-main {
+	min-height: calc(100vh - 80px);
+}
+h1 {
+	padding: 40px 20px 30px;
+}
+p {
+	padding: 10px 20px;
+}
+
+.footer-main {
+    height: 80px;
+}
