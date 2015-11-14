@@ -43,13 +43,30 @@
 <script>
     $(document).ready(function () {
         var table = $('#listTable').DataTable({
-            "ajax": "@Url.Action("List", "Applicants")",
+            "ajax": {
+                "url": "@Url.Action("List", "Applicants")",
+                "dataSrc": function (json) {
+                    var i = 0;
+                    while (json.data[i] != null) {
+                        var j = 0;
+                        var result = "";
+                        while (json.data[i]["Теги"][j] != null) {
+                            result += json.data[i]["Теги"][j];
+                            j++;
+                        }
+                        json.data[i]["Теги"] = result;
+                        i++;
+                    }
+                    return json.data;
+                }
+            },
             "columns": [
                 { "data": "ФамилияИмя" },
                 { "data": "Возраст" },
                 { "data": "Город" },
                 { "data": "Теги" }
             ],
+            
             "language": {
                 "search": "@ApplicantWeb.App_LocalResources.Applicant.Search",
                 "decimal": "@ApplicantWeb.App_LocalResources.Applicant.Decimal",
@@ -75,6 +92,7 @@
                 }
             }
         });
+        
         $('#listTable tbody').on('click', 'tr', function () {
             if ($(this).hasClass('info')) {
                 $(this).removeClass('info');
