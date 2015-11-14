@@ -49,22 +49,27 @@
                     var i = 0;
                     while (json.data[i] != null) {
                         var j = 0;
-                        var result = "";
-                        while (json.data[i]["Теги"][j] != null) {
-                            result += json.data[i]["Теги"][j];
+                        var tags = "";
+                        while (json.data[i]["Tags"][j] != null) {
+                            tags += " <div class='label label-info'>" + json.data[i]["Tags"][j] + "</div>";
                             j++;
                         }
-                        json.data[i]["Теги"] = result;
+                        json.data[i]["FullName"] = "<a class='" + (json.data[i]["Gender"] == 0 ? "man" : "woman") + "' href=/Applicants/Details/" + json.data[i]["ApplicantId"] + ">" +
+                            (json.data[i]["Gender"] == 0 ?
+                            "<span class='fa fa-male' aria-hidden='true'></span>" :
+                            "<span class='fa fa-female' aria-hidden='true'></span>") +
+                            " "+json.data[i]["FullName"]+"</a>";
+                        json.data[i]["Tags"] = tags;
                         i++;
                     }
                     return json.data;
                 }
             },
             "columns": [
-                { "data": "ФамилияИмя" },
-                { "data": "Возраст" },
-                { "data": "Город" },
-                { "data": "Теги" }
+                { "data": "FullName" },
+                { "data": "Age" },
+                { "data": "City" },
+                { "data": "Tags" }
             ],
             
             "language": {

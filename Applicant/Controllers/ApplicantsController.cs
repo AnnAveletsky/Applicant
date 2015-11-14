@@ -32,13 +32,19 @@ namespace ApplicantWeb.Controllers
       
         public JsonResult List()
         {
-            var json = db.Applicants.Select(i => new
-            {
-                ФамилияИмя = "<a class='"+(i.Gender==0?"man":"woman")+"' href=/Applicants/Details/" + i.ApplicantId + "><span class='glyphicon glyphicon-user' aria-hidden='true'></span> " + i.FirstName + " " + i.MiddleName + "</a>",
-                Возраст = (DateTime.Now.Month < i.Birthday.Month || (DateTime.Now.Month == i.Birthday.Month && DateTime.Now.Day < i.Birthday.Day) ? DateTime.Now.Year - i.Birthday.Year - 1 : DateTime.Now.Year - i.Birthday.Year),
-                Город = i.City,
-                Теги =i.Tags.OrderBy(k=>k.TagName).Select(j => " <div class='label label-info'>" + j.TagName + "</div>")
-            });
+            var json = (from app in db.Applicants
+                          select new { 
+                              ApplicantId = app.ApplicantId, 
+                              FullName = app.FirstName + " " + app.MiddleName,
+                              Age = (DateTime.Now.Month < app.Birthday.Month || (DateTime.Now.Month == app.Birthday.Month && DateTime.Now.Day < app.Birthday.Day) ? 
+                              DateTime.Now.Year - app.Birthday.Year - 1 : 
+                              DateTime.Now.Year - app.Birthday.Year), 
+                              Gender = app.Gender, 
+                              City = app.City, 
+                              Tags = (from tag in app.Tags orderby tag.TagName
+                                      select tag.TagName )
+                          });
+
             return Json(new {data= json }, JsonRequestBehavior.AllowGet);
         }
 
