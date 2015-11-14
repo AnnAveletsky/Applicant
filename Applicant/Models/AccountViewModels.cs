@@ -6,7 +6,7 @@ namespace ApplicantWeb.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Адрес электронной почты")]
+        [Display(Name = "EmailAddress", ResourceType = typeof(ApplicantWeb.App_LocalResources.Account))]
         public string Email { get; set; }
     }
 
@@ -29,11 +29,11 @@ namespace ApplicantWeb.Models
         public string Provider { get; set; }
 
         [Required]
-        [Display(Name = "Код")]
+        [Display(Name = "Code", ResourceType = typeof(ApplicantWeb.App_LocalResources.Account))]
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Запомнить браузер?")]
+        [Display(Name = "RememberInBrowserQ", ResourceType = typeof(ApplicantWeb.App_LocalResources.Account))]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
@@ -42,23 +42,23 @@ namespace ApplicantWeb.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Адрес электронной почты")]
+        [Display(Name = "EmailAddress", ResourceType = typeof(ApplicantWeb.App_LocalResources.Account))]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Адрес электронной почты")]
+        [Display(Name = "EmailAddress", ResourceType = typeof(ApplicantWeb.App_LocalResources.Account))]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
+        [Display(Name = "Password", ResourceType = typeof(ApplicantWeb.App_LocalResources.Account))]
         public string Password { get; set; }
 
-        [Display(Name = "Запомнить меня")]
+        [Display(Name = "RememberMe", ResourceType = typeof(ApplicantWeb.App_LocalResources.Account))]
         public bool RememberMe { get; set; }
     }
 
@@ -66,18 +66,21 @@ namespace ApplicantWeb.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Адрес электронной почты")]
+        [Display(Name = "EmailAddress", ResourceType = typeof(ApplicantWeb.App_LocalResources.Account))]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Account),
+                  ErrorMessageResourceName = "PasswordLenghtError", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
+        [Display(Name = "Password", ResourceType = typeof(ApplicantWeb.App_LocalResources.Account))]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Подтверждение пароля")]
-        [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
+        [Display(Name = "PasswordConfirm", ResourceType = typeof(ApplicantWeb.App_LocalResources.Account))]
+
+        [Compare("Password",ErrorMessageResourceType = typeof (ApplicantWeb.App_LocalResources.Account),ErrorMessageResourceName="PasswordAndConfirmationDoNotMatch")]
+        
         public string ConfirmPassword { get; set; }
     }
 
@@ -85,18 +88,20 @@ namespace ApplicantWeb.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Адрес электронной почты")]
+        [Display(Name = "EmailAddress", ResourceType = typeof(ApplicantWeb.App_LocalResources.Account))]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 6)]
+        [StringLength(100, MinimumLength = 6, ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Account),
+                  ErrorMessageResourceName = "PasswordLenghtError")]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
+        [Display(Name = "Password", ResourceType = typeof(ApplicantWeb.App_LocalResources.Account))]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Подтверждение пароля")]
-        [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
+        [Display(Name = "PasswordConfirm", ResourceType = typeof(ApplicantWeb.App_LocalResources.Account))]
+
+        [Compare("Password", ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Account), ErrorMessageResourceName = "PasswordAndConfirmationDoNotMatch")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
@@ -106,7 +111,7 @@ namespace ApplicantWeb.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Почта")]
+        [Display(Name = "EmailAddress", ResourceType = typeof(ApplicantWeb.App_LocalResources.Account))]
         public string Email { get; set; }
     }
 }
