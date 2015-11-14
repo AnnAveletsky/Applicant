@@ -115,6 +115,24 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на : назмите для сортировки столбца по возрастанию.
+        /// </summary>
+        public static string AriaSortAscending {
+            get {
+                return ResourceManager.GetString("AriaSortAscending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на : нажмите для сортировки столбца по убыванию.
+        /// </summary>
+        public static string AriaSortDescending {
+            get {
+                return ResourceManager.GetString("AriaSortDescending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Назад к соискателю.
         /// </summary>
         public static string BackToApplicant {
@@ -178,6 +196,15 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string Decimal {
+            get {
+                return ResourceManager.GetString("Decimal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Удалить.
         /// </summary>
         public static string Delete {
@@ -210,6 +237,15 @@ namespace ApplicantWeb.App_LocalResources {
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Данные отсутствуют в таблице.
+        /// </summary>
+        public static string EmptyTable {
+            get {
+                return ResourceManager.GetString("EmptyTable", resourceCulture);
             }
         }
         
@@ -277,6 +313,42 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Показаны с _START_ по _END_ из _TOTAL_ записей.
+        /// </summary>
+        public static string Info {
+            get {
+                return ResourceManager.GetString("Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Показано с 0 по 0 из 0 записей.
+        /// </summary>
+        public static string InfoEmpty {
+            get {
+                return ResourceManager.GetString("InfoEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на (отфильтровывают от _MAX_ Всего записей).
+        /// </summary>
+        public static string InfoFiltered {
+            get {
+                return ResourceManager.GetString("InfoFiltered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string InfoPostFix {
+            get {
+                return ResourceManager.GetString("InfoPostFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Информация об соискателе.
         /// </summary>
         public static string InformationAboutTheApplicant {
@@ -331,11 +403,29 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Показать записи _MENU_.
+        /// </summary>
+        public static string LengthMenu {
+            get {
+                return ResourceManager.GetString("LengthMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Страница в Linkedin.
         /// </summary>
         public static string Linkedin {
             get {
                 return ResourceManager.GetString("Linkedin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Загрузка....
+        /// </summary>
+        public static string LoadingRecords {
+            get {
+                return ResourceManager.GetString("LoadingRecords", resourceCulture);
             }
         }
         
@@ -376,6 +466,42 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Первый.
+        /// </summary>
+        public static string PaginateFirst {
+            get {
+                return ResourceManager.GetString("PaginateFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Последний.
+        /// </summary>
+        public static string PaginateLast {
+            get {
+                return ResourceManager.GetString("PaginateLast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Следующий.
+        /// </summary>
+        public static string PaginateNext {
+            get {
+                return ResourceManager.GetString("PaginateNext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Предыдущий.
+        /// </summary>
+        public static string PaginatePrevious {
+            get {
+                return ResourceManager.GetString("PaginatePrevious", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Частичная занятость.
         /// </summary>
         public static string PartTime {
@@ -408,6 +534,15 @@ namespace ApplicantWeb.App_LocalResources {
         public static string Phone {
             get {
                 return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Обработка....
+        /// </summary>
+        public static string Processing {
+            get {
+                return ResourceManager.GetString("Processing", resourceCulture);
             }
         }
         
@@ -466,6 +601,15 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Поиск.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Имя в Skype.
         /// </summary>
         public static string Skype {
@@ -489,6 +633,15 @@ namespace ApplicantWeb.App_LocalResources {
         public static string Tags {
             get {
                 return ResourceManager.GetString("Tags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ,.
+        /// </summary>
+        public static string Thousands {
+            get {
+                return ResourceManager.GetString("Thousands", resourceCulture);
             }
         }
         
@@ -579,6 +732,15 @@ namespace ApplicantWeb.App_LocalResources {
         public static string Years {
             get {
                 return ResourceManager.GetString("Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Не найдено ни одной записи.
+        /// </summary>
+        public static string ZeroRecords {
+            get {
+                return ResourceManager.GetString("ZeroRecords", resourceCulture);
             }
         }
     }

@@ -291,4 +291,58 @@
   <data name="StringLength2in50" xml:space="preserve">
     <value>The string length should be between 2 and 50 characters</value>
   </data>
+  <data name="AriaSortAscending" xml:space="preserve">
+    <value>: activate to sort column ascending</value>
+  </data>
+  <data name="AriaSortDescending" xml:space="preserve">
+    <value>: activate to sort column descending</value>
+  </data>
+  <data name="Decimal" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EmptyTable" xml:space="preserve">
+    <value>No data available in table</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Showing _START_ to _END_ of _TOTAL_ entries</value>
+  </data>
+  <data name="InfoEmpty" xml:space="preserve">
+    <value>Showing 0 to 0 of 0 entries</value>
+  </data>
+  <data name="InfoFiltered" xml:space="preserve">
+    <value>(filtered from _MAX_ total entries)</value>
+  </data>
+  <data name="InfoPostFix" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LengthMenu" xml:space="preserve">
+    <value>Show _MENU_ entries</value>
+  </data>
+  <data name="LoadingRecords" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="PaginateFirst" xml:space="preserve">
+    <value>First</value>
+  </data>
+  <data name="PaginateLast" xml:space="preserve">
+    <value>Last</value>
+  </data>
+  <data name="PaginateNext" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="PaginatePrevious" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>Processing...</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Thousands" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="ZeroRecords" xml:space="preserve">
+    <value>No matching records found</value>
+  </data>
 </root>
