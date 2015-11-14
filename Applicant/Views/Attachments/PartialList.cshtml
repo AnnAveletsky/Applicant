@@ -18,7 +18,31 @@
             "columns": [
                 { "data": "Название", },
                 { "data": "УдалениеДобавление", }
-            ]
+            ],
+            "language": {
+                "search": "@ApplicantWeb.App_LocalResources.Applicant.Search",
+                "decimal": "@ApplicantWeb.App_LocalResources.Applicant.Decimal",
+                "emptyTable": "@ApplicantWeb.App_LocalResources.Applicant.EmptyTable",
+                "info": "@ApplicantWeb.App_LocalResources.Applicant.Info",
+                "infoEmpty": "@ApplicantWeb.App_LocalResources.Applicant.InfoEmpty",
+                "infoFiltered": "@ApplicantWeb.App_LocalResources.Applicant.InfoFiltered",
+                "infoPostFix": "@ApplicantWeb.App_LocalResources.Applicant.InfoPostFix",
+                "thousands": "@ApplicantWeb.App_LocalResources.Applicant.Thousands",
+                "lengthMenu": "@ApplicantWeb.App_LocalResources.Applicant.LengthMenu",
+                "loadingRecords": "@ApplicantWeb.App_LocalResources.Applicant.LoadingRecords",
+                "processing": "@ApplicantWeb.App_LocalResources.Applicant.Processing",
+                "zeroRecords": "@ApplicantWeb.App_LocalResources.Applicant.ZeroRecords",
+                "paginate": {
+                    "first": "@ApplicantWeb.App_LocalResources.Applicant.PaginateFirst",
+                    "last": "@ApplicantWeb.App_LocalResources.Applicant.PaginateLast",
+                    "next": "@ApplicantWeb.App_LocalResources.Applicant.PaginateNext",
+                    "previous": "@ApplicantWeb.App_LocalResources.Applicant.PaginatePrevious"
+                },
+                "aria": {
+                    "sortAscending": "@ApplicantWeb.App_LocalResources.Applicant.AriaSortAscending",
+                    "sortDescending": "@ApplicantWeb.App_LocalResources.Applicant.AriaSortDescending"
+                }
+            }
         });
         $('#listAttachments tbody').on('click', 'tr', function () {
             if ($(this).hasClass('info')) {

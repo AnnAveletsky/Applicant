@@ -291,4 +291,58 @@
   <data name="StringLength2in50" xml:space="preserve">
     <value>Длина строки должна быть от 2 до 50 символов</value>
   </data>
+  <data name="AriaSortAscending" xml:space="preserve">
+    <value>: назмите для сортировки столбца по возрастанию</value>
+  </data>
+  <data name="AriaSortDescending" xml:space="preserve">
+    <value>: нажмите для сортировки столбца по убыванию</value>
+  </data>
+  <data name="Decimal" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EmptyTable" xml:space="preserve">
+    <value>Данные отсутствуют в таблице</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Показаны с _START_ по _END_ из _TOTAL_ записей</value>
+  </data>
+  <data name="InfoEmpty" xml:space="preserve">
+    <value>Показано с 0 по 0 из 0 записей</value>
+  </data>
+  <data name="InfoFiltered" xml:space="preserve">
+    <value>(отфильтровывают от _MAX_ Всего записей)</value>
+  </data>
+  <data name="InfoPostFix" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LengthMenu" xml:space="preserve">
+    <value>Показать записи _MENU_</value>
+  </data>
+  <data name="LoadingRecords" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="PaginateFirst" xml:space="preserve">
+    <value>Первый</value>
+  </data>
+  <data name="PaginateLast" xml:space="preserve">
+    <value>Последний</value>
+  </data>
+  <data name="PaginateNext" xml:space="preserve">
+    <value>Следующий</value>
+  </data>
+  <data name="PaginatePrevious" xml:space="preserve">
+    <value>Предыдущий</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>Обработка...</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="Thousands" xml:space="preserve">
+    <value>,</value>
+  </data>
+  <data name="ZeroRecords" xml:space="preserve">
+    <value>Не найдено ни одной записи</value>
+  </data>
 </root>
