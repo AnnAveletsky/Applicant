@@ -88,6 +88,60 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Ошибка. =(.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Выход.
+        /// </summary>
+        public static string Exit {
+            get {
+                return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Здравствуйте, .
+        /// </summary>
+        public static string Hello {
+            get {
+                return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Заблокировано. =(.
+        /// </summary>
+        public static string Locked {
+            get {
+                return ResourceManager.GetString("Locked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Эта учетная запись заблокирована. Попробуйте еще раз позже..
+        /// </summary>
+        public static string LockedAccountMessage {
+            get {
+                return ResourceManager.GetString("LockedAccountMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Выполнить вход.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Пароль.
         /// </summary>
         public static string Password {
@@ -124,11 +178,29 @@ namespace ApplicantWeb.App_LocalResources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на При обработке запроса произошла ошибка..
+        /// </summary>
+        public static string QueryErrorMessage {
+            get {
+                return ResourceManager.GetString("QueryErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Регистрация.
         /// </summary>
         public static string Registation {
             get {
                 return ResourceManager.GetString("Registation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Зарегестрироваться..
+        /// </summary>
+        public static string RegisterNow {
+            get {
+                return ResourceManager.GetString("RegisterNow", resourceCulture);
             }
         }
         
@@ -147,6 +219,15 @@ namespace ApplicantWeb.App_LocalResources {
         public static string RememberMe {
             get {
                 return ResourceManager.GetString("RememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Используйте локальную учетную запись для входа.
+        /// </summary>
+        public static string UseLocalLogin {
+            get {
+                return ResourceManager.GetString("UseLocalLogin", resourceCulture);
             }
         }
     }

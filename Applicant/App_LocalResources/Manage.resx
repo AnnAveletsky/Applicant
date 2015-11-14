@@ -117,61 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Code" xml:space="preserve">
-    <value>Код</value>
+  <data name="ChangeAccountSettings" xml:space="preserve">
+    <value>Изменение параметров учетной записи</value>
   </data>
-  <data name="CreateNewAccount" xml:space="preserve">
-    <value>Создайте новую учетную запись</value>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Смена пароля</value>
   </data>
-  <data name="EmailAddress" xml:space="preserve">
-    <value>Адрес электронной почты</value>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Текущий пароль</value>
   </data>
-  <data name="Error" xml:space="preserve">
-    <value>Ошибка. =(</value>
+  <data name="ExternalLogins" xml:space="preserve">
+    <value>Внешние имена входа</value>
   </data>
-  <data name="Exit" xml:space="preserve">
-    <value>Выход</value>
+  <data name="LostPasswordRecoveryForm" xml:space="preserve">
+    <value>Форма смены пароля</value>
   </data>
-  <data name="Hello" xml:space="preserve">
-    <value>Здравствуйте, </value>
+  <data name="ManageIt" xml:space="preserve">
+    <value>Управление</value>
   </data>
-  <data name="Locked" xml:space="preserve">
-    <value>Заблокировано. =(</value>
+  <data name="Management" xml:space="preserve">
+    <value>Управление</value>
   </data>
-  <data name="LockedAccountMessage" xml:space="preserve">
-    <value>Эта учетная запись заблокирована. Попробуйте еще раз позже.</value>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Новый пароль</value>
   </data>
-  <data name="Login" xml:space="preserve">
-    <value>Выполнить вход</value>
+  <data name="NewPasswordConfirm" xml:space="preserve">
+    <value>Подтверждение нового пароля</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Пароль</value>
   </data>
-  <data name="PasswordAndConfirmationDoNotMatch" xml:space="preserve">
-    <value>Пароль и его подтверждение не совпадают.</value>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>Ваш пароль успехшно изменён.</value>
   </data>
-  <data name="PasswordConfirm" xml:space="preserve">
-    <value>Подтверждение пароля</value>
+  <data name="PasswordConfirmError" xml:space="preserve">
+    <value>Новый пароль и его подтверждение не совпадают.</value>
   </data>
-  <data name="PasswordLenghtError" xml:space="preserve">
-    <value>Значение пароля должно содержать не менее 6, но не более 100 символов.</value>
+  <data name="PasswordIsSet" xml:space="preserve">
+    <value>Пароль задан.</value>
   </data>
-  <data name="QueryErrorMessage" xml:space="preserve">
-    <value>При обработке запроса произошла ошибка.</value>
+  <data name="SetNewPassword" xml:space="preserve">
+    <value>Создать новый пароль</value>
   </data>
-  <data name="Registation" xml:space="preserve">
-    <value>Регистрация</value>
+  <data name="ShitHappens" xml:space="preserve">
+    <value>Произошла ошибка.</value>
   </data>
-  <data name="RegisterNow" xml:space="preserve">
-    <value>Зарегестрироваться.</value>
-  </data>
-  <data name="RememberInBrowserQ" xml:space="preserve">
-    <value>Запомнить в браузер?</value>
-  </data>
-  <data name="RememberMe" xml:space="preserve">
-    <value>Запомнить меня</value>
-  </data>
-  <data name="UseLocalLogin" xml:space="preserve">
-    <value>Используйте локальную учетную запись для входа</value>
+  <data name="WrongCurrentPassword" xml:space="preserve">
+    <value>Неверный текущей пароль</value>
   </data>
 </root>

@@ -19,26 +19,26 @@ namespace ApplicantWeb
                 "~/Scripts/fileinput_locale_ru.js"));
 
             bundles.Add(new StyleBundle("~/Content/fileinput").Include(
-                      "~/Content/bootstrap-fileinput/css/fileinput.min.css"));
+                "~/Content/bootstrap-fileinput/css/fileinput.min.css"));
 
             // Используйте версию Modernizr для разработчиков, чтобы учиться работать. Когда вы будете готовы перейти к работе,
             // используйте средство сборки на сайте http://modernizr.com, чтобы выбрать только нужные тесты.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+                "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                "~/Scripts/bootstrap.min.js",
+                "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                "~/Content/bootstrap.css",
+                "~/Content/site.css"));
             //Собственный скрипт
             bundles.Add(new ScriptBundle("~/bundles/advanced").Include(
-                      "~/Scripts/advanced_script.js"));
+                "~/Scripts/advanced_script.js"));
 
             bundles.Add(new StyleBundle("~/bundles/fonts").Include(
-                "~/Content/fonts/font-awesome.min.css"));
+                "~/fonts/font-awesome.min.css"));
             
             bundles.Add(new StyleBundle("~/bundles/admin-lte").Include(
                 "~/Content/admin-lte/css/AdminLTE.min.css",

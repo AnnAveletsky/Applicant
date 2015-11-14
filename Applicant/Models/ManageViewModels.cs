@@ -28,14 +28,15 @@ namespace ApplicantWeb.Models
     public class SetPasswordViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "Значение {0} должно содержать символов не менее: {2}.", MinimumLength = 6)]
+        [StringLength(100, MinimumLength = 6, ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Account),
+                 ErrorMessageResourceName = "PasswordLenghtError")]
         [DataType(DataType.Password)]
-        [Display(Name = "Новый пароль")]
+        [Display(Name = "NewPassword", ResourceType = typeof(ApplicantWeb.App_LocalResources.Manage))]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Подтверждение нового пароля")]
-        [Compare("NewPassword", ErrorMessage = "Новый пароль и его подтверждение не совпадают.")]
+        [Display(Name = "NewPasswordConfirm", ResourceType = typeof(ApplicantWeb.App_LocalResources.Manage))]
+        [Compare("NewPassword", ErrorMessageResourceType = typeof (ApplicantWeb.App_LocalResources.Manage), ErrorMessageResourceName = "PasswordConfirmError")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -43,18 +44,19 @@ namespace ApplicantWeb.Models
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Текущий пароль")]
+        [Display(Name = "CurrentPassword", ResourceType = typeof(ApplicantWeb.App_LocalResources.Manage))]
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Значение {0} должно содержать символов не менее: {2}.", MinimumLength = 6)]
+        [StringLength(100, MinimumLength = 6, ErrorMessageResourceType = typeof(ApplicantWeb.App_LocalResources.Account),
+           ErrorMessageResourceName = "PasswordLenghtError")]
         [DataType(DataType.Password)]
-        [Display(Name = "Новый пароль")]
+        [Display(Name = "NewPassword", ResourceType = typeof(ApplicantWeb.App_LocalResources.Manage))]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Подтверждение нового пароля")]
-        [Compare("NewPassword", ErrorMessage = "Новый пароль и его подтверждение не совпадают.")]
+        [Display(Name = "NewPasswordConfirm", ResourceType = typeof(ApplicantWeb.App_LocalResources.Manage))]
+        [Compare("NewPassword", ErrorMessageResourceType = typeof (ApplicantWeb.App_LocalResources.Manage), ErrorMessageResourceName = "PasswordConfirmError")]
         public string ConfirmPassword { get; set; }
     }
 

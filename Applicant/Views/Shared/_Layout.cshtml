@@ -5,14 +5,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="~/Content/Icons/Original.png" type="image/png">
+    @*<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    *@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/admin-lte")
+    @Styles.Render("~/bundles/fonts")
+
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Styles.Render("~/bundles/admin-lte")
-    @Styles.Render("~/bundles/fonts")
-    
+   
     <meta name="description" content="Management application records of interviews with the applicant" />
 </head>
 <body class="skin-blue">

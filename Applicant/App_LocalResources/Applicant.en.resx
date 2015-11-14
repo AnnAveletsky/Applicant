@@ -151,7 +151,7 @@
     <value>First Name</value>
   </data>
   <data name="Footer" xml:space="preserve">
-    <value>Search job applicants</value>
+    <value>Search applicants for job</value>
   </data>
   <data name="FullName" xml:space="preserve">
     <value>Full name</value>

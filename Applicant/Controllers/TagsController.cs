@@ -106,7 +106,7 @@ namespace ApplicantWeb.Controllers
 
                     return PartialView("PartialList", new TagList() { Tags = db.ToList(tagCreate.ApplicantId), ApplicantId = tagCreate.ApplicantId });
                 }
-                catch (Exception e)
+                catch 
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }

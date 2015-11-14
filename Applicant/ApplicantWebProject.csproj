@@ -212,6 +212,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>History.en.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_LocalResources\Manage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Manage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_LocalResources\Manage.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Manage.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_LocalResources\Tag.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -386,24 +396,24 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
-    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Icons\Icon.png" />
     <Content Include="Content\Icons\Original.png" />
-    <Content Include="Content\fonts\font-awesome.css" />
-    <Content Include="Content\fonts\font-awesome.min.css" />
+    <Content Include="fonts\font-awesome.css" />
+    <Content Include="fonts\font-awesome.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Content\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\fonts\FontAwesome.otf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\DataTables\css\mixins.scss" />
@@ -584,6 +594,14 @@
     <EmbeddedResource Include="App_LocalResources\Applicant.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Applicant.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\Manage.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Manage.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\Manage.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Manage.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="App_LocalResources\Tag.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

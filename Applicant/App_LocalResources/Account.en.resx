@@ -126,6 +126,24 @@
   <data name="EmailAddress" xml:space="preserve">
     <value>E-mail address</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hello, </value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>Locked. =(</value>
+  </data>
+  <data name="LockedAccountMessage" xml:space="preserve">
+    <value>This account is locked. Try again later.</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login in</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -138,13 +156,22 @@
   <data name="PasswordLenghtError" xml:space="preserve">
     <value>The value of the password must contain at least 6 but no more than 100 characters.</value>
   </data>
+  <data name="QueryErrorMessage" xml:space="preserve">
+    <value>When processing a query error.</value>
+  </data>
   <data name="Registation" xml:space="preserve">
     <value>Registation</value>
+  </data>
+  <data name="RegisterNow" xml:space="preserve">
+    <value>Register now!</value>
   </data>
   <data name="RememberInBrowserQ" xml:space="preserve">
     <value>Remember in browser?</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
     <value>Remember me</value>
+  </data>
+  <data name="UseLocalLogin" xml:space="preserve">
+    <value>Use the local account login</value>
   </data>
 </root>
