@@ -20,7 +20,14 @@ namespace ApplicantWeb.Controllers
         // GET: Applicants
         public ActionResult Index()
         {
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect(Url.Action("Login","Account"));
+            }
         }
       
         public JsonResult List()
@@ -38,42 +45,84 @@ namespace ApplicantWeb.Controllers
         // GET: Applicants/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(id);
+                if (applicant == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(applicant);
             }
-            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(id);
-            if (applicant == null)
+            else
             {
-                return HttpNotFound();
+                return Redirect(Url.Action("Login", "Account"));
             }
-            return View(applicant);
         }
         public ActionResult Photo(int idApplicant)
         {
-            var applicant = db.Applicants.Find(idApplicant);
-            return PartialView("PartialPhoto", applicant.Photo);
+            if (Request.IsAuthenticated)
+            {
+                try
+                {
+                    var applicant = db.Applicants.Find(idApplicant);
+                    return PartialView("PartialPhoto", applicant.Photo);
+                }
+                catch
+                {
+                    return HttpNotFound();
+                }
+            }
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
         public ActionResult AttachmentToAva(int idAttachment)
         {
-            var attachment = db.Attachments.Find(idAttachment);
-            if (attachment != null)
+            if (Request.IsAuthenticated)
             {
-                var applicant = db.Applicants.Find(attachment.ApplicantId);
-                if (applicant != null)
+                try
                 {
-                    applicant.Photo = attachment.Attach;
-                    db.SaveChanges();
-                    return PartialView("PartialPhoto", applicant.Photo);
+                    var attachment = db.Attachments.Find(idAttachment);
+                    if (attachment != null)
+                    {
+                        var applicant = db.Applicants.Find(attachment.ApplicantId);
+                        if (applicant != null)
+                        {
+                            applicant.Photo = attachment.Attach;
+                            db.SaveChanges();
+                            return PartialView("PartialPhoto", applicant.Photo);
+                        }
+                    }
+                    return HttpNotFound();
+                }
+                catch
+                {
+                    return HttpNotFound();
                 }
             }
-            return HttpNotFound();
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
         
         // GET: Applicants/Create
         public ActionResult Create()
         {
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
 
         // POST: Applicants/Create
@@ -83,30 +132,49 @@ namespace ApplicantWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ApplicantFields applicantFields)
         {
-            ApplicantWeb.Models.Applicant applicant = new Models.Applicant(applicantFields);
-            if (ModelState.IsValid)
+            if (Request.IsAuthenticated)
             {
-
-                db.Applicants.Add(applicant);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    ApplicantWeb.Models.Applicant applicant = new Models.Applicant(applicantFields);
+                    if (ModelState.IsValid)
+                    {
+                        db.Applicants.Add(applicant);
+                        db.SaveChanges();
+                        return Redirect(Url.Action("Details", "Applicants", new { id = applicant.ApplicantId }));
+                    }
+                    return View(applicant);
+                }
+                catch
+                {
+                    return HttpNotFound();
+                }
             }
-
-            return View(applicant);
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
         // GET: Applicants/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(id);
+                if (applicant == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(applicant);
             }
-            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(id);
-            if (applicant == null)
+            else
             {
-                return HttpNotFound();
+                return Redirect(Url.Action("Login", "Account"));
             }
-            return View(applicant);
         }
 
         // POST: Applicants/Edit/5
@@ -116,30 +184,51 @@ namespace ApplicantWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ApplicantEdit applicantEdit)
         {
-            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(applicantEdit.ApplicantId);
-            if (ModelState.IsValid)
+            if (Request.IsAuthenticated)
             {
-                applicant.Edit(applicantEdit);
-                db.Entry(applicant).State = EntityState.Modified;
-                db.SaveChanges();
-                return Redirect(Url.Action("Details", "Applicants", new { id = applicant.ApplicantId }));
+                try
+                {
+                    ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(applicantEdit.ApplicantId);
+                    if (ModelState.IsValid)
+                    {
+                        applicant.Edit(applicantEdit);
+                        db.Entry(applicant).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return Redirect(Url.Action("Details", "Applicants", new { id = applicant.ApplicantId }));
+                    }
+                    return View(applicant);
+                }
+                catch
+                {
+                    return HttpNotFound();
+                }
             }
-            return View(applicant);
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
 
         // GET: Applicants/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(id);
+                if (applicant == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(applicant);
             }
-            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(id);
-            if (applicant == null)
+            else
             {
-                return HttpNotFound();
+                return Redirect(Url.Action("Login", "Account"));
             }
-            return View(applicant);
         }
 
         // POST: Applicants/Delete/5
@@ -147,14 +236,26 @@ namespace ApplicantWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-
-            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(id);
-                db.DeleteAttachments(applicant);
-                db.DeleteHistories(applicant);
-                db.Applicants.Remove(applicant);
-                db.SaveChanges();
-            
-            return RedirectToAction("Index");
+            if (Request.IsAuthenticated)
+            {
+                try
+                {
+                    ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(id);
+                    db.DeleteAttachments(applicant);
+                    db.DeleteHistories(applicant);
+                    db.Applicants.Remove(applicant);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return HttpNotFound();
+                }
+            }
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
 
         protected override void Dispose(bool disposing)

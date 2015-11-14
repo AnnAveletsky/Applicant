@@ -31,21 +31,35 @@ namespace ApplicantWeb.Controllers
         // GET: Histories/List/histories
         public ActionResult PartialList(int applicantId)
         {
-            return PartialView("PartialList", db.Applicants.Find(applicantId));
+            if (Request.IsAuthenticated)
+            {
+                return PartialView("PartialList", db.Applicants.Find(applicantId));
+            }
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
         // GET: Histories/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                History history = db.Histories.Find(id);
+                if (history == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(history);
             }
-            History history = db.Histories.Find(id);
-            if (history == null)
+            else
             {
-                return HttpNotFound();
+                return Redirect(Url.Action("Login", "Account"));
             }
-            return View(history);
         }
 
 
@@ -56,31 +70,49 @@ namespace ApplicantWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(HistoryCreate historyCreate)
         {
-            if (Request.IsAjaxRequest())
+            if (Request.IsAuthenticated)
             {
-                if (ModelState.IsValid)
+                try
                 {
-                    db.Histories.Add(new History(historyCreate));
-                    db.SaveChanges();
-                    return PartialView("PartialList", db.Applicants.Find(historyCreate.ApplicantId));
+                    if (ModelState.IsValid)
+                    {
+                        db.Histories.Add(new History(historyCreate));
+                        db.SaveChanges();
+                        return PartialView("PartialList", db.Applicants.Find(historyCreate.ApplicantId));
+                    }
+                    return View(historyCreate);
+                }
+                catch
+                {
+                    return HttpNotFound();
                 }
             }
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
 
         // GET: Histories/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                History history = db.Histories.Find(id);
+                if (history == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(history);
             }
-            History history = db.Histories.Find(id);
-            if (history == null)
+            else
             {
-                return HttpNotFound();
+                return Redirect(Url.Action("Login", "Account"));
             }
-            return View(history);
         }
 
         // POST: Histories/Edit/5
@@ -90,30 +122,51 @@ namespace ApplicantWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(HistoryEdit historyEdit)
         {
-            History history = db.Histories.Find(historyEdit.HistoryId);
-            history.Edit(historyEdit);
-            if (ModelState.IsValid)
+            if (Request.IsAuthenticated)
             {
-                db.Entry(history).State = EntityState.Modified;
-                db.SaveChanges();
-                return View("Details", history);
+                try
+                {
+                    History history = db.Histories.Find(historyEdit.HistoryId);
+                    history.Edit(historyEdit);
+                    if (ModelState.IsValid)
+                    {
+                        db.Entry(history).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return View("Details", history);
+                    }
+                    return View(historyEdit);
+                }
+                catch
+                {
+                    return HttpNotFound();
+                }
             }
-            return HttpNotFound();
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
 
         // GET: Histories/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                History history = db.Histories.Find(id);
+                if (history == null)
+                {
+                    return HttpNotFound();
+                }
+                return View("Delete", history);
             }
-            History history = db.Histories.Find(id);
-            if (history == null)
+            else
             {
-                return HttpNotFound();
+                return Redirect(Url.Action("Login", "Account"));
             }
-            return View("Delete",history);
         }
 
         // POST: Histories/Delete/5
@@ -121,12 +174,26 @@ namespace ApplicantWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            History history = db.Histories.Find(id);
-            var idApplicant=history.ApplicantId;
-            db.DeleteAttachments(history);
-            db.Histories.Remove(history);
-            db.SaveChanges();
-            return Redirect(Url.Action("Details", "Applicants", new { id = idApplicant }));
+            if (Request.IsAuthenticated)
+            {
+                try
+                {
+                    History history = db.Histories.Find(id);
+                    var idApplicant = history.ApplicantId;
+                    db.DeleteAttachments(history);
+                    db.Histories.Remove(history);
+                    db.SaveChanges();
+                    return Redirect(Url.Action("Details", "Applicants", new { id = idApplicant }));
+                }
+                catch
+                {
+                    return HttpNotFound();
+                }
+            }
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
 
         protected override void Dispose(bool disposing)

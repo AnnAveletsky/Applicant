@@ -24,47 +24,97 @@ namespace ApplicantWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(TagCreate tagCreate)
         {
-            db.CreateTagAndAddTagInApplicant(tagCreate);
-            return PartialView("PartialList", new TagList() { ApplicantId = tagCreate.ApplicantId, Tags = db.ToList(tagCreate.ApplicantId) });
+            if (Request.IsAuthenticated)
+            {
+                try
+                {
+                    db.CreateTagAndAddTagInApplicant(tagCreate);
+                    return PartialView("PartialList", new TagList() { ApplicantId = tagCreate.ApplicantId, Tags = db.ToList(tagCreate.ApplicantId) });
+                }
+                catch
+                {
+                    return HttpNotFound();
+                }
+            }
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
         public ActionResult ToList(int ApplicantId)
         {
-            return PartialView("PartialList", new TagList() { ApplicantId = ApplicantId, Tags = db.ToList(ApplicantId) });
+            if (Request.IsAuthenticated)
+            {
+                try
+                {
+                    return PartialView("PartialList", new TagList() { ApplicantId = ApplicantId, Tags = db.ToList(ApplicantId) });
+                }
+                catch
+                {
+                    return HttpNotFound();
+                }
+            }
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
         // GET: Attachments/Delete/5
         public ActionResult Delete(int? id, int? applicantId)
         {
-            if (id == null||applicantId==null)
+            if (Request.IsAuthenticated)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                try
+                {
+                    if (id == null || applicantId == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(applicantId);
+                    if (applicant == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    TagCreate tagCreate = new TagCreate() { TagId = db.Tags.Find(id).TagId, TagName = db.Tags.Find(id).TagName, ApplicantId = applicant.ApplicantId, Applicant = applicant };
+                    if (tagCreate == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return PartialView("PartialDelete", tagCreate);
+                }
+                catch
+                {
+                    return HttpNotFound();
+                }
             }
-            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(applicantId);
-            if (applicant == null)
-            { 
-                return HttpNotFound(); 
-            }
-            TagCreate tagCreate = new TagCreate() { TagId = db.Tags.Find(id).TagId, TagName = db.Tags.Find(id).TagName, ApplicantId = applicant.ApplicantId, Applicant = applicant};
-            if (tagCreate == null)
+            else
             {
-                return HttpNotFound();
+                return Redirect(Url.Action("Login", "Account"));
             }
-            return PartialView("PartialDelete", tagCreate);
         }
         // POST: Tags/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(TagCreate tagCreate)
         {
-            try
+            if (Request.IsAuthenticated)
             {
-                db.DeleteTag(tagCreate);
-                db.SaveChanges();
+                try
+                {
+                    db.DeleteTag(tagCreate);
+                    db.SaveChanges();
+
+                    return PartialView("PartialList", new TagList() { Tags = db.ToList(tagCreate.ApplicantId), ApplicantId = tagCreate.ApplicantId });
+                }
+                catch (Exception e)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
             }
-            catch (Exception e)
+            else
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return Redirect(Url.Action("Login", "Account"));
             }
-            return PartialView("PartialList", new TagList() { Tags = db.ToList(tagCreate.ApplicantId), ApplicantId = tagCreate.ApplicantId });
         }
 
         protected override void Dispose(bool disposing)

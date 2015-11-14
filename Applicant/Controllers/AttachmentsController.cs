@@ -76,12 +76,25 @@ namespace ApplicantWeb.Controllers
         }
         public ActionResult PartialList(int id)
         {
+            if (Request.IsAuthenticated)
+            {
             return PartialView("PartialList", db.Applicants.Find(id));
-
+             }
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
         public ActionResult ListToHistory(int historyId)
         {
+            if (Request.IsAuthenticated)
+            {
              return PartialView("PartialListToHistory", db.Histories.Find(historyId));
+            }
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
         // GET: Attachments/Load
         public JsonResult Load(int applicantId ,IEnumerable<HttpPostedFileBase> file_data)
@@ -97,7 +110,6 @@ namespace ApplicantWeb.Controllers
                 {
                     return Json("{error: 'You are not allowed to upload such a file. ('"+ except.Message+")}");
                 }
-             
             }
             return Json("");
         }
@@ -127,50 +139,106 @@ namespace ApplicantWeb.Controllers
         }
         public ActionResult AddToApplicant(int attachmentId)
         {
-            Attachment attachment = db.Attachments.Find(attachmentId);
-            attachment.History = db.Histories.Find(attachment.HistoryId);
-            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
-            attachment.ApplicantId = applicant.ApplicantId;
-            attachment.Applicant = applicant;
-            applicant.Attachments.Add(attachment);
-            db.SaveChanges();
-            return PartialView("PartialListToHistory", attachment.History);
+            if (Request.IsAuthenticated)
+            {
+                try
+                {
+                    Attachment attachment = db.Attachments.Find(attachmentId);
+                    attachment.History = db.Histories.Find(attachment.HistoryId);
+                    ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
+                    attachment.ApplicantId = applicant.ApplicantId;
+                    attachment.Applicant = applicant;
+                    applicant.Attachments.Add(attachment);
+                    db.SaveChanges();
+                    return PartialView("PartialListToHistory", attachment.History);
+                }
+                catch
+                {
+                    return HttpNotFound();
+                }
+            }
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
         public ActionResult DeleteToApplicant(int attachmentId)
         {
-            Attachment attachment = db.Attachments.Find(attachmentId);
-            attachment.History = db.Histories.Find(attachment.HistoryId);
-            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
-            attachment.ApplicantId = null;
-            attachment.Applicant = null;
-            applicant.Attachments.Remove(attachment);
-            db.SaveChanges();
-            return PartialView("PartialList", applicant);
+            if (Request.IsAuthenticated)
+            {
+                try
+                {
+                    Attachment attachment = db.Attachments.Find(attachmentId);
+                    attachment.History = db.Histories.Find(attachment.HistoryId);
+                    ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
+                    attachment.ApplicantId = null;
+                    attachment.Applicant = null;
+                    applicant.Attachments.Remove(attachment);
+                    db.SaveChanges();
+                    return PartialView("PartialList", applicant);
+                }
+                catch
+                {
+                    return HttpNotFound();
+                }
+            }
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
         public ActionResult DeleteToApplicantToHistory(int attachmentId)
         {
-            Attachment attachment = db.Attachments.Find(attachmentId);
-            attachment.History = db.Histories.Find(attachment.HistoryId);
-            ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
-            attachment.ApplicantId = null;
-            attachment.Applicant = null;
-            applicant.Attachments.Remove(attachment);
-            db.SaveChanges();
-            return PartialView("PartialListToHistory", attachment.History.Attachments.ToList());
+            if (Request.IsAuthenticated)
+            {
+                try
+                {
+                    Attachment attachment = db.Attachments.Find(attachmentId);
+                    attachment.History = db.Histories.Find(attachment.HistoryId);
+                    ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
+                    attachment.ApplicantId = null;
+                    attachment.Applicant = null;
+                    applicant.Attachments.Remove(attachment);
+                    db.SaveChanges();
+                    return PartialView("PartialListToHistory", attachment.History.Attachments.ToList());
+                }
+                catch
+                {
+                    return HttpNotFound();
+                }
+            }
+            else
+            {
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
         // GET: Attachments/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                try
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    Attachment attachment = db.Attachments.Find(id);
+                    if (attachment == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return PartialView("PartialDelete", attachment);
+                }
+                catch
+                {
+                    return HttpNotFound();
+                }
             }
-            Attachment attachment = db.Attachments.Find(id);
-            if (attachment == null)
+            else
             {
-                return HttpNotFound();
+                return Redirect(Url.Action("Login", "Account"));
             }
-            return PartialView("PartialDelete", attachment);
         }
 
         // POST: Attachments/Delete/5
@@ -178,24 +246,38 @@ namespace ApplicantWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Attachment attachment = db.Attachments.Find(id);
-            if (attachment.ApplicantId != null)
+            if (Request.IsAuthenticated)
             {
-                ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(attachment.ApplicantId);
-                db.Attachments.Remove(attachment);
-                db.SaveChanges();
-                return PartialView("PartialList", applicant);
-            }
-            else if(attachment.HistoryId!=null)
-            {
-                History history = db.Histories.Find(attachment.HistoryId);
-                db.Attachments.Remove(attachment);
-                db.SaveChanges();
-                return PartialView("PartialListToHistory", history.Attachments.ToList());
+                try
+                {
+                    Attachment attachment = db.Attachments.Find(id);
+                    if (attachment.ApplicantId != null)
+                    {
+                        ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(attachment.ApplicantId);
+                        db.Attachments.Remove(attachment);
+                        db.SaveChanges();
+                        return PartialView("PartialList", applicant);
+                    }
+                    else if (attachment.HistoryId != null)
+                    {
+                        History history = db.Histories.Find(attachment.HistoryId);
+                        db.Attachments.Remove(attachment);
+                        db.SaveChanges();
+                        return PartialView("PartialListToHistory", history.Attachments.ToList());
+                    }
+                    else
+                    {
+                        return HttpNotFound();
+                    }
+                }
+                catch
+                {
+                    return HttpNotFound();
+                }
             }
             else
             {
-                return HttpNotFound();
+                return Redirect(Url.Action("Login", "Account"));
             }
         }
 
