@@ -54,7 +54,8 @@
                             tags += " <div class='label label-info'>" + json.data[i]["Tags"][j] + "</div>";
                             j++;
                         }
-                        json.data[i]["FullName"] = "<a class='" + (json.data[i]["Gender"] == 0 ? "man" : "woman") + "' href=/Applicants/Details/" + json.data[i]["ApplicantId"] + ">" +
+                        json.data[i]["FullName"] = "<a class='" + (json.data[i]["Gender"] == 0 ? "man" : "woman") + "'" +
+                            " href='/Applicants/Details/" + json.data[i]["ApplicantId"] + "'>" +
                             (json.data[i]["Gender"] == 0 ?
                             "<span class='fa fa-male' aria-hidden='true'></span>" :
                             "<span class='fa fa-female' aria-hidden='true'></span>") +

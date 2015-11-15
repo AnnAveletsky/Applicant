@@ -19,10 +19,30 @@
 <script>
     $(document).ready(function () {
         var table = $('#listAttachments').DataTable({
-            "ajax": "@Url.Action("List", "Attachments", new { idHistory = Model.HistoryId })",
+            "ajax": {
+                "url": "@Url.Action("List", "Attachments", new { idHistory = Model.HistoryId })",
+                "dataSrc": function (json) {
+                    var i = 0;
+                    while (json.data[i] != null) {
+                        json.data[i]["Name"] = "<a href='/Attachments/Download/" + json.data[i]["AttachmentId"] + "'>" +
+                        "<i class='glyphicon glyphicon-download'></i> " + json.data[i]["Name"] + "</a>";
+                        json.data[i]["AddDelete"] =
+                            //если не прикреплён к соискателю
+                            ((json.data[i]["ApplicantId"] == null) ?
+                            //то прикрепить файл к соискателю
+                            ("<button class='btn btn-success btn-sm' data-placement='bottom' title='@ApplicantWeb.App_LocalResources.Attachment.AttachFileToApplicant' onclick='addToApplicant(" + json.data[i]["AttachmentId"] + ")'>" + "<i class='glyphicon glyphicon-paperclip'></i></button>") :
+                            //иначе открепить файл от соискателя
+                            " <button type='submit' class='btn btn-danger btn-sm' data-placement='bottom' title='@ApplicantWeb.App_LocalResources.Attachment.UndockFile' onclick='deleteToApplicantToHistory(" + json.data[i]["AttachmentId"] + ")'>" + "<i class='glyphicon glyphicon-paperclip'></i></button>") +
+                            //Удалить файл
+                            " <button type='submit' data-placement='bottom' title='@ApplicantWeb.App_LocalResources.Attachment.RemoveFile' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#myModal' onclick='delAttach(" + json.data[i]["AttachmentId"] + ")'>" + " <i class='glyphicon glyphicon-remove'></i> </button>";
+                        i++;
+                    }
+                    return json.data;
+                }
+            },
             "columns": [
-                { "data": "Название", },
-                { "data": "УдалениеДобавление", }
+                { "data": "Name", },
+                { "data": "AddDelete", }
             ],
             "language": {
                 "search": "@ApplicantWeb.App_LocalResources.Applicant.Search",
@@ -81,7 +101,7 @@
             }
         });
     }
-    function del(id) {
+    function delAttach(id) {
         $.ajax({
             url: "@Url.Action("Delete", "Attachments")",
             data: "id=" + id,

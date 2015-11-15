@@ -19,49 +19,34 @@ namespace ApplicantWeb.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // POST: Attachments/List/
-        public JsonResult List(int? id,int? idHistory)
+        public JsonResult List(int? id, int? idHistory)
         {
-            if (idHistory == null&&id!=null)
+            if (idHistory == null && id != null)
             {
-                var attachments = db.Applicants.Find(id).Attachments;
-                var json = attachments.Select(i => new
-                {
-                    Название = "<a href='/../../Attachments/Download/" + i.AttachmentId + "'>"+
-                    "<i class='glyphicon glyphicon-download'></i> " + i.Name + "</a>",
-                    УдалениеДобавление = ((i.Name.EndsWith(".png") || i.Name.EndsWith(".jpg") || i.Name.EndsWith(".jpeg")) ? 
-                    //Сделать аватаркой
-                    " <button type='submit' data-placement='bottom' title='" + ApplicantWeb.App_LocalResources.Attachment.MoveToAvatar + "' class='btn btn-primary btn-sm' onclick='toAva(" + i.AttachmentId + ")'>"+
-                    "<i class='glyphicon glyphicon-user'></i></button>" : "") + ((i.HistoryId != null) ? 
-                    //Открепить от соискателя
-                    " <button type='submit' data-placement='bottom' title='" + ApplicantWeb.App_LocalResources.Attachment.UndockFile + "' class='btn btn-danger btn-sm' onclick='deleteToApplicantToHistory(" + i.AttachmentId + ")'>"+
-                    "<i class='glyphicon glyphicon-paperclip'></i></button>" : "") + 
-                    //Удалить файл
-                    " <button type='submit' data-placement='bottom' title='" + ApplicantWeb.App_LocalResources.Attachment.RemoveFile + "' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#myModal' onclick='delAttach(" + i.AttachmentId + ")'>" +
-                    " <i class='glyphicon glyphicon-remove'></i> </button>"
-                });
+                var json = (from attach in db.Attachments
+                            where attach.ApplicantId == id
+                            select new
+                            {
+                                AttachmentId = attach.AttachmentId,
+                                Name = attach.Name,
+                                Picture = ((attach.Name.EndsWith(".png") || attach.Name.EndsWith(".jpg") ||     attach.Name.EndsWith(".jpeg")) ? 1 : 0),
+                                HistoryId=attach.HistoryId
+                            });
                 return Json(new { data = json }, JsonRequestBehavior.AllowGet);
             }
-            else if(idHistory!=null&&id==null)
+            else if (idHistory != null && id == null)
             {
                 var history = db.Histories.Find(idHistory);
                 if (history != null)
                 {
-                    var attachments = history.Attachments;
-                    var json = attachments.Select(i => new
-                    {
-                        Название = "<a href='/../../Attachments/Download/" + i.AttachmentId + "'>"+
-                            "<i class='glyphicon glyphicon-download'></i> " + i.Name + "</a>",
-                        УдалениеДобавление = ((i.ApplicantId == null) ? 
-                        //Прикрепить файл к соискателю
-                        ("<button class='btn btn-success btn-sm' data-placement='bottom' title='" + ApplicantWeb.App_LocalResources.Attachment.AttachFileToApplicant + "' onclick='addToApplicant(" + i.AttachmentId + ")'>"+
-                            "<i class='glyphicon glyphicon-paperclip'></i></button>") : ((i.HistoryId != null) ? 
-                            //Открепить файл от соискателя
-                            (" <button type='submit' class='btn btn-danger btn-sm' data-placement='bottom' title='" + ApplicantWeb.App_LocalResources.Attachment.UndockFile + "' onclick='deleteToApplicantToHistory(" + i.AttachmentId + ")'>"+
-                            "<i class='glyphicon glyphicon-paperclip'></i></button>") : (""))) + 
-                            //Удалить файл
-                            (" <button type='submit' data-placement='bottom' title='" + ApplicantWeb.App_LocalResources.Attachment.RemoveFile + "' class='btn btn-danger btn-sm'  data-toggle='modal' data-target='#myModal' onclick='del(") + i.AttachmentId + (")'>" +
-                            "<i class='glyphicon glyphicon-remove'></i></button>")
-                    });
+                    var json = (from attach in db.Attachments
+                                where attach.HistoryId == idHistory
+                                select new
+                                {
+                                    AttachmentId = attach.AttachmentId,
+                                    Name = attach.Name,
+                                    ApplicantId = attach.ApplicantId
+                                });
                     return Json(new { data = json }, JsonRequestBehavior.AllowGet);
                 }
                 else
@@ -198,9 +183,10 @@ namespace ApplicantWeb.Controllers
                     ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(attachment.History.ApplicantId);
                     attachment.ApplicantId = null;
                     attachment.Applicant = null;
+                    History history = db.Histories.Find(attachment.HistoryId);
                     applicant.Attachments.Remove(attachment);
                     db.SaveChanges();
-                    return PartialView("PartialListToHistory", attachment.History.Attachments.ToList());
+                    return PartialView("PartialListToHistory", history);
                 }
                 catch
                 {
@@ -251,19 +237,19 @@ namespace ApplicantWeb.Controllers
                 try
                 {
                     Attachment attachment = db.Attachments.Find(id);
+                    if (attachment.HistoryId != null)
+                    {
+                        History history = db.Histories.Find(attachment.HistoryId);
+                        db.Attachments.Remove(attachment);
+                        db.SaveChanges();
+                        return PartialView("PartialListToHistory", history);
+                    }else
                     if (attachment.ApplicantId != null)
                     {
                         ApplicantWeb.Models.Applicant applicant = db.Applicants.Find(attachment.ApplicantId);
                         db.Attachments.Remove(attachment);
                         db.SaveChanges();
                         return PartialView("PartialList", applicant);
-                    }
-                    else if (attachment.HistoryId != null)
-                    {
-                        History history = db.Histories.Find(attachment.HistoryId);
-                        db.Attachments.Remove(attachment);
-                        db.SaveChanges();
-                        return PartialView("PartialListToHistory", history.Attachments.ToList());
                     }
                     else
                     {

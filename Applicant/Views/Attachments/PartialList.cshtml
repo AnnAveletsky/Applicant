@@ -14,10 +14,36 @@
 <script>
     $(document).ready(function () {
         var table = $('#listAttachments').DataTable({
-            "ajax": "/../../Attachments/List/"+@Model.ApplicantId,
+            "ajax": {
+                "url": "@Url.Action("List", "Attachments", new { id=Model.ApplicantId })",
+                "dataSrc": function (json) {
+                    var i = 0;
+                    while (json.data[i] != null) {
+                        json.data[i]["Name"] = "<a href='/Attachments/Download/" + json.data[i]["AttachmentId"] + "'>" +
+                        "<i class='glyphicon glyphicon-download'></i> " + json.data[i]["Name"] + "</a>";
+                        json.data[i]["AddDelete"] =
+                            //если картинка
+                            ((json.data[i]["Picture"] == 1) ?
+                            //Сделать аватаркой
+                            " <button type='submit' data-placement='bottom' title='@ApplicantWeb.App_LocalResources.Attachment.MoveToAvatar' class='btn btn-primary btn-sm' onclick='toAva(" + json.data[i]["AttachmentId"] + ")'>" + "<i class='glyphicon glyphicon-user'></i></button>" :
+                            //не сделать аватаркой
+                            "") +
+                            // если из собеседования прикреплён к соискателю
+                            ((json.data[i]["HistoryId"] != null) ?
+                            //Открепить от соискателя
+                            " <button type='submit' data-placement='bottom' title='@ApplicantWeb.App_LocalResources.Attachment.UndockFile' class='btn btn-danger btn-sm' onclick='deleteToApplicantToHistory(" + json.data[i]["AttachmentId"] + ")'>" +"<i class='glyphicon glyphicon-paperclip'></i></button>" :
+                            //не откреплять от соискателя
+                            "") +
+                            //Удалить файл
+                            " <button type='submit' data-placement='bottom' title='@ApplicantWeb.App_LocalResources.Attachment.RemoveFile' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#myModal' onclick='delAttach(" + json.data[i]["AttachmentId"] + ")'>" +" <i class='glyphicon glyphicon-remove'></i> </button>";
+                        i++;
+                    }
+                    return json.data;
+                }
+            },
             "columns": [
-                { "data": "Название", },
-                { "data": "УдалениеДобавление", }
+                { "data": "Name", },
+                { "data": "AddDelete", }
             ],
             "language": {
                 "search": "@ApplicantWeb.App_LocalResources.Applicant.Search",
@@ -56,15 +82,15 @@
     });
 </script>
 <script>
-    function toAva(attachmentId){
+    function toAva(attachmentId) {
         $.ajax({
             url: "@Url.Action("AttachmentToAva", "Applicants")",
             data: "idAttachment=" + attachmentId,
-        success: function (html) {
-            $("#photo").empty();
-            $("#photo").append(html);
-        }
-    });
+            success: function (html) {
+                $("#photo").empty();
+                $("#photo").append(html);
+            }
+        });
     }
     function addToApplicant(attachmentId) {
         $.ajax({

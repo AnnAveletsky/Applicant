@@ -29,23 +29,25 @@ namespace ApplicantWeb.Controllers
                 return Redirect(Url.Action("Login","Account"));
             }
         }
-      
+
         public JsonResult List()
         {
             var json = (from app in db.Applicants
-                          select new { 
-                              ApplicantId = app.ApplicantId, 
-                              FullName = app.FirstName + " " + app.MiddleName,
-                              Age = (DateTime.Now.Month < app.Birthday.Month || (DateTime.Now.Month == app.Birthday.Month && DateTime.Now.Day < app.Birthday.Day) ? 
-                              DateTime.Now.Year - app.Birthday.Year - 1 : 
-                              DateTime.Now.Year - app.Birthday.Year), 
-                              Gender = app.Gender, 
-                              City = app.City, 
-                              Tags = (from tag in app.Tags orderby tag.TagName
-                                      select tag.TagName )
-                          });
+                        select new
+                        {
+                            ApplicantId = app.ApplicantId,
+                            FullName = app.FirstName + " " + app.MiddleName,
+                            Age = (DateTime.Now.Month < app.Birthday.Month || (DateTime.Now.Month == app.Birthday.Month && DateTime.Now.Day < app.Birthday.Day) ?
+                            DateTime.Now.Year - app.Birthday.Year - 1 :
+                            DateTime.Now.Year - app.Birthday.Year),
+                            Gender = app.Gender,
+                            City = app.City,
+                            Tags = (from tag in app.Tags
+                                    orderby tag.TagName
+                                    select tag.TagName)
+                        });
 
-            return Json(new {data= json }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = json }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Applicants/Details/5

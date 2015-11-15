@@ -15,11 +15,30 @@
 <script>
     $(document).ready(function () {
         var table = $('#listHistories').DataTable({
-            "ajax": "/../../Histories/List/"+@Model.ApplicantId,
+            "ajax":{
+                "url": "@(Url.Action("List", "Histories", new { id = Model.ApplicantId }))",
+                "dataSrc": function (json) {
+                    var i = 0;
+                    while (json.data[i] != null) {
+                        json.data[i]["CommunicationDate"] =
+                            "<a href='/Histories/Details/" + json.data[i]["HistoryId"] + "'>" +
+                            "<span class='glyphicon glyphicon-calendar'></span>" +
+                            +json.data[i]["CommunicationDate"]["Day"] + "."
+                            + json.data[i]["CommunicationDate"]["Month"] +"."+
+                            json.data[i]["CommunicationDate"]["Year"] + "</a>";
+                        json.data[i]["TypeCommunication"] =
+                        ((json.data[i]["TypeCommunication"] == 0) ? 
+                        "@ApplicantWeb.App_LocalResources.History.Skype" : 
+                        "@ApplicantWeb.App_LocalResources.History.Interview.ToString()");
+                        i++;
+                    }
+                    return json.data;
+                }
+            },
             "columns": [
-                { "data": "Дата" },
-                { "data": "Тип" },
-                { "data": "Коментарии" }
+                { "data": "CommunicationDate" },
+                { "data": "TypeCommunication" },
+                { "data": "HistoryComments" }
             ],
             "language": {
                 "search": "@ApplicantWeb.App_LocalResources.Applicant.Search",

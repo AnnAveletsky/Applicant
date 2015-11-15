@@ -19,13 +19,19 @@ namespace ApplicantWeb.Controllers
 
         public JsonResult List(int id)
         {
-            var histories = db.Applicants.Find(id).Histories;
-            var json = histories.Select(i => new
-            {
-                Дата = "<a href='/../../Histories/Details/" + i.HistoryId + "'><i class='glyphicon glyphicon-calendar'></i> " + i.CommunicationDate.Day + "." + i.CommunicationDate.Month + "." + i.CommunicationDate.Year + "</a>",
-                Тип = (i.TypeCommunication == 0) ? ApplicantWeb.App_LocalResources.History.Skype : ApplicantWeb.App_LocalResources.History.Interview,
-                Коментарии=i.HistoryComments
-            });
+            var json = (from hist in db.Histories
+                        where hist.ApplicantId == id
+                        select new
+                        {
+                            HistoryId = hist.HistoryId,
+                            CommunicationDate = new { 
+                                Day = hist.CommunicationDate.Day, 
+                                Month = hist.CommunicationDate.Month, 
+                                Year = hist.CommunicationDate.Year 
+                            },
+                            TypeCommunication = hist.TypeCommunication,
+                            HistoryComments = ((hist.HistoryComments.Length > 20) ? hist.HistoryComments.Substring(0, 20)+"..." : hist.HistoryComments)
+                        });
             return Json(new { data = json }, JsonRequestBehavior.AllowGet);
         }
         // GET: Histories/List/histories

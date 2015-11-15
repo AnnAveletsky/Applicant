@@ -47,7 +47,8 @@
             <ul class="nav nav-tabs">
                 <li class="active">
                     <a href="#comments" data-toggle="tab" aria-expanded="true">
-                    @Html.DisplayNameFor(model => model.HistoryComments)</a>
+                        @Html.DisplayNameFor(model => model.HistoryComments)
+                    </a>
                 </li>
                 <li>
                     <a href="#attachments" data-toggle="tab" aria-expanded="false">@ApplicantWeb.App_LocalResources.Attachment.Attachments</a>
@@ -60,17 +61,17 @@
                         <a class="btn btn-primary btn-sm pull-right" href="@Url.Action("Edit", new { id = Model.HistoryId })">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
-                    </h3> 
+                    </h3>
                     @Html.DisplayFor(model => model.HistoryComments)
                 </div>
                 <div class="tab-pane" id="attachments">
                     <div role="tab" id="headingAttach">
                         <h3>
                             @ApplicantWeb.App_LocalResources.Attachment.Attachments
-                        <a class="btn btn-success btn-sm pull-right" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAttach" aria-expanded="true" aria-controls="collapseAttach">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        </a>
-                    </h3>
+                            <a class="btn btn-success btn-sm pull-right" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAttach" aria-expanded="true" aria-controls="collapseAttach">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </a>
+                        </h3>
                     </div>
                     <div id="collapseAttach" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAttach">
                         <div class="panel-body">
