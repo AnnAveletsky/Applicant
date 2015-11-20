@@ -289,6 +289,8 @@
     <Content Include="App_Data\BD_log.ldf">
       <DependentUpon>BD.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\bootsrap3-wysihtml5\bootstrap3-wysihtml5.all.js" />
+    <Content Include="Content\bootsrap3-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
     <Content Include="Content\bootsrap3-wysihtml5\bootstrap3-wysihtml5.min.css" />
     <Content Include="Content\bootsrap3-wysihtml5\bootstrap3-wysihtml5.min.js" />
     <Content Include="Content\bootstrap-fileinput\css\fileinput.css" />

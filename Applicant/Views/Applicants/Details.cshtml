@@ -3,6 +3,8 @@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/fileinput")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+
 @{
     ViewBag.Title = @ApplicantWeb.App_LocalResources.Applicant.AboutApplicant + Html.DisplayFor(model => model.FirstName) + " "
             + Html.DisplayFor(model => model.MiddleName);
@@ -84,7 +86,3 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
-}
