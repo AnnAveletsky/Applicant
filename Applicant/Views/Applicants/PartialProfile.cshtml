@@ -1,7 +1,4 @@
 ﻿@model ApplicantWeb.Models.Applicant
-@*@Styles.Render("~/bundles/bootstrap3-wysihtml5")*@
-
-<link href="~/Content/bootsrap3-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" />
 
 <table class="table table-condensed">
     <tr>
@@ -100,33 +97,4 @@
                 <span>@ApplicantWeb.App_LocalResources.Applicant.InHour</span>
             }
         </td>
-    </tr>
-    @if (Model.Comments != null)
-    {
-        <tr>
-            <th colspan="2">@Html.DisplayNameFor(model => model.Comments)</th>
-        </tr>
-        <tr>
-            <td colspan="2" id="Comments-output" class="text-justify"></td>
-        </tr>
-    }
 </table>
-
-<script src="~/Scripts/handlebars/handlebars.runtime.min.js"></script>
-<script src="~/Content/bootsrap3-wysihtml5/bootstrap3-wysihtml5.all.js"></script>
-
-<script>
-    $('#Comments-output').wysihtml5({
-        toolbar: {
-            "font-styles": false, //Font styling, e.g. h1, h2, etc. Default true
-            "emphasis": false, //Italics, bold, etc. Default true
-            "lists": false, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
-            "html": false, //Button which allows you to edit the generated HTML. Default false
-            "link": false, //Button to insert a link. Default true
-            "image": false, //Button to insert an image. Default true,
-            "color": false, //Button to change color of font  
-            "blockquote": false
-        }
-    });
-    $('#Comments-output').html("@Html.DisplayFor(model => model.Comments)");
-</script>

@@ -42,7 +42,6 @@
             </div>
             <div class="box-body">
                 @Html.Partial("~/Views/Applicants/PartialProfile.cshtml", Model)
-                
             </div>
         </div>
     </div>
@@ -56,6 +55,12 @@
                 <li>
                     <a href="#attachments" data-toggle="tab" aria-expanded="false">@ApplicantWeb.App_LocalResources.Attachment.Attachments</a>
                 </li>
+                @if (Model.Comments != null)
+                {
+                    <li>
+                        <a href="#comments" data-toggle="tab" aria-expanded="false">@ApplicantWeb.App_LocalResources.Applicant.Comments</a>
+                    </li>
+                }
                 <li>
                     <a href="#contacts" data-toggle="tab" aria-expanded="false">@ApplicantWeb.App_LocalResources.Applicant.Contacts</a>
                 </li>
@@ -67,6 +72,24 @@
                 <div class="tab-pane" id="attachments">
                     @Html.Partial("~/Views/Applicants/PartialAttachments.cshtml", Model)
                 </div>
+                @if (Model.Comments != "")
+                {
+                    <div class="tab-pane" id="comments">
+                        <div class="box-header">
+                            <h4>
+                                @ApplicantWeb.App_LocalResources.Applicant.Comments
+                                <a class="btn btn-primary pull-right btn-sm" title=@ApplicantWeb.App_LocalResources.Applicant.EditPersonalData href="@Url.Action("Edit", new { id = Model.ApplicantId }) ">
+                                    <i class=" glyphicon glyphicon-edit"></i>
+                                </a>
+                            </h4>
+                        </div>
+                        <hr />
+                        <div class="box-body">
+                            @MvcHtmlString.Create(Model.Comments)
+                        </div>
+                        <hr />
+                    </div>
+                }
                 <div class="tab-pane" id="contacts">
                     @Html.Partial("~/Views/Applicants/PartialContacts.cshtml", Model)
                 </div>

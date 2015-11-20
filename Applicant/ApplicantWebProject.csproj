@@ -425,6 +425,9 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Content\bootsrap3-wysihtml5\bootstrap3-wysihtml5.all.min.js.map">
+      <DependentUpon>bootstrap3-wysihtml5.all.min.js</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\New one.pubxml" />
     <None Include="Properties\PublishProfiles\Zip-publish.pubxml" />
