@@ -7,6 +7,7 @@ using ApplicantClassLibrary;
 using System.Data.Entity;
 using System.Resources;
 using System.Globalization;
+using System.Web.Mvc;
 namespace ApplicantWeb.Models
 {
     public class ApplicantFields
@@ -102,6 +103,7 @@ namespace ApplicantWeb.Models
             MaxLength(500),
             Display(Name = "Comments", ResourceType = typeof(ApplicantWeb.App_LocalResources.Applicant))
         ]
+        [AllowHtml]
         public string Comments { get; set; }
 
         [

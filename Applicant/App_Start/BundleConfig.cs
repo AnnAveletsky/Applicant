@@ -9,7 +9,8 @@ namespace ApplicantWeb
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-{version}.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -43,6 +44,14 @@ namespace ApplicantWeb
             bundles.Add(new StyleBundle("~/bundles/admin-lte").Include(
                 "~/Content/admin-lte/css/AdminLTE.min.css",
                 "~/Content/admin-lte/css/skins/_all-skins.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/wysihtml5").Include(
+                "~/Scripts/handlebars/handlebars.runtime.min.js",
+                "~/Content/bootsrap3-wysihtml5/bootstrap3-wysihtml5.min.js",
+                "~/Scripts/wysihtml5x/wysihtml5x-toolbar.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/bootstrap3-wysihtml5").Include(
+                "~/Content/bootsrap3-wysihtml5/bootstrap3-wysihtml5.min.css"));
         }
     }
 }
