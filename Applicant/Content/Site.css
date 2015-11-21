@@ -29,7 +29,7 @@ body > center:last-of-type {
     }
 
 
-@media (max-width: 768px){
+@media (max-width: 950px){
     .page-wrap {
         min-height:100%;
         margin-bottom:-141px;
