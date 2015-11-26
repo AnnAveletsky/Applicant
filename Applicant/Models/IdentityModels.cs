@@ -27,6 +27,7 @@ namespace ApplicantWeb.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
+			//ConnectionStringHelper.GetConnectionString()
             : base("DefaultConnection", throwIfV1Schema: false) { }
         public System.Data.Entity.DbSet<Applicant> Applicants { get; set; }
 
