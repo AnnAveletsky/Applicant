@@ -12,7 +12,7 @@ body > center:last-of-type {
 
     .page-wrap {
         min-height:100%;
-        margin-bottom:-77px;
+        margin-bottom:-57px;
     }
 
     .page-wrap:after {
@@ -21,18 +21,18 @@ body > center:last-of-type {
     }
 
     .stiky-footer, .page-wrap:after{
-        height:77px;
+        height:57px;
     }
 
     .stiky-footer {
-        margin-top:-77px;
+        margin-top:-57px;
     }
 
 
 @media (max-width: 950px){
     .page-wrap {
         min-height:100%;
-        margin-bottom:-141px;
+        margin-bottom:-134px;
     }
 
     .page-wrap:after {
@@ -41,12 +41,12 @@ body > center:last-of-type {
     }
 
     .stiky-footer, .page-wrap:after{
-        height:141px;
+        height:57px;
     }
 
     .stiky-footer {
-        margin-top:-141px;
-    }
+        margin-top:-57px;
+    
 }
 
 /* Set padding to keep content from hitting the edges */
